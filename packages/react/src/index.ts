@@ -64,11 +64,8 @@ export type { HeaderProps, HeaderBrandProps, HeaderNavProps, HeaderActionsProps 
 export { Footer, FooterContent, FooterDivider, FooterBottom } from './components/Footer';
 export type { FooterProps, FooterContentProps, FooterDividerProps, FooterBottomProps } from './components/Footer';
 
-export { StarBackground } from './components/StarBackground';
-export type { StarBackgroundProps } from './components/StarBackground';
-
-export { GalaxyBackground } from './components/GalaxyBackground';
-export type { GalaxyBackgroundProps, GlowColor } from './components/GalaxyBackground';
+export { Background } from './components/Background';
+export type { BackgroundProps, BackgroundVariant, BackgroundColorScheme, BackgroundTheme } from './components/Background';
 
 export { Stack } from './components/Stack';
 export type { StackProps } from './components/Stack';

@@ -21,3 +21,10 @@
 .padding-sm   { padding-block: var(--stella-spacing-8,  2rem); }
 .padding-md   { padding-block: var(--stella-spacing-16, 4rem); }
 .padding-lg   { padding-block: var(--stella-spacing-24, 6rem); }
+
+/* --- Responsive: reduce horizontal padding on mobile --- */
+@media (max-width: 767px) {
+  .section {
+    padding-inline: var(--stella-spacing-4, 1rem);
+  }
+}

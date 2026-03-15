@@ -17,6 +17,8 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   sticky?: boolean;
   /** Applies a backdrop blur when sticky (default: true) */
   blur?: boolean;
+  /** Mobile nav content (shown in hamburger menu). If not provided, HeaderNav children are used */
+  mobileNav?: React.ReactNode;
 }
 
 export type HeaderBrandProps = React.HTMLAttributes<HTMLDivElement>;
@@ -24,11 +26,29 @@ export type HeaderNavProps = React.HTMLAttributes<HTMLElement>;
 export type HeaderActionsProps = React.HTMLAttributes<HTMLDivElement>;
 
 // ----------------------------------------------------------------
+// Internal context for mobile panel
+// ----------------------------------------------------------------
+
+interface HeaderContextValue {
+  mobileOpen: boolean;
+  navChildren: React.ReactNode;
+  setNavChildren: (children: React.ReactNode) => void;
+}
+
+const HeaderContext = React.createContext<HeaderContextValue | null>(null);
+
+// ----------------------------------------------------------------
 // Header (Root)
 // ----------------------------------------------------------------
 
 export const Header = React.forwardRef<HTMLElement, HeaderProps>(
-  ({ sticky = false, blur = true, className, children, ...props }, ref) => {
+  (
+    { sticky = false, blur = true, mobileNav, className, children, ...props },
+    ref,
+  ) => {
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [navChildren, setNavChildren] = React.useState<React.ReactNode>(null);
+
     const cls = [
       styles.header,
       sticky ? styles.sticky : '',
@@ -38,10 +58,37 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
       .filter(Boolean)
       .join(' ');
 
+    const mobilePanelContent = mobileNav ?? navChildren;
+
     return (
-      <header ref={ref} className={cls} {...props}>
-        {children}
-      </header>
+      <HeaderContext.Provider value={{ mobileOpen, navChildren, setNavChildren }}>
+        <header
+          ref={ref}
+          className={cls}
+          data-mobile-open={mobileOpen ? 'true' : undefined}
+          {...props}
+        >
+          <div className={styles.headerBar}>
+            {children}
+            {mobilePanelContent != null && (
+              <button
+                type="button"
+                className={styles.hamburger}
+                aria-label="Toggle navigation"
+                aria-expanded={mobileOpen}
+                onClick={() => setMobileOpen((prev) => !prev)}
+              >
+                <span className={styles.hamburgerLine} />
+                <span className={styles.hamburgerLine} />
+                <span className={styles.hamburgerLine} />
+              </button>
+            )}
+          </div>
+          {mobilePanelContent != null && mobileOpen && (
+            <div className={styles.mobilePanel}>{mobilePanelContent}</div>
+          )}
+        </header>
+      </HeaderContext.Provider>
     );
   },
 );
@@ -71,15 +118,25 @@ HeaderBrand.displayName = 'HeaderBrand';
 // ----------------------------------------------------------------
 
 export const HeaderNav = React.forwardRef<HTMLElement, HeaderNavProps>(
-  ({ className, children, ...props }, ref) => (
-    <nav
-      ref={ref}
-      className={[styles.nav, className ?? ''].filter(Boolean).join(' ')}
-      {...props}
-    >
-      {children}
-    </nav>
-  ),
+  ({ className, children, ...props }, ref) => {
+    const ctx = React.useContext(HeaderContext);
+
+    React.useEffect(() => {
+      if (ctx) {
+        ctx.setNavChildren(children);
+      }
+    });
+
+    return (
+      <nav
+        ref={ref}
+        className={[styles.nav, className ?? ''].filter(Boolean).join(' ')}
+        {...props}
+      >
+        {children}
+      </nav>
+    );
+  },
 );
 
 HeaderNav.displayName = 'HeaderNav';

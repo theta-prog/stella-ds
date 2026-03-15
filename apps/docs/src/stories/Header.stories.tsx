@@ -226,3 +226,63 @@ export const BrandOnly: Story = {
     </Header>
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' },
+    layout: 'fullscreen',
+  },
+  render: (args) => (
+    <Header
+      {...args}
+      mobileNav={
+        <nav
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.25rem',
+          }}
+        >
+          <NavLink href="/docs" active>
+            Docs
+          </NavLink>
+          <NavLink href="/components">Components</NavLink>
+          <NavLink href="/themes">Themes</NavLink>
+          <NavLink href="/blog">Blog</NavLink>
+        </nav>
+      }
+    >
+      <HeaderBrand>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <polygon
+            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+            fill="var(--stella-color-cosmos-400, #818cf8)"
+          />
+        </svg>
+        Stella UI
+      </HeaderBrand>
+      <HeaderNav>
+        <NavLink href="/docs" active>
+          Docs
+        </NavLink>
+        <NavLink href="/components">Components</NavLink>
+        <NavLink href="/themes">Themes</NavLink>
+        <NavLink href="/blog">Blog</NavLink>
+      </HeaderNav>
+      <HeaderActions>
+        <Button variant="ghost" size="sm">
+          Log in
+        </Button>
+        <Button variant="solid" size="sm">
+          Get Started
+        </Button>
+      </HeaderActions>
+    </Header>
+  ),
+};

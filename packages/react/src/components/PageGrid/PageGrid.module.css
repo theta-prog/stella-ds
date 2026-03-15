@@ -32,11 +32,22 @@
 .gap-8  { gap: var(--stella-spacing-8,  2rem); }
 .gap-12 { gap: var(--stella-spacing-12, 3rem); }
 
-/* --- Responsive: collapse all layouts to single column below 768px --- */
+/* --- Responsive: three-col → 2 columns (sidebar + main) at tablet --- */
+@media (max-width: 1023px) {
+  .layout-three-col {
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+/* --- Responsive: collapse all multi-column layouts to single column below 768px --- */
 @media (max-width: 767px) {
   .layout-sidebar-left,
   .layout-sidebar-right,
   .layout-three-col {
     grid-template-columns: 1fr;
+  }
+
+  .contained {
+    padding-inline: var(--stella-spacing-4, 1rem);
   }
 }

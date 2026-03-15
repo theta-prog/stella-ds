@@ -101,16 +101,18 @@
   border-radius: var(--stella-borderRadius-sm, 0.25rem);
   cursor: pointer;
   color: var(--stella-color-starlight-secondary, #8888a0);
-  opacity: 0.7;
-  transition: opacity var(--stella-transition-fast, 150ms ease);
+  transition:
+    color            var(--stella-transition-fast, 150ms ease),
+    background-color var(--stella-transition-fast, 150ms ease);
 }
 
 .close:hover {
-  opacity: 1;
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  background-color: var(--stella-color-void-muted, #2e3440);
 }
 
 .close:focus-visible {
-  outline: 2px solid var(--stella-color-cosmos-500, #6366f1);
+  outline: 2px solid var(--stella-color-cosmos-400, #818cf8);
   outline-offset: 2px;
 }
 

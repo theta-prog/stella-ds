@@ -119,18 +119,52 @@ export const Typography: Story = {
     <div>
       <Section title="Font Families">
         {[
-          ['--stella-typography-fontFamily-sans',      'Inter, Noto Sans JP'],
-          ['--stella-typography-fontFamily-serif',     '筑紫フォント (Adobe Fonts)'],
-          ['--stella-typography-fontFamily-display',   'Nexa Rust Script B Shadow 2'],
-          ['--stella-typography-fontFamily-statement', 'Acier BAT Text Solid'],
-          ['--stella-typography-fontFamily-mono',      'JetBrains Mono'],
-        ].map(([v, label]) => (
-          <div key={v} style={{ padding: '0.75rem 0', borderBottom: '1px solid var(--stella-color-void-muted)' }}>
-            <div style={{ fontSize: '1.5rem', fontFamily: `var(${v})`, color: 'var(--stella-color-starlight-primary)', marginBottom: '0.25rem' }}>
-              Stella UI — ステラ
+          {
+            variable: '--stella-typography-fontFamily-sans',
+            label: 'Montserrat, Zen Kaku Gothic New, system-ui, sans-serif',
+            sample: 'Stella UI — ステラ',
+            note: null,
+          },
+          {
+            variable: '--stella-typography-fontFamily-serif',
+            label: 'Zen Old Mincho, Georgia, serif',
+            sample: '美しい星空',
+            note: null,
+          },
+          {
+            variable: '--stella-typography-fontFamily-serif-print',
+            label: 'Tsukushi A Round Gothic, Georgia, serif',
+            sample: '美しい星空',
+            note: '(印刷用) print only',
+          },
+          {
+            variable: '--stella-typography-fontFamily-display',
+            label: 'Nexa Rust Script B Shadow 2, cursive',
+            sample: 'Stella UI — ステラ',
+            note: null,
+          },
+          {
+            variable: '--stella-typography-fontFamily-statement',
+            label: 'Acier BAT Text Solid, Impact, sans-serif',
+            sample: 'Stella UI — ステラ',
+            note: null,
+          },
+          {
+            variable: '--stella-typography-fontFamily-mono',
+            label: 'JetBrains Mono, Fira Code, monospace',
+            sample: 'Stella UI — ステラ',
+            note: null,
+          },
+        ].map(({ variable, label, sample, note }) => (
+          <div key={variable} style={{ padding: '0.75rem 0', borderBottom: '1px solid var(--stella-color-void-muted)' }}>
+            <div style={{ fontSize: '1.5rem', fontFamily: `var(${variable})`, color: 'var(--stella-color-starlight-primary)', marginBottom: '0.25rem' }}>
+              {sample}
             </div>
-            <code style={{ fontSize: '0.7rem', color: 'var(--stella-color-cosmos-400)' }}>{v}</code>
+            <code style={{ fontSize: '0.7rem', color: 'var(--stella-color-cosmos-400)' }}>{variable}</code>
             <span style={{ fontSize: '0.7rem', color: 'var(--stella-color-starlight-secondary)', marginLeft: '1rem' }}>{label}</span>
+            {note && (
+              <span style={{ fontSize: '0.65rem', color: 'var(--stella-color-nebula-400)', marginLeft: '0.75rem', fontStyle: 'italic' }}>{note}</span>
+            )}
           </div>
         ))}
       </Section>

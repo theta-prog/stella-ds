@@ -7,6 +7,7 @@
   background-color: var(--stella-color-void-surface, #1d2129);
   border: 1px solid var(--stella-color-void-muted, #2e3440);
   border-radius: var(--stella-borderRadius-lg, 0.75rem);
+  box-shadow: var(--stella-shadow-base, 0 1px 8px rgba(0, 0, 0, 0.3));
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -14,12 +15,16 @@
 /* --- Hoverable variant --- */
 .hoverable {
   transition:
-    box-shadow var(--stella-transition-base, 200ms ease),
-    transform  var(--stella-transition-base, 200ms ease);
+    background-color var(--stella-transition-base, 200ms ease),
+    box-shadow      var(--stella-transition-base, 200ms ease),
+    border-color    var(--stella-transition-base, 200ms ease),
+    transform       var(--stella-transition-base, 200ms ease);
 }
 
 .hoverable:hover {
+  background-color: var(--stella-color-void-overlay, #252b36);
   box-shadow: var(--stella-shadow-md, 0 4px 24px rgba(0, 0, 0, 0.4));
+  border-color: var(--stella-color-cosmos-800, #312e81);
   transform: translateY(-2px);
 }
 
@@ -29,6 +34,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--stella-spacing-1, 0.25rem);
+  border-bottom: 1px solid var(--stella-color-void-muted, #2e3440);
 }
 
 /* --- Title --- */
@@ -54,14 +60,14 @@
 /* --- Content --- */
 .content {
   padding: var(--stella-spacing-6, 1.5rem);
-  padding-top: 0;
 }
 
 /* --- Footer --- */
 .footer {
-  padding: var(--stella-spacing-6, 1.5rem);
-  padding-top: 0;
+  padding: var(--stella-spacing-4, 1rem) var(--stella-spacing-6, 1.5rem);
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: var(--stella-spacing-2, 0.5rem);
+  border-top: 1px solid var(--stella-color-void-muted, #2e3440);
 }

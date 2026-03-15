@@ -8,14 +8,22 @@
   border: 1px solid var(--stella-color-void-muted, #2e3440);
   border-radius: var(--stella-borderRadius-base, 0.375rem);
   padding: var(--stella-spacing-2, 0.5rem) var(--stella-spacing-3, 0.75rem);
-  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  font-size: var(--stella-typography-fontSize-xs, 0.75rem);
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   line-height: 1.5;
-  box-shadow: var(--stella-shadow-md);
+  box-shadow: var(--stella-shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.3));
   max-width: 280px;
   z-index: 9999;
   /* Prevent text selection cursor on tooltip bubble */
   user-select: none;
+}
+
+/* ----------------------------------------------------------------
+   Arrow
+   ---------------------------------------------------------------- */
+
+.arrow {
+  fill: var(--stella-color-void-overlay, #252b36);
 }
 
 /* ----------------------------------------------------------------

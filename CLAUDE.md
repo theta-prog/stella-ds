@@ -34,6 +34,39 @@ pnpm lint:fix      # ESLint auto-fix
 
 TypeScript strict mode is the primary correctness mechanism. ESLint covers React Hooks rules and accessibility (jsx-a11y).
 
+## Dev Server / Storybook
+
+**Claude should NOT start or restart dev servers (Storybook, Vite, etc.).** The user manages these manually in their own terminal.
+
+- Starting servers from Claude makes processes hard to stop and causes port conflicts (6006, 6007, 6008…)
+- After Claude makes code changes, tell the user to restart manually if needed
+- For design changes to appear in Storybook, the react package must be rebuilt first:
+  ```bash
+  pnpm --filter @stella-ui/react build
+  # then restart Storybook in your terminal
+  ```
+- Recommended dev setup (two terminals):
+  ```bash
+  # Terminal 1 – watch-build the react package
+  pnpm --filter @stella-ui/react dev
+  # Terminal 2 – Storybook
+  pnpm storybook
+  ```
+
+## Git Workflow
+
+**Always create a feature branch before starting any development work.**
+
+```bash
+git checkout -b feat/branch-name   # new feature
+git checkout -b fix/branch-name    # bug fix
+git checkout -b chore/branch-name  # tooling / config
+```
+
+- `main` branch is protected — never commit directly to `main`
+- Branch naming: `feat/`, `fix/`, `chore/` + short kebab-case description
+- Push the branch and open a PR when the work is ready to merge
+
 ## Architecture
 
 This is a **pnpm monorepo** design system with two packages and one app:
@@ -69,8 +102,16 @@ styles[`size-${size}`]         // e.g. styles['size-md']
 All CSS custom properties use the `--stella-` prefix. To consume tokens in a component's CSS Module:
 
 ```css
-color: var(--stella-color-primary-500);
+color: var(--stella-color-cosmos-500);
 ```
+
+Color tokens use celestial names:
+- `cosmos` — primary/interactive (indigo)
+- `nebula` — accent (purple)
+- `aurora` — accent (cyan)
+- `nova` — success/positive (emerald)
+- `void` — backgrounds (`base` / `surface` / `overlay` / `muted`)
+- `starlight` — text (`primary` / `secondary` / `disabled`)
 
 Tokens are organized under: `color`, `typography`, `spacing`, `borderRadius`, `shadow`, `transition`.
 

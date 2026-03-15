@@ -6,9 +6,9 @@
 .base {
   display: inline-flex;
   align-items: center;
-  border-radius: 9999px;
+  border-radius: var(--stella-borderRadius-full, 9999px);
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
-  font-weight: 600;
+  font-weight: var(--stella-typography-fontWeight-semibold, 600);
   white-space: nowrap;
   line-height: 1;
   border: 1px solid transparent;
@@ -16,34 +16,39 @@
 
 /* --- Sizes --- */
 .size-sm {
-  padding: 0.125rem 0.5rem;
-  font-size: 0.75rem;
+  padding: var(--stella-spacing-1, 0.25rem) var(--stella-spacing-2, 0.5rem);
+  font-size: var(--stella-typography-fontSize-2xs, 0.6875rem);
 }
 
 .size-md {
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
+  padding: var(--stella-spacing-1, 0.25rem) var(--stella-spacing-3, 0.75rem);
+  font-size: var(--stella-typography-fontSize-xs, 0.75rem);
+}
+
+.size-lg {
+  padding: var(--stella-spacing-2, 0.5rem) var(--stella-spacing-4, 1rem);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
 }
 
 /* ----------------------------------------------------------------
    SOLID variant
    ---------------------------------------------------------------- */
 
-/* default */
+/* default / neutral */
 .variant-solid.color-default {
   background-color: var(--stella-color-void-muted, #2e3440);
   color: var(--stella-color-starlight-secondary, #8888a0);
   border-color: transparent;
 }
 
-/* primary */
+/* primary = cosmos */
 .variant-solid.color-primary {
   background-color: var(--stella-color-cosmos-600, #4f46e5);
-  color: #ffffff;
+  color: var(--stella-color-starlight-primary, #f0f0f5);
   border-color: transparent;
 }
 
-/* success */
+/* success = nova */
 .variant-solid.color-success {
   background-color: var(--stella-color-nova-600, #059669);
   color: #ffffff;
@@ -64,42 +69,70 @@
   border-color: transparent;
 }
 
+/* nebula */
+.variant-solid.color-nebula {
+  background-color: var(--stella-color-nebula-600, #7c3aed);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* aurora */
+.variant-solid.color-aurora {
+  background-color: var(--stella-color-aurora-600, #0891b2);
+  color: #ffffff;
+  border-color: transparent;
+}
+
 /* ----------------------------------------------------------------
    SUBTLE variant
    ---------------------------------------------------------------- */
 
-/* default */
+/* default / neutral */
 .variant-subtle.color-default {
   background-color: rgb(160 160 176 / 0.12);
   color: var(--stella-color-starlight-secondary, #8888a0);
   border-color: transparent;
 }
 
-/* primary */
+/* primary = cosmos */
 .variant-subtle.color-primary {
-  background-color: rgb(99 102 241 / 0.12);
-  color: var(--stella-color-cosmos-400, #818cf8);
+  background-color: rgb(99 102 241 / 0.15);
+  color: var(--stella-color-cosmos-300, #a5b4fc);
   border-color: transparent;
 }
 
-/* success */
+/* success = nova */
 .variant-subtle.color-success {
-  background-color: rgb(5 150 105 / 0.12);
+  background-color: rgb(5 150 105 / 0.15);
   color: var(--stella-color-nova-300, #6ee7b7);
   border-color: transparent;
 }
 
 /* warning */
 .variant-subtle.color-warning {
-  background-color: rgb(217 119 6 / 0.12);
-  color: #fde047;
+  background-color: rgb(217 119 6 / 0.15);
+  color: #fcd34d;
   border-color: transparent;
 }
 
 /* error */
 .variant-subtle.color-error {
-  background-color: rgb(220 38 38 / 0.12);
-  color: #f87171;
+  background-color: rgb(220 38 38 / 0.15);
+  color: #fca5a5;
+  border-color: transparent;
+}
+
+/* nebula */
+.variant-subtle.color-nebula {
+  background-color: rgb(124 58 237 / 0.15);
+  color: var(--stella-color-nebula-300, #c4b5fd);
+  border-color: transparent;
+}
+
+/* aurora */
+.variant-subtle.color-aurora {
+  background-color: rgb(8 145 178 / 0.15);
+  color: var(--stella-color-aurora-300, #67e8f9);
   border-color: transparent;
 }
 
@@ -107,21 +140,21 @@
    OUTLINE variant
    ---------------------------------------------------------------- */
 
-/* default */
+/* default / neutral */
 .variant-outline.color-default {
   background-color: transparent;
   color: var(--stella-color-starlight-secondary, #8888a0);
   border-color: var(--stella-color-void-muted, #2e3440);
 }
 
-/* primary */
+/* primary = cosmos */
 .variant-outline.color-primary {
   background-color: transparent;
-  color: var(--stella-color-cosmos-400, #818cf8);
+  color: var(--stella-color-cosmos-300, #a5b4fc);
   border-color: var(--stella-color-cosmos-600, #4f46e5);
 }
 
-/* success */
+/* success = nova */
 .variant-outline.color-success {
   background-color: transparent;
   color: var(--stella-color-nova-300, #6ee7b7);
@@ -131,13 +164,27 @@
 /* warning */
 .variant-outline.color-warning {
   background-color: transparent;
-  color: #fde047;
-  border-color: #d97706;
+  color: #fcd34d;
+  border-color: #f59e0b;
 }
 
 /* error */
 .variant-outline.color-error {
   background-color: transparent;
-  color: #f87171;
-  border-color: #dc2626;
+  color: #fca5a5;
+  border-color: #ef4444;
+}
+
+/* nebula */
+.variant-outline.color-nebula {
+  background-color: transparent;
+  color: var(--stella-color-nebula-300, #c4b5fd);
+  border-color: var(--stella-color-nebula-600, #7c3aed);
+}
+
+/* aurora */
+.variant-outline.color-aurora {
+  background-color: transparent;
+  color: var(--stella-color-aurora-300, #67e8f9);
+  border-color: var(--stella-color-aurora-600, #0891b2);
 }

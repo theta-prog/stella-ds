@@ -20,27 +20,46 @@
   padding: 0;
   transition:
     background-color var(--stella-transition-fast, 150ms ease),
-    box-shadow       var(--stella-transition-fast, 150ms ease);
+    border-color     var(--stella-transition-fast, 150ms ease),
+    box-shadow       var(--stella-transition-fast, 150ms ease),
+    opacity          var(--stella-transition-fast, 150ms ease);
   outline: none;
   position: relative;
 }
 
+/* Hover (off state) */
+.root:hover:not([disabled]):not([data-state='checked']) {
+  background-color: var(--stella-color-void-overlay, #252b36);
+}
+
+/* On state */
 .root[data-state='checked'] {
   background-color: var(--stella-color-cosmos-600, #4f46e5);
 }
 
+/* Hover (on state) */
+.root[data-state='checked']:hover:not([disabled]) {
+  background-color: var(--stella-color-cosmos-500, #6366f1);
+}
+
 .root:focus-visible {
-  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+  outline: 2px solid var(--stella-color-cosmos-400, #818cf8);
+  outline-offset: 2px;
 }
 
 .root[disabled] {
-  opacity: 0.45;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 /* --- Error state --- */
 .state-error {
-  border-color: #f87171;
+  border-color: #ef4444;
+}
+
+.state-error:focus-visible {
+  outline: 2px solid rgb(239 68 68 / 0.6);
+  outline-offset: 2px;
 }
 
 /* --- Sizes (root) --- */
@@ -69,7 +88,8 @@
   background-color: #ffffff;
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
   transition:
-    transform var(--stella-transition-fast, 150ms ease);
+    transform  var(--stella-transition-fast, 150ms ease),
+    box-shadow var(--stella-transition-fast, 150ms ease);
   will-change: transform;
 }
 
@@ -114,6 +134,6 @@
 .label-lg { font-size: var(--stella-typography-fontSize-lg,   1.125rem); }
 
 .label-disabled {
-  opacity: 0.45;
+  opacity: 0.4;
   cursor: not-allowed;
 }

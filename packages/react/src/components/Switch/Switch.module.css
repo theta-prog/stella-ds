@@ -1,0 +1,119 @@
+/* ----------------------------------------------------------------
+   Switch.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--stella-spacing-2, 0.5rem);
+}
+
+/* --- Root (the pill track) --- */
+.root {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background-color: var(--stella-color-void-muted, #2e3440);
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background-color var(--stella-transition-fast, 150ms ease),
+    box-shadow       var(--stella-transition-fast, 150ms ease);
+  outline: none;
+  position: relative;
+}
+
+.root[data-state='checked'] {
+  background-color: var(--stella-color-cosmos-600, #4f46e5);
+}
+
+.root:focus-visible {
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+}
+
+.root[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* --- Error state --- */
+.state-error {
+  border-color: #f87171;
+}
+
+/* --- Sizes (root) --- */
+.size-sm {
+  width: 2rem;
+  height: 1.125rem;
+  padding-inline: 0.125rem;
+}
+
+.size-md {
+  width: 2.5rem;
+  height: 1.375rem;
+  padding-inline: 0.125rem;
+}
+
+.size-lg {
+  width: 3rem;
+  height: 1.625rem;
+  padding-inline: 0.125rem;
+}
+
+/* --- Thumb (the white circle) --- */
+.thumb {
+  display: block;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+  transition:
+    transform var(--stella-transition-fast, 150ms ease);
+  will-change: transform;
+}
+
+.thumb-sm {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.thumb-sm[data-state='checked'] {
+  transform: translateX(calc(2rem - 0.875rem - 0.25rem));
+}
+
+.thumb-md {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.thumb-md[data-state='checked'] {
+  transform: translateX(calc(2.5rem - 1.125rem - 0.25rem));
+}
+
+.thumb-lg {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.thumb-lg[data-state='checked'] {
+  transform: translateX(calc(3rem - 1.375rem - 0.25rem));
+}
+
+/* --- Label --- */
+.label {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+  cursor: pointer;
+  user-select: none;
+}
+
+.label-sm { font-size: var(--stella-typography-fontSize-sm,   0.875rem); }
+.label-md { font-size: var(--stella-typography-fontSize-base, 1rem); }
+.label-lg { font-size: var(--stella-typography-fontSize-lg,   1.125rem); }
+
+.label-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

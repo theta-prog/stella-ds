@@ -1,0 +1,14 @@
+/*
+ * Stella UI – Global Theme CSS
+ * Imports the compiled design token CSS variables from @stella-ui/theme.
+ * This file is the Storybook entry point for token injection.
+ */
+@import '@stella-ui/theme/css';
+
+/* Storybook canvas base styles */
+body {
+  margin: 0;
+  background-color: var(--stella-color-void-base, #0f1117);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+}

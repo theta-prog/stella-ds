@@ -1,0 +1,164 @@
+/* ----------------------------------------------------------------
+   Dialog.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------
+   Keyframes
+   ---------------------------------------------------------------- */
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes overlay-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes content-in {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 8px)); }
+  to   { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@keyframes content-out {
+  from { opacity: 1; transform: translate(-50%, -50%); }
+  to   { opacity: 0; transform: translate(-50%, calc(-50% + 8px)); }
+}
+
+/* ----------------------------------------------------------------
+   Overlay
+   ---------------------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+}
+
+.overlay[data-state='open'] {
+  animation: overlay-in 150ms ease;
+}
+
+.overlay[data-state='closed'] {
+  animation: overlay-out 100ms ease;
+}
+
+/* ----------------------------------------------------------------
+   Content panel
+   ---------------------------------------------------------------- */
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--stella-color-void-overlay, #252b36);
+  border: 1px solid var(--stella-color-void-muted, #2e3440);
+  border-radius: var(--stella-borderRadius-xl, 1rem);
+  box-shadow: var(--stella-shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.4));
+  width: 90vw;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: var(--stella-spacing-6, 1.5rem);
+  z-index: 51;
+  box-sizing: border-box;
+}
+
+.content[data-state='open'] {
+  animation: content-in 200ms ease;
+}
+
+.content[data-state='closed'] {
+  animation: content-out 150ms ease;
+}
+
+/* ----------------------------------------------------------------
+   Close button (absolute, top-right)
+   ---------------------------------------------------------------- */
+
+.closeButton {
+  position: absolute;
+  top: var(--stella-spacing-4, 1rem);
+  right: var(--stella-spacing-4, 1rem);
+}
+
+/* ----------------------------------------------------------------
+   Close icon button (shared base style)
+   ---------------------------------------------------------------- */
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--stella-spacing-1, 0.25rem);
+  background: transparent;
+  border: none;
+  border-radius: var(--stella-borderRadius-sm, 0.25rem);
+  cursor: pointer;
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  opacity: 0.7;
+  transition: opacity var(--stella-transition-fast, 150ms ease);
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--stella-color-cosmos-500, #6366f1);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------
+   Header
+   ---------------------------------------------------------------- */
+
+.dialogHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stella-spacing-1, 0.25rem);
+  margin-bottom: var(--stella-spacing-4, 1rem);
+}
+
+/* ----------------------------------------------------------------
+   Footer
+   ---------------------------------------------------------------- */
+
+.dialogFooter {
+  display: flex;
+  flex-direction: row;
+  gap: var(--stella-spacing-2, 0.5rem);
+  justify-content: flex-end;
+  margin-top: var(--stella-spacing-6, 1.5rem);
+}
+
+/* ----------------------------------------------------------------
+   Title
+   ---------------------------------------------------------------- */
+
+.dialogTitle {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-size: var(--stella-typography-fontSize-xl, 1.25rem);
+  font-weight: var(--stella-typography-fontWeight-semibold, 600);
+  line-height: var(--stella-typography-lineHeight-tight, 1.25);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  margin: 0;
+}
+
+/* ----------------------------------------------------------------
+   Description
+   ---------------------------------------------------------------- */
+
+.dialogDescription {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  font-weight: var(--stella-typography-fontWeight-regular, 400);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  margin: 0;
+}

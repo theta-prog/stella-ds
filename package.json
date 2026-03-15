@@ -1,0 +1,30 @@
+{
+  "name": "stella-ui",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Stella UI – scalable design system for web, portfolio, MV, and 3D",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm --filter @stella-ui/docs dev",
+    "storybook": "pnpm --filter @stella-ui/docs storybook",
+    "build-storybook": "pnpm --filter @stella-ui/docs build-storybook",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "npx eslint packages/react/src apps/docs/src",
+    "lint:fix": "npx eslint packages/react/src apps/docs/src --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^17.4.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.19",
+    "pnpm": ">=9"
+  }
+}

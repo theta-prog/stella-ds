@@ -1,0 +1,201 @@
+/* ----------------------------------------------------------------
+   Select.module.css – Stella UI
+   Uses CSS custom properties from @stella-ui/theme tokens.css
+   ---------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------
+   Trigger wrapper (contains trigger + error message)
+   ---------------------------------------------------------------- */
+
+.triggerWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stella-spacing-1, 0.25rem);
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------
+   Trigger button
+   ---------------------------------------------------------------- */
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-weight: var(--stella-typography-fontWeight-regular, 400);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  background-color: var(--stella-color-void-surface, #1d2129);
+  border: 1.5px solid var(--stella-color-void-muted, #2e3440);
+  border-radius: var(--stella-borderRadius-md, 0.5rem);
+  cursor: pointer;
+  transition:
+    border-color var(--stella-transition-fast, 150ms ease),
+    box-shadow   var(--stella-transition-fast, 150ms ease);
+  outline: none;
+  box-sizing: border-box;
+  text-align: left;
+  gap: var(--stella-spacing-2, 0.5rem);
+}
+
+.trigger:hover:not([disabled]) {
+  border-color: var(--stella-color-cosmos-700, #4338ca);
+}
+
+.trigger:focus-visible {
+  border-color: var(--stella-color-cosmos-500, #6366f1);
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+}
+
+.trigger[data-state='open'] {
+  border-color: var(--stella-color-cosmos-500, #6366f1);
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+}
+
+.trigger[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ----------------------------------------------------------------
+   Error state
+   ---------------------------------------------------------------- */
+
+.state-error {
+  border-color: #f87171;
+}
+
+.state-error:hover:not([disabled]) {
+  border-color: #f87171;
+}
+
+.state-error:focus-visible {
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgb(248 113 113 / 0.2);
+}
+
+.state-error[data-state='open'] {
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgb(248 113 113 / 0.2);
+}
+
+.errorMessage {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  color: #f87171;
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}
+
+/* ----------------------------------------------------------------
+   Sizes (matching Input/Button)
+   ---------------------------------------------------------------- */
+
+.size-sm {
+  padding: var(--stella-spacing-1, 0.25rem) var(--stella-spacing-3, 0.75rem);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  min-height: 2rem;
+}
+
+.size-md {
+  padding: var(--stella-spacing-2, 0.5rem) var(--stella-spacing-4, 1rem);
+  font-size: var(--stella-typography-fontSize-base, 1rem);
+  min-height: 2.5rem;
+}
+
+.size-lg {
+  padding: var(--stella-spacing-3, 0.75rem) var(--stella-spacing-4, 1rem);
+  font-size: var(--stella-typography-fontSize-lg, 1.125rem);
+  min-height: 3rem;
+}
+
+/* ----------------------------------------------------------------
+   Chevron icon
+   ---------------------------------------------------------------- */
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  transition: transform var(--stella-transition-fast, 150ms ease);
+}
+
+.trigger[data-state='open'] .chevron {
+  transform: rotate(180deg);
+}
+
+/* ----------------------------------------------------------------
+   Content (dropdown panel)
+   ---------------------------------------------------------------- */
+
+.content {
+  background-color: var(--stella-color-void-overlay, #252b36);
+  border: 1px solid var(--stella-color-void-muted, #2e3440);
+  border-radius: var(--stella-borderRadius-md, 0.5rem);
+  box-shadow: var(--stella-shadow-md, 0 4px 24px rgba(0, 0, 0, 0.4));
+  overflow: hidden;
+  z-index: 50;
+  min-width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+}
+
+.viewport {
+  padding: var(--stella-spacing-1, 0.25rem);
+}
+
+/* ----------------------------------------------------------------
+   Item
+   ---------------------------------------------------------------- */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--stella-spacing-2, 0.5rem);
+  padding: var(--stella-spacing-2, 0.5rem) var(--stella-spacing-3, 0.75rem);
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-size: var(--stella-typography-fontSize-base, 1rem);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  border-radius: var(--stella-borderRadius-sm, 0.25rem);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  position: relative;
+}
+
+.item[data-highlighted] {
+  background-color: var(--stella-color-cosmos-600, #4f46e5);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+}
+
+.item[data-disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.itemIndicator {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   Group label
+   ---------------------------------------------------------------- */
+
+.label {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  padding: var(--stella-spacing-1, 0.25rem) var(--stella-spacing-3, 0.75rem);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}
+
+/* ----------------------------------------------------------------
+   Separator
+   ---------------------------------------------------------------- */
+
+.separator {
+  height: 1px;
+  background-color: var(--stella-color-void-muted, #2e3440);
+  margin: var(--stella-spacing-1, 0.25rem) 0;
+}

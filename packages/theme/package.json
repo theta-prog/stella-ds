@@ -1,0 +1,29 @@
+{
+  "name": "@stella-ui/theme",
+  "version": "0.1.0",
+  "description": "Stella UI design tokens – framework-agnostic CSS variables and JSON",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./tokens": "./src/tokens.json",
+    "./css": "./dist/tokens.css"
+  },
+  "files": [
+    "dist",
+    "src/tokens.json"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --out-dir dist && node scripts/build-css.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}

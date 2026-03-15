@@ -1,0 +1,93 @@
+/* ----------------------------------------------------------------
+   Checkbox.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--stella-spacing-2, 0.5rem);
+}
+
+/* --- Root (the box) --- */
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1.5px solid var(--stella-color-void-muted, #2e3440);
+  border-radius: var(--stella-borderRadius-sm, 0.125rem);
+  background-color: var(--stella-color-void-surface, #1d2129);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  cursor: pointer;
+  transition:
+    background-color var(--stella-transition-fast, 150ms ease),
+    border-color     var(--stella-transition-fast, 150ms ease),
+    box-shadow       var(--stella-transition-fast, 150ms ease);
+  outline: none;
+}
+
+.root:hover:not([disabled]) {
+  border-color: var(--stella-color-cosmos-600, #4f46e5);
+}
+
+.root:focus-visible {
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+  border-color: var(--stella-color-cosmos-500, #6366f1);
+}
+
+.root[data-state='checked'],
+.root[data-state='indeterminate'] {
+  background-color: var(--stella-color-cosmos-600, #4f46e5);
+  border-color: var(--stella-color-cosmos-600, #4f46e5);
+}
+
+.root[data-state='checked']:hover:not([disabled]),
+.root[data-state='indeterminate']:hover:not([disabled]) {
+  background-color: var(--stella-color-cosmos-500, #6366f1);
+  border-color: var(--stella-color-cosmos-500, #6366f1);
+}
+
+.root[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* --- Error state --- */
+.state-error {
+  border-color: #f87171;
+}
+
+.state-error:hover:not([disabled]) {
+  border-color: #f87171;
+}
+
+/* --- Sizes --- */
+.size-sm { width: 1rem;    height: 1rem; }
+.size-md { width: 1.25rem; height: 1.25rem; }
+.size-lg { width: 1.5rem;  height: 1.5rem; }
+
+/* --- Indicator (check icon wrapper) --- */
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+}
+
+/* --- Label --- */
+.label {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+  cursor: pointer;
+  user-select: none;
+}
+
+.label-sm { font-size: var(--stella-typography-fontSize-sm,   0.875rem); }
+.label-md { font-size: var(--stella-typography-fontSize-base, 1rem); }
+.label-lg { font-size: var(--stella-typography-fontSize-lg,   1.125rem); }
+
+.label-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

@@ -1,0 +1,114 @@
+/* ----------------------------------------------------------------
+   Radio.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+/* --- Group container --- */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stella-spacing-2, 0.5rem);
+}
+
+.group-horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--stella-spacing-4, 1rem);
+}
+
+.group-vertical {
+  flex-direction: column;
+}
+
+/* --- Item wrapper (circle + label) --- */
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--stella-spacing-2, 0.5rem);
+}
+
+/* --- The circular radio button --- */
+.radio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1.5px solid var(--stella-color-void-muted, #2e3440);
+  background-color: var(--stella-color-void-surface, #1d2129);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  cursor: pointer;
+  outline: none;
+  transition:
+    border-color var(--stella-transition-fast, 150ms ease),
+    background-color var(--stella-transition-fast, 150ms ease),
+    box-shadow var(--stella-transition-fast, 150ms ease);
+}
+
+.radio:hover:not([disabled]) {
+  border-color: var(--stella-color-cosmos-700, #4338ca);
+}
+
+.radio:focus-visible {
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+  border-color: var(--stella-color-cosmos-500, #6366f1);
+}
+
+.radio[data-state='checked'] {
+  border-color: var(--stella-color-cosmos-600, #4f46e5);
+  background-color: var(--stella-color-cosmos-600, #4f46e5);
+}
+
+.radio[data-state='checked']:hover:not([disabled]) {
+  border-color: var(--stella-color-cosmos-500, #6366f1);
+  background-color: var(--stella-color-cosmos-500, #6366f1);
+}
+
+.radio[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* --- Error state — scoped to the radio circle --- */
+.state-error-radio {
+  border-color: #f87171;
+}
+
+.state-error-radio:hover:not([disabled]) {
+  border-color: #f87171;
+}
+
+.state-error-radio[data-state='checked'] {
+  border-color: #f87171;
+  background-color: #f87171;
+}
+
+/* --- Sizes --- */
+.size-sm { width: 1rem;    height: 1rem; }
+.size-md { width: 1.25rem; height: 1.25rem; }
+.size-lg { width: 1.5rem;  height: 1.5rem; }
+
+/* --- Indicator (filled circle wrapper) --- */
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+}
+
+/* --- Label --- */
+.label {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+  cursor: pointer;
+  user-select: none;
+}
+
+.label-sm { font-size: var(--stella-typography-fontSize-sm,   0.875rem); }
+.label-md { font-size: var(--stella-typography-fontSize-base, 1rem); }
+.label-lg { font-size: var(--stella-typography-fontSize-lg,   1.125rem); }
+
+.label-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

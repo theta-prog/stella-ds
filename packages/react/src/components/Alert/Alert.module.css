@@ -1,0 +1,108 @@
+/* ----------------------------------------------------------------
+   Alert.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--stella-spacing-3, 0.75rem);
+  padding: var(--stella-spacing-4, 1rem);
+  border-radius: var(--stella-borderRadius-md, 0.5rem);
+  border: 1px solid transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Content area --- */
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--stella-spacing-1, 0.25rem);
+}
+
+/* --- Icon --- */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* --- Title --- */
+.title {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  font-weight: var(--stella-typography-fontWeight-semibold, 600);
+  line-height: var(--stella-typography-lineHeight-tight, 1.25);
+  margin: 0;
+}
+
+/* --- Description --- */
+.description {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  font-weight: var(--stella-typography-fontWeight-regular, 400);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* --- Close button --- */
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--stella-spacing-1, 0.25rem);
+  background: transparent;
+  border: none;
+  border-radius: var(--stella-borderRadius-sm, 0.125rem);
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+  margin-top: -2px;
+  transition: opacity var(--stella-transition-fast, 150ms ease);
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.close:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------
+   Variants
+   ---------------------------------------------------------------- */
+
+/* info */
+.variant-info {
+  background-color: rgb(99 102 241 / 0.1);
+  border-color: rgb(99 102 241 / 0.3);
+  color: var(--stella-color-cosmos-300, #a5b4fc);
+}
+
+/* success */
+.variant-success {
+  background-color: rgb(34 197 94 / 0.1);
+  border-color: rgb(34 197 94 / 0.3);
+  color: var(--stella-color-nova-300, #6ee7b7);
+}
+
+/* warning */
+.variant-warning {
+  background-color: rgb(234 179 8 / 0.1);
+  border-color: rgb(234 179 8 / 0.3);
+  color: #fde047;
+}
+
+/* error */
+.variant-error {
+  background-color: rgb(248 113 113 / 0.1);
+  border-color: rgb(248 113 113 / 0.3);
+  color: #f87171;
+}

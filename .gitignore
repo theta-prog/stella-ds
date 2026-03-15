@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Storybook
+storybook-static/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Local Claude / MCP settings
+.claude/settings.local.json
+.mcp.json

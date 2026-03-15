@@ -1,0 +1,143 @@
+/* ----------------------------------------------------------------
+   Badge.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+/* --- Base --- */
+.base {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1;
+  border: 1px solid transparent;
+}
+
+/* --- Sizes --- */
+.size-sm {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.size-md {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* ----------------------------------------------------------------
+   SOLID variant
+   ---------------------------------------------------------------- */
+
+/* default */
+.variant-solid.color-default {
+  background-color: var(--stella-color-void-muted, #2e3440);
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  border-color: transparent;
+}
+
+/* primary */
+.variant-solid.color-primary {
+  background-color: var(--stella-color-cosmos-600, #4f46e5);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* success */
+.variant-solid.color-success {
+  background-color: var(--stella-color-nova-600, #059669);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* warning */
+.variant-solid.color-warning {
+  background-color: #d97706;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* error */
+.variant-solid.color-error {
+  background-color: #dc2626;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* ----------------------------------------------------------------
+   SUBTLE variant
+   ---------------------------------------------------------------- */
+
+/* default */
+.variant-subtle.color-default {
+  background-color: rgb(160 160 176 / 0.12);
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  border-color: transparent;
+}
+
+/* primary */
+.variant-subtle.color-primary {
+  background-color: rgb(99 102 241 / 0.12);
+  color: var(--stella-color-cosmos-400, #818cf8);
+  border-color: transparent;
+}
+
+/* success */
+.variant-subtle.color-success {
+  background-color: rgb(5 150 105 / 0.12);
+  color: var(--stella-color-nova-300, #6ee7b7);
+  border-color: transparent;
+}
+
+/* warning */
+.variant-subtle.color-warning {
+  background-color: rgb(217 119 6 / 0.12);
+  color: #fde047;
+  border-color: transparent;
+}
+
+/* error */
+.variant-subtle.color-error {
+  background-color: rgb(220 38 38 / 0.12);
+  color: #f87171;
+  border-color: transparent;
+}
+
+/* ----------------------------------------------------------------
+   OUTLINE variant
+   ---------------------------------------------------------------- */
+
+/* default */
+.variant-outline.color-default {
+  background-color: transparent;
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  border-color: var(--stella-color-void-muted, #2e3440);
+}
+
+/* primary */
+.variant-outline.color-primary {
+  background-color: transparent;
+  color: var(--stella-color-cosmos-400, #818cf8);
+  border-color: var(--stella-color-cosmos-600, #4f46e5);
+}
+
+/* success */
+.variant-outline.color-success {
+  background-color: transparent;
+  color: var(--stella-color-nova-300, #6ee7b7);
+  border-color: var(--stella-color-nova-600, #059669);
+}
+
+/* warning */
+.variant-outline.color-warning {
+  background-color: transparent;
+  color: #fde047;
+  border-color: #d97706;
+}
+
+/* error */
+.variant-outline.color-error {
+  background-color: transparent;
+  color: #f87171;
+  border-color: #dc2626;
+}

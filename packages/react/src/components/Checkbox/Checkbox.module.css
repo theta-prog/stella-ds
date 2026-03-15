@@ -22,23 +22,28 @@
   transition:
     background-color var(--stella-transition-fast, 150ms ease),
     border-color     var(--stella-transition-fast, 150ms ease),
-    box-shadow       var(--stella-transition-fast, 150ms ease);
+    box-shadow       var(--stella-transition-fast, 150ms ease),
+    opacity          var(--stella-transition-fast, 150ms ease);
   outline: none;
 }
 
-.root:hover:not([disabled]) {
+/* Unchecked hover: subtle cosmos tint on border + background */
+.root:hover:not([disabled]):not([data-state='checked']):not([data-state='indeterminate']) {
+  background-color: rgb(99 102 241 / 0.1);
   border-color: var(--stella-color-cosmos-600, #4f46e5);
 }
 
 .root:focus-visible {
-  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
-  border-color: var(--stella-color-cosmos-500, #6366f1);
+  outline: 2px solid var(--stella-color-cosmos-400, #818cf8);
+  outline-offset: 2px;
 }
 
+/* Checked / indeterminate: cosmos-600 filled */
 .root[data-state='checked'],
 .root[data-state='indeterminate'] {
   background-color: var(--stella-color-cosmos-600, #4f46e5);
   border-color: var(--stella-color-cosmos-600, #4f46e5);
+  color: #ffffff;
 }
 
 .root[data-state='checked']:hover:not([disabled]),
@@ -48,17 +53,22 @@
 }
 
 .root[disabled] {
-  opacity: 0.45;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 /* --- Error state --- */
 .state-error {
-  border-color: #f87171;
+  border-color: #ef4444;
 }
 
 .state-error:hover:not([disabled]) {
-  border-color: #f87171;
+  border-color: #ef4444;
+}
+
+.state-error:focus-visible {
+  outline: 2px solid rgb(239 68 68 / 0.6);
+  outline-offset: 2px;
 }
 
 /* --- Sizes --- */
@@ -71,7 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--stella-color-starlight-primary, #f0f0f5);
+  color: #ffffff;
 }
 
 /* --- Label --- */
@@ -88,6 +98,6 @@
 .label-lg { font-size: var(--stella-typography-fontSize-lg,   1.125rem); }
 
 .label-disabled {
-  opacity: 0.45;
+  opacity: 0.4;
   cursor: not-allowed;
 }

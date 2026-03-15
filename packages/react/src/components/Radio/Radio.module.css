@@ -39,47 +39,56 @@
   cursor: pointer;
   outline: none;
   transition:
-    border-color var(--stella-transition-fast, 150ms ease),
+    border-color     var(--stella-transition-fast, 150ms ease),
     background-color var(--stella-transition-fast, 150ms ease),
-    box-shadow var(--stella-transition-fast, 150ms ease);
+    box-shadow       var(--stella-transition-fast, 150ms ease),
+    opacity          var(--stella-transition-fast, 150ms ease);
 }
 
-.radio:hover:not([disabled]) {
-  border-color: var(--stella-color-cosmos-700, #4338ca);
+/* Unchecked hover: subtle cosmos tint */
+.radio:hover:not([disabled]):not([data-state='checked']) {
+  background-color: rgb(99 102 241 / 0.1);
+  border-color: var(--stella-color-cosmos-600, #4f46e5);
 }
 
 .radio:focus-visible {
-  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
-  border-color: var(--stella-color-cosmos-500, #6366f1);
+  outline: 2px solid var(--stella-color-cosmos-400, #818cf8);
+  outline-offset: 2px;
 }
 
+/* Selected: cosmos-600 border, void-surface bg so inner dot is visible */
 .radio[data-state='checked'] {
   border-color: var(--stella-color-cosmos-600, #4f46e5);
-  background-color: var(--stella-color-cosmos-600, #4f46e5);
+  border-width: 2px;
+  background-color: var(--stella-color-void-surface, #1d2129);
 }
 
 .radio[data-state='checked']:hover:not([disabled]) {
   border-color: var(--stella-color-cosmos-500, #6366f1);
-  background-color: var(--stella-color-cosmos-500, #6366f1);
 }
 
 .radio[disabled] {
-  opacity: 0.45;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 /* --- Error state — scoped to the radio circle --- */
 .state-error-radio {
-  border-color: #f87171;
+  border-color: #ef4444;
 }
 
 .state-error-radio:hover:not([disabled]) {
-  border-color: #f87171;
+  border-color: #ef4444;
+}
+
+.state-error-radio:focus-visible {
+  outline: 2px solid rgb(239 68 68 / 0.6);
+  outline-offset: 2px;
 }
 
 .state-error-radio[data-state='checked'] {
-  border-color: #f87171;
-  background-color: #f87171;
+  border-color: #ef4444;
+  background-color: var(--stella-color-void-surface, #1d2129);
 }
 
 /* --- Sizes --- */
@@ -87,12 +96,12 @@
 .size-md { width: 1.25rem; height: 1.25rem; }
 .size-lg { width: 1.5rem;  height: 1.5rem; }
 
-/* --- Indicator (filled circle wrapper) --- */
+/* --- Indicator (filled inner dot) --- */
 .indicator {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--stella-color-starlight-primary, #f0f0f5);
+  color: var(--stella-color-cosmos-500, #6366f1);
 }
 
 /* --- Label --- */
@@ -109,6 +118,6 @@
 .label-lg { font-size: var(--stella-typography-fontSize-lg,   1.125rem); }
 
 .label-disabled {
-  opacity: 0.45;
+  opacity: 0.4;
   cursor: not-allowed;
 }

@@ -70,10 +70,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         aria-busy={loading || undefined}
         {...props}
       >
-        {loading && (
-          <span className={styles.spinner} aria-hidden="true" />
+        {asChild ? children : (
+          <>
+            {loading && (
+              <span className={styles.spinner} aria-hidden="true" />
+            )}
+            <span className={styles.label}>{children}</span>
+          </>
         )}
-        <span className={styles.label}>{children}</span>
       </Comp>
     );
   },

@@ -1,0 +1,42 @@
+/* ----------------------------------------------------------------
+   PageGrid.module.css – Stella UI
+   CSS grid layout for full pages with sidebar support.
+   ---------------------------------------------------------------- */
+
+.pageGrid {
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* --- Containment --- */
+.contained {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--stella-spacing-6, 1.5rem);
+}
+
+.fullBleed {
+  max-width: 100%;
+}
+
+/* --- Layout (column templates) --- */
+.layout-single        { grid-template-columns: 1fr; }
+.layout-sidebar-left  { grid-template-columns: 240px 1fr; }
+.layout-sidebar-right { grid-template-columns: 1fr 240px; }
+.layout-three-col     { grid-template-columns: 240px 1fr 240px; }
+
+/* --- Gap --- */
+.gap-4  { gap: var(--stella-spacing-4,  1rem); }
+.gap-6  { gap: var(--stella-spacing-6,  1.5rem); }
+.gap-8  { gap: var(--stella-spacing-8,  2rem); }
+.gap-12 { gap: var(--stella-spacing-12, 3rem); }
+
+/* --- Responsive: collapse all layouts to single column below 768px --- */
+@media (max-width: 767px) {
+  .layout-sidebar-left,
+  .layout-sidebar-right,
+  .layout-three-col {
+    grid-template-columns: 1fr;
+  }
+}

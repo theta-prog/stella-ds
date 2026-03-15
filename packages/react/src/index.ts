@@ -54,3 +54,25 @@ export type { TooltipContentProps, TooltipSide } from './components/Tooltip';
 
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs';
 export type { TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps, TabsVariant } from './components/Tabs';
+
+export { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from './components/Breadcrumb';
+export type { BreadcrumbProps, BreadcrumbListProps, BreadcrumbItemProps, BreadcrumbLinkProps, BreadcrumbSeparatorProps } from './components/Breadcrumb';
+
+export { Header, HeaderBrand, HeaderNav, HeaderActions } from './components/Header';
+export type { HeaderProps, HeaderBrandProps, HeaderNavProps, HeaderActionsProps } from './components/Header';
+
+export { Footer, FooterContent, FooterDivider, FooterBottom } from './components/Footer';
+export type { FooterProps, FooterContentProps, FooterDividerProps, FooterBottomProps } from './components/Footer';
+
+export { StarBackground } from './components/StarBackground';
+export type { StarBackgroundProps } from './components/StarBackground';
+
+export { GalaxyBackground } from './components/GalaxyBackground';
+export type { GalaxyBackgroundProps, GlowColor } from './components/GalaxyBackground';
+
+export { Stack } from './components/Stack';
+export type { StackProps } from './components/Stack';
+export { Section } from './components/Section';
+export type { SectionProps, SectionSize } from './components/Section';
+export { PageGrid } from './components/PageGrid';
+export type { PageGridProps, PageGridLayout } from './components/PageGrid';

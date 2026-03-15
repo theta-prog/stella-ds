@@ -1,0 +1,23 @@
+/* ----------------------------------------------------------------
+   Section.module.css – Stella UI
+   Semantic section wrapper with max-width, centering, and padding.
+   ---------------------------------------------------------------- */
+
+.section {
+  box-sizing: border-box;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--stella-spacing-6, 1.5rem);
+}
+
+/* --- Size (max-width) --- */
+.size-sm   { max-width: 640px; }
+.size-md   { max-width: 768px; }
+.size-lg   { max-width: 1024px; }
+.size-full { max-width: 100%; }
+
+/* --- Padding (vertical py) --- */
+.padding-none { padding-block: 0; }
+.padding-sm   { padding-block: var(--stella-spacing-8,  2rem); }
+.padding-md   { padding-block: var(--stella-spacing-16, 4rem); }
+.padding-lg   { padding-block: var(--stella-spacing-24, 6rem); }

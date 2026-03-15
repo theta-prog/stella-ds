@@ -1,0 +1,60 @@
+/* ----------------------------------------------------------------
+   Header.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+/* --- Root header --- */
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--stella-spacing-4, 1rem) var(--stella-spacing-6, 1.5rem);
+  background-color: var(--stella-color-void-surface, #1d2129);
+  border-bottom: 1px solid var(--stella-color-void-muted, #2e3440);
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* --- Sticky variant --- */
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* --- Blur variant (only meaningful when sticky) --- */
+.blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(29, 33, 41, 0.85);
+}
+
+/* --- Brand slot --- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--stella-spacing-3, 0.75rem);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  font-weight: var(--stella-typography-fontWeight-semibold, 600);
+  font-size: var(--stella-typography-fontSize-base, 1rem);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* --- Nav slot --- */
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--stella-spacing-1, 0.25rem);
+}
+
+/* --- Actions slot --- */
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--stella-spacing-2, 0.5rem);
+  margin-left: auto;
+}

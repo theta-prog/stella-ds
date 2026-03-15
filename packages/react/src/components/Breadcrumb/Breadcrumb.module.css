@@ -1,0 +1,67 @@
+/* ----------------------------------------------------------------
+   Breadcrumb.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+/* --- Root nav --- */
+.root {
+  display: block;
+}
+
+/* --- List (ol) --- */
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--stella-spacing-2, 0.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}
+
+/* --- Item (li) --- */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--stella-spacing-2, 0.5rem);
+}
+
+/* --- Link / current page --- */
+.link {
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  text-decoration: none;
+  border-radius: var(--stella-borderRadius-md, 0.375rem);
+  transition:
+    color var(--stella-transition-base, 200ms ease-out),
+    outline-color var(--stella-transition-base, 200ms ease-out);
+}
+
+.link:hover {
+  color: var(--stella-color-cosmos-400, #818cf8);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--stella-color-cosmos-400, #818cf8);
+  outline-offset: 2px;
+}
+
+/* Current page — no hover, high contrast */
+.link-current {
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  font-weight: var(--stella-typography-fontWeight-medium, 500);
+  cursor: default;
+}
+
+.link-current:hover {
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+}
+
+/* --- Separator --- */
+.separator {
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  user-select: none;
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+}

@@ -1,0 +1,47 @@
+/* ----------------------------------------------------------------
+   Stack.module.css – Stella UI
+   Flexbox layout primitive with Stella design token CSS variables.
+   ---------------------------------------------------------------- */
+
+.stack {
+  display: flex;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* --- Direction --- */
+.direction-vertical {
+  flex-direction: column;
+}
+
+.direction-horizontal {
+  flex-direction: row;
+}
+
+/* --- Gap --- */
+.gap-1  { gap: var(--stella-spacing-1,  0.25rem); }
+.gap-2  { gap: var(--stella-spacing-2,  0.5rem); }
+.gap-3  { gap: var(--stella-spacing-3,  0.75rem); }
+.gap-4  { gap: var(--stella-spacing-4,  1rem); }
+.gap-6  { gap: var(--stella-spacing-6,  1.5rem); }
+.gap-8  { gap: var(--stella-spacing-8,  2rem); }
+.gap-12 { gap: var(--stella-spacing-12, 3rem); }
+.gap-16 { gap: var(--stella-spacing-16, 4rem); }
+
+/* --- Align items --- */
+.align-start   { align-items: flex-start; }
+.align-center  { align-items: center; }
+.align-end     { align-items: flex-end; }
+.align-stretch { align-items: stretch; }
+
+/* --- Justify content --- */
+.justify-start   { justify-content: flex-start; }
+.justify-center  { justify-content: center; }
+.justify-end     { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around  { justify-content: space-around; }
+
+/* --- Wrap --- */
+.wrap {
+  flex-wrap: wrap;
+}

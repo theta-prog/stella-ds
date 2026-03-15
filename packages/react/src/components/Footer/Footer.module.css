@@ -1,0 +1,40 @@
+/* ----------------------------------------------------------------
+   Footer.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+/* --- Root footer --- */
+.footer {
+  background-color: var(--stella-color-void-base, #0f1117);
+  border-top: 1px solid var(--stella-color-void-muted, #2e3440);
+  padding: var(--stella-spacing-12, 3rem) var(--stella-spacing-6, 1.5rem);
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* --- Content area (CSS grid for link columns) --- */
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--stella-spacing-8, 2rem);
+}
+
+/* --- Divider (hr) --- */
+.divider {
+  border: none;
+  border-top: 1px solid var(--stella-color-void-muted, #2e3440);
+  margin: var(--stella-spacing-8, 2rem) 0;
+}
+
+/* --- Bottom bar --- */
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--stella-spacing-4, 1rem);
+  color: var(--stella-color-starlight-secondary, #8888a0);
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}

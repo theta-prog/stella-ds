@@ -1,0 +1,21 @@
+/* Separator – Stella UI */
+
+.base {
+  border: none;
+  background-color: var(--stella-color-void-muted);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+ * Orientation
+ * -------------------------------------------------------------- */
+
+.orientation-horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.orientation-vertical {
+  width: 1px;
+  align-self: stretch;
+}

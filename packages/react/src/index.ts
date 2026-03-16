@@ -64,8 +64,17 @@ export type { HeaderProps, HeaderBrandProps, HeaderNavProps, HeaderActionsProps 
 export { Footer, FooterContent, FooterDivider, FooterBottom } from './components/Footer';
 export type { FooterProps, FooterContentProps, FooterDividerProps, FooterBottomProps } from './components/Footer';
 
+export { Avatar } from './components/Avatar';
+export type { AvatarProps, AvatarSize } from './components/Avatar';
+
 export { Background } from './components/Background';
 export type { BackgroundProps, BackgroundVariant, BackgroundColorScheme, BackgroundTheme } from './components/Background';
+
+export { Text } from './components/Text';
+export type { TextProps, TextSize, TextWeight, TextColor, TextAlign, TextAs } from './components/Text';
+
+export { Heading } from './components/Heading';
+export type { HeadingProps, HeadingLevel, HeadingSize, HeadingWeight, HeadingAlign } from './components/Heading';
 
 export { Stack } from './components/Stack';
 export type { StackProps } from './components/Stack';
@@ -73,3 +82,9 @@ export { Section } from './components/Section';
 export type { SectionProps, SectionSize } from './components/Section';
 export { PageGrid } from './components/PageGrid';
 export type { PageGridProps, PageGridLayout } from './components/PageGrid';
+
+export { Skeleton } from './components/Skeleton';
+export type { SkeletonProps, SkeletonVariant } from './components/Skeleton';
+
+export { Separator } from './components/Separator';
+export type { SeparatorProps, SeparatorOrientation } from './components/Separator';

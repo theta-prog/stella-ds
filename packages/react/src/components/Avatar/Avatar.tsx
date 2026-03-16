@@ -27,6 +27,18 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 // ----------------------------------------------------------------
+// Helpers
+// ----------------------------------------------------------------
+
+const sizeToPx: Record<AvatarSize, number> = {
+  xs: 24,
+  sm: 32,
+  md: 40,
+  lg: 48,
+  xl: 64,
+};
+
+// ----------------------------------------------------------------
 // Component
 // ----------------------------------------------------------------
 
@@ -50,6 +62,7 @@ export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
     }, [src]);
 
     const showImage = src && !imgError;
+    const px = sizeToPx[size];
 
     const fallbackContent = fallback ?? alt.charAt(0).toUpperCase();
 
@@ -67,6 +80,8 @@ export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
           <img
             src={src}
             alt={alt}
+            width={px}
+            height={px}
             className={styles.image}
             onError={() => setImgError(true)}
           />

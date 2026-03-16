@@ -9,6 +9,7 @@
   font-family: var(--stella-typography-fontFamily-serif, serif);
   color: var(--stella-color-starlight-primary, #f0f0f5);
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 /* --- Sizes --- */

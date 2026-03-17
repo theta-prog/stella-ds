@@ -1,18 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
-import { useGlobals } from 'storybook/preview-api';
 import { Button } from '@stella-ui/react';
-import { t } from '../i18n';
-import type { Locale } from '../i18n';
-
-// ----------------------------------------------------------------
-// Locale-aware wrapper (reads the toolbar global)
-// ----------------------------------------------------------------
-
-function useT() {
-  const [globals] = useGlobals();
-  return t((globals['locale'] as Locale) ?? 'en');
-}
+import { useT } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta

@@ -2,6 +2,7 @@ import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Background } from '@stella-ui/react';
 import type { BackgroundTokenColor } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 // All available design token colors
 const COLOR_SCALES = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
@@ -115,13 +116,16 @@ function Label({ children, dark = true }: { children: React.ReactNode; dark?: bo
 // ----------------------------------------------------------------
 
 export const Stars: Story = {
-  render: (args) => (
-    <div style={containerStyle}>
-      <Background {...args} style={{ width: '100%', height: '100%' }}>
-        <Label>Stars — Animated Starfield</Label>
-      </Background>
-    </div>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <div style={containerStyle}>
+        <Background {...args} style={{ width: '100%', height: '100%' }}>
+          <Label>{tr.background.story_starfield}</Label>
+        </Background>
+      </div>
+    );
+  },
   args: {
     variant: 'stars',
     color: 'mixed',
@@ -137,13 +141,16 @@ export const Stars: Story = {
 };
 
 export const Galaxy: Story = {
-  render: (args) => (
-    <div style={containerStyle}>
-      <Background {...args} style={{ width: '100%', height: '100%' }}>
-        <Label>Galaxy — Stars + Nebula Glow</Label>
-      </Background>
-    </div>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <div style={containerStyle}>
+        <Background {...args} style={{ width: '100%', height: '100%' }}>
+          <Label>{tr.background.story_galaxy}</Label>
+        </Background>
+      </div>
+    );
+  },
   args: {
     variant: 'galaxy',
     color: 'nebula',
@@ -159,13 +166,16 @@ export const Galaxy: Story = {
 };
 
 export const MilkyWay: Story = {
-  render: (args) => (
-    <div style={containerStyle}>
-      <Background {...args} style={{ width: '100%', height: '100%' }}>
-        <Label>Milky Way — Neon Wave Ribbon</Label>
-      </Background>
-    </div>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <div style={containerStyle}>
+        <Background {...args} style={{ width: '100%', height: '100%' }}>
+          <Label>{tr.background.story_milkyway}</Label>
+        </Background>
+      </div>
+    );
+  },
   args: {
     variant: 'milkyway',
     color: 'mixed',
@@ -181,13 +191,16 @@ export const MilkyWay: Story = {
 };
 
 export const Gradient: Story = {
-  render: (args) => (
-    <div style={containerStyle}>
-      <Background {...args} style={{ width: '100%', height: '100%' }}>
-        <Label dark={args.theme === 'dark'}>Gradient — Vivid Mesh</Label>
-      </Background>
-    </div>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <div style={containerStyle}>
+        <Background {...args} style={{ width: '100%', height: '100%' }}>
+          <Label dark={args.theme === 'dark'}>{tr.background.story_gradient}</Label>
+        </Background>
+      </div>
+    );
+  },
   args: {
     variant: 'gradient',
     color: 'mixed',
@@ -203,13 +216,16 @@ export const Gradient: Story = {
 };
 
 export const GradientLight: Story = {
-  render: (args) => (
-    <div style={containerStyle}>
-      <Background {...args} style={{ width: '100%', height: '100%' }}>
-        <Label dark={false}>Gradient — Light / Cosmos</Label>
-      </Background>
-    </div>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <div style={containerStyle}>
+        <Background {...args} style={{ width: '100%', height: '100%' }}>
+          <Label dark={false}>{tr.background.story_gradient}</Label>
+        </Background>
+      </div>
+    );
+  },
   args: {
     variant: 'gradient',
     color: 'cosmos',
@@ -225,13 +241,16 @@ export const GradientLight: Story = {
 };
 
 export const Solid: Story = {
-  render: (args) => (
-    <div style={containerStyle}>
-      <Background {...args} style={{ width: '100%', height: '100%' }}>
-        <Label dark={args.theme === 'dark'}>Solid — {args.color}</Label>
-      </Background>
-    </div>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <div style={containerStyle}>
+        <Background {...args} style={{ width: '100%', height: '100%' }}>
+          <Label dark={args.theme === 'dark'}>{tr.background.story_solid} — {args.color}</Label>
+        </Background>
+      </div>
+    );
+  },
   args: {
     variant: 'solid',
     color: 'cosmos',
@@ -247,51 +266,53 @@ export const Solid: Story = {
 };
 
 export const SolidPalette: Story = {
-  render: () => (
-    <div style={{ width: '880px', background: '#000', padding: '2px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-      {COLOR_FAMILIES.map((family) => (
-        <div key={family} style={{ display: 'grid', gridTemplateColumns: `repeat(${COLOR_SCALES.length}, 1fr)`, gap: '2px' }}>
-          {COLOR_SCALES.map((scale) => {
-            const token: BackgroundTokenColor = `${family}-${scale}`;
-            const isDark = scale >= 400;
-            return (
-              <Background
-                key={token}
-                variant="solid"
-                tokenColor={token}
-                style={{ height: '56px', width: '100%' }}
-              >
-                <div style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  height: '100%', flexDirection: 'column', gap: '1px',
-                  color: isDark ? '#f0f0f5' : '#1e1b4b',
-                  fontFamily: 'sans-serif', fontSize: '0.7rem', fontWeight: 600,
-                  letterSpacing: '0.04em', opacity: 0.9,
-                }}>
-                  <span>{family}</span>
-                  <span>{scale}</span>
-                </div>
-              </Background>
-            );
-          })}
-        </div>
-      ))}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px' }}>
-        {(['void-base','void-surface','void-overlay','void-muted','starlight-primary','starlight-secondary','starlight-disabled'] as BackgroundTokenColor[]).map((token) => (
-          <Background key={token} variant="solid" tokenColor={token} style={{ height: '56px', width: '100%' }}>
-            <div style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              height: '100%', color: token.startsWith('starlight') ? '#0f1117' : '#f0f0f5',
-              fontFamily: 'sans-serif', fontSize: '0.7rem', fontWeight: 600,
-              letterSpacing: '0.04em', opacity: 0.9, textAlign: 'center', padding: '0 4px',
-            }}>
-              {token}
-            </div>
-          </Background>
+  render: () => {
+    return (
+      <div style={{ width: '880px', background: '#000', padding: '2px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        {COLOR_FAMILIES.map((family) => (
+          <div key={family} style={{ display: 'grid', gridTemplateColumns: `repeat(${COLOR_SCALES.length}, 1fr)`, gap: '2px' }}>
+            {COLOR_SCALES.map((scale) => {
+              const token: BackgroundTokenColor = `${family}-${scale}`;
+              const isDark = scale >= 400;
+              return (
+                <Background
+                  key={token}
+                  variant="solid"
+                  tokenColor={token}
+                  style={{ height: '56px', width: '100%' }}
+                >
+                  <div style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    height: '100%', flexDirection: 'column', gap: '1px',
+                    color: isDark ? '#f0f0f5' : '#1e1b4b',
+                    fontFamily: 'sans-serif', fontSize: '0.7rem', fontWeight: 600,
+                    letterSpacing: '0.04em', opacity: 0.9,
+                  }}>
+                    <span>{family}</span>
+                    <span>{scale}</span>
+                  </div>
+                </Background>
+              );
+            })}
+          </div>
         ))}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px' }}>
+          {(['void-base','void-surface','void-overlay','void-muted','starlight-primary','starlight-secondary','starlight-disabled'] as BackgroundTokenColor[]).map((token) => (
+            <Background key={token} variant="solid" tokenColor={token} style={{ height: '56px', width: '100%' }}>
+              <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                height: '100%', color: token.startsWith('starlight') ? '#0f1117' : '#f0f0f5',
+                fontFamily: 'sans-serif', fontSize: '0.7rem', fontWeight: 600,
+                letterSpacing: '0.04em', opacity: 0.9, textAlign: 'center', padding: '0 4px',
+              }}>
+                {token}
+              </div>
+            </Background>
+          ))}
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -302,15 +323,17 @@ export const SolidPalette: Story = {
 };
 
 export const GradientWithToken: Story = {
-  render: (args) => (
-    <div style={containerStyle}>
-      <Background {...args} style={{ width: '100%', height: '100%' }}>
-        <Label dark={!args.tokenColor || Number(args.tokenColor.split('-')[1]) >= 400}>
-          gradient · {args.tokenColor ?? 'default'} · overlay {args.showGradient ? 'on' : 'off'}
-        </Label>
-      </Background>
-    </div>
-  ),
+  render: (args) => {
+    return (
+      <div style={containerStyle}>
+        <Background {...args} style={{ width: '100%', height: '100%' }}>
+          <Label dark={!args.tokenColor || Number(args.tokenColor.split('-')[1]) >= 400}>
+            gradient · {args.tokenColor ?? 'default'} · overlay {args.showGradient ? 'on' : 'off'}
+          </Label>
+        </Background>
+      </div>
+    );
+  },
   args: {
     variant: 'gradient',
     tokenColor: 'nebula-900',
@@ -327,57 +350,59 @@ export const GradientWithToken: Story = {
 };
 
 export const AllVariants: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        gridTemplateRows: '1fr 1fr',
-        width: '900px',
-        height: '500px',
-        gap: '2px',
-        background: '#000',
-      }}
-    >
-      {(
-        [
-          { variant: 'stars',    color: 'mixed',  label: 'stars',    theme: 'dark'  },
-          { variant: 'galaxy',   color: 'nebula', label: 'galaxy',   theme: 'dark'  },
-          { variant: 'milkyway', color: 'aurora', label: 'milkyway', theme: 'dark'  },
-          { variant: 'gradient', color: 'mixed',  label: 'gradient (dark)', theme: 'dark'  },
-          { variant: 'gradient', color: 'nebula', label: 'gradient (light)', theme: 'light' },
-          { variant: 'solid',    color: 'cosmos', label: 'solid',    theme: 'dark'  },
-        ] as const
-      ).map(({ variant, color, label, theme }, i) => (
-        <Background
-          key={i}
-          variant={variant}
-          color={color}
-          theme={theme}
-          style={{ width: '100%', height: '100%' }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%',
-              height: '100%',
-              color: theme === 'dark' ? '#f0f0f5' : '#1e1b4b',
-              fontFamily: 'sans-serif',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              opacity: 0.85,
-            }}
+  render: () => {
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          gridTemplateRows: '1fr 1fr',
+          width: '900px',
+          height: '500px',
+          gap: '2px',
+          background: '#000',
+        }}
+      >
+        {(
+          [
+            { variant: 'stars',    color: 'mixed',  label: 'stars',    theme: 'dark'  },
+            { variant: 'galaxy',   color: 'nebula', label: 'galaxy',   theme: 'dark'  },
+            { variant: 'milkyway', color: 'aurora', label: 'milkyway', theme: 'dark'  },
+            { variant: 'gradient', color: 'mixed',  label: 'gradient (dark)', theme: 'dark'  },
+            { variant: 'gradient', color: 'nebula', label: 'gradient (light)', theme: 'light' },
+            { variant: 'solid',    color: 'cosmos', label: 'solid',    theme: 'dark'  },
+          ] as const
+        ).map(({ variant, color, label, theme }, i) => (
+          <Background
+            key={i}
+            variant={variant}
+            color={color}
+            theme={theme}
+            style={{ width: '100%', height: '100%' }}
           >
-            {label}
-          </div>
-        </Background>
-      ))}
-    </div>
-  ),
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '100%',
+                color: theme === 'dark' ? '#f0f0f5' : '#1e1b4b',
+                fontFamily: 'sans-serif',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                opacity: 0.85,
+              }}
+            >
+              {label}
+            </div>
+          </Background>
+        ))}
+      </div>
+    );
+  },
   parameters: {
     docs: {
       description: {

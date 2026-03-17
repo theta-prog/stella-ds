@@ -1,14 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { useGlobals } from 'storybook/preview-api';
 import { Checkbox } from '@stella-ui/react';
-import { t } from '../i18n';
-import type { Locale } from '../i18n';
-
-function useT() {
-  const [globals] = useGlobals();
-  return t((globals['locale'] as Locale) ?? 'en');
-}
+import { useT } from '../i18n';
 
 const meta = {
   title: 'Components/Checkbox',

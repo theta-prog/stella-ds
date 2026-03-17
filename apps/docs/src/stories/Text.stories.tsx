@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 const meta = {
   title: 'Components/Text',
@@ -47,37 +48,50 @@ type Story = StoryObj<typeof meta>;
 // ----------------------------------------------------------------
 
 export const Default: Story = {
-  args: { size: 'md', children: 'This is a text component.' },
+  render: (args) => {
+    const tr = useT();
+    return <Text {...args}>{tr.text.label_default}</Text>;
+  },
+  args: { size: 'md' },
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--stella-spacing-3)' }}>
-      {(['xs', 'sm', 'md', 'lg'] as const).map((size) => (
-        <Text key={size} size={size}>
-          Text size: {size}
-        </Text>
-      ))}
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--stella-spacing-3)' }}>
+        {(['xs', 'sm', 'md', 'lg'] as const).map((size) => (
+          <Text key={size} size={size}>
+            {tr.text.label_size} {size}
+          </Text>
+        ))}
+      </div>
+    );
+  },
 };
 
 export const Colors: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--stella-spacing-3)' }}>
-      <Text color="primary">Primary text color</Text>
-      <Text color="secondary">Secondary text color</Text>
-      <Text color="disabled">Disabled text color</Text>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--stella-spacing-3)' }}>
+        <Text color="primary">{tr.text.label_default}</Text>
+        <Text color="secondary">{tr.text.label_default}</Text>
+        <Text color="disabled">{tr.text.label_default}</Text>
+      </div>
+    );
+  },
 };
 
 export const Truncated: Story = {
-  render: () => (
-    <div style={{ maxWidth: '200px' }}>
-      <Text truncate>
-        This is a very long text that should be truncated with an ellipsis when it overflows the container boundary.
-      </Text>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ maxWidth: '200px' }}>
+        <Text truncate>
+          {tr.text.label_truncated}
+        </Text>
+      </div>
+    );
+  },
 };

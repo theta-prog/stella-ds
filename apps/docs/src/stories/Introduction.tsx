@@ -1,6 +1,6 @@
 import { useGlobals } from 'storybook/preview-api';
 import type { Locale } from '../i18n';
-import { t } from '../i18n';
+import { useT } from '../i18n';
 
 const content = {
   en: {
@@ -46,12 +46,12 @@ const content = {
 export function Introduction() {
   const [globals] = useGlobals();
   const locale = (globals['locale'] as Locale) ?? 'en';
-  const tr = t(locale);
+  const tr = useT();
   const c = content[locale] ?? content.en;
 
   const cardStyle: React.CSSProperties = {
-    background: 'var(--stella-color-background-surface, #16161a)',
-    border: '1px solid var(--stella-color-background-muted, #2a2a33)',
+    background: 'var(--stella-color-void-surface, #16161a)',
+    border: '1px solid var(--stella-color-void-muted, #2a2a33)',
     borderRadius: 'var(--stella-borderRadius-lg, 0.75rem)',
     padding: '1.25rem 1.5rem',
     maxWidth: 560,
@@ -61,7 +61,7 @@ export function Introduction() {
     fontFamily: 'var(--stella-typography-fontFamily-sans, sans-serif)',
     fontSize: 'var(--stella-typography-fontSize-xl, 1.25rem)',
     fontWeight: 'var(--stella-typography-fontWeight-semibold, 600)',
-    color: 'var(--stella-color-primary-300, #a5b4fc)',
+    color: 'var(--stella-color-cosmos-300, #a5b4fc)',
     marginTop: 0,
     marginBottom: '0.5rem',
   };
@@ -69,7 +69,7 @@ export function Introduction() {
   const bodyStyle: React.CSSProperties = {
     fontFamily: 'var(--stella-typography-fontFamily-sans, sans-serif)',
     fontSize: 'var(--stella-typography-fontSize-sm, 0.875rem)',
-    color: 'var(--stella-color-text-secondary, #a0a0b0)',
+    color: 'var(--stella-color-starlight-secondary, #a0a0b0)',
     lineHeight: 'var(--stella-typography-lineHeight-normal, 1.5)',
     margin: 0,
   };

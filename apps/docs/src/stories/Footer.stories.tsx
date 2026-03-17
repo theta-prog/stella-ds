@@ -6,6 +6,7 @@ import {
   FooterBottom,
   Badge,
 } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 const meta = {
   title: 'Navigation/Footer',
@@ -72,103 +73,187 @@ const FooterLinkGroup = ({
 // ----------------------------------------------------------------
 
 export const Basic: Story = {
-  render: (args) => (
-    <Footer {...args}>
-      <FooterContent>
-        <FooterLinkGroup
-          title="Product"
-          links={[
-            { label: 'Components', href: '/components' },
-            { label: 'Design Tokens', href: '/tokens' },
-            { label: 'Themes', href: '/themes' },
-            { label: 'Changelog', href: '/changelog' },
-          ]}
-        />
-        <FooterLinkGroup
-          title="Docs"
-          links={[
-            { label: 'Getting Started', href: '/docs/getting-started' },
-            { label: 'Installation', href: '/docs/installation' },
-            { label: 'Customization', href: '/docs/customization' },
-            { label: 'Accessibility', href: '/docs/accessibility' },
-          ]}
-        />
-        <FooterLinkGroup
-          title="Community"
-          links={[
-            { label: 'GitHub', href: 'https://github.com/stella-ui' },
-            { label: 'Discord', href: 'https://discord.gg/stella-ui' },
-            { label: 'Twitter', href: 'https://twitter.com/stellaui' },
-          ]}
-        />
-        <FooterLinkGroup
-          title="Legal"
-          links={[
-            { label: 'Privacy Policy', href: '/privacy' },
-            { label: 'Terms of Service', href: '/terms' },
-            { label: 'License (MIT)', href: '/license' },
-          ]}
-        />
-      </FooterContent>
+  render: (args) => {
+    const tr = useT();
+    return (
+      <Footer {...args}>
+        <FooterContent>
+          <FooterLinkGroup
+            title="Product"
+            links={[
+              { label: 'Components', href: '/components' },
+              { label: 'Design Tokens', href: '/tokens' },
+              { label: 'Themes', href: '/themes' },
+              { label: 'Changelog', href: '/changelog' },
+            ]}
+          />
+          <FooterLinkGroup
+            title="Docs"
+            links={[
+              { label: 'Getting Started', href: '/docs/getting-started' },
+              { label: 'Installation', href: '/docs/installation' },
+              { label: 'Customization', href: '/docs/customization' },
+              { label: 'Accessibility', href: '/docs/accessibility' },
+            ]}
+          />
+          <FooterLinkGroup
+            title="Community"
+            links={[
+              { label: 'GitHub', href: 'https://github.com/stella-ui' },
+              { label: 'Discord', href: 'https://discord.gg/stella-ui' },
+              { label: 'Twitter', href: 'https://twitter.com/stellaui' },
+            ]}
+          />
+          <FooterLinkGroup
+            title="Legal"
+            links={[
+              { label: tr.footer.nav_privacy, href: '/privacy' },
+              { label: tr.footer.nav_terms, href: '/terms' },
+              { label: 'License (MIT)', href: '/license' },
+            ]}
+          />
+        </FooterContent>
 
-      <FooterDivider />
+        <FooterDivider />
 
-      <FooterBottom>
-        <span>© 2026 Stella UI. All rights reserved.</span>
-        <span>Built with ✦ by the Stella team</span>
-      </FooterBottom>
-    </Footer>
-  ),
+        <FooterBottom>
+          <span>{tr.footer.label_copyright}</span>
+          <span>Built with ✦ by the Stella team</span>
+        </FooterBottom>
+      </Footer>
+    );
+  },
 };
 
 export const Minimal: Story = {
-  render: (args) => (
-    <Footer {...args}>
-      <FooterBottom>
-        <span>© 2026 Stella UI. All rights reserved.</span>
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <a
-            href="/privacy"
-            style={{
-              color: 'var(--stella-color-starlight-secondary, #8888a0)',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-            }}
-          >
-            Privacy
-          </a>
-          <a
-            href="/terms"
-            style={{
-              color: 'var(--stella-color-starlight-secondary, #8888a0)',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-            }}
-          >
-            Terms
-          </a>
-        </div>
-      </FooterBottom>
-    </Footer>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <Footer {...args}>
+        <FooterBottom>
+          <span>{tr.footer.label_copyright}</span>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <a
+              href="/privacy"
+              style={{
+                color: 'var(--stella-color-starlight-secondary, #8888a0)',
+                textDecoration: 'none',
+                fontSize: '0.875rem',
+              }}
+            >
+              {tr.footer.nav_privacy}
+            </a>
+            <a
+              href="/terms"
+              style={{
+                color: 'var(--stella-color-starlight-secondary, #8888a0)',
+                textDecoration: 'none',
+                fontSize: '0.875rem',
+              }}
+            >
+              {tr.footer.nav_terms}
+            </a>
+          </div>
+        </FooterBottom>
+      </Footer>
+    );
+  },
 };
 
 export const WithBrand: Story = {
-  render: (args) => (
-    <Footer {...args}>
-      <FooterContent>
-        <div style={{ gridColumn: '1 / -1' }}>
-          <div
+  render: (args) => {
+    const tr = useT();
+    return (
+      <Footer {...args}>
+        <FooterContent>
+          <div style={{ gridColumn: '1 / -1' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                marginBottom: '0.75rem',
+              }}
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <polygon
+                  points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                  fill="var(--stella-color-cosmos-400, #818cf8)"
+                />
+              </svg>
+              <span
+                style={{
+                  fontSize: '1.125rem',
+                  fontWeight: 600,
+                  color: 'var(--stella-color-starlight-primary, #f0f0f5)',
+                }}
+              >
+                Stella UI
+              </span>
+              <Badge variant="subtle" color="primary" size="sm">
+                v2.0
+              </Badge>
+            </div>
+            <p
+              style={{
+                margin: 0,
+                fontSize: '0.875rem',
+                color: 'var(--stella-color-starlight-secondary, #8888a0)',
+                maxWidth: '360px',
+                lineHeight: 1.6,
+              }}
+            >
+              A dark-mode-first design system built for modern React applications.
+              Accessible, composable, and themeable by design.
+            </p>
+          </div>
+
+          <FooterLinkGroup
+            title="Product"
+            links={[
+              { label: 'Components', href: '/components' },
+              { label: 'Design Tokens', href: '/tokens' },
+              { label: 'Changelog', href: '/changelog' },
+            ]}
+          />
+          <FooterLinkGroup
+            title="Docs"
+            links={[
+              { label: 'Getting Started', href: '/docs/getting-started' },
+              { label: 'Installation', href: '/docs/installation' },
+              { label: 'Customization', href: '/docs/customization' },
+            ]}
+          />
+          <FooterLinkGroup
+            title="Community"
+            links={[
+              { label: 'GitHub', href: 'https://github.com/stella-ui' },
+              { label: 'Discord', href: 'https://discord.gg/stella-ui' },
+            ]}
+          />
+        </FooterContent>
+
+        <FooterDivider />
+
+        <FooterBottom>
+          <span>© 2026 Stella UI — MIT License</span>
+          <span
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.75rem',
-              marginBottom: '0.75rem',
+              gap: '0.5rem',
             }}
           >
+            Made with
             <svg
-              width="28"
-              height="28"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               aria-hidden="true"
@@ -178,116 +263,44 @@ export const WithBrand: Story = {
                 fill="var(--stella-color-cosmos-400, #818cf8)"
               />
             </svg>
-            <span
-              style={{
-                fontSize: '1.125rem',
-                fontWeight: 600,
-                color: 'var(--stella-color-starlight-primary, #f0f0f5)',
-              }}
-            >
-              Stella UI
-            </span>
-            <Badge variant="subtle" color="cosmos" size="sm">
-              v2.0
-            </Badge>
-          </div>
-          <p
-            style={{
-              margin: 0,
-              fontSize: '0.875rem',
-              color: 'var(--stella-color-starlight-secondary, #8888a0)',
-              maxWidth: '360px',
-              lineHeight: 1.6,
-            }}
-          >
-            A dark-mode-first design system built for modern React applications.
-            Accessible, composable, and themeable by design.
-          </p>
-        </div>
-
-        <FooterLinkGroup
-          title="Product"
-          links={[
-            { label: 'Components', href: '/components' },
-            { label: 'Design Tokens', href: '/tokens' },
-            { label: 'Changelog', href: '/changelog' },
-          ]}
-        />
-        <FooterLinkGroup
-          title="Docs"
-          links={[
-            { label: 'Getting Started', href: '/docs/getting-started' },
-            { label: 'Installation', href: '/docs/installation' },
-            { label: 'Customization', href: '/docs/customization' },
-          ]}
-        />
-        <FooterLinkGroup
-          title="Community"
-          links={[
-            { label: 'GitHub', href: 'https://github.com/stella-ui' },
-            { label: 'Discord', href: 'https://discord.gg/stella-ui' },
-          ]}
-        />
-      </FooterContent>
-
-      <FooterDivider />
-
-      <FooterBottom>
-        <span>© 2026 Stella UI — MIT License</span>
-        <span
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-          }}
-        >
-          Made with
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <polygon
-              points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-              fill="var(--stella-color-cosmos-400, #818cf8)"
-            />
-          </svg>
-          by the Stella team
-        </span>
-      </FooterBottom>
-    </Footer>
-  ),
+            by the Stella team
+          </span>
+        </FooterBottom>
+      </Footer>
+    );
+  },
 };
 
 export const TwoColumn: Story = {
-  render: (args) => (
-    <Footer {...args}>
-      <FooterContent style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
-        <FooterLinkGroup
-          title="Resources"
-          links={[
-            { label: 'Documentation', href: '/docs' },
-            { label: 'Components', href: '/components' },
-            { label: 'Design Tokens', href: '/tokens' },
-          ]}
-        />
-        <FooterLinkGroup
-          title="Support"
-          links={[
-            { label: 'GitHub Issues', href: '/issues' },
-            { label: 'Discord Community', href: '/discord' },
-            { label: 'Contact', href: '/contact' },
-          ]}
-        />
-      </FooterContent>
+  render: (args) => {
+    const tr = useT();
+    return (
+      <Footer {...args}>
+        <FooterContent style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+          <FooterLinkGroup
+            title="Resources"
+            links={[
+              { label: 'Documentation', href: '/docs' },
+              { label: 'Components', href: '/components' },
+              { label: 'Design Tokens', href: '/tokens' },
+            ]}
+          />
+          <FooterLinkGroup
+            title="Support"
+            links={[
+              { label: 'GitHub Issues', href: '/issues' },
+              { label: 'Discord Community', href: '/discord' },
+              { label: tr.footer.nav_contact, href: '/contact' },
+            ]}
+          />
+        </FooterContent>
 
-      <FooterDivider />
+        <FooterDivider />
 
-      <FooterBottom>
-        <span>© 2026 Stella UI</span>
-      </FooterBottom>
-    </Footer>
-  ),
+        <FooterBottom>
+          <span>© 2026 Stella UI</span>
+        </FooterBottom>
+      </Footer>
+    );
+  },
 };

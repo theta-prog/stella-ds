@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Stack } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 const meta = {
   title: 'Layout/Stack',
@@ -75,126 +76,157 @@ const Box = ({
 
 export const Default: Story = {
   args: { direction: 'vertical', gap: '4' },
-  render: (args) => (
-    <Stack {...args} style={{ width: 320 }}>
-      <Box label="Item A" />
-      <Box label="Item B" />
-      <Box label="Item C" />
-    </Stack>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <Stack {...args} style={{ width: 320 }}>
+        <Box label={`${tr.stack.label_item} A`} />
+        <Box label={`${tr.stack.label_item} B`} />
+        <Box label={`${tr.stack.label_item} C`} />
+      </Stack>
+    );
+  },
 };
 
 export const Vertical: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="4" style={{ width: 320 }}>
-      <Box label="First" />
-      <Box label="Second" />
-      <Box label="Third" />
-    </Stack>
-  ),
+  render: () => {
+    const tr = useT();
+    void tr;
+    return (
+      <Stack direction="vertical" gap="4" style={{ width: 320 }}>
+        <Box label="First" />
+        <Box label="Second" />
+        <Box label="Third" />
+      </Stack>
+    );
+  },
 };
 
 export const Horizontal: Story = {
-  render: () => (
-    <Stack direction="horizontal" gap="4" align="center">
-      <Box label="Alpha" width={100} />
-      <Box label="Beta" width={100} />
-      <Box label="Gamma" width={100} />
-    </Stack>
-  ),
+  render: () => {
+    const tr = useT();
+    void tr;
+    return (
+      <Stack direction="horizontal" gap="4" align="center">
+        <Box label="Alpha" width={100} />
+        <Box label="Beta" width={100} />
+        <Box label="Gamma" width={100} />
+      </Stack>
+    );
+  },
 };
 
 export const GapSizes: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="8">
-      {(['1', '2', '4', '6', '8', '12'] as const).map((gap) => (
-        <div key={gap}>
-          <p style={{ color: 'var(--stella-color-starlight-primary, #f0f0f5)', fontSize: '0.75rem', marginBottom: '0.25rem' }}>
-            gap="{gap}"
-          </p>
-          <Stack direction="horizontal" gap={gap} align="center">
-            <Box label="A" width={60} height={40} />
-            <Box label="B" width={60} height={40} />
-            <Box label="C" width={60} height={40} />
-          </Stack>
-        </div>
-      ))}
-    </Stack>
-  ),
+  render: () => {
+    const tr = useT();
+    void tr;
+    return (
+      <Stack direction="vertical" gap="8">
+        {(['1', '2', '4', '6', '8', '12'] as const).map((gap) => (
+          <div key={gap}>
+            <p style={{ color: 'var(--stella-color-starlight-primary, #f0f0f5)', fontSize: '0.75rem', marginBottom: '0.25rem' }}>
+              gap=&quot;{gap}&quot;
+            </p>
+            <Stack direction="horizontal" gap={gap} align="center">
+              <Box label="A" width={60} height={40} />
+              <Box label="B" width={60} height={40} />
+              <Box label="C" width={60} height={40} />
+            </Stack>
+          </div>
+        ))}
+      </Stack>
+    );
+  },
 };
 
 export const Alignment: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="6">
-      {(['start', 'center', 'end'] as const).map((align) => (
-        <div key={align}>
-          <p style={{ color: 'var(--stella-color-starlight-primary, #f0f0f5)', fontSize: '0.75rem', marginBottom: '0.25rem' }}>
-            align="{align}"
-          </p>
-          <Stack
-            direction="horizontal"
-            gap="4"
-            align={align}
-            style={{
-              height: 100,
-              padding: '0.5rem',
-              backgroundColor: 'var(--stella-color-void-surface, #1d2129)',
-              borderRadius: 'var(--stella-borderRadius-lg, 0.5rem)',
-            }}
-          >
-            <Box label="A" width={60} height={40} />
-            <Box label="B" width={60} height={60} />
-            <Box label="C" width={60} height={50} />
-          </Stack>
-        </div>
-      ))}
-    </Stack>
-  ),
+  render: () => {
+    const tr = useT();
+    void tr;
+    return (
+      <Stack direction="vertical" gap="6">
+        {(['start', 'center', 'end'] as const).map((align) => (
+          <div key={align}>
+            <p style={{ color: 'var(--stella-color-starlight-primary, #f0f0f5)', fontSize: '0.75rem', marginBottom: '0.25rem' }}>
+              align=&quot;{align}&quot;
+            </p>
+            <Stack
+              direction="horizontal"
+              gap="4"
+              align={align}
+              style={{
+                height: 100,
+                padding: '0.5rem',
+                backgroundColor: 'var(--stella-color-void-surface, #1d2129)',
+                borderRadius: 'var(--stella-borderRadius-lg, 0.5rem)',
+              }}
+            >
+              <Box label="A" width={60} height={40} />
+              <Box label="B" width={60} height={60} />
+              <Box label="C" width={60} height={50} />
+            </Stack>
+          </div>
+        ))}
+      </Stack>
+    );
+  },
 };
 
 export const JustifyBetween: Story = {
-  render: () => (
-    <Stack
-      direction="horizontal"
-      gap="4"
-      justify="between"
-      align="center"
-      style={{
-        padding: '1rem',
-        backgroundColor: 'var(--stella-color-void-surface, #1d2129)',
-        borderRadius: 'var(--stella-borderRadius-lg, 0.5rem)',
-        width: '100%',
-      }}
-    >
-      <Box label="Logo" width={80} height={40} />
-      <Stack direction="horizontal" gap="2" align="center">
-        <Box label="Nav" width={60} height={32} />
-        <Box label="Nav" width={60} height={32} />
-        <Box label="Nav" width={60} height={32} />
+  render: () => {
+    const tr = useT();
+    void tr;
+    return (
+      <Stack
+        direction="horizontal"
+        gap="4"
+        justify="between"
+        align="center"
+        style={{
+          padding: '1rem',
+          backgroundColor: 'var(--stella-color-void-surface, #1d2129)',
+          borderRadius: 'var(--stella-borderRadius-lg, 0.5rem)',
+          width: '100%',
+        }}
+      >
+        <Box label="Logo" width={80} height={40} />
+        <Stack direction="horizontal" gap="2" align="center">
+          <Box label="Nav" width={60} height={32} />
+          <Box label="Nav" width={60} height={32} />
+          <Box label="Nav" width={60} height={32} />
+        </Stack>
+        <Box label="CTA" width={80} height={40} />
       </Stack>
-      <Box label="CTA" width={80} height={40} />
-    </Stack>
-  ),
+    );
+  },
 };
 
 export const WrapExample: Story = {
-  render: () => (
-    <Stack direction="horizontal" gap="3" wrap style={{ maxWidth: 360 }}>
-      {Array.from({ length: 8 }, (_, i) => (
-        <Box key={i} label={`Tag ${i + 1}`} width={90} height={36} />
-      ))}
-    </Stack>
-  ),
+  render: () => {
+    const tr = useT();
+    void tr;
+    return (
+      <Stack direction="horizontal" gap="3" wrap style={{ maxWidth: 360 }}>
+        {Array.from({ length: 8 }, (_, i) => (
+          <Box key={i} label={`Tag ${i + 1}`} width={90} height={36} />
+        ))}
+      </Stack>
+    );
+  },
 };
 
 export const AsChildLink: Story = {
-  render: () => (
-    <Stack direction="horizontal" gap="4" asChild>
-      <nav aria-label="Example navigation">
-        <Box label="Home" width={80} height={40} />
-        <Box label="About" width={80} height={40} />
-        <Box label="Contact" width={80} height={40} />
-      </nav>
-    </Stack>
-  ),
+  render: () => {
+    const tr = useT();
+    void tr;
+    return (
+      <Stack direction="horizontal" gap="4" asChild>
+        <nav aria-label="Example navigation">
+          <Box label="Home" width={80} height={40} />
+          <Box label="About" width={80} height={40} />
+          <Box label="Contact" width={80} height={40} />
+        </nav>
+      </Stack>
+    );
+  },
 };

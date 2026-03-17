@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { RadioGroup, RadioItem } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta
@@ -36,25 +37,31 @@ type Story = StoryObj<typeof meta>;
 
 /** Vertical RadioGroup with three options — the default layout. */
 export const Default: Story = {
-  render: (args) => (
-    <RadioGroup defaultValue="option-1" {...args}>
-      <RadioItem value="option-1" label="Option One" />
-      <RadioItem value="option-2" label="Option Two" />
-      <RadioItem value="option-3" label="Option Three" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <RadioGroup defaultValue="option-1" {...args}>
+        <RadioItem value="option-1" label="Option One" />
+        <RadioItem value="option-2" label="Option Two" />
+        <RadioItem value="option-3" label="Option Three" />
+      </RadioGroup>
+    );
+  },
   args: { size: 'md', orientation: 'vertical' },
 };
 
 /** Items laid out in a horizontal row. */
 export const Horizontal: Story = {
-  render: (args) => (
-    <RadioGroup defaultValue="yes" orientation="horizontal" {...args}>
-      <RadioItem value="yes"   label="Yes" />
-      <RadioItem value="no"    label="No" />
-      <RadioItem value="maybe" label="Maybe" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <RadioGroup defaultValue="yes" orientation="horizontal" {...args}>
+        <RadioItem value="yes"   label="Yes" />
+        <RadioItem value="no"    label="No" />
+        <RadioItem value="maybe" label="Maybe" />
+      </RadioGroup>
+    );
+  },
   args: { size: 'md' },
   parameters: {
     docs: {
@@ -67,16 +74,19 @@ export const Horizontal: Story = {
 
 /** sm / md / lg size presets side by side. */
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      {(['sm', 'md', 'lg'] as const).map((size) => (
-        <RadioGroup key={size} defaultValue="a" size={size}>
-          <RadioItem value="a" label={`${size} — Alpha`} />
-          <RadioItem value="b" label={`${size} — Beta`} />
-        </RadioGroup>
-      ))}
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        {(['sm', 'md', 'lg'] as const).map((size) => (
+          <RadioGroup key={size} defaultValue="a" size={size}>
+            <RadioItem value="a" label={`${size} — Alpha`} />
+            <RadioItem value="b" label={`${size} — Beta`} />
+          </RadioGroup>
+        ))}
+      </div>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -88,13 +98,16 @@ export const Sizes: Story = {
 
 /** Error state — red borders signal validation failure. */
 export const Error: Story = {
-  render: (args) => (
-    <RadioGroup error {...args}>
-      <RadioItem value="credit" label="Credit card" />
-      <RadioItem value="paypal" label="PayPal" />
-      <RadioItem value="crypto" label="Crypto" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <RadioGroup error {...args}>
+        <RadioItem value="credit" label="Credit card" />
+        <RadioItem value="paypal" label="PayPal" />
+        <RadioItem value="crypto" label="Crypto" />
+      </RadioGroup>
+    );
+  },
   args: { error: true },
   parameters: {
     docs: {
@@ -107,30 +120,33 @@ export const Error: Story = {
 
 /** Individual and whole-group disabled states. */
 export const Disabled: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <div>
-        <p style={{ margin: '0 0 0.5rem', fontSize: '0.75rem', color: 'var(--stella-color-text-secondary)' }}>
-          Individual item disabled
-        </p>
-        <RadioGroup defaultValue="active">
-          <RadioItem value="active"   label="Active item" />
-          <RadioItem value="disabled" label="Disabled item" disabled />
-          <RadioItem value="another"  label="Another active item" />
-        </RadioGroup>
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div>
+          <p style={{ margin: '0 0 0.5rem', fontSize: '0.75rem', color: 'var(--stella-color-text-secondary)' }}>
+            Individual item disabled
+          </p>
+          <RadioGroup defaultValue="active">
+            <RadioItem value="active"   label="Active item" />
+            <RadioItem value="disabled" label="Disabled item" disabled />
+            <RadioItem value="another"  label="Another active item" />
+          </RadioGroup>
+        </div>
+        <div>
+          <p style={{ margin: '0 0 0.5rem', fontSize: '0.75rem', color: 'var(--stella-color-text-secondary)' }}>
+            Entire group disabled
+          </p>
+          <RadioGroup defaultValue="b" disabled>
+            <RadioItem value="a" label="Option A" />
+            <RadioItem value="b" label="Option B (pre-selected)" />
+            <RadioItem value="c" label="Option C" />
+          </RadioGroup>
+        </div>
       </div>
-      <div>
-        <p style={{ margin: '0 0 0.5rem', fontSize: '0.75rem', color: 'var(--stella-color-text-secondary)' }}>
-          Entire group disabled
-        </p>
-        <RadioGroup defaultValue="b" disabled>
-          <RadioItem value="a" label="Option A" />
-          <RadioItem value="b" label="Option B (pre-selected)" />
-          <RadioItem value="c" label="Option C" />
-        </RadioGroup>
-      </div>
-    </div>
-  ),
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -143,6 +159,7 @@ export const Disabled: Story = {
 /** Controlled — value managed externally via useState. */
 export const Controlled: Story = {
   render: () => {
+    const tr = useT();
     const [value, setValue] = useState('vanilla');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'flex-start' }}>

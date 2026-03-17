@@ -68,7 +68,7 @@ export { Avatar } from './components/Avatar';
 export type { AvatarProps, AvatarSize } from './components/Avatar';
 
 export { Background } from './components/Background';
-export type { BackgroundProps, BackgroundVariant, BackgroundColorScheme, BackgroundTheme } from './components/Background';
+export type { BackgroundProps, BackgroundVariant, BackgroundColorScheme, BackgroundTheme, BackgroundTokenColor } from './components/Background';
 
 export { Text } from './components/Text';
 export type { TextProps, TextSize, TextWeight, TextColor, TextAlign, TextAs } from './components/Text';

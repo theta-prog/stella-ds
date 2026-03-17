@@ -53,21 +53,23 @@ export const Rectangular: Story = {
 };
 
 export const CardPlaceholder: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: 'var(--stella-spacing-4)',
-        padding: 'var(--stella-spacing-4)',
-        width: '320px',
-        borderRadius: 'var(--stella-border-radius-lg)',
-        background: 'var(--stella-color-void-surface)',
-      }}
-    >
-      <Skeleton variant="circular" width={48} height={48} />
-      <div style={{ flex: 1 }}>
-        <Skeleton variant="text" lines={3} width="100%" />
+  render: () => {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          gap: 'var(--stella-spacing-4)',
+          padding: 'var(--stella-spacing-4)',
+          width: '320px',
+          borderRadius: 'var(--stella-borderRadius-lg)',
+          background: 'var(--stella-color-void-surface)',
+        }}
+      >
+        <Skeleton variant="circular" width={48} height={48} />
+        <div style={{ flex: 1 }}>
+          <Skeleton variant="text" lines={3} width="100%" />
+        </div>
       </div>
-    </div>
-  ),
+    );
+  },
 };

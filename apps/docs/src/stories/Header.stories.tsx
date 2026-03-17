@@ -7,12 +7,12 @@ import {
   Button,
   Badge,
 } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Navigation/Header',
   component: Header,
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen', docs: { description: { component: translations.en.header.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     sticky: {

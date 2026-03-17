@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Separator } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Components/Separator',
   component: Separator,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'padded', docs: { description: { component: translations.en.separator.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     orientation: {

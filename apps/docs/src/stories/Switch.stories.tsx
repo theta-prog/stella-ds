@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Switch } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Components/Switch',
   component: Switch,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', docs: { description: { component: translations.en.switch_.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     size: {

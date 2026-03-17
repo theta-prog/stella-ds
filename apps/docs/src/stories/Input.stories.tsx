@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta
@@ -11,6 +11,7 @@ const meta = {
   component: Input,
   parameters: {
     layout: 'centered',
+    docs: { description: { component: translations.en.input.componentDescription } },
   },
   tags: ['autodocs'],
   argTypes: {

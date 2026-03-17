@@ -1,12 +1,12 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PageGrid, Stack } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Layout/PageGrid',
   component: PageGrid,
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen', docs: { description: { component: translations.en.pageGrid.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     layout: {

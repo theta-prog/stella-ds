@@ -22,6 +22,15 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.0"
   },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "eslint-plugin-jsx-a11y>eslint": "10",
+        "eslint-plugin-react>eslint": "10",
+        "eslint-plugin-react-hooks>eslint": "10"
+      }
+    }
+  },
   "type": "module",
   "engines": {
     "node": ">=20.19",

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta
@@ -12,6 +12,7 @@ const meta = {
   component: Tabs,
   parameters: {
     layout: 'padded',
+    docs: { description: { component: translations.en.tabs.componentDescription } },
   },
   tags: ['autodocs'],
   argTypes: {

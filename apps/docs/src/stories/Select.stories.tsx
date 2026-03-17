@@ -8,7 +8,7 @@ import {
   SelectLabel,
   SelectSeparator,
 } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta
@@ -19,6 +19,7 @@ const meta = {
   component: SelectTrigger,
   parameters: {
     layout: 'centered',
+    docs: { description: { component: translations.en.select.componentDescription } },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof SelectTrigger>;

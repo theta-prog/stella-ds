@@ -8,12 +8,12 @@ import {
   CardFooter,
 } from '@stella-ui/react';
 import { Button } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Components/Card',
   component: Card,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', docs: { description: { component: translations.en.card.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     hoverable: {

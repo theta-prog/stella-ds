@@ -11,12 +11,12 @@ import {
   DialogClose,
 } from '@stella-ui/react';
 import { Button } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Components/Dialog',
   component: Dialog,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', docs: { description: { component: translations.en.dialog.componentDescription } } },
   tags: ['autodocs'],
 } satisfies Meta<typeof Dialog>;
 

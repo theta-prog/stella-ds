@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Skeleton } from '@stella-ui/react';
+import { translations } from '../i18n';
 
 const meta = {
   title: 'Components/Skeleton',
   component: Skeleton,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', docs: { description: { component: translations.en.skeleton.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     variant: {

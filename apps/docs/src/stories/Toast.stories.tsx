@@ -11,12 +11,12 @@ import {
   Button,
 } from '@stella-ui/react';
 import type { ToastVariant } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Components/Toast',
   component: Toast,
-  parameters: { layout: 'centered' },
+  parameters: { layout: 'centered', docs: { description: { component: translations.en.toast.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     variant: {

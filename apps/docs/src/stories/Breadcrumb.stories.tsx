@@ -6,12 +6,12 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Navigation/Breadcrumb',
   component: Breadcrumb,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'padded', docs: { description: { component: translations.en.breadcrumb.componentDescription } } },
   tags: ['autodocs'],
 } satisfies Meta<typeof Breadcrumb>;
 

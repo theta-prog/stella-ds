@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Heading } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Components/Heading',
   component: Heading,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'padded', docs: { description: { component: translations.en.heading.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     level: {

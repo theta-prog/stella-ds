@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Components/Text',
   component: Text,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'padded', docs: { description: { component: translations.en.text.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     size: {

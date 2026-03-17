@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Stack } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Layout/Stack',
   component: Stack,
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'padded', docs: { description: { component: translations.en.stack.componentDescription } } },
   tags: ['autodocs'],
   argTypes: {
     direction: {

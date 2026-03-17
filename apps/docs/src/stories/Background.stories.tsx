@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Background } from '@stella-ui/react';
 import type { BackgroundTokenColor } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 // All available design token colors
 const COLOR_SCALES = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
@@ -23,6 +23,7 @@ const meta = {
   component: Background,
   parameters: {
     layout: 'fullscreen',
+    docs: { description: { component: translations.en.background.componentDescription } },
   },
   tags: ['autodocs'],
   argTypes: {

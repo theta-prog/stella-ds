@@ -6,12 +6,12 @@ import {
   FooterBottom,
   Badge,
 } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 const meta = {
   title: 'Navigation/Footer',
   component: Footer,
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen', docs: { description: { component: translations.en.footer.componentDescription } } },
   tags: ['autodocs'],
 } satisfies Meta<typeof Footer>;
 

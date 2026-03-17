@@ -1,6 +1,5 @@
-import { useGlobals } from 'storybook/preview-api';
+import { useT, useLocale } from '../i18n';
 import type { Locale } from '../i18n';
-import { useT } from '../i18n';
 
 const content = {
   en: {
@@ -44,8 +43,7 @@ const content = {
 };
 
 export function Introduction() {
-  const [globals] = useGlobals();
-  const locale = (globals['locale'] as Locale) ?? 'en';
+  const locale: Locale = useLocale();
   const tr = useT();
   const c = content[locale] ?? content.en;
 

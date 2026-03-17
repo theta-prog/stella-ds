@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 import { Button } from '@stella-ui/react';
-import { useT } from '../i18n';
+import { useT, translations } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta
@@ -12,6 +12,7 @@ const meta = {
   component: Button,
   parameters: {
     layout: 'centered',
+    docs: { description: { component: translations.en.button.componentDescription } },
   },
   tags: ['autodocs'],
   argTypes: {

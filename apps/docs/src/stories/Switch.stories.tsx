@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Switch } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 const meta = {
   title: 'Components/Switch',
@@ -31,41 +32,56 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-      {(['sm', 'md', 'lg'] as const).map((size) => (
-        <Switch key={size} size={size} label={`${size} — Toggle me`} />
-      ))}
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        {(['sm', 'md', 'lg'] as const).map((size) => (
+          <Switch key={size} size={size} label={`${size} — ${tr.switch_.label_toggle}`} />
+        ))}
+      </div>
+    );
+  },
 };
 
 export const WithLabel: Story = {
+  render: (args) => {
+    const tr = useT();
+    return <Switch {...args} />;
+  },
   args: { size: 'md', label: 'Enable notifications' },
 };
 
 export const Error: Story = {
-  args: { size: 'md', label: 'Accept terms', error: true },
+  render: (args) => {
+    const tr = useT();
+    return <Switch {...args} label={tr.switch_.label_terms} />;
+  },
+  args: { size: 'md', error: true },
 };
 
 export const Disabled: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-      <Switch disabled label="Disabled (off)" />
-      <Switch disabled defaultChecked label="Disabled (on)" />
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        <Switch disabled label={tr.switch_.label_disabledOff} />
+        <Switch disabled defaultChecked label={tr.switch_.label_disabledOn} />
+      </div>
+    );
+  },
 };
 
 export const Controlled: Story = {
   render: () => {
+    const tr = useT();
     const [checked, setChecked] = useState(false);
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
         <Switch
           checked={checked}
           onCheckedChange={(v) => setChecked(v)}
-          label="Dark mode"
+          label={tr.switch_.label_darkMode}
         />
         <span style={{ fontSize: '0.75rem', color: 'var(--stella-color-text-secondary)' }}>
           checked: {String(checked)}

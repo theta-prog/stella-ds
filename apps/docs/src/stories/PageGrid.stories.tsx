@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PageGrid, Stack } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 const meta = {
   title: 'Layout/PageGrid',
@@ -73,139 +74,164 @@ const Panel = ({
 
 export const Default: Story = {
   args: { layout: 'single', gap: '8', fullBleed: false },
-  render: (args) => (
-    <div style={pageWrapperStyle}>
-      <PageGrid {...args}>
-        <Panel label="Main Content" minHeight={300} />
-      </PageGrid>
-    </div>
-  ),
+  render: (args) => {
+    const tr = useT();
+    return (
+      <div style={pageWrapperStyle}>
+        <PageGrid {...args}>
+          <Panel label={tr.pageGrid.label_main} minHeight={300} />
+        </PageGrid>
+      </div>
+    );
+  },
 };
 
 export const Single: Story = {
-  render: () => (
-    <div style={pageWrapperStyle}>
-      <PageGrid layout="single" gap="8">
-        <Panel label="Main Content Area — single column layout" minHeight={300} />
-      </PageGrid>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={pageWrapperStyle}>
+        <PageGrid layout="single" gap="8">
+          <Panel label={tr.pageGrid.label_main} minHeight={300} />
+        </PageGrid>
+      </div>
+    );
+  },
 };
 
 export const SidebarLeft: Story = {
-  render: () => (
-    <div style={pageWrapperStyle}>
-      <PageGrid layout="sidebar-left" gap="8">
-        <Panel label="Sidebar (240px)" minHeight={400} accent />
-        <Panel label="Main Content" minHeight={400} />
-      </PageGrid>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={pageWrapperStyle}>
+        <PageGrid layout="sidebar-left" gap="8">
+          <Panel label={`${tr.pageGrid.label_sidebar} (240px)`} minHeight={400} accent />
+          <Panel label={tr.pageGrid.label_main} minHeight={400} />
+        </PageGrid>
+      </div>
+    );
+  },
 };
 
 export const SidebarRight: Story = {
-  render: () => (
-    <div style={pageWrapperStyle}>
-      <PageGrid layout="sidebar-right" gap="8">
-        <Panel label="Main Content" minHeight={400} />
-        <Panel label="Sidebar (240px)" minHeight={400} accent />
-      </PageGrid>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={pageWrapperStyle}>
+        <PageGrid layout="sidebar-right" gap="8">
+          <Panel label={tr.pageGrid.label_main} minHeight={400} />
+          <Panel label={`${tr.pageGrid.label_sidebar} (240px)`} minHeight={400} accent />
+        </PageGrid>
+      </div>
+    );
+  },
 };
 
 export const ThreeCol: Story = {
-  render: () => (
-    <div style={pageWrapperStyle}>
-      <PageGrid layout="three-col" gap="8">
-        <Panel label="Left Sidebar (240px)" minHeight={400} accent />
-        <Panel label="Main Content (1fr)" minHeight={400} />
-        <Panel label="Right Sidebar (240px)" minHeight={400} accent />
-      </PageGrid>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={pageWrapperStyle}>
+        <PageGrid layout="three-col" gap="8">
+          <Panel label={`${tr.pageGrid.label_sidebar} (240px)`} minHeight={400} accent />
+          <Panel label={`${tr.pageGrid.label_main} (1fr)`} minHeight={400} />
+          <Panel label={`${tr.pageGrid.label_sidebar} (240px)`} minHeight={400} accent />
+        </PageGrid>
+      </div>
+    );
+  },
 };
 
 export const GapVariants: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="12" style={{ backgroundColor: 'var(--stella-color-void-base, #0f1117)', padding: '2rem 0' }}>
-      {(['4', '6', '8', '12'] as const).map((gap) => (
-        <div key={gap}>
-          <p style={{ color: 'var(--stella-color-starlight-primary, #f0f0f5)', fontSize: '0.75rem', margin: '0 1.5rem 0.5rem' }}>
-            gap="{gap}"
-          </p>
-          <PageGrid layout="sidebar-left" gap={gap}>
-            <Panel label="Sidebar" minHeight={80} accent />
-            <Panel label="Content" minHeight={80} />
-          </PageGrid>
-        </div>
-      ))}
-    </Stack>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <Stack direction="vertical" gap="12" style={{ backgroundColor: 'var(--stella-color-void-base, #0f1117)', padding: '2rem 0' }}>
+        {(['4', '6', '8', '12'] as const).map((gap) => (
+          <div key={gap}>
+            <p style={{ color: 'var(--stella-color-starlight-primary, #f0f0f5)', fontSize: '0.75rem', margin: '0 1.5rem 0.5rem' }}>
+              gap=&quot;{gap}&quot;
+            </p>
+            <PageGrid layout="sidebar-left" gap={gap}>
+              <Panel label={tr.pageGrid.label_sidebar} minHeight={80} accent />
+              <Panel label={tr.pageGrid.label_main} minHeight={80} />
+            </PageGrid>
+          </div>
+        ))}
+      </Stack>
+    );
+  },
 };
 
 export const FullBleed: Story = {
-  render: () => (
-    <div style={pageWrapperStyle}>
-      <PageGrid layout="sidebar-left" gap="8" fullBleed>
-        <Panel label="Sidebar — full bleed (no max-width)" minHeight={300} accent />
-        <Panel label="Main Content — full bleed (no max-width)" minHeight={300} />
-      </PageGrid>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={pageWrapperStyle}>
+        <PageGrid layout="sidebar-left" gap="8" fullBleed>
+          <Panel label={tr.pageGrid.label_sidebar} minHeight={300} accent />
+          <Panel label={tr.pageGrid.label_main} minHeight={300} />
+        </PageGrid>
+      </div>
+    );
+  },
 };
 
 export const AppShell: Story = {
-  render: () => (
-    <div style={{ backgroundColor: 'var(--stella-color-void-base, #0f1117)', minHeight: '100vh' }}>
-      {/* Top nav bar */}
-      <div
-        style={{
-          backgroundColor: 'var(--stella-color-void-surface, #1d2129)',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
-          padding: '0 1.5rem',
-          height: 56,
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <span style={{ color: 'var(--stella-color-starlight-primary, #f0f0f5)', fontWeight: 700 }}>Stella App</span>
-      </div>
+  render: () => {
+    const tr = useT();
+    void tr;
+    return (
+      <div style={{ backgroundColor: 'var(--stella-color-void-base, #0f1117)', minHeight: '100vh' }}>
+        {/* Top nav bar */}
+        <div
+          style={{
+            backgroundColor: 'var(--stella-color-void-surface, #1d2129)',
+            borderBottom: '1px solid rgba(255,255,255,0.06)',
+            padding: '0 1.5rem',
+            height: 56,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <span style={{ color: 'var(--stella-color-starlight-primary, #f0f0f5)', fontWeight: 700 }}>Stella App</span>
+        </div>
 
-      {/* Page body */}
-      <PageGrid layout="sidebar-left" gap="8" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-        {/* Navigation sidebar */}
-        <Stack direction="vertical" gap="2">
-          {['Dashboard', 'Components', 'Tokens', 'Settings'].map((item) => (
-            <div
-              key={item}
-              style={{
-                padding: '0.625rem 0.75rem',
-                borderRadius: 'var(--stella-borderRadius-lg, 0.5rem)',
-                backgroundColor: item === 'Components'
-                  ? 'var(--stella-color-void-muted, #2e3440)'
-                  : 'transparent',
-                color: 'var(--stella-color-starlight-primary, #f0f0f5)',
-                fontSize: '0.875rem',
-                cursor: 'pointer',
-              }}
-            >
-              {item}
-            </div>
-          ))}
-        </Stack>
-
-        {/* Main content */}
-        <Stack direction="vertical" gap="6">
-          <Panel label="Page Heading Area" minHeight={80} />
-          <Stack direction="horizontal" gap="6">
-            <Panel label="Card 1" minHeight={120} />
-            <Panel label="Card 2" minHeight={120} />
-            <Panel label="Card 3" minHeight={120} />
+        {/* Page body */}
+        <PageGrid layout="sidebar-left" gap="8" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+          {/* Navigation sidebar */}
+          <Stack direction="vertical" gap="2">
+            {['Dashboard', 'Components', 'Tokens', 'Settings'].map((item) => (
+              <div
+                key={item}
+                style={{
+                  padding: '0.625rem 0.75rem',
+                  borderRadius: 'var(--stella-borderRadius-lg, 0.5rem)',
+                  backgroundColor: item === 'Components'
+                    ? 'var(--stella-color-void-muted, #2e3440)'
+                    : 'transparent',
+                  color: 'var(--stella-color-starlight-primary, #f0f0f5)',
+                  fontSize: '0.875rem',
+                  cursor: 'pointer',
+                }}
+              >
+                {item}
+              </div>
+            ))}
           </Stack>
-          <Panel label="Detail Panel" minHeight={200} />
-        </Stack>
-      </PageGrid>
-    </div>
-  ),
+
+          {/* Main content */}
+          <Stack direction="vertical" gap="6">
+            <Panel label="Page Heading Area" minHeight={80} />
+            <Stack direction="horizontal" gap="6">
+              <Panel label="Card 1" minHeight={120} />
+              <Panel label="Card 2" minHeight={120} />
+              <Panel label="Card 3" minHeight={120} />
+            </Stack>
+            <Panel label="Detail Panel" minHeight={200} />
+          </Stack>
+        </PageGrid>
+      </div>
+    );
+  },
 };

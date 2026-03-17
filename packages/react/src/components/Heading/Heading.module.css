@@ -1,0 +1,72 @@
+/* ----------------------------------------------------------------
+   Heading.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+/* --- Base --- */
+.base {
+  margin: 0;
+  padding: 0;
+  font-family: var(--stella-typography-fontFamily-serif, serif);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+/* --- Sizes --- */
+.size-xs {
+  font-size: var(--stella-typography-fontSize-xs, 0.75rem);
+}
+
+.size-sm {
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+}
+
+.size-md {
+  font-size: var(--stella-typography-fontSize-base, 1rem);
+}
+
+.size-lg {
+  font-size: var(--stella-typography-fontSize-lg, 1.125rem);
+}
+
+.size-xl {
+  font-size: var(--stella-typography-fontSize-xl, 1.25rem);
+}
+
+.size-2xl {
+  font-size: var(--stella-typography-fontSize-2xl, 1.5rem);
+}
+
+.size-3xl {
+  font-size: var(--stella-typography-fontSize-3xl, 1.875rem);
+}
+
+/* --- Weights --- */
+.weight-normal {
+  font-weight: var(--stella-typography-fontWeight-normal, 400);
+}
+
+.weight-medium {
+  font-weight: var(--stella-typography-fontWeight-medium, 500);
+}
+
+.weight-semibold {
+  font-weight: var(--stella-typography-fontWeight-semibold, 600);
+}
+
+.weight-bold {
+  font-weight: var(--stella-typography-fontWeight-bold, 700);
+}
+
+/* --- Alignment --- */
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}

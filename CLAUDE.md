@@ -131,6 +131,24 @@ All packages extend `tsconfig.base.json` at the repo root. Key settings: `strict
 - Never use `outline: none` without a visible focus replacement (border-color + box-shadow)
 - Never use `transition: all` — list specific properties explicitly
 
+## Storybook i18n
+
+All stories must support EN/JP locale switching via the Storybook toolbar.
+
+**How it works:**
+- `apps/docs/src/i18n/translations.ts` — typed translation objects for every component (EN + JA)
+- `apps/docs/src/i18n/useT.ts` — shared `useT()` hook that reads the Storybook global locale
+- Stories import `useT` from `'../i18n'` and use `tr.componentName.keyName` for all user-facing text
+
+**When adding a new component story:**
+1. Add a `ComponentNameTranslations` interface to `translations.ts`
+2. Add the key to the `Translations` interface
+3. Add EN and JA entries to both translation objects
+4. In the story file, import `{ useT }` from `'../i18n'` and use `const tr = useT()` inside render functions
+5. Never hardcode English-only text — all visible strings should come from `tr`
+
+**Note:** `switch` is a reserved word in JS, so the Switch component uses the key `switch_` in the translations object.
+
 ## Skills
 
 Use these slash commands (via the Skill tool) at the appropriate stages of development:

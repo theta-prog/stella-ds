@@ -8,6 +8,7 @@ import {
   SelectLabel,
   SelectSeparator,
 } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta
@@ -44,16 +45,19 @@ const FruitOptions = () => (
 // ----------------------------------------------------------------
 
 export const Default: Story = {
-  render: () => (
-    <div style={{ width: 280 }}>
-      <Select>
-        <SelectTrigger placeholder="Select a fruit…" />
-        <SelectContent>
-          <FruitOptions />
-        </SelectContent>
-      </Select>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ width: 280 }}>
+        <Select>
+          <SelectTrigger placeholder={tr.select.label_placeholder} />
+          <SelectContent>
+            <FruitOptions />
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -64,18 +68,21 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ width: 280, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      {(['sm', 'md', 'lg'] as const).map((size) => (
-        <Select key={size}>
-          <SelectTrigger size={size} placeholder={`Size: ${size}`} />
-          <SelectContent>
-            <FruitOptions />
-          </SelectContent>
-        </Select>
-      ))}
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ width: 280, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {(['sm', 'md', 'lg'] as const).map((size) => (
+          <Select key={size}>
+            <SelectTrigger size={size} placeholder={`Size: ${size}`} />
+            <SelectContent>
+              <FruitOptions />
+            </SelectContent>
+          </Select>
+        ))}
+      </div>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -86,19 +93,22 @@ export const Sizes: Story = {
 };
 
 export const Error: Story = {
-  render: () => (
-    <div style={{ width: 280 }}>
-      <Select>
-        <SelectTrigger
-          placeholder="Select a fruit…"
-          error="Please select an option."
-        />
-        <SelectContent>
-          <FruitOptions />
-        </SelectContent>
-      </Select>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ width: 280 }}>
+        <Select>
+          <SelectTrigger
+            placeholder={tr.select.label_placeholder}
+            error={tr.select.label_errorMsg}
+          />
+          <SelectContent>
+            <FruitOptions />
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -109,16 +119,19 @@ export const Error: Story = {
 };
 
 export const Disabled: Story = {
-  render: () => (
-    <div style={{ width: 280 }}>
-      <Select disabled>
-        <SelectTrigger placeholder="Not available" />
-        <SelectContent>
-          <FruitOptions />
-        </SelectContent>
-      </Select>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ width: 280 }}>
+        <Select disabled>
+          <SelectTrigger placeholder="Not available" />
+          <SelectContent>
+            <FruitOptions />
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -129,24 +142,27 @@ export const Disabled: Story = {
 };
 
 export const WithGroups: Story = {
-  render: () => (
-    <div style={{ width: 280 }}>
-      <Select>
-        <SelectTrigger placeholder="Select a produce…" />
-        <SelectContent>
-          <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="mango">Mango</SelectItem>
-          <SelectSeparator />
-          <SelectLabel>Vegetables</SelectLabel>
-          <SelectItem value="broccoli">Broccoli</SelectItem>
-          <SelectItem value="carrot">Carrot</SelectItem>
-          <SelectItem value="spinach">Spinach</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ width: 280 }}>
+        <Select>
+          <SelectTrigger placeholder="Select a produce…" />
+          <SelectContent>
+            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="mango">Mango</SelectItem>
+            <SelectSeparator />
+            <SelectLabel>Vegetables</SelectLabel>
+            <SelectItem value="broccoli">Broccoli</SelectItem>
+            <SelectItem value="carrot">Carrot</SelectItem>
+            <SelectItem value="spinach">Spinach</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -158,11 +174,12 @@ export const WithGroups: Story = {
 
 export const Controlled: Story = {
   render: () => {
+    const tr = useT();
     const [value, setValue] = React.useState('');
     return (
       <div style={{ width: 280, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         <Select value={value} onValueChange={setValue}>
-          <SelectTrigger placeholder="Select a fruit…" />
+          <SelectTrigger placeholder={tr.select.label_placeholder} />
           <SelectContent>
             <FruitOptions />
           </SelectContent>

@@ -1,0 +1,81 @@
+/* ----------------------------------------------------------------
+   Text.module.css -- Stella UI
+   ---------------------------------------------------------------- */
+
+/* --- Base --- */
+.base {
+  margin: 0;
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}
+
+/* --- Sizes --- */
+.size-xs {
+  font-size: var(--stella-typography-fontSize-xs, 0.75rem);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}
+
+.size-sm {
+  font-size: var(--stella-typography-fontSize-sm, 0.875rem);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}
+
+.size-md {
+  font-size: var(--stella-typography-fontSize-base, 1rem);
+  line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}
+
+.size-lg {
+  font-size: var(--stella-typography-fontSize-lg, 1.125rem);
+  line-height: var(--stella-typography-lineHeight-relaxed, 1.625);
+}
+
+/* --- Weights --- */
+.weight-normal {
+  font-weight: var(--stella-typography-fontWeight-normal, 400);
+}
+
+.weight-medium {
+  font-weight: var(--stella-typography-fontWeight-medium, 500);
+}
+
+.weight-semibold {
+  font-weight: var(--stella-typography-fontWeight-semibold, 600);
+}
+
+.weight-bold {
+  font-weight: var(--stella-typography-fontWeight-bold, 700);
+}
+
+/* --- Colors --- */
+.color-primary {
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+}
+
+.color-secondary {
+  color: var(--stella-color-starlight-secondary, #8888a0);
+}
+
+.color-disabled {
+  color: var(--stella-color-starlight-disabled, #555566);
+}
+
+/* --- Alignment --- */
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+/* --- Truncate --- */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

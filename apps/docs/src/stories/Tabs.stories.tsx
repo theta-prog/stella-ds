@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stella-ui/react';
+import { useT } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta
@@ -26,66 +27,36 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ----------------------------------------------------------------
-// Shared tab content
-// ----------------------------------------------------------------
-
-const TAB_ITEMS = [
-  {
-    value: 'overview',
-    label: 'Overview',
-    content: (
-      <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
-        The Overview section provides a high-level summary of your project's health,
-        recent activity, and key metrics. Use this view to quickly assess performance
-        and spot any anomalies at a glance.
-      </p>
-    ),
-  },
-  {
-    value: 'analytics',
-    label: 'Analytics',
-    content: (
-      <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
-        Analytics shows detailed usage data, conversion funnels, and trend charts
-        over your selected date range. Drill down into individual events to
-        understand how users interact with your product.
-      </p>
-    ),
-  },
-  {
-    value: 'settings',
-    label: 'Settings',
-    content: (
-      <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
-        Configure integrations, notification preferences, team access controls,
-        and billing information here. Changes take effect immediately and are
-        logged in your audit trail.
-      </p>
-    ),
-  },
-];
-
-// ----------------------------------------------------------------
 // Stories
 // ----------------------------------------------------------------
 
 export const Line: Story = {
-  render: () => (
-    <Tabs defaultValue="overview" variant="line" style={{ width: '480px' }}>
-      <TabsList>
-        {TAB_ITEMS.map(({ value, label }) => (
-          <TabsTrigger key={value} value={value}>
-            {label}
-          </TabsTrigger>
+  render: () => {
+    const tr = useT();
+    const tabItems = [
+      { value: 'overview', label: tr.tabs.tab_overview, content: tr.tabs.content_overview },
+      { value: 'analytics', label: tr.tabs.tab_analytics, content: tr.tabs.content_analytics },
+      { value: 'settings', label: tr.tabs.tab_settings, content: tr.tabs.content_settings },
+    ];
+    return (
+      <Tabs defaultValue="overview" variant="line" style={{ width: '480px' }}>
+        <TabsList>
+          {tabItems.map(({ value, label }) => (
+            <TabsTrigger key={value} value={value}>
+              {label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        {tabItems.map(({ value, content }) => (
+          <TabsContent key={value} value={value}>
+            <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
+              {content}
+            </p>
+          </TabsContent>
         ))}
-      </TabsList>
-      {TAB_ITEMS.map(({ value, content }) => (
-        <TabsContent key={value} value={value}>
-          {content}
-        </TabsContent>
-      ))}
-    </Tabs>
-  ),
+      </Tabs>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -96,22 +67,32 @@ export const Line: Story = {
 };
 
 export const Solid: Story = {
-  render: () => (
-    <Tabs defaultValue="overview" variant="solid" style={{ width: '480px' }}>
-      <TabsList>
-        {TAB_ITEMS.map(({ value, label }) => (
-          <TabsTrigger key={value} value={value}>
-            {label}
-          </TabsTrigger>
+  render: () => {
+    const tr = useT();
+    const tabItems = [
+      { value: 'overview', label: tr.tabs.tab_overview, content: tr.tabs.content_overview },
+      { value: 'analytics', label: tr.tabs.tab_analytics, content: tr.tabs.content_analytics },
+      { value: 'settings', label: tr.tabs.tab_settings, content: tr.tabs.content_settings },
+    ];
+    return (
+      <Tabs defaultValue="overview" variant="solid" style={{ width: '480px' }}>
+        <TabsList>
+          {tabItems.map(({ value, label }) => (
+            <TabsTrigger key={value} value={value}>
+              {label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        {tabItems.map(({ value, content }) => (
+          <TabsContent key={value} value={value}>
+            <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
+              {content}
+            </p>
+          </TabsContent>
         ))}
-      </TabsList>
-      {TAB_ITEMS.map(({ value, content }) => (
-        <TabsContent key={value} value={value}>
-          {content}
-        </TabsContent>
-      ))}
-    </Tabs>
-  ),
+      </Tabs>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -122,33 +103,35 @@ export const Solid: Story = {
 };
 
 export const Disabled: Story = {
-  render: () => (
-    <Tabs defaultValue="overview" variant="line" style={{ width: '480px' }}>
-      <TabsList>
-        <TabsTrigger value="overview">Overview</TabsTrigger>
-        <TabsTrigger value="analytics">Analytics</TabsTrigger>
-        <TabsTrigger value="settings" disabled>
-          Settings
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="overview">
-        <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
-          The Overview section provides a high-level summary of your project's health,
-          recent activity, and key metrics.
-        </p>
-      </TabsContent>
-      <TabsContent value="analytics">
-        <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
-          Analytics shows detailed usage data, conversion funnels, and trend charts.
-        </p>
-      </TabsContent>
-      <TabsContent value="settings">
-        <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
-          Settings are currently unavailable.
-        </p>
-      </TabsContent>
-    </Tabs>
-  ),
+  render: () => {
+    const tr = useT();
+    return (
+      <Tabs defaultValue="overview" variant="line" style={{ width: '480px' }}>
+        <TabsList>
+          <TabsTrigger value="overview">{tr.tabs.tab_overview}</TabsTrigger>
+          <TabsTrigger value="analytics">{tr.tabs.tab_analytics}</TabsTrigger>
+          <TabsTrigger value="settings" disabled>
+            {tr.tabs.tab_settings}
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview">
+          <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
+            {tr.tabs.content_overview}
+          </p>
+        </TabsContent>
+        <TabsContent value="analytics">
+          <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
+            {tr.tabs.content_analytics}
+          </p>
+        </TabsContent>
+        <TabsContent value="settings">
+          <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
+            {tr.tabs.content_settings}
+          </p>
+        </TabsContent>
+      </Tabs>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -160,6 +143,12 @@ export const Disabled: Story = {
 
 export const Controlled: Story = {
   render: () => {
+    const tr = useT();
+    const tabItems = [
+      { value: 'overview', label: tr.tabs.tab_overview, content: tr.tabs.content_overview },
+      { value: 'analytics', label: tr.tabs.tab_analytics, content: tr.tabs.content_analytics },
+      { value: 'settings', label: tr.tabs.tab_settings, content: tr.tabs.content_settings },
+    ];
     const [activeTab, setActiveTab] = React.useState('overview');
 
     return (
@@ -170,15 +159,17 @@ export const Controlled: Story = {
         </p>
         <Tabs value={activeTab} onValueChange={setActiveTab} variant="solid">
           <TabsList>
-            {TAB_ITEMS.map(({ value, label }) => (
+            {tabItems.map(({ value, label }) => (
               <TabsTrigger key={value} value={value}>
                 {label}
               </TabsTrigger>
             ))}
           </TabsList>
-          {TAB_ITEMS.map(({ value, content }) => (
+          {tabItems.map(({ value, content }) => (
             <TabsContent key={value} value={value}>
-              {content}
+              <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
+                {content}
+              </p>
             </TabsContent>
           ))}
         </Tabs>
@@ -196,23 +187,15 @@ export const Controlled: Story = {
 
 export const LongList: Story = {
   render: () => {
+    const tr = useT();
     const longTabs = [
-      { value: 'overview', label: 'Overview' },
-      { value: 'analytics', label: 'Analytics' },
-      { value: 'settings', label: 'Settings' },
-      { value: 'members', label: 'Members' },
-      { value: 'billing', label: 'Billing' },
-      { value: 'integrations', label: 'Integrations' },
+      { value: 'overview', label: tr.tabs.tab_overview },
+      { value: 'analytics', label: tr.tabs.tab_analytics },
+      { value: 'settings', label: tr.tabs.tab_settings },
+      { value: 'members', label: tr.tabs.tab_members },
+      { value: 'billing', label: tr.tabs.tab_billing },
+      { value: 'integrations', label: tr.tabs.tab_integrations },
     ];
-
-    const contentMap: Record<string, string> = {
-      overview: 'High-level summary of your project health and recent activity.',
-      analytics: 'Detailed usage data, conversion funnels, and trend charts.',
-      settings: 'Configure integrations, notifications, and access controls.',
-      members: 'Manage team members, roles, and invitations.',
-      billing: 'View invoices, update payment methods, and manage your plan.',
-      integrations: 'Connect third-party tools like Slack, GitHub, and more.',
-    };
 
     return (
       <Tabs defaultValue="overview" variant="line" style={{ width: '400px' }}>
@@ -228,7 +211,7 @@ export const LongList: Story = {
         {longTabs.map(({ value }) => (
           <TabsContent key={value} value={value}>
             <p style={{ margin: 0, color: 'var(--stella-color-text-secondary)', lineHeight: 1.6 }}>
-              {contentMap[value]}
+              {value} content
             </p>
           </TabsContent>
         ))}

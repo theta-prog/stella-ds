@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within, userEvent as userEventLib } from 'storybook/test';
+import { expect, within } from 'storybook/test';
 import {
   Select,
   SelectTrigger,

@@ -39,7 +39,6 @@ type Story = StoryObj<typeof meta>;
 /** Vertical RadioGroup with three options — the default layout. */
 export const Default: Story = {
   render: (args) => {
-    const tr = useT();
     return (
       <RadioGroup defaultValue="option-1" {...args}>
         <RadioItem value="option-1" label="Option One" />
@@ -68,7 +67,6 @@ export const Default: Story = {
 /** Items laid out in a horizontal row. */
 export const Horizontal: Story = {
   render: (args) => {
-    const tr = useT();
     return (
       <RadioGroup defaultValue="yes" orientation="horizontal" {...args}>
         <RadioItem value="yes"   label="Yes" />
@@ -90,7 +88,6 @@ export const Horizontal: Story = {
 /** sm / md / lg size presets side by side. */
 export const Sizes: Story = {
   render: () => {
-    const tr = useT();
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         {(['sm', 'md', 'lg'] as const).map((size) => (
@@ -114,7 +111,6 @@ export const Sizes: Story = {
 /** Error state — red borders signal validation failure. */
 export const Error: Story = {
   render: (args) => {
-    const tr = useT();
     return (
       <RadioGroup error {...args}>
         <RadioItem value="credit" label="Credit card" />
@@ -136,7 +132,6 @@ export const Error: Story = {
 /** Individual and whole-group disabled states. */
 export const Disabled: Story = {
   render: () => {
-    const tr = useT();
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div>
@@ -174,7 +169,6 @@ export const Disabled: Story = {
 /** Controlled — value managed externally via useState. */
 export const Controlled: Story = {
   render: () => {
-    const tr = useT();
     const [value, setValue] = useState('vanilla');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'flex-start' }}>

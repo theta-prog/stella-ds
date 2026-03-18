@@ -56,7 +56,6 @@ export const Variants: Story = {
 
 export const Colors: Story = {
   render: () => {
-    const tr = useT();
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         {(['default', 'primary', 'success', 'warning', 'error'] as const).map((color) => (

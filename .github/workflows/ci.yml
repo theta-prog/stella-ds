@@ -84,8 +84,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build react package
-        run: pnpm --filter @stella-ui/react build
+      - name: Build packages
+        run: pnpm --filter @stella-ui/theme build && pnpm --filter @stella-ui/react build
 
       - name: Install Playwright browsers
         run: pnpm --filter @stella-ui/docs exec playwright install --with-deps chromium

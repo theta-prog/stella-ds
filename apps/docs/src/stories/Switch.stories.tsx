@@ -53,7 +53,6 @@ export const Sizes: Story = {
 
 export const WithLabel: Story = {
   render: (args) => {
-    const tr = useT();
     return <Switch {...args} />;
   },
   args: { size: 'md', label: 'Enable notifications' },

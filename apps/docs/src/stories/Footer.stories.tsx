@@ -162,7 +162,6 @@ export const Minimal: Story = {
 
 export const WithBrand: Story = {
   render: (args) => {
-    const tr = useT();
     return (
       <Footer {...args}>
         <FooterContent>

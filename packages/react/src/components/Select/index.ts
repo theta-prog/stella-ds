@@ -2,6 +2,7 @@ export {
   Select,
   SelectTrigger,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectLabel,
   SelectSeparator,

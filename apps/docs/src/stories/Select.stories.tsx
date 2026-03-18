@@ -1,9 +1,11 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, within, userEvent as userEventLib } from 'storybook/test';
 import {
   Select,
   SelectTrigger,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectLabel,
   SelectSeparator,
@@ -65,6 +67,18 @@ export const Default: Story = {
         story: 'Basic Select with 5 fruit options.',
       },
     },
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('combobox');
+    // dropdown should be closed initially
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    // click to open
+    await userEvent.click(trigger);
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    // options are rendered in a Radix portal outside the canvas
+    const body = within(document.body);
+    await expect(body.getByRole('option', { name: 'Apple' })).toBeVisible();
   },
 };
 
@@ -150,15 +164,19 @@ export const WithGroups: Story = {
         <Select>
           <SelectTrigger placeholder="Select a produce…" />
           <SelectContent>
-            <SelectLabel>Fruits</SelectLabel>
-            <SelectItem value="apple">Apple</SelectItem>
-            <SelectItem value="banana">Banana</SelectItem>
-            <SelectItem value="mango">Mango</SelectItem>
+            <SelectGroup>
+              <SelectLabel>Fruits</SelectLabel>
+              <SelectItem value="apple">Apple</SelectItem>
+              <SelectItem value="banana">Banana</SelectItem>
+              <SelectItem value="mango">Mango</SelectItem>
+            </SelectGroup>
             <SelectSeparator />
-            <SelectLabel>Vegetables</SelectLabel>
-            <SelectItem value="broccoli">Broccoli</SelectItem>
-            <SelectItem value="carrot">Carrot</SelectItem>
-            <SelectItem value="spinach">Spinach</SelectItem>
+            <SelectGroup>
+              <SelectLabel>Vegetables</SelectLabel>
+              <SelectItem value="broccoli">Broccoli</SelectItem>
+              <SelectItem value="carrot">Carrot</SelectItem>
+              <SelectItem value="spinach">Spinach</SelectItem>
+            </SelectGroup>
           </SelectContent>
         </Select>
       </div>
@@ -203,5 +221,22 @@ export const Controlled: Story = {
         story: 'Controlled usage with useState — the current selection is displayed below.',
       },
     },
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('combobox');
+
+    // open the dropdown
+    await userEvent.click(trigger);
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+
+    // select "Banana" from the Radix portal
+    const body = within(document.body);
+    const bananaOption = body.getByRole('option', { name: 'Banana' });
+    await userEvent.click(bananaOption);
+
+    // the dropdown should close and the trigger should reflect the selection
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(trigger).toHaveTextContent('Banana');
   },
 };

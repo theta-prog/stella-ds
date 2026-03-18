@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { expect, within } from 'storybook/test';
 import { RadioGroup, RadioItem } from '@stella-ui/react';
 import { useT, translations } from '../i18n';
 
@@ -48,6 +49,20 @@ export const Default: Story = {
     );
   },
   args: { size: 'md', orientation: 'vertical' },
+  play: async ({ canvasElement, userEvent }) => {
+    const canvas = within(canvasElement);
+    const radios = canvas.getAllByRole('radio');
+    const [option1, option2] = radios;
+
+    // option-1 is pre-selected via defaultValue
+    await expect(option1).toBeChecked();
+    await expect(option2).not.toBeChecked();
+
+    // click option-2 — it should become checked and option-1 should deselect
+    await userEvent.click(option2);
+    await expect(option2).toBeChecked();
+    await expect(option1).not.toBeChecked();
+  },
 };
 
 /** Items laid out in a horizontal row. */

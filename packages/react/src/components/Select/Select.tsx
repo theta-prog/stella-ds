@@ -145,6 +145,23 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
 SelectItem.displayName = 'SelectItem';
 
 // ----------------------------------------------------------------
+// Group
+// ----------------------------------------------------------------
+
+export const SelectGroup = React.forwardRef<
+  HTMLDivElement,
+  RadixSelect.SelectGroupProps
+>(({ className, ...props }, ref) => (
+  <RadixSelect.Group
+    ref={ref}
+    className={className}
+    {...props}
+  />
+));
+
+SelectGroup.displayName = 'SelectGroup';
+
+// ----------------------------------------------------------------
 // Label
 // ----------------------------------------------------------------
 

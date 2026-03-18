@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from 'storybook/test';
+import { expect, fn } from 'storybook/test';
 import { Button } from '@stella-ui/react';
 import { useT, translations } from '../i18n';
 
@@ -127,6 +127,10 @@ export const Loading: Story = {
     },
   },
   args: { loading: true },
+  play: async ({ canvas }) => {
+    const el = canvas.getByRole('button');
+    await expect(el).toHaveAttribute('aria-busy', 'true');
+  },
 };
 
 export const Disabled: Story = {
@@ -134,7 +138,18 @@ export const Disabled: Story = {
     const tr = useT();
     return <Button {...args}>{tr.button.story_disabled}</Button>;
   },
-  args: { disabled: true },
+  args: { disabled: true, onClick: fn() },
+  play: async ({ canvas, userEvent, args }) => {
+    const el = canvas.getByRole('button');
+    // aria-disabled または disabled であることを確認
+    const isDisabled =
+      el.hasAttribute('disabled') ||
+      el.getAttribute('aria-disabled') === 'true';
+    await expect(isDisabled).toBe(true);
+    // クリックしても onClick が呼ばれないことを確認
+    await userEvent.click(el);
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
 };
 
 /** All variants × all sizes */

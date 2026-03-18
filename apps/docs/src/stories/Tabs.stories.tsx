@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect } from 'storybook/test';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stella-ui/react';
 import { useT, translations } from '../i18n';
 
@@ -57,6 +58,22 @@ export const Line: Story = {
         ))}
       </Tabs>
     );
+  },
+  play: async ({ canvas, userEvent }) => {
+    // 1. 最初のタブ（overview）が選択されていることを確認
+    const tabs = canvas.getAllByRole('tab');
+    const firstTab = tabs[0];
+    await expect(firstTab).toHaveAttribute('aria-selected', 'true');
+
+    // 2. 2番目のタブをクリックして aria-selected="true" になることを確認
+    const secondTab = tabs[1];
+    await userEvent.click(secondTab);
+    await expect(secondTab).toHaveAttribute('aria-selected', 'true');
+    await expect(firstTab).toHaveAttribute('aria-selected', 'false');
+
+    // 3. 対応する TabsContent が表示されることを確認
+    const tabPanels = canvas.getAllByRole('tabpanel');
+    await expect(tabPanels[0]).toBeVisible();
   },
   parameters: {
     docs: {

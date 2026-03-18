@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { expect, within } from 'storybook/test';
 import {
   Dialog,
   DialogTrigger,
@@ -43,6 +44,22 @@ export const Basic: Story = {
         </DialogContent>
       </Dialog>
     );
+  },
+  play: async ({ canvas, userEvent }) => {
+    // 1. Trigger ボタンをクリックして Dialog を開く
+    const trigger = canvas.getByRole('button');
+    await userEvent.click(trigger);
+
+    // 2. Radix UI はポータル経由でレンダリングするので document.body で探す
+    const body = within(document.body);
+    const dialog = await body.findByRole('dialog');
+    await expect(dialog).toBeVisible();
+
+    // 3. Escape キーで閉じる
+    await userEvent.keyboard('{Escape}');
+
+    // 4. Dialog が非表示になることを確認
+    await expect(dialog).not.toBeVisible();
   },
 };
 

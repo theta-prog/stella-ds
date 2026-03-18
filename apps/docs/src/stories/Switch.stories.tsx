@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { expect } from 'storybook/test';
 import { Switch } from '@stella-ui/react';
 import { useT, translations } from '../i18n';
 
@@ -29,6 +30,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { size: 'md' },
+  play: async ({ canvas, userEvent }) => {
+    const el = canvas.getByRole('switch');
+    await expect(el).toHaveAttribute('data-state', 'unchecked');
+    await userEvent.click(el);
+    await expect(el).toHaveAttribute('data-state', 'checked');
+  },
 };
 
 export const Sizes: Story = {
@@ -69,6 +76,14 @@ export const Disabled: Story = {
         <Switch disabled defaultChecked label={tr.switch_.label_disabledOn} />
       </div>
     );
+  },
+  play: async ({ canvas, userEvent }) => {
+    const switches = canvas.getAllByRole('switch');
+    const offSwitch = switches[0];
+    // クリックしても状態が変わらないことを確認
+    await expect(offSwitch).toHaveAttribute('data-state', 'unchecked');
+    await userEvent.click(offSwitch);
+    await expect(offSwitch).toHaveAttribute('data-state', 'unchecked');
   },
 };
 

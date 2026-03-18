@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+import { expect } from 'storybook/test';
 import { Checkbox } from '@stella-ui/react';
 import { useT, translations } from '../i18n';
 
@@ -29,6 +30,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: { size: 'md' },
+  play: async ({ canvas, userEvent }) => {
+    const el = canvas.getByRole('checkbox');
+    await expect(el).not.toBeChecked();
+    await userEvent.click(el);
+    await expect(el).toBeChecked();
+  },
 };
 
 export const WithLabel: Story = {
@@ -71,6 +78,14 @@ export const Disabled: Story = {
     );
   },
   args: { disabled: true },
+  play: async ({ canvas, userEvent }) => {
+    const checkboxes = canvas.getAllByRole('checkbox');
+    const unchecked = checkboxes[0];
+    // クリックしてもチェック状態が変わらないことを確認
+    await expect(unchecked).not.toBeChecked();
+    await userEvent.click(unchecked);
+    await expect(unchecked).not.toBeChecked();
+  },
 };
 
 export const Controlled: Story = {

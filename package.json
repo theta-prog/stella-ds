@@ -5,14 +5,18 @@
   "description": "Stella UI – scalable design system for web, portfolio, MV, and 3D",
   "scripts": {
     "build": "pnpm -r build",
-    "dev": "pnpm --filter @stella-ui/docs dev",
+    "dev": "pnpm --filter @stella-ui/docs storybook",
     "storybook": "pnpm --filter @stella-ui/docs storybook",
     "build-storybook": "pnpm --filter @stella-ui/docs build-storybook",
     "typecheck": "pnpm -r typecheck",
     "lint": "npx eslint packages/react/src apps/docs/src",
-    "lint:fix": "npx eslint packages/react/src apps/docs/src --fix"
+    "lint:fix": "npx eslint packages/react/src apps/docs/src --fix",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.12",
     "@eslint/js": "^10.0.1",
     "eslint": "^10.0.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",

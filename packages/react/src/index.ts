@@ -11,7 +11,7 @@ export type { CheckboxProps, CheckboxSize } from './components/Checkbox';
 export { RadioGroup, RadioItem } from './components/Radio';
 export type { RadioGroupProps, RadioItemProps, RadioSize } from './components/Radio';
 
-export { Select, SelectTrigger, SelectContent, SelectItem, SelectLabel, SelectSeparator } from './components/Select';
+export { Select, SelectTrigger, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectSeparator } from './components/Select';
 export type { SelectTriggerProps, SelectItemProps, SelectSize } from './components/Select';
 
 export { Switch } from './components/Switch';

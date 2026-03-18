@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, within, userEvent as userEventLib } from 'storybook/test';
 import { Input } from '@stella-ui/react';
 import { useT, translations } from '../i18n';
 
@@ -46,6 +47,12 @@ export const Default: Story = {
     return <Input {...args} placeholder={tr.input.label_placeholder} />;
   },
   args: { size: 'md' },
+  play: async ({ canvasElement, userEvent }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox');
+    await userEvent.type(input, 'Hello Stella');
+    await expect(input).toHaveValue('Hello Stella');
+  },
 };
 
 export const Sizes: Story = {
@@ -73,6 +80,14 @@ export const ErrorMessage: Story = {
   render: (args) => {
     const tr = useT();
     return <Input {...args} placeholder={tr.input.label_placeholder} error={tr.input.label_errorMsg} />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox');
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
+    // error message element is rendered as role="alert"
+    const errorMsg = canvas.getByRole('alert');
+    await expect(errorMsg).toBeInTheDocument();
   },
 };
 

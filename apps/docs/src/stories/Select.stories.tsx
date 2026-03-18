@@ -84,7 +84,6 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => {
-    const tr = useT();
     return (
       <div style={{ width: 280, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {(['sm', 'md', 'lg'] as const).map((size) => (
@@ -135,7 +134,6 @@ export const Error: Story = {
 
 export const Disabled: Story = {
   render: () => {
-    const tr = useT();
     return (
       <div style={{ width: 280 }}>
         <Select disabled>
@@ -158,7 +156,6 @@ export const Disabled: Story = {
 
 export const WithGroups: Story = {
   render: () => {
-    const tr = useT();
     return (
       <div style={{ width: 280 }}>
         <Select>

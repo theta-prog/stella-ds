@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect, within } from 'storybook/test';
 import { RadioGroup, RadioItem } from '@stella-ui/react';
-import { useT, translations } from '../i18n';
+import { translations } from '../i18n';
 
 // ----------------------------------------------------------------
 // Meta

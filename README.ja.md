@@ -65,8 +65,8 @@ pnpm install
 pnpm build
 
 # 個別にビルド
-pnpm --filter @stella-ui/theme build
-pnpm --filter @stella-ui/react build
+pnpm --filter @stella-ds/theme build
+pnpm --filter @stella-ds/react build
 ```
 
 ### Storybook を起動
@@ -80,22 +80,22 @@ pnpm storybook
 
 ## パッケージ詳細
 
-### `@stella-ui/theme`
+### `@stella-ds/theme`
 
 デザイントークンを以下の形式で配布します。
 
-- **`import { tokens } from '@stella-ui/theme'`** — JS/TS 向け生 JSON オブジェクト。
-- **`import { cssVariables, generateCSSVarsString, injectCSSVars } from '@stella-ui/theme'`** — CSS 変数マップとユーティリティ関数。
-- **`@stella-ui/theme/css`** — コンパイル済み `dist/tokens.css`（スタイルシートから直接インポート可能）。
+- **`import { tokens } from '@stella-ds/theme'`** — JS/TS 向け生 JSON オブジェクト。
+- **`import { cssVariables, generateCSSVarsString, injectCSSVars } from '@stella-ds/theme'`** — CSS 変数マップとユーティリティ関数。
+- **`@stella-ds/theme/css`** — コンパイル済み `dist/tokens.css`（スタイルシートから直接インポート可能）。
 
 トークンカテゴリ: `color`, `typography`, `spacing`, `borderRadius`, `shadow`, `transition`
 
-### `@stella-ui/react`
+### `@stella-ds/react`
 
 Radix UI Primitives を基盤とした React コンポーネント。
 
 ```tsx
-import { Button } from '@stella-ui/react';
+import { Button } from '@stella-ds/react';
 
 // ソリッド（デフォルト）
 <Button variant="solid" size="md">クリック</Button>

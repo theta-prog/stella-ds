@@ -8,11 +8,11 @@ const content = {
     sections: [
       {
         title: '🎨 Design Tokens',
-        body: 'All visual values (colors, typography, spacing, shadows) are defined as JSON tokens in `@stella-ui/theme` and exported as CSS custom properties (`--stella-*`).',
+        body: 'All visual values (colors, typography, spacing, shadows) are defined as JSON tokens in `@stella-ds/theme` and exported as CSS custom properties (`--stella-*`).',
       },
       {
         title: '⚛️ React Components',
-        body: 'Components in `@stella-ui/react` are built on **Radix UI Primitives** for accessibility and use **CSS Modules** for scoped, distributable styling.',
+        body: 'Components in `@stella-ds/react` are built on **Radix UI Primitives** for accessibility and use **CSS Modules** for scoped, distributable styling.',
       },
       {
         title: '🌐 Language / 言語',
@@ -27,11 +27,11 @@ const content = {
     sections: [
       {
         title: '🎨 デザイントークン',
-        body: 'すべてのビジュアル値（カラー・タイポグラフィ・スペース・シャドウ）は `@stella-ui/theme` に JSON トークンとして定義され、CSS カスタムプロパティ（`--stella-*`）として配布されます。',
+        body: 'すべてのビジュアル値（カラー・タイポグラフィ・スペース・シャドウ）は `@stella-ds/theme` に JSON トークンとして定義され、CSS カスタムプロパティ（`--stella-*`）として配布されます。',
       },
       {
         title: '⚛️ React コンポーネント',
-        body: '`@stella-ui/react` のコンポーネントはアクセシビリティのために **Radix UI Primitives** を基盤とし、スコープされた配布可能なスタイリングには **CSS Modules** を使用しています。',
+        body: '`@stella-ds/react` のコンポーネントはアクセシビリティのために **Radix UI Primitives** を基盤とし、スコープされた配布可能なスタイリングには **CSS Modules** を使用しています。',
       },
       {
         title: '🌐 Language / 言語',

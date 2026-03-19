@@ -23,9 +23,9 @@ pnpm build-storybook
 pnpm typecheck
 
 # Build/watch a single package
-pnpm --filter @stella-ui/react build
-pnpm --filter @stella-ui/react dev
-pnpm --filter @stella-ui/theme build
+pnpm --filter @stella-ds/react build
+pnpm --filter @stella-ds/react dev
+pnpm --filter @stella-ds/theme build
 
 # Lint
 pnpm lint          # ESLint check (react-hooks + jsx-a11y + typescript-eslint)
@@ -42,13 +42,13 @@ TypeScript strict mode is the primary correctness mechanism. ESLint covers React
 - After Claude makes code changes, tell the user to restart manually if needed
 - For design changes to appear in Storybook, the react package must be rebuilt first:
   ```bash
-  pnpm --filter @stella-ui/react build
+  pnpm --filter @stella-ds/react build
   # then restart Storybook in your terminal
   ```
 - Recommended dev setup (two terminals):
   ```bash
   # Terminal 1 – watch-build the react package
-  pnpm --filter @stella-ui/react dev
+  pnpm --filter @stella-ds/react dev
   # Terminal 2 – Storybook
   pnpm storybook
   ```
@@ -115,7 +115,7 @@ Color tokens use celestial names:
 
 Tokens are organized under: `color`, `typography`, `spacing`, `borderRadius`, `shadow`, `transition`.
 
-The consuming app/story must inject the CSS variables (either via `import '@stella-ui/theme/css'` or calling `injectCSSVars()`). See `apps/docs/src/theme.css` for the docs app's approach.
+The consuming app/story must inject the CSS variables (either via `import '@stella-ds/theme/css'` or calling `injectCSSVars()`). See `apps/docs/src/theme.css` for the docs app's approach.
 
 ## TypeScript
 
@@ -160,5 +160,5 @@ Use these slash commands (via the Skill tool) at the appropriate stages of devel
 | `/vercel-react-best-practices` | Code review — checks React performance patterns (waterfalls, re-renders, bundle size) |
 | `/vercel-composition-patterns` | When designing complex component APIs (compound components, render props, context) |
 | `/simplify` | After a batch of changes — reviews for duplication and code quality |
-| `/autoship` | When ready to publish `@stella-ui/react` or `@stella-ui/theme` to npm |
+| `/autoship` | When ready to publish `@stella-ds/react` or `@stella-ds/theme` to npm |
 | `/turborepo` | If build times become slow and Turborepo caching is needed |

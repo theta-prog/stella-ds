@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Avatar } from '@stella-ui/react';
+import { Avatar } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 const meta = {

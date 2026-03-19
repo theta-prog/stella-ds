@@ -5,7 +5,7 @@ import {
   FooterDivider,
   FooterBottom,
   Badge,
-} from '@stella-ui/react';
+} from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 const meta = {

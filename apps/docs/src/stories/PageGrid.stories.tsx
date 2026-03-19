@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { PageGrid, Stack } from '@stella-ui/react';
+import { PageGrid, Stack } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 const meta = {

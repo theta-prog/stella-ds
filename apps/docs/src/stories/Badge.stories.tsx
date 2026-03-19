@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Badge } from '@stella-ui/react';
+import { Badge } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 const meta = {

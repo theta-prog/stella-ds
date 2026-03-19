@@ -1,4 +1,4 @@
-# ✦ Stella UI
+# ✦ Stella Design System
 
 **Scalable design system for web apps, portfolios, MV production, and 3D spaces.**
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Stella UI is a monorepo-based design system that provides:
+Stella Design System is a monorepo-based design system that provides:
 
 - **Framework-agnostic design tokens** — colors, typography, spacing, shadows, and more, distributed as both JSON and CSS custom properties (`--stella-*`).
 - **React component library** — accessible, composable components built on [Radix UI Primitives](https://www.radix-ui.com/) with scoped CSS Modules styling.

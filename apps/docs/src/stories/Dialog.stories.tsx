@@ -58,8 +58,8 @@ export const Basic: Story = {
     // 3. Escape キーで閉じる
     await userEvent.keyboard('{Escape}');
 
-    // 4. Dialog が非表示になることを確認
-    await expect(dialog).not.toBeVisible();
+    // 4. Dialog が非表示になることを確認（close animation 完了待ち）
+    await waitFor(() => expect(dialog).not.toBeVisible(), { timeout: 1000 });
   },
 };
 

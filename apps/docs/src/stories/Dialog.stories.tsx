@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { expect, within } from 'storybook/test';
+import { expect, waitFor, within } from 'storybook/test';
 import {
   Dialog,
   DialogTrigger,
@@ -53,7 +53,7 @@ export const Basic: Story = {
     // 2. Radix UI はポータル経由でレンダリングするので document.body で探す
     const body = within(document.body);
     const dialog = await body.findByRole('dialog');
-    await expect(dialog).toBeVisible();
+    await waitFor(() => expect(dialog).toBeVisible(), { timeout: 1000 });
 
     // 3. Escape キーで閉じる
     await userEvent.keyboard('{Escape}');

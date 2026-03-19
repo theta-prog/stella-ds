@@ -1,6 +1,6 @@
 {
   "name": "@stella-ui/react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Stella UI React component library – Radix UI primitives with design tokens",
   "type": "module",
   "main": "./dist/index.js",

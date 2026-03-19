@@ -18,6 +18,9 @@
     "dist",
     "src/tokens.json"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --out-dir dist && node scripts/build-css.js",
     "typecheck": "tsc --noEmit"

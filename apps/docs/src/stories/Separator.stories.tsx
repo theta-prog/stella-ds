@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Separator } from '@stella-ui/react';
+import { Separator } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 const meta = {

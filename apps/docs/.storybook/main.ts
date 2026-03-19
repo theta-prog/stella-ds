@@ -22,8 +22,8 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       resolve: {
         alias: {
-          // Resolve @stella-ui/react from source so Vite handles CSS Modules natively
-          '@stella-ui/react': join(__dirname, '../../../packages/react/src/index.ts'),
+          // Resolve @stella-ds/react from source so Vite handles CSS Modules natively
+          '@stella-ds/react': join(__dirname, '../../../packages/react/src/index.ts'),
         },
       },
     });

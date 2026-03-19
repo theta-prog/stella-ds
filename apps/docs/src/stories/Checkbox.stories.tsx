@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { expect } from 'storybook/test';
-import { Checkbox } from '@stella-ui/react';
+import { Checkbox } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 const meta = {

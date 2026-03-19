@@ -9,8 +9,8 @@ import {
   ToastClose,
   ToastAction,
   Button,
-} from '@stella-ui/react';
-import type { ToastVariant } from '@stella-ui/react';
+} from '@stella-ds/react';
+import type { ToastVariant } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 const meta = {

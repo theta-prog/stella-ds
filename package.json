@@ -5,9 +5,9 @@
   "description": "Stella UI – scalable design system for web, portfolio, MV, and 3D",
   "scripts": {
     "build": "pnpm -r build",
-    "dev": "pnpm --filter @stella-ui/docs storybook",
-    "storybook": "pnpm --filter @stella-ui/docs storybook",
-    "build-storybook": "pnpm --filter @stella-ui/docs build-storybook",
+    "dev": "pnpm --filter @stella-ds/docs storybook",
+    "storybook": "pnpm --filter @stella-ds/docs storybook",
+    "build-storybook": "pnpm --filter @stella-ds/docs build-storybook",
     "typecheck": "pnpm -r typecheck",
     "lint": "npx eslint packages/react/src apps/docs/src",
     "lint:fix": "npx eslint packages/react/src apps/docs/src --fix",

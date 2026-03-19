@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
-import { Input } from '@stella-ui/react';
+import { Input } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 // ----------------------------------------------------------------

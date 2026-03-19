@@ -1,4 +1,4 @@
-# ✦ Stella UI
+# ✦ Stella Design System
 
 **Scalable design system for web apps, portfolios, MV production, and 3D spaces.**
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Stella UI is a monorepo-based design system that provides:
+Stella Design System is a monorepo-based design system that provides:
 
 - **Framework-agnostic design tokens** — colors, typography, spacing, shadows, and more, distributed as both JSON and CSS custom properties (`--stella-*`).
 - **React component library** — accessible, composable components built on [Radix UI Primitives](https://www.radix-ui.com/) with scoped CSS Modules styling.
@@ -65,8 +65,8 @@ pnpm install
 pnpm build
 
 # Or build individually
-pnpm --filter @stella-ui/theme build
-pnpm --filter @stella-ui/react build
+pnpm --filter @stella-ds/theme build
+pnpm --filter @stella-ds/react build
 ```
 
 ### Launch Storybook
@@ -80,21 +80,21 @@ pnpm storybook
 
 ## Packages
 
-### `@stella-ui/theme`
+### `@stella-ds/theme`
 
 Design tokens distributed as:
-- **`import { tokens } from '@stella-ui/theme'`** — raw JSON object for JS/TS consumers.
-- **`import { cssVariables, generateCSSVarsString, injectCSSVars } from '@stella-ui/theme'`** — flat CSS variable map and utilities.
-- **`@stella-ui/theme/css`** — compiled `dist/tokens.css` for direct stylesheet import.
+- **`import { tokens } from '@stella-ds/theme'`** — raw JSON object for JS/TS consumers.
+- **`import { cssVariables, generateCSSVarsString, injectCSSVars } from '@stella-ds/theme'`** — flat CSS variable map and utilities.
+- **`@stella-ds/theme/css`** — compiled `dist/tokens.css` for direct stylesheet import.
 
 Token categories: `color`, `typography`, `spacing`, `borderRadius`, `shadow`, `transition`.
 
-### `@stella-ui/react`
+### `@stella-ds/react`
 
 React components built on Radix UI Primitives.
 
 ```tsx
-import { Button } from '@stella-ui/react';
+import { Button } from '@stella-ds/react';
 
 // Solid (default)
 <Button variant="solid" size="md">Click me</Button>

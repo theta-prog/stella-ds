@@ -1,4 +1,4 @@
-// Public API for @stella-ui/react
+// Public API for @stella-ds/react
 export { Button } from './components/Button';
 export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button';
 

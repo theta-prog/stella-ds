@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Background } from '@stella-ui/react';
-import type { BackgroundTokenColor } from '@stella-ui/react';
+import { Background } from '@stella-ds/react';
+import type { BackgroundTokenColor } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 // All available design token colors

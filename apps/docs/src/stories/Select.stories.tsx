@@ -9,7 +9,7 @@ import {
   SelectItem,
   SelectLabel,
   SelectSeparator,
-} from '@stella-ui/react';
+} from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 // ----------------------------------------------------------------

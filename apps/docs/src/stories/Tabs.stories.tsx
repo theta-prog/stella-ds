@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, waitFor } from 'storybook/test';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stella-ui/react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 // ----------------------------------------------------------------

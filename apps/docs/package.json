@@ -1,5 +1,5 @@
 {
-  "name": "@stella-ui/docs",
+  "name": "@stella-ds/docs",
   "version": "0.0.1",
   "private": true,
   "description": "Stella UI Storybook documentation",
@@ -8,8 +8,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@stella-ui/react": "workspace:*",
-    "@stella-ui/theme": "workspace:*"
+    "@stella-ds/react": "workspace:*",
+    "@stella-ds/theme": "workspace:*"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.1",

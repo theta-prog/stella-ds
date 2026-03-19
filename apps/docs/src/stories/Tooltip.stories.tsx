@@ -6,8 +6,8 @@ import {
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from '@stella-ui/react';
-import { Button } from '@stella-ui/react';
+} from '@stella-ds/react';
+import { Button } from '@stella-ds/react';
 import { useT, translations } from '../i18n';
 
 // ----------------------------------------------------------------

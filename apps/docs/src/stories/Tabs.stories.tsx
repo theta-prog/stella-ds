@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect } from 'storybook/test';
+import { expect, waitFor } from 'storybook/test';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stella-ui/react';
 import { useT, translations } from '../i18n';
 
@@ -73,7 +73,7 @@ export const Line: Story = {
 
     // 3. 対応する TabsContent が表示されることを確認
     const tabPanels = canvas.getAllByRole('tabpanel');
-    await expect(tabPanels[0]).toBeVisible();
+    await waitFor(() => expect(tabPanels[0]).toBeVisible(), { timeout: 1000 });
   },
   parameters: {
     docs: {

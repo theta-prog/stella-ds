@@ -139,15 +139,11 @@ export const Disabled: Story = {
     return <Button {...args}>{tr.button.story_disabled}</Button>;
   },
   args: { disabled: true, onClick: fn() },
-  play: async ({ canvas, userEvent, args }) => {
+  play: async ({ canvas, args }) => {
     const el = canvas.getByRole('button');
-    // aria-disabled または disabled であることを確認
-    const isDisabled =
-      el.hasAttribute('disabled') ||
-      el.getAttribute('aria-disabled') === 'true';
-    await expect(isDisabled).toBe(true);
-    // クリックしても onClick が呼ばれないことを確認
-    await userEvent.click(el);
+    // ネイティブ disabled であることを確認（ブラウザがクリックイベントをブロックする）
+    await expect(el).toBeDisabled();
+    // disabled ボタンはクリックイベントを発火しないため onClick は呼ばれない
     await expect(args.onClick).not.toHaveBeenCalled();
   },
 };

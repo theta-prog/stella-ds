@@ -1,3 +1,4 @@
+import { Badge, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@stella-ds/react'
 import type { ComponentDoc } from '@/data/components'
 import { componentDescriptionsJa } from '@/data/components-ja'
 import { ComponentPreview } from '@/components/previews'
@@ -27,19 +28,27 @@ export function ComponentDetailTemplate({ comp, prevComp, nextComp, locale }: Pr
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '3rem 2rem' }}>
       {/* Breadcrumb */}
-      <nav style={{ marginBottom: '1.5rem', fontSize: '0.85rem', color: '#475569' }}>
-        <a href={labels.listHref} style={{ color: '#818cf8', textDecoration: 'none' }}>{labels.listLabel}</a>
-        <span style={{ margin: '0 0.5rem' }}>/</span>
-        <span style={{ textTransform: 'capitalize' }}>{comp.category}</span>
-        <span style={{ margin: '0 0.5rem' }}>/</span>
-        <span style={{ color: '#94a3b8' }}>{comp.name}</span>
-      </nav>
+      <Breadcrumb style={{ marginBottom: '1.5rem' }}>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href={labels.listHref}>{labels.listLabel}</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink style={{ textTransform: 'capitalize' }}>{comp.category}</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink isCurrentPage>{comp.name}</BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
       {/* Category pill */}
       <div style={{ marginBottom: '0.75rem' }}>
-        <span style={{ display: 'inline-block', background: 'rgba(79, 70, 229, 0.12)', border: '1px solid rgba(79, 70, 229, 0.25)', color: '#818cf8', borderRadius: '2rem', padding: '0.2rem 0.75rem', fontSize: '0.75rem', fontWeight: 600, textTransform: 'capitalize', letterSpacing: '0.04em' }}>
+        <Badge color="primary" variant="subtle" style={{ textTransform: 'capitalize', letterSpacing: '0.04em', borderRadius: '2rem' }}>
           {comp.category}
-        </span>
+        </Badge>
       </div>
 
       {/* Title */}
@@ -57,9 +66,9 @@ export function ComponentDetailTemplate({ comp, prevComp, nextComp, locale }: Pr
         {comp.imports.length > 1 && (
           <div style={{ marginTop: '0.75rem', display: 'flex', flexWrap: 'wrap', gap: '0.375rem' }}>
             {comp.imports.map((imp) => (
-              <span key={imp} style={{ background: 'rgba(79, 70, 229, 0.1)', border: '1px solid rgba(79, 70, 229, 0.2)', color: '#818cf8', borderRadius: '0.25rem', padding: '0.15rem 0.5rem', fontSize: '0.75rem', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>
+              <Badge key={imp} color="primary" variant="subtle" style={{ fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>
                 {imp}
-              </span>
+              </Badge>
             ))}
           </div>
         )}

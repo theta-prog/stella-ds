@@ -149,6 +149,28 @@ All stories must support EN/JP locale switching via the Storybook toolbar.
 
 **Note:** `switch` is a reserved word in JS, so the Switch component uses the key `switch_` in the translations object.
 
+## Site (apps/site) Guidelines
+
+The documentation site is a living showcase of the design system. **Always use `@stella-ds/react` components instead of raw HTML + inline styles wherever possible.**
+
+Priority components for the site:
+- `Button` with `asChild` — use for all CTA and nav anchor links instead of styled `<a>` tags
+- `Badge` — use for all pills, chips, count labels, and import name tags instead of custom `<span>`
+- `Card`, `CardContent` — use for feature cards, content cards, and similar surfaces
+- `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`, `BreadcrumbSeparator` — use for all breadcrumb navigations
+- `Text`, `Heading` — use for typography where no custom gradient/special effect is needed
+- `Stack`, `Separator` — use for layout and dividers
+
+**Server Component compatibility:** All pages in `apps/site` are Next.js Server Components. You can freely import any `@stella-ds/react` component — Next.js handles the `"use client"` boundary automatically. No need to add `'use client'` to pages just to use Stella UI components.
+
+**Shared templates:** Locale-aware pages share template components in `src/components/`:
+- `HomeTemplate` — EN/JA home page (uses `Badge`, `Button`, `Card`)
+- `ComponentListTemplate` — EN/JA component list page (uses `Badge`)
+- `ComponentDetailTemplate` — EN/JA component detail page (uses `Breadcrumb`, `Badge`)
+- `GettingStartedTemplate` — EN/JA getting started page (uses `Badge`, `Card`, `Text`)
+
+When adding new pages, create a shared template and have EN/JA page files render it with `locale="en"` or `locale="ja"`.
+
 ## Skills
 
 Use these slash commands (via the Skill tool) at the appropriate stages of development:

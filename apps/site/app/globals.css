@@ -1,0 +1,23 @@
+@import '@stella-ds/theme/css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--stella-typography-fontFamily-sans, system-ui, sans-serif);
+  background: var(--stella-color-void-base, #0f1117);
+  color: var(--stella-color-starlight-primary, #f8f8ff);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--stella-color-cosmos-400, #818cf8);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--stella-color-cosmos-300, #a5b4fc);
+}

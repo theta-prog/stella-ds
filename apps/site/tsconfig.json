@@ -22,6 +22,12 @@
       ],
       "@stella-ds/react": [
         "../../packages/react/src/index.ts"
+      ],
+      "@stella-ds/theme": [
+        "../../packages/theme/src/index.ts"
+      ],
+      "@stella-ds/theme/css": [
+        "../../packages/theme/dist/tokens.css"
       ]
     },
     "allowJs": true,

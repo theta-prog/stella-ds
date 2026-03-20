@@ -66,6 +66,7 @@ git checkout -b chore/branch-name  # tooling / config
 - `main` branch is protected — never commit directly to `main`
 - Branch naming: `feat/`, `fix/`, `chore/` + short kebab-case description
 - Push the branch and open a PR when the work is ready to merge
+- After pushing or updating a PR, check for Copilot review comments (`gh api repos/theta-prog/stella-ds/pulls/<PR_NUMBER>/comments`) and address any actionable feedback
 
 ## Architecture
 

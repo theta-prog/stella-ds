@@ -11,5 +11,9 @@ export default defineConfig({
     options.banner = {
       js: '"use client";',
     };
+    options.loader = {
+      ...options.loader,
+      '.module.css': 'local-css',
+    };
   },
 });

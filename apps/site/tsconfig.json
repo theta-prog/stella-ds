@@ -19,6 +19,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@stella-ds/react": [
+        "../../packages/react/src/index.ts"
       ]
     },
     "allowJs": true,

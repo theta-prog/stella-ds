@@ -397,7 +397,7 @@ export interface Translations {
 
 const en: Translations = {
   title: 'Stella UI',
-  tagline: 'Scalable design system for web, portfolio, MV, and 3D',
+  tagline: 'Scalable design system for web',
   section_components: 'Components',
 
   button: {
@@ -799,7 +799,7 @@ const en: Translations = {
 const ja: Translations = {
   title: 'Stella UI',
   tagline:
-    'ウェブ・ポートフォリオ・MV演出・3D空間まで対応するスケーラブルなデザインシステム',
+    'ウェブ向けスケーラブルなデザインシステム',
   section_components: 'コンポーネント',
 
   button: {

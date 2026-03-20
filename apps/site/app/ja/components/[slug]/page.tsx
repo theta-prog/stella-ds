@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { components } from '@/data/components'
+import { componentDescriptionsJa } from '@/data/components-ja'
 import { ComponentPreview } from '@/components/previews'
 
 interface Props { params: Promise<{ slug: string }> }
@@ -12,10 +13,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const comp = components.find((c) => c.slug === slug)
-  return { title: comp?.name ?? 'Component' }
+  return { title: comp?.name ?? 'コンポーネント' }
 }
 
-export default async function ComponentPage({ params }: Props) {
+export default async function JaComponentPage({ params }: Props) {
   const { slug } = await params
   const comp = components.find((c) => c.slug === slug)
   if (!comp) notFound()
@@ -29,7 +30,7 @@ export default async function ComponentPage({ params }: Props) {
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '3rem 2rem' }}>
       {/* Breadcrumb */}
       <nav style={{ marginBottom: '1.5rem', fontSize: '0.85rem', color: '#475569' }}>
-        <a href="/components" style={{ color: '#818cf8', textDecoration: 'none' }}>Components</a>
+        <a href="/ja/components" style={{ color: '#818cf8', textDecoration: 'none' }}>コンポーネント</a>
         <span style={{ margin: '0 0.5rem' }}>/</span>
         <span style={{ textTransform: 'capitalize' }}>{comp.category}</span>
         <span style={{ margin: '0 0.5rem' }}>/</span>
@@ -45,11 +46,11 @@ export default async function ComponentPage({ params }: Props) {
 
       {/* Title */}
       <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '0.75rem', color: '#f1f5f9' }}>{comp.name}</h1>
-      <p style={{ color: '#94a3b8', fontSize: '1.05rem', marginBottom: '2.5rem', lineHeight: 1.7 }}>{comp.description}</p>
+      <p style={{ color: '#94a3b8', fontSize: '1.05rem', marginBottom: '2.5rem', lineHeight: 1.7 }}>{componentDescriptionsJa[comp.slug] ?? comp.description}</p>
 
       {/* Import */}
       <section style={{ marginBottom: '2.5rem' }}>
-        <h2 style={{ fontWeight: 700, marginBottom: '0.75rem', fontSize: '1.25rem', color: '#f1f5f9', paddingBottom: '0.5rem', borderBottom: '1px solid #1e293b' }}>Import</h2>
+        <h2 style={{ fontWeight: 700, marginBottom: '0.75rem', fontSize: '1.25rem', color: '#f1f5f9', paddingBottom: '0.5rem', borderBottom: '1px solid #1e293b' }}>インポート</h2>
         <pre style={{ background: '#0d1117', border: '1px solid #1e293b', padding: '1.25rem', borderRadius: '0.5rem', overflow: 'auto', margin: 0 }}>
           <code style={{ color: '#7dd3fc', fontSize: '0.875rem', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>
             {`import { ${comp.imports.join(', ')} } from '@stella-ds/react'`}
@@ -74,7 +75,7 @@ export default async function ComponentPage({ params }: Props) {
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
               <thead>
                 <tr style={{ background: '#0d1117' }}>
-                  {['Prop', 'Type', 'Default', 'Description'].map((h) => (
+                  {['Prop', '型', 'デフォルト', '説明'].map((h) => (
                     <th key={h} style={{ textAlign: 'left', padding: '0.75rem 1rem', color: '#64748b', fontWeight: 600, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid #1e293b' }}>{h}</th>
                   ))}
                 </tr>
@@ -99,7 +100,7 @@ export default async function ComponentPage({ params }: Props) {
 
       {/* Examples */}
       <section style={{ marginBottom: '2.5rem' }}>
-        <h2 style={{ fontWeight: 700, marginBottom: '0.75rem', fontSize: '1.25rem', color: '#f1f5f9', paddingBottom: '0.5rem', borderBottom: '1px solid #1e293b' }}>Examples</h2>
+        <h2 style={{ fontWeight: 700, marginBottom: '0.75rem', fontSize: '1.25rem', color: '#f1f5f9', paddingBottom: '0.5rem', borderBottom: '1px solid #1e293b' }}>使用例</h2>
         {comp.examples.map((ex) => (
           <div key={ex.title} style={{ marginBottom: '1.5rem' }}>
             <h3 style={{ color: '#64748b', marginBottom: '0.5rem', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{ex.title}</h3>
@@ -114,15 +115,15 @@ export default async function ComponentPage({ params }: Props) {
       <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid #1e293b', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
         <div>
           {prevComp && (
-            <a href={`/components/${prevComp.slug}`} style={{ color: '#818cf8', textDecoration: 'none', fontSize: '0.9rem' }}>
+            <a href={`/ja/components/${prevComp.slug}`} style={{ color: '#818cf8', textDecoration: 'none', fontSize: '0.9rem' }}>
               ← {prevComp.name}
             </a>
           )}
         </div>
-        <a href="/components" style={{ color: '#475569', textDecoration: 'none', fontSize: '0.875rem' }}>All Components</a>
+        <a href="/ja/components" style={{ color: '#475569', textDecoration: 'none', fontSize: '0.875rem' }}>コンポーネント一覧</a>
         <div>
           {nextComp && (
-            <a href={`/components/${nextComp.slug}`} style={{ color: '#818cf8', textDecoration: 'none', fontSize: '0.9rem' }}>
+            <a href={`/ja/components/${nextComp.slug}`} style={{ color: '#818cf8', textDecoration: 'none', fontSize: '0.9rem' }}>
               {nextComp.name} →
             </a>
           )}

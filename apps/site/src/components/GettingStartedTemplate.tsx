@@ -336,13 +336,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <h2 style={h2Style}>{c.nextSteps.heading}</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
           {c.nextSteps.links.map((link) => (
-            <Card key={link.href} hoverable asChild>
-              <a href={link.href}>
-                <CardContent>
+            <Card key={link.href} hoverable>
+              <CardContent>
+                <a href={link.href} style={{ textDecoration: 'none', display: 'block' }}>
                   <Text weight="bold" color="primary" style={{ marginBottom: '0.375rem', display: 'block' }}>{link.title}</Text>
                   <Text size="sm" color="secondary">{link.desc}</Text>
-                </CardContent>
-              </a>
+                </a>
+              </CardContent>
             </Card>
           ))}
         </div>

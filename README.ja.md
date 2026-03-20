@@ -1,6 +1,6 @@
 # ✦ Stella Design System
 
-**ウェブアプリ、ポートフォリオ、MV演出、3D空間まで対応するスケーラブルなデザインシステム。**
+**ウェブアプリ向けのスケーラブルなデザインシステム。**
 
 > English version: [README.md](./README.md)
 

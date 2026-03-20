@@ -2,7 +2,7 @@
   "name": "stella-ui",
   "private": true,
   "version": "0.0.0",
-  "description": "Stella UI – scalable design system for web, portfolio, MV, and 3D",
+  "description": "Stella UI – scalable design system for web",
   "scripts": {
     "build": "pnpm -r build",
     "dev": "pnpm --filter @stella-ds/docs storybook",

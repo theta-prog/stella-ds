@@ -1,6 +1,6 @@
 # ✦ Stella Design System
 
-**Scalable design system for web apps, portfolios, MV production, and 3D spaces.**
+**Scalable design system for web apps.**
 
 > 日本語版は [README.ja.md](./README.ja.md) をご覧ください。
 

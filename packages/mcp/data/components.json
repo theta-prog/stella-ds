@@ -1,0 +1,330 @@
+[
+  {
+    "name": "Alert",
+    "slug": "alert",
+    "description": "Inline feedback banner for status messages",
+    "category": "feedback",
+    "imports": ["Alert", "AlertTitle", "AlertDescription"],
+    "props": [
+      {"name": "variant", "type": "'info' | 'success' | 'warning' | 'error'", "default": "'info'", "description": "Visual style and semantic meaning"},
+      {"name": "onClose", "type": "() => void", "default": "undefined", "description": "Renders a close button when provided"}
+    ],
+    "example": "<Alert variant=\"success\" onClose={() => {}}>\n  <AlertTitle>Success</AlertTitle>\n  <AlertDescription>Your changes have been saved.</AlertDescription>\n</Alert>"
+  },
+  {
+    "name": "Avatar",
+    "slug": "avatar",
+    "description": "Round image display with initials fallback",
+    "category": "display",
+    "imports": ["Avatar"],
+    "props": [
+      {"name": "alt", "type": "string", "default": "—", "description": "Required. Alt text and fallback initial source"},
+      {"name": "src", "type": "string", "default": "undefined", "description": "Image URL"},
+      {"name": "size", "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'", "default": "'md'", "description": "Avatar diameter"},
+      {"name": "fallback", "type": "ReactNode", "default": "first char of alt", "description": "Custom fallback content"}
+    ],
+    "example": "<Avatar src=\"/photo.jpg\" alt=\"Jane Doe\" size=\"lg\" />"
+  },
+  {
+    "name": "Background",
+    "slug": "background",
+    "description": "Animated visual backgrounds: starfield, galaxy, milky way, gradient, solid",
+    "category": "layout",
+    "imports": ["Background"],
+    "props": [
+      {"name": "variant", "type": "'stars' | 'galaxy' | 'milkyway' | 'gradient' | 'solid'", "default": "'stars'", "description": "Visual style"},
+      {"name": "color", "type": "'cosmos' | 'nebula' | 'aurora' | 'mixed'", "default": "'mixed'", "description": "Color accent palette"},
+      {"name": "theme", "type": "'dark' | 'light'", "default": "'dark'", "description": "Base theme"},
+      {"name": "twinkle", "type": "boolean", "default": "true", "description": "Star twinkling animation"},
+      {"name": "ribbons", "type": "number", "default": "5", "description": "Number of ribbons for milkyway variant"},
+      {"name": "tokenColor", "type": "string", "default": "undefined", "description": "Design-token color override (e.g. 'cosmos-500')"},
+      {"name": "showGradient", "type": "boolean", "default": "true", "description": "Show blob overlay on gradient variant"}
+    ],
+    "example": "<Background variant=\"galaxy\" color=\"cosmos\" theme=\"dark\">\n  <p>Content over galaxy background</p>\n</Background>"
+  },
+  {
+    "name": "Badge",
+    "slug": "badge",
+    "description": "Inline label for status, counts, or categories",
+    "category": "display",
+    "imports": ["Badge"],
+    "props": [
+      {"name": "variant", "type": "'solid' | 'outline' | 'subtle'", "default": "'solid'", "description": "Visual fill style"},
+      {"name": "color", "type": "'default' | 'primary' | 'success' | 'warning' | 'error'", "default": "'default'", "description": "Color semantic"},
+      {"name": "size", "type": "'sm' | 'md'", "default": "'md'", "description": "Size preset"}
+    ],
+    "example": "<Badge variant=\"subtle\" color=\"success\">Published</Badge>"
+  },
+  {
+    "name": "Breadcrumb",
+    "slug": "breadcrumb",
+    "description": "Accessible breadcrumb navigation with compound components",
+    "category": "navigation",
+    "imports": ["Breadcrumb", "BreadcrumbList", "BreadcrumbItem", "BreadcrumbLink", "BreadcrumbSeparator"],
+    "props": [
+      {"name": "asChild", "type": "boolean", "default": "false", "description": "BreadcrumbLink: render as child element"},
+      {"name": "isCurrentPage", "type": "boolean", "default": "false", "description": "BreadcrumbLink: marks current page, renders as span with aria-current"}
+    ],
+    "example": "<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem><BreadcrumbLink href=\"/\">Home</BreadcrumbLink></BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem><BreadcrumbLink isCurrentPage>Docs</BreadcrumbLink></BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>"
+  },
+  {
+    "name": "Button",
+    "slug": "button",
+    "description": "Interactive button with variants, sizes, and loading state",
+    "category": "inputs",
+    "imports": ["Button"],
+    "props": [
+      {"name": "variant", "type": "'solid' | 'outline' | 'ghost' | 'glow'", "default": "'solid'", "description": "Visual style"},
+      {"name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "Size preset"},
+      {"name": "loading", "type": "boolean", "default": "false", "description": "Shows spinner and disables interaction"},
+      {"name": "asChild", "type": "boolean", "default": "false", "description": "Render child as root (Radix Slot pattern)"}
+    ],
+    "example": "<Button variant=\"solid\" size=\"md\">Click me</Button>\n<Button variant=\"outline\" loading>Saving...</Button>"
+  },
+  {
+    "name": "Card",
+    "slug": "card",
+    "description": "Content container with optional hover lift effect",
+    "category": "layout",
+    "imports": ["Card", "CardHeader", "CardTitle", "CardDescription", "CardContent", "CardFooter"],
+    "props": [
+      {"name": "hoverable", "type": "boolean", "default": "false", "description": "Adds hover lift (shadow + translateY)"}
+    ],
+    "example": "<Card hoverable>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n    <CardDescription>Description</CardDescription>\n  </CardHeader>\n  <CardContent>Content here</CardContent>\n  <CardFooter><Button>Action</Button></CardFooter>\n</Card>"
+  },
+  {
+    "name": "Checkbox",
+    "slug": "checkbox",
+    "description": "Accessible checkbox with optional label, built on Radix UI",
+    "category": "inputs",
+    "imports": ["Checkbox"],
+    "props": [
+      {"name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "Size preset"},
+      {"name": "label", "type": "ReactNode", "default": "undefined", "description": "Label rendered beside the checkbox"},
+      {"name": "error", "type": "boolean", "default": "false", "description": "Error state styling"}
+    ],
+    "example": "<Checkbox label=\"Accept terms\" defaultChecked />\n<Checkbox label=\"Required field\" error />"
+  },
+  {
+    "name": "Dialog",
+    "slug": "dialog",
+    "description": "Accessible modal dialog with overlay, built on Radix UI",
+    "category": "overlay",
+    "imports": ["Dialog", "DialogTrigger", "DialogContent", "DialogHeader", "DialogFooter", "DialogTitle", "DialogDescription", "DialogClose"],
+    "props": [
+      {"name": "showClose", "type": "boolean", "default": "true", "description": "DialogContent: show default × close button"}
+    ],
+    "example": "<Dialog>\n  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Are you sure?</DialogTitle>\n      <DialogDescription>This action cannot be undone.</DialogDescription>\n    </DialogHeader>\n    <DialogFooter><Button>Confirm</Button></DialogFooter>\n  </DialogContent>\n</Dialog>"
+  },
+  {
+    "name": "Footer",
+    "slug": "footer",
+    "description": "Site footer with grid content layout",
+    "category": "layout",
+    "imports": ["Footer", "FooterContent", "FooterDivider", "FooterBottom"],
+    "props": [],
+    "example": "<Footer>\n  <FooterContent>Links and content</FooterContent>\n  <FooterDivider />\n  <FooterBottom>© 2024 Stella UI</FooterBottom>\n</Footer>"
+  },
+  {
+    "name": "Header",
+    "slug": "header",
+    "description": "Flexible site header with sticky, blur, and mobile nav support",
+    "category": "layout",
+    "imports": ["Header", "HeaderBrand", "HeaderNav", "HeaderActions"],
+    "props": [
+      {"name": "sticky", "type": "boolean", "default": "false", "description": "Sticks to viewport top"},
+      {"name": "blur", "type": "boolean", "default": "true", "description": "Backdrop blur when sticky"},
+      {"name": "mobileNav", "type": "ReactNode", "default": "undefined", "description": "Mobile hamburger menu content"}
+    ],
+    "example": "<Header sticky>\n  <HeaderBrand>Stella UI</HeaderBrand>\n  <HeaderNav>\n    <a href=\"/\">Home</a>\n    <a href=\"/docs\">Docs</a>\n  </HeaderNav>\n  <HeaderActions><Button size=\"sm\">Get Started</Button></HeaderActions>\n</Header>"
+  },
+  {
+    "name": "Heading",
+    "slug": "heading",
+    "description": "Semantic h1–h6 with size, weight, and alignment control",
+    "category": "typography",
+    "imports": ["Heading"],
+    "props": [
+      {"name": "level", "type": "1 | 2 | 3 | 4 | 5 | 6", "default": "2", "description": "Semantic heading level"},
+      {"name": "size", "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'", "default": "maps from level", "description": "Visual size override"},
+      {"name": "weight", "type": "'normal' | 'medium' | 'semibold' | 'bold'", "default": "'bold'", "description": "Font weight"},
+      {"name": "align", "type": "'left' | 'center' | 'right'", "default": "'left'", "description": "Text alignment"},
+      {"name": "asChild", "type": "boolean", "default": "false", "description": "Radix Slot pattern"}
+    ],
+    "example": "<Heading level={1} size=\"3xl\">Page Title</Heading>\n<Heading level={2} align=\"center\" weight=\"semibold\">Section</Heading>"
+  },
+  {
+    "name": "Input",
+    "slug": "input",
+    "description": "Single-line text input with size and error state",
+    "category": "inputs",
+    "imports": ["Input"],
+    "props": [
+      {"name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "Size preset"},
+      {"name": "error", "type": "boolean | string", "default": "false", "description": "Error state; pass string to show message below input"}
+    ],
+    "example": "<Input placeholder=\"Enter email\" />\n<Input error=\"Email is required\" value=\"\" />"
+  },
+  {
+    "name": "PageGrid",
+    "slug": "page-grid",
+    "description": "CSS grid layout for full pages with sidebar support",
+    "category": "layout",
+    "imports": ["PageGrid"],
+    "props": [
+      {"name": "layout", "type": "'single' | 'sidebar-left' | 'sidebar-right' | 'three-col'", "default": "'single'", "description": "Grid layout variant"},
+      {"name": "gap", "type": "'4' | '6' | '8' | '12'", "default": "'8'", "description": "Column gap"},
+      {"name": "fullBleed", "type": "boolean", "default": "false", "description": "Full-width or max-width contained"}
+    ],
+    "example": "<PageGrid layout=\"sidebar-left\" gap=\"8\">\n  <aside>Sidebar</aside>\n  <main>Content</main>\n</PageGrid>"
+  },
+  {
+    "name": "Radio",
+    "slug": "radio",
+    "description": "Radio button group, built on Radix UI",
+    "category": "inputs",
+    "imports": ["RadioGroup", "RadioItem"],
+    "props": [
+      {"name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "RadioGroup: size for all items"},
+      {"name": "error", "type": "boolean", "default": "false", "description": "RadioGroup: error state"},
+      {"name": "orientation", "type": "'horizontal' | 'vertical'", "default": "'vertical'", "description": "RadioGroup: layout direction"},
+      {"name": "value", "type": "string", "default": "—", "description": "RadioItem: required value"},
+      {"name": "label", "type": "ReactNode", "default": "undefined", "description": "RadioItem: optional label"}
+    ],
+    "example": "<RadioGroup defaultValue=\"b\">\n  <RadioItem value=\"a\" label=\"Option A\" />\n  <RadioItem value=\"b\" label=\"Option B\" />\n</RadioGroup>"
+  },
+  {
+    "name": "Section",
+    "slug": "section",
+    "description": "Semantic section wrapper with max-width and padding presets",
+    "category": "layout",
+    "imports": ["Section"],
+    "props": [
+      {"name": "size", "type": "'sm' | 'md' | 'lg' | 'full'", "default": "'lg'", "description": "Max-width preset"},
+      {"name": "padding", "type": "'sm' | 'md' | 'lg' | 'none'", "default": "'md'", "description": "Vertical padding"},
+      {"name": "asChild", "type": "boolean", "default": "false", "description": "Radix Slot pattern"}
+    ],
+    "example": "<Section size=\"lg\" padding=\"lg\">\n  <Heading level={2}>Features</Heading>\n  <Text>Explore what Stella UI offers.</Text>\n</Section>"
+  },
+  {
+    "name": "Select",
+    "slug": "select",
+    "description": "Accessible dropdown select, built on Radix UI",
+    "category": "inputs",
+    "imports": ["Select", "SelectTrigger", "SelectContent", "SelectItem", "SelectGroup", "SelectLabel", "SelectSeparator"],
+    "props": [
+      {"name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "SelectTrigger: size preset"},
+      {"name": "error", "type": "boolean | string", "default": "false", "description": "SelectTrigger: error state or message"},
+      {"name": "placeholder", "type": "string", "default": "undefined", "description": "SelectTrigger: placeholder text"}
+    ],
+    "example": "<Select>\n  <SelectTrigger placeholder=\"Pick a fruit\" />\n  <SelectContent>\n    <SelectItem value=\"apple\">Apple</SelectItem>\n    <SelectItem value=\"banana\">Banana</SelectItem>\n  </SelectContent>\n</Select>"
+  },
+  {
+    "name": "Separator",
+    "slug": "separator",
+    "description": "Visual divider between content sections",
+    "category": "layout",
+    "imports": ["Separator"],
+    "props": [
+      {"name": "orientation", "type": "'horizontal' | 'vertical'", "default": "'horizontal'", "description": "Divider direction"},
+      {"name": "decorative", "type": "boolean", "default": "true", "description": "Hides from screen readers when true"}
+    ],
+    "example": "<Separator />\n<Separator orientation=\"vertical\" />"
+  },
+  {
+    "name": "Skeleton",
+    "slug": "skeleton",
+    "description": "Loading placeholder with pulse animation",
+    "category": "feedback",
+    "imports": ["Skeleton"],
+    "props": [
+      {"name": "variant", "type": "'text' | 'circular' | 'rectangular'", "default": "'text'", "description": "Shape of placeholder"},
+      {"name": "width", "type": "string | number", "default": "undefined", "description": "CSS width"},
+      {"name": "height", "type": "string | number", "default": "undefined", "description": "CSS height"},
+      {"name": "lines", "type": "number", "default": "1", "description": "Number of text lines (text variant only)"},
+      {"name": "animate", "type": "boolean", "default": "true", "description": "Pulse animation"}
+    ],
+    "example": "<Skeleton variant=\"text\" lines={3} />\n<Skeleton variant=\"circular\" width={40} height={40} />"
+  },
+  {
+    "name": "Stack",
+    "slug": "stack",
+    "description": "Flexbox layout primitive for vertical or horizontal lists",
+    "category": "layout",
+    "imports": ["Stack"],
+    "props": [
+      {"name": "direction", "type": "'vertical' | 'horizontal'", "default": "'vertical'", "description": "Flex direction"},
+      {"name": "gap", "type": "'1' | '2' | '3' | '4' | '6' | '8' | '12' | '16'", "default": "'4'", "description": "Gap using spacing tokens"},
+      {"name": "align", "type": "'start' | 'center' | 'end' | 'stretch'", "default": "'stretch'", "description": "align-items"},
+      {"name": "justify", "type": "'start' | 'center' | 'end' | 'between' | 'around'", "default": "'start'", "description": "justify-content"},
+      {"name": "wrap", "type": "boolean", "default": "false", "description": "Wrap flex items"},
+      {"name": "asChild", "type": "boolean", "default": "false", "description": "Radix Slot pattern"}
+    ],
+    "example": "<Stack direction=\"horizontal\" gap=\"4\" align=\"center\">\n  <Avatar alt=\"U\" />\n  <Text>Username</Text>\n</Stack>"
+  },
+  {
+    "name": "Switch",
+    "slug": "switch",
+    "description": "Toggle switch, built on Radix UI",
+    "category": "inputs",
+    "imports": ["Switch"],
+    "props": [
+      {"name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "Size preset"},
+      {"name": "label", "type": "ReactNode", "default": "undefined", "description": "Label beside the switch"},
+      {"name": "error", "type": "boolean", "default": "false", "description": "Error state"}
+    ],
+    "example": "<Switch label=\"Enable notifications\" defaultChecked />"
+  },
+  {
+    "name": "Tabs",
+    "slug": "tabs",
+    "description": "Tabbed content panels, built on Radix UI",
+    "category": "navigation",
+    "imports": ["Tabs", "TabsList", "TabsTrigger", "TabsContent"],
+    "props": [
+      {"name": "variant", "type": "'line' | 'solid'", "default": "'line'", "description": "Visual style — underline or pill/box"}
+    ],
+    "example": "<Tabs defaultValue=\"tab1\" variant=\"line\">\n  <TabsList>\n    <TabsTrigger value=\"tab1\">Overview</TabsTrigger>\n    <TabsTrigger value=\"tab2\">Settings</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"tab1\">Overview content</TabsContent>\n  <TabsContent value=\"tab2\">Settings content</TabsContent>\n</Tabs>"
+  },
+  {
+    "name": "Text",
+    "slug": "text",
+    "description": "Polymorphic body text primitive",
+    "category": "typography",
+    "imports": ["Text"],
+    "props": [
+      {"name": "size", "type": "'xs' | 'sm' | 'md' | 'lg'", "default": "'md'", "description": "Font size"},
+      {"name": "weight", "type": "'normal' | 'medium' | 'semibold' | 'bold'", "default": "'normal'", "description": "Font weight"},
+      {"name": "color", "type": "'primary' | 'secondary' | 'disabled'", "default": "'primary'", "description": "Text color token"},
+      {"name": "align", "type": "'left' | 'center' | 'right'", "default": "'left'", "description": "Text alignment"},
+      {"name": "as", "type": "'p' | 'span' | 'div' | 'label'", "default": "'p'", "description": "HTML element"},
+      {"name": "asChild", "type": "boolean", "default": "false", "description": "Radix Slot pattern"},
+      {"name": "truncate", "type": "boolean", "default": "false", "description": "Ellipsis overflow"}
+    ],
+    "example": "<Text size=\"lg\" weight=\"medium\">Body copy</Text>\n<Text as=\"span\" color=\"secondary\" size=\"sm\">Caption</Text>"
+  },
+  {
+    "name": "Toast",
+    "slug": "toast",
+    "description": "Ephemeral notification, built on Radix UI",
+    "category": "feedback",
+    "imports": ["ToastProvider", "ToastViewport", "Toast", "ToastTitle", "ToastDescription", "ToastClose", "ToastAction"],
+    "props": [
+      {"name": "variant", "type": "'info' | 'success' | 'warning' | 'error'", "default": "'info'", "description": "Visual style and semantic meaning"},
+      {"name": "label", "type": "string", "default": "'Close notification'", "description": "ToastClose: aria-label for close button"}
+    ],
+    "example": "// Wrap app once:\n<ToastProvider><ToastViewport /></ToastProvider>\n\n// Then render:\n<Toast open={open} onOpenChange={setOpen} variant=\"success\">\n  <ToastTitle>Saved!</ToastTitle>\n  <ToastDescription>Your file has been saved.</ToastDescription>\n  <ToastClose />\n</Toast>"
+  },
+  {
+    "name": "Tooltip",
+    "slug": "tooltip",
+    "description": "Hover tooltip, built on Radix UI",
+    "category": "overlay",
+    "imports": ["TooltipProvider", "Tooltip", "TooltipTrigger", "TooltipContent"],
+    "props": [
+      {"name": "side", "type": "'top' | 'right' | 'bottom' | 'left'", "default": "'top'", "description": "TooltipContent: preferred side"},
+      {"name": "sideOffset", "type": "number", "default": "6", "description": "TooltipContent: distance from trigger"}
+    ],
+    "example": "<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger asChild><Button>Hover me</Button></TooltipTrigger>\n    <TooltipContent side=\"top\">Helpful hint</TooltipContent>\n  </Tooltip>\n</TooltipProvider>"
+  }
+]

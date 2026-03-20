@@ -4,7 +4,7 @@ import type { Locale } from '../i18n';
 const content = {
   en: {
     heading: '✦ Welcome to Stella UI',
-    intro: `**Stella UI** is a scalable design system built for web apps, portfolios, MV production, and 3D spaces.`,
+    intro: `**Stella UI** is a scalable design system built for web apps.`,
     sections: [
       {
         title: '🎨 Design Tokens',
@@ -23,7 +23,7 @@ const content = {
   },
   ja: {
     heading: '✦ Stella UI へようこそ',
-    intro: `**Stella UI** はウェブアプリ、ポートフォリオ、MV演出、3D空間まで対応するスケーラブルなデザインシステムです。`,
+    intro: `**Stella UI** はウェブアプリ向けのスケーラブルなデザインシステムです。`,
     sections: [
       {
         title: '🎨 デザイントークン',

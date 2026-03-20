@@ -1,5 +1,7 @@
 import { Badge, Button, Card, CardContent, Text } from '@stella-ds/react'
 
+type FeatureColor = 'cosmos' | 'nebula' | 'aurora' | 'nova'
+
 const content = {
   en: {
     badge: 'Design System',
@@ -25,10 +27,10 @@ export default function App() {
 }`,
     },
     features: [
-      { icon: '⚡', title: '25 Components', desc: 'Buttons, forms, overlays, layout primitives, and more' },
-      { icon: '♿', title: 'Accessible', desc: 'Built on Radix UI primitives with ARIA support throughout' },
-      { icon: '🎨', title: 'Design Tokens', desc: 'Celestial color palette with CSS custom properties' },
-      { icon: '🤖', title: 'AI-Ready', desc: 'llms.txt and MCP server for seamless AI integration' },
+      { color: 'cosmos' as FeatureColor, title: '25 Components', desc: 'Buttons, forms, overlays, layout primitives, and more' },
+      { color: 'nebula' as FeatureColor, title: 'Accessible', desc: 'Built on Radix UI primitives with ARIA support throughout' },
+      { color: 'aurora' as FeatureColor, title: 'Design Tokens', desc: 'Celestial color palette with CSS custom properties' },
+      { color: 'nova' as FeatureColor, title: 'AI-Ready', desc: 'llms.txt and MCP server for seamless AI integration' },
     ],
   },
   ja: {
@@ -57,12 +59,26 @@ export default function App() {
 }`,
     },
     features: [
-      { icon: '⚡', title: '25 コンポーネント', desc: 'ボタン、フォーム、オーバーレイ、レイアウトなど豊富なコンポーネント' },
-      { icon: '♿', title: 'アクセシブル', desc: 'Radix UI プリミティブ上に構築、全体に ARIA 対応' },
-      { icon: '🎨', title: 'デザイントークン', desc: '天体をテーマにしたカラーパレットと CSS カスタムプロパティ' },
-      { icon: '🤖', title: 'AI 対応', desc: 'llms.txt と MCP サーバーでシームレスな AI 統合' },
+      { color: 'cosmos' as FeatureColor, title: '25 コンポーネント', desc: 'ボタン、フォーム、オーバーレイ、レイアウトなど豊富なコンポーネント' },
+      { color: 'nebula' as FeatureColor, title: 'アクセシブル', desc: 'Radix UI プリミティブ上に構築、全体に ARIA 対応' },
+      { color: 'aurora' as FeatureColor, title: 'デザイントークン', desc: '天体をテーマにしたカラーパレットと CSS カスタムプロパティ' },
+      { color: 'nova' as FeatureColor, title: 'AI 対応', desc: 'llms.txt と MCP サーバーでシームレスな AI 統合' },
     ],
   },
+}
+
+const accentMap: Record<FeatureColor, string> = {
+  cosmos: 'var(--stella-color-cosmos-500)',
+  nebula: 'var(--stella-color-nebula-500)',
+  aurora: 'var(--stella-color-aurora-500)',
+  nova:   'var(--stella-color-nova-500)',
+}
+
+const glowMap: Record<FeatureColor, string> = {
+  cosmos: 'var(--stella-shadow-glow-cosmos)',
+  nebula: 'var(--stella-shadow-glow-nebula)',
+  aurora: 'var(--stella-shadow-glow-aurora)',
+  nova:   '0 0 14px 2px rgb(16 185 129 / 0.4), 0 0 32px 6px rgb(16 185 129 / 0.15)',
 }
 
 interface Props {
@@ -82,10 +98,18 @@ export function HomeTemplate({ locale }: Props) {
             {c.badge}
           </Badge>
         </div>
-        <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 800, marginBottom: '1.25rem', background: 'linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #67e8f9 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1.1 }}>
+        <h1 style={{
+          fontSize: 'clamp(3rem, 7vw, 5rem)',
+          fontWeight: 800,
+          marginBottom: '1.25rem',
+          lineHeight: 1.05,
+          letterSpacing: '-0.02em',
+          color: 'var(--stella-color-starlight-primary)',
+          textShadow: '0 0 40px rgb(99 102 241 / 0.5), 0 0 80px rgb(99 102 241 / 0.2)',
+        }}>
           Stella UI
         </h1>
-        <p style={{ fontSize: '1.2rem', color: '#94a3b8', marginBottom: '2.5rem', lineHeight: 1.7 }}>
+        <p style={{ fontSize: '1.2rem', color: 'var(--stella-color-starlight-secondary)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
           {c.tagline1}<br />{c.tagline2}
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -103,7 +127,18 @@ export function HomeTemplate({ locale }: Props) {
         <Text size="xs" color="disabled" style={{ marginBottom: '0.5rem', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block' }}>
           {c.installLabel}
         </Text>
-        <code style={{ display: 'block', background: '#0d1117', border: '1px solid #1e293b', padding: '1rem 1.25rem', borderRadius: '0.5rem', fontSize: '0.9rem', color: '#7dd3fc', fontFamily: 'ui-monospace, SFMono-Regular, monospace', textAlign: 'left' }}>
+        <code style={{
+          display: 'block',
+          background: 'var(--stella-color-void-surface)',
+          border: '1px solid var(--stella-color-void-muted)',
+          boxShadow: '0 0 0 1px var(--stella-color-cosmos-900)',
+          padding: '1rem 1.25rem',
+          borderRadius: '0.5rem',
+          fontSize: '0.9rem',
+          color: 'var(--stella-color-aurora-300)',
+          fontFamily: 'var(--stella-typography-fontFamily-mono)',
+          textAlign: 'left',
+        }}>
           npm install @stella-ds/react @stella-ds/theme
         </code>
       </section>
@@ -112,9 +147,19 @@ export function HomeTemplate({ locale }: Props) {
       <section style={{ padding: '2rem 2rem 6rem', maxWidth: '960px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '1.25rem' }}>
           {c.features.map((f) => (
-            <Card key={f.title}>
+            <Card key={f.title} style={{
+              borderBottom: `3px solid ${accentMap[f.color]}`,
+              transition: 'box-shadow var(--stella-transition-base), transform var(--stella-transition-base)',
+            }}>
               <CardContent>
-                <div style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>{f.icon}</div>
+                <div style={{
+                  width: '2rem',
+                  height: '2px',
+                  background: accentMap[f.color],
+                  boxShadow: glowMap[f.color],
+                  marginBottom: '1rem',
+                  borderRadius: '9999px',
+                }} />
                 <Text weight="bold" style={{ marginBottom: '0.375rem', display: 'block' }}>{f.title}</Text>
                 <Text size="sm" color="secondary">{f.desc}</Text>
               </CardContent>
@@ -124,16 +169,35 @@ export function HomeTemplate({ locale }: Props) {
       </section>
 
       {/* Quick start strip */}
-      <section style={{ borderTop: '1px solid #1e293b', borderBottom: '1px solid #1e293b', background: '#0d1117', padding: '4rem 2rem', textAlign: 'center' }}>
+      <section style={{
+        borderTop: '1px solid var(--stella-color-void-muted)',
+        borderBottom: '1px solid var(--stella-color-void-muted)',
+        background: 'var(--stella-color-void-base)',
+        padding: '4rem 2rem',
+        textAlign: 'center',
+      }}>
         <Text size="xs" color="disabled" style={{ marginBottom: '0.5rem', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block' }}>
           {c.quickStart.label}
         </Text>
-        <h2 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '1rem', color: '#f1f5f9' }}>{c.quickStart.title}</h2>
+        <h2 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--stella-color-starlight-primary)' }}>{c.quickStart.title}</h2>
         <Text color="secondary" style={{ maxWidth: '500px', margin: '0 auto 2rem', display: 'block' }}>
           {c.quickStart.desc}
         </Text>
-        <pre style={{ display: 'inline-block', textAlign: 'left', background: '#111827', border: '1px solid #1e293b', padding: '1.5rem', borderRadius: '0.75rem', fontSize: '0.875rem', lineHeight: 1.8, maxWidth: '600px', width: '100%', overflow: 'auto' }}>
-          <code style={{ color: '#f1f5f9', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>{c.quickStart.code}</code>
+        <pre style={{
+          display: 'inline-block',
+          textAlign: 'left',
+          background: 'var(--stella-color-void-surface)',
+          border: '1px solid var(--stella-color-void-muted)',
+          boxShadow: 'inset 0 1px 0 rgb(255 255 255 / 0.03)',
+          padding: '1.5rem',
+          borderRadius: '0.75rem',
+          fontSize: '0.875rem',
+          lineHeight: 1.8,
+          maxWidth: '600px',
+          width: '100%',
+          overflow: 'auto',
+        }}>
+          <code style={{ color: 'var(--stella-color-starlight-primary)', fontFamily: 'var(--stella-typography-fontFamily-mono)' }}>{c.quickStart.code}</code>
         </pre>
       </section>
     </div>

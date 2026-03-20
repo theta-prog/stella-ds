@@ -8,9 +8,28 @@
 
 body {
   font-family: var(--stella-typography-fontFamily-sans, system-ui, sans-serif);
-  background: var(--stella-color-void-base, #0f1117);
-  color: var(--stella-color-starlight-primary, #f8f8ff);
+  background: var(--stella-color-void-base, #080b12);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
   line-height: 1.6;
+  position: relative;
+}
+
+/* Ambient nebula atmosphere — fixed behind all content, moves with viewport like real stars */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 40% at 20% -10%, rgb(99 102 241 / 0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 35% at 80% 110%, rgb(168 85 247 / 0.06) 0%, transparent 60%);
+}
+
+/* Ensure all page content sits above the atmosphere layer */
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 a {

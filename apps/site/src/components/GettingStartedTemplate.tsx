@@ -207,14 +207,14 @@ export default function Page() {
 
 const codeBlockStyle: React.CSSProperties = {
   display: 'block',
-  background: '#0d1117',
-  border: '1px solid #1e293b',
+  background: 'var(--stella-color-void-surface)',
+  border: '1px solid var(--stella-color-void-muted)',
   padding: '1.25rem',
   borderRadius: '0.5rem',
   fontSize: '0.875rem',
   lineHeight: 1.8,
-  color: '#f1f5f9',
-  fontFamily: 'ui-monospace, SFMono-Regular, monospace',
+  color: 'var(--stella-color-starlight-primary)',
+  fontFamily: 'var(--stella-typography-fontFamily-mono)',
   overflow: 'auto',
   whiteSpace: 'pre',
   margin: 0,
@@ -226,15 +226,15 @@ const h2Style: React.CSSProperties = {
   fontSize: '1.5rem',
   fontWeight: 700,
   marginBottom: '0.75rem',
-  color: '#f1f5f9',
+  color: 'var(--stella-color-starlight-primary)',
   paddingBottom: '0.5rem',
-  borderBottom: '1px solid #1e293b',
+  borderBottom: '1px solid var(--stella-color-void-muted)',
 }
 
 const h3Style: React.CSSProperties = {
   fontSize: '1.1rem',
   fontWeight: 600,
-  color: '#a5b4fc',
+  color: 'var(--stella-color-cosmos-300)',
   marginBottom: '0.5rem',
   marginTop: '1.75rem',
 }
@@ -253,7 +253,7 @@ export function GettingStartedTemplate({ locale }: Props) {
         <Text size="xs" color="disabled" style={{ textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: '0.5rem' }}>
           {c.docsLabel}
         </Text>
-        <h1 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '1rem', background: 'linear-gradient(135deg, #f1f5f9, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <h1 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '1rem', color: 'var(--stella-color-starlight-primary)' }}>
           {c.title}
         </h1>
         <Text color="secondary" style={{ fontSize: '1.1rem' }}>{c.lead}</Text>
@@ -263,7 +263,7 @@ export function GettingStartedTemplate({ locale }: Props) {
       <section style={sectionStyle}>
         <h2 style={h2Style}>{c.prerequisites.heading}</h2>
         <Text color="secondary" style={{ marginBottom: '0.5rem', display: 'block' }}>{c.prerequisites.intro}</Text>
-        <ul style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.75, paddingLeft: '1.5rem' }}>
+        <ul style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.95rem', lineHeight: 1.75, paddingLeft: '1.5rem' }}>
           {c.prerequisites.items.map((item) => <li key={item}>{item}</li>)}
         </ul>
       </section>
@@ -272,11 +272,11 @@ export function GettingStartedTemplate({ locale }: Props) {
       <section style={sectionStyle}>
         <h2 style={h2Style}>{c.installation.heading}</h2>
         <h3 style={h3Style}>npm</h3>
-        <pre style={codeBlockStyle}><code style={{ color: '#7dd3fc' }}>npm install @stella-ds/react @stella-ds/theme</code></pre>
+        <pre style={codeBlockStyle}><code style={{ color: 'var(--stella-color-aurora-300)' }}>npm install @stella-ds/react @stella-ds/theme</code></pre>
         <h3 style={h3Style}>pnpm</h3>
-        <pre style={codeBlockStyle}><code style={{ color: '#7dd3fc' }}>pnpm add @stella-ds/react @stella-ds/theme</code></pre>
+        <pre style={codeBlockStyle}><code style={{ color: 'var(--stella-color-aurora-300)' }}>pnpm add @stella-ds/react @stella-ds/theme</code></pre>
         <h3 style={h3Style}>yarn</h3>
-        <pre style={codeBlockStyle}><code style={{ color: '#7dd3fc' }}>yarn add @stella-ds/react @stella-ds/theme</code></pre>
+        <pre style={codeBlockStyle}><code style={{ color: 'var(--stella-color-aurora-300)' }}>yarn add @stella-ds/react @stella-ds/theme</code></pre>
       </section>
 
       {/* Theme setup */}

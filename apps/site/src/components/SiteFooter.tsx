@@ -6,14 +6,14 @@ import { Footer, FooterBottom, FooterContent, FooterDivider, Text } from '@stell
 const colHeadingStyle: React.CSSProperties = {
   fontWeight: 600,
   marginBottom: '0.75rem',
-  color: '#94a3b8',
+  color: 'var(--stella-color-starlight-secondary)',
   fontSize: '0.75rem',
   textTransform: 'uppercase',
   letterSpacing: '0.06em',
 }
 
 const linkStyle: React.CSSProperties = {
-  color: '#64748b',
+  color: 'var(--stella-color-starlight-disabled)',
   fontSize: '0.875rem',
   textDecoration: 'none',
   display: 'block',
@@ -30,7 +30,7 @@ export function SiteFooter() {
       <FooterContent>
         {/* Brand */}
         <div>
-          <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.5rem', background: 'linear-gradient(135deg, #818cf8, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.5rem', color: 'var(--stella-color-cosmos-300)', textShadow: '0 0 10px rgb(99 102 241 / 0.5)' }}>
             Stella UI
           </div>
           <Text size="sm" color="secondary">

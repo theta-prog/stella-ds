@@ -74,11 +74,11 @@
 
 /* --- Error state — scoped to the radio circle --- */
 .state-error-radio {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error-radio:hover:not([disabled]) {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error-radio:focus-visible {
@@ -87,7 +87,7 @@
 }
 
 .state-error-radio[data-state='checked'] {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
   background-color: var(--stella-color-void-surface, #1d2129);
 }
 

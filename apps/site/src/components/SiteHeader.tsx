@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { Header, HeaderBrand, HeaderNav } from '@stella-ds/react'
 
 const navLinkStyle: React.CSSProperties = {
-  color: '#94a3b8',
+  color: 'var(--stella-color-starlight-secondary)',
   fontSize: '0.9rem',
   textDecoration: 'none',
   whiteSpace: 'nowrap',
@@ -22,7 +22,7 @@ export function SiteHeader() {
   return (
     <Header sticky blur>
       <HeaderBrand>
-        <a href={homeHref} style={{ fontWeight: 700, fontSize: '1.125rem', background: 'linear-gradient(135deg, #818cf8, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', textDecoration: 'none' }}>
+        <a href={homeHref} style={{ fontWeight: 700, fontSize: '1.125rem', color: 'var(--stella-color-starlight-primary)', textDecoration: 'none' }}>
           Stella UI
         </a>
       </HeaderBrand>
@@ -30,10 +30,10 @@ export function SiteHeader() {
         <a href={`${base}/getting-started`} style={navLinkStyle}>{isJa ? 'はじめかた' : 'Getting\u00A0Started'}</a>
         <a href={`${base}/components`} style={navLinkStyle}>{isJa ? 'コンポーネント' : 'Components'}</a>
         <a href={`${base}/tokens`} style={navLinkStyle}>{isJa ? 'トークン' : 'Tokens'}</a>
-        <a href={otherLocale} style={{ ...navLinkStyle, color: '#64748b', fontSize: '0.8rem', border: '1px solid #334155', borderRadius: '0.375rem', padding: '0.2rem 0.6rem' }}>
+        <a href={otherLocale} style={{ ...navLinkStyle, color: 'var(--stella-color-starlight-disabled)', fontSize: '0.8rem', border: '1px solid var(--stella-color-void-muted)', borderRadius: '0.375rem', padding: '0.2rem 0.6rem' }}>
           {isJa ? 'EN' : 'JA'}
         </a>
-        <a href="https://github.com/theta-prog/stella-ui" target="_blank" rel="noopener noreferrer" style={{ ...navLinkStyle, color: '#64748b' }}>
+        <a href="https://github.com/theta-prog/stella-ui" target="_blank" rel="noopener noreferrer" style={{ ...navLinkStyle, color: 'var(--stella-color-starlight-disabled)' }}>
           GitHub↗
         </a>
       </HeaderNav>

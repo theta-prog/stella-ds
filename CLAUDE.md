@@ -182,6 +182,7 @@ Use these slash commands (via the Skill tool) at the appropriate stages of devel
 | `/web-design-guidelines` | After implementing a component — audits accessibility and UX against Vercel guidelines |
 | `/vercel-react-best-practices` | Code review — checks React performance patterns (waterfalls, re-renders, bundle size) |
 | `/vercel-composition-patterns` | When designing complex component APIs (compound components, render props, context) |
+| `/design-review` | After styling changes — audits for AI-looking anti-patterns (glows, generic colors, glass-morphism) and ensures crafted, intentional design |
 | `/simplify` | After a batch of changes — reviews for duplication and code quality |
 | `/autoship` | When ready to publish `@stella-ds/react` or `@stella-ds/theme` to npm |
 | `/turborepo` | If build times become slow and Turborepo caching is needed |

@@ -59,11 +59,11 @@
 
 /* --- Error state --- */
 .state-error {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error:hover:not([disabled]) {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error:focus-visible {

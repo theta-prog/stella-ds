@@ -176,11 +176,11 @@
 }
 
 .variant-warning {
-  border-left-color: #f59e0b;
-  color: #fcd34d;
+  border-left-color: var(--stella-color-warning-500, #f59e0b);
+  color: var(--stella-color-warning-300, #fcd34d);
 }
 
 .variant-error {
-  border-left-color: #ef4444;
-  color: #fca5a5;
+  border-left-color: var(--stella-color-error-500, #ef4444);
+  color: var(--stella-color-error-300, #fca5a5);
 }

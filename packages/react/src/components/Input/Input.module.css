@@ -71,21 +71,21 @@
 
 /* --- Error state --- */
 .state-error {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error:hover:not(:disabled) {
-  border-color: #dc2626;
+  border-color: var(--stella-color-error-600, #dc2626);
 }
 
 .state-error:focus-visible {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
   box-shadow: 0 0 0 3px rgb(239 68 68 / 0.2);
 }
 
 .errorMessage {
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   font-size: var(--stella-typography-fontSize-sm, 0.875rem);
-  color: #ef4444;
+  color: var(--stella-color-error-500, #ef4444);
   line-height: var(--stella-typography-lineHeight-normal, 1.5);
 }

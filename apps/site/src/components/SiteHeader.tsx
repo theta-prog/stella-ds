@@ -16,12 +16,13 @@ export function SiteHeader() {
   const isJa = pathname.startsWith('/ja')
 
   const base = isJa ? '/ja' : ''
+  const homeHref = isJa ? '/ja' : '/'
   const otherLocale = isJa ? pathname.replace(/^\/ja/, '') || '/' : `/ja${pathname}`
 
   return (
     <Header sticky blur>
       <HeaderBrand>
-        <a href={base || '/'} style={{ fontWeight: 700, fontSize: '1.125rem', background: 'linear-gradient(135deg, #818cf8, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', textDecoration: 'none' }}>
+        <a href={homeHref} style={{ fontWeight: 700, fontSize: '1.125rem', background: 'linear-gradient(135deg, #818cf8, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', textDecoration: 'none' }}>
           Stella UI
         </a>
       </HeaderBrand>

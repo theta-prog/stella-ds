@@ -30,8 +30,8 @@ const wrapStyle: React.CSSProperties = {
   alignItems: 'center',
 }
 
-const previews: Record<string, React.ReactNode> = {
-  alert: (
+const previews: Record<string, () => React.ReactNode> = {
+  alert: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
       <Alert variant="info"><AlertTitle>Info</AlertTitle><AlertDescription>This is an informational message.</AlertDescription></Alert>
       <Alert variant="success"><AlertTitle>Success</AlertTitle><AlertDescription>Your changes have been saved.</AlertDescription></Alert>
@@ -39,7 +39,7 @@ const previews: Record<string, React.ReactNode> = {
       <Alert variant="error"><AlertTitle>Error</AlertTitle><AlertDescription>Something went wrong.</AlertDescription></Alert>
     </div>
   ),
-  avatar: (
+  avatar: () => (
     <div style={wrapStyle}>
       <Avatar alt="Jane Doe" size="xs" />
       <Avatar alt="Jane Doe" size="sm" />
@@ -48,7 +48,7 @@ const previews: Record<string, React.ReactNode> = {
       <Avatar alt="Jane Doe" size="xl" />
     </div>
   ),
-  badge: (
+  badge: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
       <div style={wrapStyle}>
         <Badge color="default">Default</Badge>
@@ -64,7 +64,7 @@ const previews: Record<string, React.ReactNode> = {
       </div>
     </div>
   ),
-  breadcrumb: (
+  breadcrumb: () => (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem><BreadcrumbLink href="#">Home</BreadcrumbLink></BreadcrumbItem>
@@ -75,7 +75,7 @@ const previews: Record<string, React.ReactNode> = {
       </BreadcrumbList>
     </Breadcrumb>
   ),
-  button: (
+  button: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
       <div style={wrapStyle}>
         <Button variant="solid">Solid</Button>
@@ -91,7 +91,7 @@ const previews: Record<string, React.ReactNode> = {
       </div>
     </div>
   ),
-  card: (
+  card: () => (
     <Card hoverable style={{ maxWidth: 320 }}>
       <CardHeader>
         <CardTitle>Card Title</CardTitle>
@@ -105,7 +105,7 @@ const previews: Record<string, React.ReactNode> = {
       </CardFooter>
     </Card>
   ),
-  checkbox: (
+  checkbox: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
       <Checkbox label="Accept terms and conditions" defaultChecked />
       <Checkbox label="Subscribe to newsletter" />
@@ -113,7 +113,7 @@ const previews: Record<string, React.ReactNode> = {
       <Checkbox label="Disabled option" disabled />
     </div>
   ),
-  dialog: (
+  dialog: () => (
     <Dialog>
       <DialogTrigger asChild><Button>Open Dialog</Button></DialogTrigger>
       <DialogContent>
@@ -128,7 +128,7 @@ const previews: Record<string, React.ReactNode> = {
       </DialogContent>
     </Dialog>
   ),
-  heading: (
+  heading: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
       <Heading level={1} size="3xl">Heading 1</Heading>
       <Heading level={2} size="2xl">Heading 2</Heading>
@@ -136,7 +136,7 @@ const previews: Record<string, React.ReactNode> = {
       <Heading level={4} size="lg">Heading 4</Heading>
     </div>
   ),
-  input: (
+  input: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: 320 }}>
       <Input placeholder="Default input" />
       <Input placeholder="Small" size="sm" />
@@ -144,7 +144,7 @@ const previews: Record<string, React.ReactNode> = {
       <Input placeholder="Email address" error="Email is required" value="" onChange={() => {}} />
     </div>
   ),
-  radio: (
+  radio: () => (
     <RadioGroup defaultValue="b">
       <RadioItem value="a" label="Option A" />
       <RadioItem value="b" label="Option B" />
@@ -152,7 +152,7 @@ const previews: Record<string, React.ReactNode> = {
       <RadioItem value="d" label="Disabled" disabled />
     </RadioGroup>
   ),
-  separator: (
+  separator: () => (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Text size="sm" color="secondary">Content above</Text>
       <Separator />
@@ -164,7 +164,7 @@ const previews: Record<string, React.ReactNode> = {
       </div>
     </div>
   ),
-  skeleton: (
+  skeleton: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
       <Skeleton variant="text" lines={3} />
       <div style={wrapStyle}>
@@ -174,7 +174,7 @@ const previews: Record<string, React.ReactNode> = {
       <Skeleton variant="rectangular" width="100%" height={80} />
     </div>
   ),
-  stack: (
+  stack: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
       <Stack direction="horizontal" gap="3" align="center">
         <Avatar alt="U" size="sm" />
@@ -188,7 +188,7 @@ const previews: Record<string, React.ReactNode> = {
       </Stack>
     </div>
   ),
-  switch: (
+  switch: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
       <Switch label="Enable notifications" defaultChecked />
       <Switch label="Dark mode" size="sm" />
@@ -196,7 +196,7 @@ const previews: Record<string, React.ReactNode> = {
       <Switch label="Disabled" disabled />
     </div>
   ),
-  tabs: (
+  tabs: () => (
     <Tabs defaultValue="overview" style={{ width: '100%' }}>
       <TabsList>
         <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -208,7 +208,7 @@ const previews: Record<string, React.ReactNode> = {
       <TabsContent value="activity"><Text size="sm" color="secondary">Activity content goes here.</Text></TabsContent>
     </Tabs>
   ),
-  text: (
+  text: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
       <Text size="lg" weight="bold">Large Bold</Text>
       <Text size="md" weight="medium">Medium Medium</Text>
@@ -217,7 +217,7 @@ const previews: Record<string, React.ReactNode> = {
       <Text truncate style={{ maxWidth: 200 }}>This is a very long text that will be truncated with an ellipsis</Text>
     </div>
   ),
-  tooltip: (
+  tooltip: () => (
     <TooltipProvider>
       <div style={wrapStyle}>
         <Tooltip>
@@ -231,7 +231,7 @@ const previews: Record<string, React.ReactNode> = {
       </div>
     </TooltipProvider>
   ),
-  select: (
+  select: () => (
     <div style={{ maxWidth: 240 }}>
       <Select>
         <SelectTrigger placeholder="Pick a fruit" />
@@ -244,7 +244,7 @@ const previews: Record<string, React.ReactNode> = {
       </Select>
     </div>
   ),
-  background: (
+  background: () => (
     <Background variant="galaxy" color="cosmos" theme="dark" style={{ height: 180, borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Text weight="semibold" style={{ color: '#f1f5f9' }}>Content over galaxy background</Text>
     </Background>
@@ -256,8 +256,8 @@ interface ComponentPreviewProps {
 }
 
 export function ComponentPreview({ slug }: ComponentPreviewProps) {
-  const preview = previews[slug]
-  if (!preview) return null
+  const factory = previews[slug]
+  if (!factory) return null
 
   return (
     <section style={{ marginBottom: '2.5rem' }}>
@@ -274,7 +274,7 @@ export function ComponentPreview({ slug }: ComponentPreviewProps) {
         justifyContent: 'center',
         minHeight: '120px',
       }}>
-        {preview}
+        {factory()}
       </div>
     </section>
   )

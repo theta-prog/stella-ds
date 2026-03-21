@@ -47,12 +47,12 @@
 
 .trigger:focus-visible {
   border-color: var(--stella-color-cosmos-500, #6366f1);
-  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 20%, transparent);
 }
 
 .trigger[data-state='open'] {
   border-color: var(--stella-color-cosmos-500, #6366f1);
-  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 20%, transparent);
 }
 
 .trigger[disabled] {
@@ -76,12 +76,12 @@
 
 .state-error:focus-visible {
   border-color: var(--stella-color-error-500, #ef4444);
-  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.2);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--stella-color-error-500, #ef4444) 20%, transparent);
 }
 
 .state-error[data-state='open'] {
   border-color: var(--stella-color-error-500, #ef4444);
-  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.2);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--stella-color-error-500, #ef4444) 20%, transparent);
 }
 
 .errorMessage {
@@ -173,19 +173,19 @@
 
 /* Highlighted (keyboard/mouse hover) */
 .item[data-highlighted] {
-  background-color: rgb(79 70 229 / 0.2);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-600, #4845e2) 20%, transparent);
   color: var(--stella-color-starlight-primary, #f0f0f5);
 }
 
 /* Selected item */
 .item[data-state='checked'] {
-  background-color: rgb(79 70 229 / 0.15);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-600, #4845e2) 15%, transparent);
   color: var(--stella-color-cosmos-400, #818cf8);
 }
 
 /* Highlighted + selected */
 .item[data-highlighted][data-state='checked'] {
-  background-color: rgb(79 70 229 / 0.25);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-600, #4845e2) 25%, transparent);
   color: var(--stella-color-cosmos-300, #a5b4fc);
 }
 

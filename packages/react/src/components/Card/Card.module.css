@@ -21,7 +21,7 @@
 
 .hoverable:hover {
   border-color: var(--stella-color-cosmos-800, #322f9e);
-  box-shadow: var(--stella-shadow-md, 0 4px 24px rgba(0, 0, 0, 0.4));
+  box-shadow: var(--stella-shadow-md, 0 4px 8px 0 rgb(0 0 0 / 0.5));
 }
 
 /* --- Header --- */

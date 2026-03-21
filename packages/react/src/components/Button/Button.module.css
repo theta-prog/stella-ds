@@ -78,7 +78,7 @@
 
 .variant-solid:hover:not(:disabled):not([aria-disabled='true']) {
   background-color: var(--stella-color-cosmos-500, #6366f1);
-  box-shadow: 0 2px 8px rgb(99 102 241 / 0.25);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 25%, transparent);
 }
 
 .variant-solid:active:not(:disabled):not([aria-disabled='true']) {
@@ -94,13 +94,13 @@
 }
 
 .variant-outline:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: rgb(99 102 241 / 0.1);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 10%, transparent);
   color: var(--stella-color-cosmos-300, #a5b4fc);
   border-color: var(--stella-color-cosmos-400, #818cf8);
 }
 
 .variant-outline:active:not(:disabled):not([aria-disabled='true']) {
-  background-color: rgb(99 102 241 / 0.15);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 15%, transparent);
   border-color: var(--stella-color-cosmos-600, #4f46e5);
   color: var(--stella-color-cosmos-400, #818cf8);
 }
@@ -146,7 +146,7 @@
   background-color: var(--stella-color-cosmos-600, #4845e2);
   color: var(--stella-color-starlight-primary, #f0f0f5);
   border-color: transparent;
-  box-shadow: var(--stella-shadow-glow-cosmos, 0 0 8px 1px rgb(91 91 240 / 0.18), 0 0 20px 2px rgb(91 91 240 / 0.08));
+  box-shadow: var(--stella-shadow-glow-cosmos, 0 0 8px 1px rgb(91 91 240 / 0.18), 0 0 20px 4px rgb(91 91 240 / 0.08));
 }
 
 .variant-glow:hover:not(:disabled):not([aria-disabled='true']) {

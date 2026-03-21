@@ -84,9 +84,9 @@
 
 /* info */
 .variant-info {
-  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #6366f1) 10%, var(--stella-color-void-surface, #12151e));
-  border-color: color-mix(in srgb, var(--stella-color-cosmos-500, #6366f1) 35%, var(--stella-color-void-muted, #262c3a));
-  color: var(--stella-color-cosmos-300, #a5b4fc);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 10%, var(--stella-color-void-surface, #12151e));
+  border-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 35%, var(--stella-color-void-muted, #262c3a));
+  color: var(--stella-color-cosmos-300, #a2aafc);
 }
 
 /* success */

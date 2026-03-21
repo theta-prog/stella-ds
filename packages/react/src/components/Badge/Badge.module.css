@@ -57,14 +57,14 @@
 
 /* warning */
 .variant-solid.color-warning {
-  background-color: #d97706;
+  background-color: var(--stella-color-warning-600, #d97706);
   color: #ffffff;
   border-color: transparent;
 }
 
 /* error */
 .variant-solid.color-error {
-  background-color: #dc2626;
+  background-color: var(--stella-color-error-600, #dc2626);
   color: #ffffff;
   border-color: transparent;
 }
@@ -89,49 +89,49 @@
 
 /* default / neutral */
 .variant-subtle.color-default {
-  background-color: rgb(160 160 176 / 0.12);
+  background-color: color-mix(in srgb, var(--stella-color-starlight-secondary, #8888a0) 12%, transparent);
   color: var(--stella-color-starlight-secondary, #8888a0);
   border-color: transparent;
 }
 
 /* primary = cosmos */
 .variant-subtle.color-primary {
-  background-color: rgb(99 102 241 / 0.15);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 15%, transparent);
   color: var(--stella-color-cosmos-300, #a5b4fc);
   border-color: transparent;
 }
 
 /* success = nova */
 .variant-subtle.color-success {
-  background-color: rgb(5 150 105 / 0.15);
+  background-color: color-mix(in srgb, var(--stella-color-nova-600, #059669) 15%, transparent);
   color: var(--stella-color-nova-300, #6ee7b7);
   border-color: transparent;
 }
 
 /* warning */
 .variant-subtle.color-warning {
-  background-color: rgb(217 119 6 / 0.15);
-  color: #fcd34d;
+  background-color: color-mix(in srgb, var(--stella-color-warning-600, #d97706) 15%, transparent);
+  color: var(--stella-color-warning-300, #fcd34d);
   border-color: transparent;
 }
 
 /* error */
 .variant-subtle.color-error {
-  background-color: rgb(220 38 38 / 0.15);
-  color: #fca5a5;
+  background-color: color-mix(in srgb, var(--stella-color-error-600, #dc2626) 15%, transparent);
+  color: var(--stella-color-error-300, #fca5a5);
   border-color: transparent;
 }
 
 /* nebula */
 .variant-subtle.color-nebula {
-  background-color: rgb(124 58 237 / 0.15);
+  background-color: color-mix(in srgb, var(--stella-color-nebula-600, #9333ea) 15%, transparent);
   color: var(--stella-color-nebula-300, #c4b5fd);
   border-color: transparent;
 }
 
 /* aurora */
 .variant-subtle.color-aurora {
-  background-color: rgb(8 145 178 / 0.15);
+  background-color: color-mix(in srgb, var(--stella-color-aurora-600, #0891b2) 15%, transparent);
   color: var(--stella-color-aurora-300, #67e8f9);
   border-color: transparent;
 }
@@ -164,15 +164,15 @@
 /* warning */
 .variant-outline.color-warning {
   background-color: transparent;
-  color: #fcd34d;
-  border-color: #f59e0b;
+  color: var(--stella-color-warning-300, #fcd34d);
+  border-color: var(--stella-color-warning-500, #f59e0b);
 }
 
 /* error */
 .variant-outline.color-error {
   background-color: transparent;
-  color: #fca5a5;
-  border-color: #ef4444;
+  color: var(--stella-color-error-300, #fca5a5);
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 /* nebula */

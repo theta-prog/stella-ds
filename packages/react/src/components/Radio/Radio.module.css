@@ -47,7 +47,7 @@
 
 /* Unchecked hover: subtle cosmos tint */
 .radio:hover:not([disabled]):not([data-state='checked']) {
-  background-color: rgb(99 102 241 / 0.1);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 10%, transparent);
   border-color: var(--stella-color-cosmos-600, #4f46e5);
 }
 
@@ -82,7 +82,7 @@
 }
 
 .state-error-radio:focus-visible {
-  outline: 2px solid rgb(239 68 68 / 0.6);
+  outline: 2px solid color-mix(in srgb, var(--stella-color-error-500, #ef4444) 60%, transparent);
   outline-offset: 2px;
 }
 

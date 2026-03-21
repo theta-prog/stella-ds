@@ -8,7 +8,7 @@
 
 body {
   font-family: var(--stella-typography-fontFamily-sans, system-ui, sans-serif);
-  background: var(--stella-color-void-base, #0f1117);
+  background-color: var(--stella-color-void-base, #0f1117);
   color: var(--stella-color-starlight-primary, #f8f8ff);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -43,10 +43,10 @@ a:hover {
   --stella-color-cosmos-50: #f0f0ff;
   --stella-color-cosmos-100: #e0e1ff;
   --stella-color-cosmos-200: #c5c6fe;
-  --stella-color-cosmos-300: #6366f1;
-  --stella-color-cosmos-400: #4f46e5;
-  --stella-color-cosmos-500: #4338ca;
-  --stella-color-cosmos-600: #3730a3;
+  --stella-color-cosmos-300: #5b5bf0;
+  --stella-color-cosmos-400: #4845e2;
+  --stella-color-cosmos-500: #4845e2;
+  --stella-color-cosmos-600: #3c37c4;
   --stella-color-cosmos-700: #312d8f;
   --stella-color-cosmos-800: #2a277a;
   --stella-color-cosmos-900: #1e1b5a;

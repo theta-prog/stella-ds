@@ -289,7 +289,7 @@ export function GettingStartedTemplate({ locale }: Props) {
 
         <Heading level={3} size="sm" weight="semibold" style={h3Style}>{c.themeSetup.optionC.label}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.5rem', display: 'block' }}>{c.themeSetup.optionC.desc}</Text>
-        <pre style={codeBlockStyle}><code>{`import { cssVariables, tokens } from '@stella-ds/theme'\n\n// cssVariables: Record<string, string>  — { '--stella-color-cosmos-500': '#4f46e5', ... }\n// tokens: nested object matching the tokens.json structure`}</code></pre>
+        <pre style={codeBlockStyle}><code>{`import { cssVariables, tokens } from '@stella-ds/theme'\n\n// cssVariables: Record<string, string>  — { '--stella-color-cosmos-500': '#5b5bf0', ... }\n// tokens: nested object matching the tokens.json structure`}</code></pre>
       </section>
 
       {/* Basic usage */}

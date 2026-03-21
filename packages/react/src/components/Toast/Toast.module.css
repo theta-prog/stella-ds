@@ -153,7 +153,7 @@
 }
 
 .action:hover {
-  background-color: rgb(99 102 241 / 0.1);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 10%, transparent);
 }
 
 .action:focus-visible {

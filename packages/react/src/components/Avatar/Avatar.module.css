@@ -17,7 +17,7 @@
 }
 
 .base:focus-visible {
-  outline: 2px solid var(--stella-color-cosmos-500, #6366f1);
+  outline: 2px solid var(--stella-color-cosmos-500, #5b5bf0);
   outline-offset: 2px;
 }
 
@@ -36,7 +36,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: var(--stella-color-cosmos-600, #4f46e5);
+  background-color: var(--stella-color-cosmos-600, #4845e2);
   color: var(--stella-color-starlight-primary, #f0f0f5);
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   font-weight: var(--stella-typography-fontWeight-semibold, 600);

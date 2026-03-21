@@ -261,12 +261,12 @@ export function ComponentPreview({ slug }: ComponentPreviewProps) {
 
   return (
     <section style={{ marginBottom: '2.5rem' }}>
-      <h2 style={{ fontWeight: 700, marginBottom: '0.75rem', fontSize: '1.25rem', color: '#f1f5f9', paddingBottom: '0.5rem', borderBottom: '1px solid #1e293b' }}>
+      <h2 style={{ fontWeight: 700, marginBottom: '0.75rem', fontSize: '1.25rem', color: 'var(--stella-color-starlight-primary)', paddingBottom: '0.5rem', borderBottom: '1px solid var(--stella-color-void-muted)' }}>
         Preview
       </h2>
       <div style={{
-        background: '#0d1117',
-        border: '1px solid #1e293b',
+        background: 'var(--stella-color-void-surface)',
+        border: '1px solid var(--stella-color-void-muted)',
         borderRadius: '0.5rem',
         padding: '2rem',
         display: 'flex',

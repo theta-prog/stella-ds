@@ -17,8 +17,8 @@
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   font-weight: var(--stella-typography-fontWeight-regular, 400);
   color: var(--stella-color-starlight-primary, #f0f0f5);
-  background-color: var(--stella-color-void-surface, #1d2129);
-  border: 1.5px solid var(--stella-color-void-muted, #2e3440);
+  background-color: var(--stella-color-void-surface, #12151e);
+  border: 1.5px solid var(--stella-color-void-muted, #262c3a);
   border-radius: var(--stella-borderRadius-md, 0.375rem);
   transition:
     border-color var(--stella-transition-fast, 150ms ease),
@@ -35,12 +35,12 @@
 }
 
 .input:hover:not(:disabled) {
-  border-color: var(--stella-color-cosmos-700, #4338ca);
+  border-color: var(--stella-color-cosmos-700, #3c37c4);
 }
 
 .input:focus-visible {
-  border-color: var(--stella-color-cosmos-500, #6366f1);
-  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2);
+  border-color: var(--stella-color-cosmos-500, #5b5bf0);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 20%, transparent);
 }
 
 .input:disabled {
@@ -71,21 +71,21 @@
 
 /* --- Error state --- */
 .state-error {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error:hover:not(:disabled) {
-  border-color: #dc2626;
+  border-color: var(--stella-color-error-600, #dc2626);
 }
 
 .state-error:focus-visible {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.2);
+  border-color: var(--stella-color-error-500, #ef4444);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--stella-color-error-500, #ef4444) 20%, transparent);
 }
 
 .errorMessage {
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   font-size: var(--stella-typography-fontSize-sm, 0.875rem);
-  color: #ef4444;
+  color: var(--stella-color-error-500, #ef4444);
   line-height: var(--stella-typography-lineHeight-normal, 1.5);
 }

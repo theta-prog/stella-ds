@@ -8,8 +8,8 @@
   gap: var(--stella-spacing-3, 0.75rem);
   padding: var(--stella-spacing-4, 1rem);
   border-radius: var(--stella-borderRadius-md, 0.5rem);
-  background-color: var(--stella-color-void-surface, #1d2129);
-  border: 1px solid var(--stella-color-void-muted, #2e3440);
+  background-color: var(--stella-color-void-surface, #12151e);
+  border: 1px solid var(--stella-color-void-muted, #262c3a);
   width: 100%;
   box-sizing: border-box;
 }
@@ -84,28 +84,28 @@
 
 /* info */
 .variant-info {
-  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #6366f1) 10%, var(--stella-color-void-surface, #1d2129));
-  border-color: color-mix(in srgb, var(--stella-color-cosmos-500, #6366f1) 35%, var(--stella-color-void-muted, #2e3440));
-  color: var(--stella-color-cosmos-300, #a5b4fc);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 10%, var(--stella-color-void-surface, #12151e));
+  border-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 35%, var(--stella-color-void-muted, #262c3a));
+  color: var(--stella-color-cosmos-300, #a2aafc);
 }
 
 /* success */
 .variant-success {
-  background-color: color-mix(in srgb, var(--stella-color-nova-500, #10b981) 10%, var(--stella-color-void-surface, #1d2129));
-  border-color: color-mix(in srgb, var(--stella-color-nova-500, #10b981) 35%, var(--stella-color-void-muted, #2e3440));
+  background-color: color-mix(in srgb, var(--stella-color-nova-500, #10b981) 10%, var(--stella-color-void-surface, #12151e));
+  border-color: color-mix(in srgb, var(--stella-color-nova-500, #10b981) 35%, var(--stella-color-void-muted, #262c3a));
   color: var(--stella-color-nova-300, #6ee7b7);
 }
 
 /* warning */
 .variant-warning {
-  background-color: color-mix(in srgb, #f59e0b 10%, var(--stella-color-void-surface, #1d2129));
-  border-color: color-mix(in srgb, #f59e0b 35%, var(--stella-color-void-muted, #2e3440));
-  color: #fcd34d;
+  background-color: color-mix(in srgb, var(--stella-color-warning-500, #f59e0b) 10%, var(--stella-color-void-surface, #12151e));
+  border-color: color-mix(in srgb, var(--stella-color-warning-500, #f59e0b) 35%, var(--stella-color-void-muted, #262c3a));
+  color: var(--stella-color-warning-300, #fcd34d);
 }
 
 /* error */
 .variant-error {
-  background-color: color-mix(in srgb, #ef4444 10%, var(--stella-color-void-surface, #1d2129));
-  border-color: color-mix(in srgb, #ef4444 35%, var(--stella-color-void-muted, #2e3440));
-  color: #fca5a5;
+  background-color: color-mix(in srgb, var(--stella-color-error-500, #ef4444) 10%, var(--stella-color-void-surface, #12151e));
+  border-color: color-mix(in srgb, var(--stella-color-error-500, #ef4444) 35%, var(--stella-color-void-muted, #262c3a));
+  color: var(--stella-color-error-300, #fca5a5);
 }

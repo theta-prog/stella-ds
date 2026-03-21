@@ -1,4 +1,4 @@
-import { Badge, Card, CardContent, Text } from '@stella-ds/react'
+import { Badge, Card, CardContent, Heading, Text } from '@stella-ds/react'
 
 const content = {
   en: {
@@ -207,13 +207,13 @@ export default function Page() {
 
 const codeBlockStyle: React.CSSProperties = {
   display: 'block',
-  background: '#0d1117',
-  border: '1px solid #1e293b',
+  background: 'var(--stella-color-void-base)',
+  border: '1px solid var(--stella-color-void-muted)',
   padding: '1.25rem',
   borderRadius: '0.5rem',
   fontSize: '0.875rem',
   lineHeight: 1.8,
-  color: '#f1f5f9',
+  color: 'var(--stella-color-starlight-primary)',
   fontFamily: 'ui-monospace, SFMono-Regular, monospace',
   overflow: 'auto',
   whiteSpace: 'pre',
@@ -222,19 +222,14 @@ const codeBlockStyle: React.CSSProperties = {
 
 const sectionStyle: React.CSSProperties = { marginBottom: '3rem' }
 
-const h2Style: React.CSSProperties = {
-  fontSize: '1.5rem',
-  fontWeight: 700,
-  marginBottom: '0.75rem',
-  color: '#f1f5f9',
+const sectionHeadingStyle: React.CSSProperties = {
   paddingBottom: '0.5rem',
-  borderBottom: '1px solid #1e293b',
+  borderBottom: '1px solid var(--stella-color-void-muted)',
+  marginBottom: '0.75rem',
 }
 
 const h3Style: React.CSSProperties = {
-  fontSize: '1.1rem',
-  fontWeight: 600,
-  color: '#a5b4fc',
+  color: 'var(--stella-color-cosmos-300)',
   marginBottom: '0.5rem',
   marginTop: '1.75rem',
 }
@@ -253,66 +248,66 @@ export function GettingStartedTemplate({ locale }: Props) {
         <Text size="xs" color="disabled" style={{ textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: '0.5rem' }}>
           {c.docsLabel}
         </Text>
-        <h1 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '1rem', background: 'linear-gradient(135deg, #f1f5f9, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <Heading level={1} size="3xl" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg, var(--stella-color-starlight-primary), var(--stella-color-starlight-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           {c.title}
-        </h1>
+        </Heading>
         <Text color="secondary" style={{ fontSize: '1.1rem' }}>{c.lead}</Text>
       </div>
 
       {/* Prerequisites */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>{c.prerequisites.heading}</h2>
+        <Heading level={2} size="lg" style={sectionHeadingStyle}>{c.prerequisites.heading}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.5rem', display: 'block' }}>{c.prerequisites.intro}</Text>
-        <ul style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.75, paddingLeft: '1.5rem' }}>
+        <ul style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.95rem', lineHeight: 1.75, paddingLeft: '1.5rem' }}>
           {c.prerequisites.items.map((item) => <li key={item}>{item}</li>)}
         </ul>
       </section>
 
       {/* Installation */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>{c.installation.heading}</h2>
-        <h3 style={h3Style}>npm</h3>
-        <pre style={codeBlockStyle}><code style={{ color: '#7dd3fc' }}>npm install @stella-ds/react @stella-ds/theme</code></pre>
-        <h3 style={h3Style}>pnpm</h3>
-        <pre style={codeBlockStyle}><code style={{ color: '#7dd3fc' }}>pnpm add @stella-ds/react @stella-ds/theme</code></pre>
-        <h3 style={h3Style}>yarn</h3>
-        <pre style={codeBlockStyle}><code style={{ color: '#7dd3fc' }}>yarn add @stella-ds/react @stella-ds/theme</code></pre>
+        <Heading level={2} size="lg" style={sectionHeadingStyle}>{c.installation.heading}</Heading>
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>npm</Heading>
+        <pre style={codeBlockStyle}><code style={{ color: 'var(--stella-color-aurora-300)' }}>npm install @stella-ds/react @stella-ds/theme</code></pre>
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>pnpm</Heading>
+        <pre style={codeBlockStyle}><code style={{ color: 'var(--stella-color-aurora-300)' }}>pnpm add @stella-ds/react @stella-ds/theme</code></pre>
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>yarn</Heading>
+        <pre style={codeBlockStyle}><code style={{ color: 'var(--stella-color-aurora-300)' }}>yarn add @stella-ds/react @stella-ds/theme</code></pre>
       </section>
 
       {/* Theme setup */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>{c.themeSetup.heading}</h2>
+        <Heading level={2} size="lg" style={sectionHeadingStyle}>{c.themeSetup.heading}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.75rem', display: 'block' }}>{c.themeSetup.intro}</Text>
 
-        <h3 style={h3Style}>{c.themeSetup.optionA.label}</h3>
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>{c.themeSetup.optionA.label}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.5rem', display: 'block' }}>{c.themeSetup.optionA.desc}</Text>
         <pre style={codeBlockStyle}><code>{`import '@stella-ds/theme/css'`}</code></pre>
 
-        <h3 style={h3Style}>{c.themeSetup.optionB.label}</h3>
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>{c.themeSetup.optionB.label}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.5rem', display: 'block' }}>{c.themeSetup.optionB.desc}</Text>
         <pre style={codeBlockStyle}><code>{c.themeSetup.injectCode}</code></pre>
 
-        <h3 style={h3Style}>{c.themeSetup.optionC.label}</h3>
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>{c.themeSetup.optionC.label}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.5rem', display: 'block' }}>{c.themeSetup.optionC.desc}</Text>
-        <pre style={codeBlockStyle}><code>{`import { cssVariables, tokens } from '@stella-ds/theme'\n\n// cssVariables: Record<string, string>  — { '--stella-color-cosmos-500': '#4f46e5', ... }\n// tokens: nested object matching the tokens.json structure`}</code></pre>
+        <pre style={codeBlockStyle}><code>{`import { cssVariables, tokens } from '@stella-ds/theme'\n\n// cssVariables: Record<string, string>  — { '--stella-color-cosmos-500': '#5b5bf0', ... }\n// tokens: nested object matching the tokens.json structure`}</code></pre>
       </section>
 
       {/* Basic usage */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>{c.basicUsage.heading}</h2>
+        <Heading level={2} size="lg" style={sectionHeadingStyle}>{c.basicUsage.heading}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.75rem', display: 'block' }}>{c.basicUsage.intro}</Text>
         <pre style={codeBlockStyle}><code>{c.basicUsage.code}</code></pre>
       </section>
 
       {/* Next.js integration */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>{c.nextjs.heading}</h2>
+        <Heading level={2} size="lg" style={sectionHeadingStyle}>{c.nextjs.heading}</Heading>
 
-        <h3 style={h3Style}>{c.nextjs.appRouterLabel}</h3>
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>{c.nextjs.appRouterLabel}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.75rem', display: 'block' }}>{c.nextjs.appRouterDesc}</Text>
         <pre style={codeBlockStyle}><code>{c.nextjs.appRouterCode}</code></pre>
 
-        <h3 style={h3Style}>{c.nextjs.pagesRouterLabel}</h3>
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>{c.nextjs.pagesRouterLabel}</Heading>
         <pre style={codeBlockStyle}><code>{`// pages/_app.tsx
 import '@stella-ds/theme/css'
 import type { AppProps } from 'next/app'
@@ -321,19 +316,19 @@ export default function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }`}</code></pre>
 
-        <h3 style={{ ...h3Style, marginTop: '1.75rem' }}>{c.nextjs.tipLabel}</h3>
+        <Heading level={3} size="sm" weight="semibold" style={{ ...h3Style, marginTop: '1.75rem' }}>{c.nextjs.tipLabel}</Heading>
         <Text color="secondary">{c.nextjs.tipDesc}</Text>
       </section>
 
       {/* TypeScript */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>{c.typescript.heading}</h2>
+        <Heading level={2} size="lg" style={sectionHeadingStyle}>{c.typescript.heading}</Heading>
         <Text color="secondary">{c.typescript.desc}</Text>
       </section>
 
       {/* Next steps */}
       <section>
-        <h2 style={h2Style}>{c.nextSteps.heading}</h2>
+        <Heading level={2} size="lg" style={sectionHeadingStyle}>{c.nextSteps.heading}</Heading>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
           {c.nextSteps.links.map((link) => (
             <Card key={link.href} hoverable>

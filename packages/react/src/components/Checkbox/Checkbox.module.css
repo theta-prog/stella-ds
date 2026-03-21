@@ -14,9 +14,9 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 1.5px solid var(--stella-color-void-muted, #2e3440);
+  border: 1.5px solid var(--stella-color-void-muted, #262c3a);
   border-radius: var(--stella-borderRadius-sm, 0.125rem);
-  background-color: var(--stella-color-void-surface, #1d2129);
+  background-color: var(--stella-color-void-surface, #12151e);
   color: var(--stella-color-starlight-primary, #f0f0f5);
   cursor: pointer;
   transition:
@@ -29,8 +29,8 @@
 
 /* Unchecked hover: subtle cosmos tint on border + background */
 .root:hover:not([disabled]):not([data-state='checked']):not([data-state='indeterminate']) {
-  background-color: rgb(99 102 241 / 0.1);
-  border-color: var(--stella-color-cosmos-600, #4f46e5);
+  background-color: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 10%, transparent);
+  border-color: var(--stella-color-cosmos-600, #4845e2);
 }
 
 .root:focus-visible {
@@ -41,15 +41,15 @@
 /* Checked / indeterminate: cosmos-600 filled */
 .root[data-state='checked'],
 .root[data-state='indeterminate'] {
-  background-color: var(--stella-color-cosmos-600, #4f46e5);
-  border-color: var(--stella-color-cosmos-600, #4f46e5);
+  background-color: var(--stella-color-cosmos-600, #4845e2);
+  border-color: var(--stella-color-cosmos-600, #4845e2);
   color: #ffffff;
 }
 
 .root[data-state='checked']:hover:not([disabled]),
 .root[data-state='indeterminate']:hover:not([disabled]) {
-  background-color: var(--stella-color-cosmos-500, #6366f1);
-  border-color: var(--stella-color-cosmos-500, #6366f1);
+  background-color: var(--stella-color-cosmos-500, #5b5bf0);
+  border-color: var(--stella-color-cosmos-500, #5b5bf0);
 }
 
 .root[disabled] {
@@ -59,15 +59,15 @@
 
 /* --- Error state --- */
 .state-error {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error:hover:not([disabled]) {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error:focus-visible {
-  outline: 2px solid rgb(239 68 68 / 0.6);
+  outline: 2px solid color-mix(in srgb, var(--stella-color-error-500, #ef4444) 60%, transparent);
   outline-offset: 2px;
 }
 

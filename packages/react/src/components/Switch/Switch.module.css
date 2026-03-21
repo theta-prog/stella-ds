@@ -14,7 +14,7 @@
   align-items: center;
   flex-shrink: 0;
   border-radius: 9999px;
-  background-color: var(--stella-color-void-muted, #2e3440);
+  background-color: var(--stella-color-void-muted, #262c3a);
   border: 1px solid transparent;
   cursor: pointer;
   padding: 0;
@@ -34,12 +34,12 @@
 
 /* On state */
 .root[data-state='checked'] {
-  background-color: var(--stella-color-cosmos-600, #4f46e5);
+  background-color: var(--stella-color-cosmos-600, #4845e2);
 }
 
 /* Hover (on state) */
 .root[data-state='checked']:hover:not([disabled]) {
-  background-color: var(--stella-color-cosmos-500, #6366f1);
+  background-color: var(--stella-color-cosmos-500, #5b5bf0);
 }
 
 .root:focus-visible {
@@ -54,11 +54,11 @@
 
 /* --- Error state --- */
 .state-error {
-  border-color: #ef4444;
+  border-color: var(--stella-color-error-500, #ef4444);
 }
 
 .state-error:focus-visible {
-  outline: 2px solid rgb(239 68 68 / 0.6);
+  outline: 2px solid color-mix(in srgb, var(--stella-color-error-500, #ef4444) 60%, transparent);
   outline-offset: 2px;
 }
 

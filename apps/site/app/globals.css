@@ -38,6 +38,7 @@ a:hover {
   --stella-color-starlight-primary: #111827;
   --stella-color-starlight-secondary: #4b5563;
   --stella-color-starlight-disabled: #9ca3af;
+  --stella-color-starlight-inverse: #ffffff;
 
   /* Cosmos (primary / interactive) — deeper for light bg contrast */
   --stella-color-cosmos-50: #f0f0ff;

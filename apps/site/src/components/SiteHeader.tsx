@@ -1,7 +1,8 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { Header, HeaderBrand, HeaderNav } from '@stella-ds/react'
+import { Button, Header, HeaderBrand, HeaderNav } from '@stella-ds/react'
+import { ThemeToggle } from './ThemeToggle'
 
 const navLinkStyle: React.CSSProperties = {
   color: 'var(--stella-color-starlight-secondary)',
@@ -30,9 +31,10 @@ export function SiteHeader() {
         <a href={`${base}/getting-started`} style={navLinkStyle}>{isJa ? 'はじめかた' : 'Getting\u00A0Started'}</a>
         <a href={`${base}/components`} style={navLinkStyle}>{isJa ? 'コンポーネント' : 'Components'}</a>
         <a href={`${base}/tokens`} style={navLinkStyle}>{isJa ? 'トークン' : 'Tokens'}</a>
-        <a href={otherLocale} style={{ ...navLinkStyle, color: 'var(--stella-color-starlight-disabled)', fontSize: '0.8rem', border: '1px solid var(--stella-color-void-muted)', borderRadius: '0.375rem', padding: '0.2rem 0.6rem' }}>
-          {isJa ? 'EN' : 'JA'}
-        </a>
+        <Button variant="outline" size="sm" asChild>
+          <a href={otherLocale}>{isJa ? 'EN' : 'JA'}</a>
+        </Button>
+        <ThemeToggle />
         <a href="https://github.com/theta-prog/stella-ui" target="_blank" rel="noopener noreferrer" style={{ ...navLinkStyle, color: 'var(--stella-color-starlight-disabled)' }}>
           GitHub↗
         </a>

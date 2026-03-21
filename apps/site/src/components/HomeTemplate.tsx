@@ -1,4 +1,4 @@
-import { Badge, Button, Card, CardContent, Text } from '@stella-ds/react'
+import { Badge, Button, Card, CardContent, Heading, Text } from '@stella-ds/react'
 
 type FeatureColor = 'cosmos' | 'nebula' | 'aurora' | 'nova'
 
@@ -92,19 +92,17 @@ export function HomeTemplate({ locale }: Props) {
             {c.badge}
           </Badge>
         </div>
-        <h1 style={{
+        <Heading level={1} style={{
           fontSize: 'clamp(3rem, 7vw, 5rem)',
-          fontWeight: 800,
           marginBottom: '1.25rem',
           lineHeight: 1.05,
           letterSpacing: '-0.02em',
-          color: 'var(--stella-color-starlight-primary)',
         }}>
           Stella UI
-        </h1>
-        <p style={{ fontSize: '1.2rem', color: 'var(--stella-color-starlight-secondary)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
+        </Heading>
+        <Text as="p" color="secondary" style={{ fontSize: '1.2rem', marginBottom: '2.5rem', lineHeight: 1.7 }}>
           {c.tagline1}<br />{c.tagline2}
-        </p>
+        </Text>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Button variant="solid" size="lg" asChild>
             <a href={`${base}/getting-started`}>{c.cta1}</a>
@@ -169,7 +167,7 @@ export function HomeTemplate({ locale }: Props) {
         <Text size="xs" color="disabled" style={{ marginBottom: '0.5rem', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block' }}>
           {c.quickStart.label}
         </Text>
-        <h2 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--stella-color-starlight-primary)' }}>{c.quickStart.title}</h2>
+        <Heading level={2} size="xl" style={{ marginBottom: '1rem' }}>{c.quickStart.title}</Heading>
         <Text color="secondary" style={{ maxWidth: '500px', margin: '0 auto 2rem', display: 'block' }}>
           {c.quickStart.desc}
         </Text>

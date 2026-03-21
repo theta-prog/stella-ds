@@ -3,15 +3,6 @@
 import { usePathname } from 'next/navigation'
 import { Footer, FooterBottom, FooterContent, FooterDivider, Text } from '@stella-ds/react'
 
-const colHeadingStyle: React.CSSProperties = {
-  fontWeight: 600,
-  marginBottom: '0.75rem',
-  color: 'var(--stella-color-starlight-secondary)',
-  fontSize: '0.75rem',
-  textTransform: 'uppercase',
-  letterSpacing: '0.06em',
-}
-
 const linkStyle: React.CSSProperties = {
   color: 'var(--stella-color-starlight-disabled)',
   fontSize: '0.875rem',
@@ -30,9 +21,9 @@ export function SiteFooter() {
       <FooterContent>
         {/* Brand */}
         <div>
-          <div style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '0.5rem', color: 'var(--stella-color-starlight-primary)' }}>
+          <Text weight="bold" as="div" style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>
             Stella UI
-          </div>
+          </Text>
           <Text size="sm" color="secondary">
             {isJa ? 'ウェブ向けのデザインシステム' : 'Scalable design system for web.'}
           </Text>
@@ -40,7 +31,7 @@ export function SiteFooter() {
 
         {/* Docs links */}
         <div>
-          <div style={colHeadingStyle}>{isJa ? 'ドキュメント' : 'Docs'}</div>
+          <Text as="div" size="xs" color="secondary" weight="semibold" style={{ marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{isJa ? 'ドキュメント' : 'Docs'}</Text>
           <a href={`${base}/getting-started`} style={linkStyle}>{isJa ? 'はじめかた' : 'Getting Started'}</a>
           <a href={`${base}/components`} style={linkStyle}>{isJa ? 'コンポーネント' : 'Components'}</a>
           <a href={`${base}/tokens`} style={linkStyle}>{isJa ? 'トークン' : 'Tokens'}</a>
@@ -48,7 +39,7 @@ export function SiteFooter() {
 
         {/* External links */}
         <div>
-          <div style={colHeadingStyle}>{isJa ? 'リンク' : 'Links'}</div>
+          <Text as="div" size="xs" color="secondary" weight="semibold" style={{ marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{isJa ? 'リンク' : 'Links'}</Text>
           <a href="https://github.com/theta-prog/stella-ui" target="_blank" rel="noopener noreferrer" style={linkStyle}>GitHub↗</a>
           <a href="https://www.npmjs.com/package/@stella-ds/react" target="_blank" rel="noopener noreferrer" style={linkStyle}>npm↗</a>
         </div>

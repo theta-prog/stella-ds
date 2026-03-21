@@ -40,10 +40,16 @@ a:hover {
   --stella-color-starlight-disabled: #9ca3af;
 
   /* Cosmos (primary / interactive) — deeper for light bg contrast */
+  --stella-color-cosmos-50: #f0f0ff;
+  --stella-color-cosmos-100: #e0e1ff;
+  --stella-color-cosmos-200: #c5c6fe;
   --stella-color-cosmos-300: #6366f1;
   --stella-color-cosmos-400: #4f46e5;
   --stella-color-cosmos-500: #4338ca;
   --stella-color-cosmos-600: #3730a3;
+  --stella-color-cosmos-700: #312d8f;
+  --stella-color-cosmos-800: #2a277a;
+  --stella-color-cosmos-900: #1e1b5a;
 
   /* Nebula (accent purple) */
   --stella-color-nebula-300: #a78bfa;
@@ -51,19 +57,30 @@ a:hover {
   --stella-color-nebula-500: #7c3aed;
 
   /* Aurora (accent cyan) */
-  --stella-color-aurora-300: #22d3ee;
-  --stella-color-aurora-400: #06b6d4;
-  --stella-color-aurora-500: #0891b2;
+  --stella-color-aurora-300: #06b6d4;
+  --stella-color-aurora-400: #0891b2;
+  --stella-color-aurora-500: #0e7490;
 
   /* Nova (success green) */
-  --stella-color-nova-300: #34d399;
-  --stella-color-nova-400: #10b981;
-  --stella-color-nova-500: #059669;
+  --stella-color-nova-300: #10b981;
+  --stella-color-nova-400: #059669;
+  --stella-color-nova-500: #047857;
+
+  /* Warning */
+  --stella-color-warning-300: #d97706;
+  --stella-color-warning-500: #b45309;
+
+  /* Error */
+  --stella-color-error-300: #dc2626;
+  --stella-color-error-500: #b91c1c;
 
   /* Shadows — softer for light backgrounds */
-  --stella-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --stella-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --stella-shadow-base: 0 1px 3px rgba(0, 0, 0, 0.08);
   --stella-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.08);
   --stella-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --stella-shadow-glow-cosmos: 0 0 8px 1px rgb(67 56 202 / 0.15), 0 0 20px 2px rgb(67 56 202 / 0.06);
+  --stella-shadow-focus-ring: 0 0 0 2px rgb(67 56 202 / 0.4);
 
   /* Header blur background for light mode */
   --stella-color-void-surface-translucent: rgba(248, 249, 251, 0.88);

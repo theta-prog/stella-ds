@@ -6,8 +6,8 @@
 .header {
   display: flex;
   flex-direction: column;
-  background-color: var(--stella-color-void-surface, #1d2129);
-  border-bottom: 1px solid var(--stella-color-void-muted, #2e3440);
+  background-color: var(--stella-color-void-surface, #12151e);
+  border-bottom: 1px solid var(--stella-color-void-muted, #262c3a);
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   box-sizing: border-box;
   width: 100%;
@@ -128,8 +128,8 @@
   width: 100%;
   box-sizing: border-box;
   padding: var(--stella-spacing-4, 1rem) var(--stella-spacing-6, 1.5rem);
-  background-color: var(--stella-color-void-surface, #1d2129);
-  border-top: 1px solid var(--stella-color-void-muted, #2e3440);
+  background-color: var(--stella-color-void-surface, #12151e);
+  border-top: 1px solid var(--stella-color-void-muted, #262c3a);
   gap: var(--stella-spacing-2, 0.5rem);
 }
 

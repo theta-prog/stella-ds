@@ -143,19 +143,19 @@
 
 /* glow — premium emphasis, not neon */
 .variant-glow {
-  background-color: var(--stella-color-cosmos-600, #4f46e5);
+  background-color: var(--stella-color-cosmos-600, #4845e2);
   color: var(--stella-color-starlight-primary, #f0f0f5);
   border-color: transparent;
-  box-shadow: var(--stella-shadow-glow-cosmos, 0 0 8px 1px rgb(99 102 241 / 0.18), 0 0 20px 2px rgb(99 102 241 / 0.08));
+  box-shadow: var(--stella-shadow-glow-cosmos, 0 0 8px 1px rgb(91 91 240 / 0.18), 0 0 20px 2px rgb(91 91 240 / 0.08));
 }
 
 .variant-glow:hover:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--stella-color-cosmos-500, #6366f1);
-  box-shadow: 0 0 12px 2px rgb(99 102 241 / 0.25), 0 0 28px 4px rgb(99 102 241 / 0.1);
+  background-color: var(--stella-color-cosmos-500, #5b5bf0);
+  box-shadow: var(--stella-shadow-glow-cosmos-hover, 0 0 12px 2px rgb(91 91 240 / 0.25), 0 0 28px 4px rgb(91 91 240 / 0.1));
 }
 
 .variant-glow:active:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--stella-color-cosmos-700, #4338ca);
+  background-color: var(--stella-color-cosmos-700, #3c37c4);
   box-shadow: none;
 }
 

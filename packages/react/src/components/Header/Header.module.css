@@ -35,7 +35,7 @@
 .blur {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background-color: var(--stella-color-void-surface-translucent, rgba(29, 33, 41, 0.88));
+  background-color: var(--stella-color-void-surface-translucent, rgba(18, 21, 30, 0.88));
 }
 
 /* --- Brand slot --- */

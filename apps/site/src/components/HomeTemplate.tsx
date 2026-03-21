@@ -2,7 +2,24 @@ import { Badge, Button, Card, CardContent, Heading, Text } from '@stella-ds/reac
 
 type FeatureColor = 'cosmos' | 'nebula' | 'aurora' | 'nova'
 
-const content = {
+interface Feature {
+  color: FeatureColor
+  title: string
+  desc: string
+}
+
+interface LocaleContent {
+  badge: string
+  tagline1: string
+  tagline2: string
+  cta1: string
+  cta2: string
+  installLabel: string
+  quickStart: { label: string; title: string; desc: string; code: string }
+  features: Feature[]
+}
+
+const content: Record<'en' | 'ja', LocaleContent> = {
   en: {
     badge: 'Design System',
     tagline1: 'Scalable design system for web.',
@@ -27,10 +44,10 @@ export default function App() {
 }`,
     },
     features: [
-      { color: 'cosmos' as FeatureColor, title: '25 Components', desc: 'Buttons, forms, overlays, layout primitives, and more' },
-      { color: 'nebula' as FeatureColor, title: 'Accessible', desc: 'Built on Radix UI primitives with ARIA support throughout' },
-      { color: 'aurora' as FeatureColor, title: 'Design Tokens', desc: 'Celestial color palette with CSS custom properties' },
-      { color: 'nova' as FeatureColor, title: 'AI-Ready', desc: 'llms.txt and MCP server for seamless AI integration' },
+      { color: 'cosmos', title: '25 Components', desc: 'Buttons, forms, overlays, layout primitives, and more' },
+      { color: 'nebula', title: 'Accessible', desc: 'Built on Radix UI primitives with ARIA support throughout' },
+      { color: 'aurora', title: 'Design Tokens', desc: 'Celestial color palette with CSS custom properties' },
+      { color: 'nova', title: 'AI-Ready', desc: 'llms.txt and MCP server for seamless AI integration' },
     ],
   },
   ja: {
@@ -59,10 +76,10 @@ export default function App() {
 }`,
     },
     features: [
-      { color: 'cosmos' as FeatureColor, title: '25 コンポーネント', desc: 'ボタン、フォーム、オーバーレイ、レイアウトなど豊富なコンポーネント' },
-      { color: 'nebula' as FeatureColor, title: 'アクセシブル', desc: 'Radix UI プリミティブ上に構築、全体に ARIA 対応' },
-      { color: 'aurora' as FeatureColor, title: 'デザイントークン', desc: '天体をテーマにしたカラーパレットと CSS カスタムプロパティ' },
-      { color: 'nova' as FeatureColor, title: 'AI 対応', desc: 'llms.txt と MCP サーバーでシームレスな AI 統合' },
+      { color: 'cosmos', title: '25 コンポーネント', desc: 'ボタン、フォーム、オーバーレイ、レイアウトなど豊富なコンポーネント' },
+      { color: 'nebula', title: 'アクセシブル', desc: 'Radix UI プリミティブ上に構築、全体に ARIA 対応' },
+      { color: 'aurora', title: 'デザイントークン', desc: '天体をテーマにしたカラーパレットと CSS カスタムプロパティ' },
+      { color: 'nova', title: 'AI 対応', desc: 'llms.txt と MCP サーバーでシームレスな AI 統合' },
     ],
   },
 }

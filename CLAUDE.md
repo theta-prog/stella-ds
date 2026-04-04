@@ -68,6 +68,16 @@ git checkout -b chore/branch-name  # tooling / config
 - Push the branch and open a PR when the work is ready to merge
 - After pushing or updating a PR, check for Copilot review comments (`gh api repos/theta-prog/stella-ds/pulls/<PR_NUMBER>/comments`) and address any actionable feedback
 
+## Updating the Design System
+
+**When adding or modifying a component prop, token, or behavior, all three layers must be updated:**
+
+1. **Code** — `packages/react/src/components/<Component>/` (`.tsx`, `.module.css`, `index.ts`)
+2. **Storybook** — `apps/docs/src/stories/<Component>.stories.tsx` + `apps/docs/src/i18n/translations.ts`
+3. **Preview site** — `apps/site/src/components/previews/index.tsx`
+
+Never update only one or two of these. A change is not complete until all three reflect the new API.
+
 ## Architecture
 
 This is a **pnpm monorepo** design system with two packages and one app:

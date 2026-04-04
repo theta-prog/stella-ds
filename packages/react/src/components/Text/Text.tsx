@@ -16,7 +16,7 @@ import styles from './Text.module.css';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg';
 export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
-export type TextColor = 'primary' | 'secondary' | 'disabled';
+export type TextColor = 'primary' | 'secondary' | 'disabled' | (string & {});
 export type TextAlign = 'left' | 'center' | 'right';
 export type TextAs = 'p' | 'span' | 'div' | 'label';
 export type TextFamily = 'sans' | 'serif' | 'serif-print' | 'display' | 'statement' | 'mono';
@@ -59,19 +59,21 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       asChild = false,
       truncate = false,
       className,
+      style,
       children,
       ...props
     },
     ref,
   ) => {
     const Comp = asChild ? Slot : Tag;
+    const isToken = color === 'primary' || color === 'secondary' || color === 'disabled';
 
     const cls = [
       styles.base,
       styles[`size-${size}`],
       styles[`weight-${weight}`],
       styles[`family-${family}`],
-      styles[`color-${color}`],
+      isToken ? styles[`color-${color}`] : '',
       styles[`align-${align}`],
       truncate ? styles.truncate : '',
       className ?? '',
@@ -80,7 +82,12 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       .join(' ');
 
     return (
-      <Comp ref={ref as React.Ref<never>} className={cls} {...props}>
+      <Comp
+        ref={ref as React.Ref<never>}
+        className={cls}
+        style={isToken ? style : { color, ...style }}
+        {...props}
+      >
         {children}
       </Comp>
     );

@@ -19,6 +19,7 @@ export type HeadingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 export type HeadingWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export type HeadingAlign = 'left' | 'center' | 'right';
 export type HeadingFamily = 'sans' | 'serif' | 'serif-print' | 'display' | 'statement' | 'mono';
+export type HeadingColor = 'primary' | (string & {});
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   /** Semantic heading level (1–6). Determines the rendered element (h1–h6). */
@@ -31,6 +32,8 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   align?: HeadingAlign;
   /** Font family. */
   family?: HeadingFamily;
+  /** Text color. 'primary' uses the starlight-primary token; any CSS color value is also accepted. */
+  color?: HeadingColor;
   /**
    * When true, the Heading renders its child element as the root node
    * (Radix UI asChild / Slot pattern).
@@ -62,9 +65,11 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
       size,
       weight = 'bold',
       family = 'serif',
+      color = 'primary',
       align = 'left',
       asChild = false,
       className,
+      style,
       children,
       ...props
     },
@@ -72,6 +77,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ) => {
     const resolvedSize = size ?? levelToSize[level];
     const Tag = asChild ? Slot : (`h${level}` as const);
+    const isToken = color === 'primary';
 
     const cls = [
       styles.base,
@@ -85,7 +91,12 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
       .join(' ');
 
     return (
-      <Tag ref={ref} className={cls} {...props}>
+      <Tag
+        ref={ref}
+        className={cls}
+        style={isToken ? style : { color, ...style }}
+        {...props}
+      >
         {children}
       </Tag>
     );

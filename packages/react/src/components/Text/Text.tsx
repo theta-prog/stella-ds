@@ -8,6 +8,7 @@
 
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { type ColorToken, colorToCSS } from '../../color';
 import styles from './Text.module.css';
 
 // ----------------------------------------------------------------
@@ -16,7 +17,7 @@ import styles from './Text.module.css';
 
 export type TextSize = 'xs' | 'sm' | 'md' | 'lg';
 export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
-export type TextColor = 'primary' | 'secondary' | 'disabled' | (string & {});
+export type TextColor = 'primary' | 'secondary' | 'disabled' | ColorToken;
 export type TextAlign = 'left' | 'center' | 'right';
 export type TextAs = 'p' | 'span' | 'div' | 'label';
 export type TextFamily = 'sans' | 'serif' | 'serif-print' | 'display' | 'statement' | 'mono';
@@ -66,14 +67,14 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
     ref,
   ) => {
     const Comp = asChild ? Slot : Tag;
-    const isToken = color === 'primary' || color === 'secondary' || color === 'disabled';
+    const isSemanticColor = color === 'primary' || color === 'secondary' || color === 'disabled';
 
     const cls = [
       styles.base,
       styles[`size-${size}`],
       styles[`weight-${weight}`],
       styles[`family-${family}`],
-      isToken ? styles[`color-${color}`] : '',
+      isSemanticColor ? styles[`color-${color}`] : '',
       styles[`align-${align}`],
       truncate ? styles.truncate : '',
       className ?? '',
@@ -85,7 +86,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       <Comp
         ref={ref as React.Ref<never>}
         className={cls}
-        style={isToken ? style : { color, ...style }}
+        style={isSemanticColor ? style : { color: colorToCSS(color as ColorToken), ...style }}
         {...props}
       >
         {children}

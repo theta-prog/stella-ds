@@ -8,6 +8,7 @@
 
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { type ColorToken, colorToCSS } from '../../color';
 import styles from './Heading.module.css';
 
 // ----------------------------------------------------------------
@@ -19,7 +20,7 @@ export type HeadingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 export type HeadingWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export type HeadingAlign = 'left' | 'center' | 'right';
 export type HeadingFamily = 'sans' | 'serif' | 'serif-print' | 'display' | 'statement' | 'mono';
-export type HeadingColor = 'primary' | (string & {});
+export type HeadingColor = 'primary' | ColorToken;
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   /** Semantic heading level (1–6). Determines the rendered element (h1–h6). */
@@ -77,7 +78,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ) => {
     const resolvedSize = size ?? levelToSize[level];
     const Tag = asChild ? Slot : (`h${level}` as const);
-    const isToken = color === 'primary';
+    const isSemanticColor = color === 'primary';
 
     const cls = [
       styles.base,
@@ -94,7 +95,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
       <Tag
         ref={ref}
         className={cls}
-        style={isToken ? style : { color, ...style }}
+        style={isSemanticColor ? style : { color: colorToCSS(color as ColorToken), ...style }}
         {...props}
       >
         {children}

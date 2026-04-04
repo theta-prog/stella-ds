@@ -8,6 +8,7 @@
 
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { type ColorToken, colorToCSS } from '../../color';
 import styles from './Heading.module.css';
 
 // ----------------------------------------------------------------
@@ -18,6 +19,8 @@ export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 export type HeadingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 export type HeadingWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export type HeadingAlign = 'left' | 'center' | 'right';
+export type HeadingFamily = 'sans' | 'serif' | 'serif-print' | 'display' | 'statement' | 'mono';
+export type HeadingColor = 'primary' | ColorToken;
 
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   /** Semantic heading level (1–6). Determines the rendered element (h1–h6). */
@@ -28,6 +31,10 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   weight?: HeadingWeight;
   /** Text alignment. */
   align?: HeadingAlign;
+  /** Font family. */
+  family?: HeadingFamily;
+  /** Text color. 'primary' uses the starlight-primary token; any CSS color value is also accepted. */
+  color?: HeadingColor;
   /**
    * When true, the Heading renders its child element as the root node
    * (Radix UI asChild / Slot pattern).
@@ -58,9 +65,12 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
       level = 2,
       size,
       weight = 'bold',
+      family = 'serif',
+      color = 'primary',
       align = 'left',
       asChild = false,
       className,
+      style,
       children,
       ...props
     },
@@ -68,11 +78,13 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ) => {
     const resolvedSize = size ?? levelToSize[level];
     const Tag = asChild ? Slot : (`h${level}` as const);
+    const isSemanticColor = color === 'primary';
 
     const cls = [
       styles.base,
       styles[`size-${resolvedSize}`],
       styles[`weight-${weight}`],
+      styles[`family-${family}`],
       styles[`align-${align}`],
       className ?? '',
     ]
@@ -80,7 +92,12 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
       .join(' ');
 
     return (
-      <Tag ref={ref} className={cls} {...props}>
+      <Tag
+        ref={ref}
+        className={cls}
+        style={isSemanticColor ? style : { color: colorToCSS(color as ColorToken), ...style }}
+        {...props}
+      >
         {children}
       </Tag>
     );

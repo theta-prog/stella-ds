@@ -5,8 +5,32 @@
 /* --- Base --- */
 .base {
   margin: 0;
-  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   line-height: var(--stella-typography-lineHeight-normal, 1.5);
+}
+
+/* --- Font families --- */
+.family-sans {
+  font-family: var(--stella-typography-fontFamily-sans, sans-serif);
+}
+
+.family-serif {
+  font-family: var(--stella-typography-fontFamily-serif, serif);
+}
+
+.family-serif-print {
+  font-family: var(--stella-typography-fontFamily-serif-print, serif);
+}
+
+.family-display {
+  font-family: var(--stella-typography-fontFamily-display, cursive);
+}
+
+.family-statement {
+  font-family: var(--stella-typography-fontFamily-statement, sans-serif);
+}
+
+.family-mono {
+  font-family: var(--stella-typography-fontFamily-mono, monospace);
 }
 
 /* --- Sizes --- */

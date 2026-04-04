@@ -129,11 +129,11 @@ const previews: Record<string, () => React.ReactNode> = {
     </Dialog>
   ),
   heading: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-      <Heading level={1} size="3xl">Heading 1</Heading>
-      <Heading level={2} size="2xl">Heading 2</Heading>
-      <Heading level={3} size="xl">Heading 3</Heading>
-      <Heading level={4} size="lg">Heading 4</Heading>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+      <Heading level={2} size="2xl">Serif (default)</Heading>
+      <Heading level={2} size="2xl" family="sans">Sans-serif</Heading>
+      <Heading level={2} size="2xl" family="display">Display</Heading>
+      <Heading level={2} size="2xl" family="mono">Monospace</Heading>
     </div>
   ),
   input: () => (
@@ -210,9 +210,10 @@ const previews: Record<string, () => React.ReactNode> = {
   ),
   text: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-      <Text size="lg" weight="bold">Large Bold</Text>
-      <Text size="md" weight="medium">Medium Medium</Text>
-      <Text size="sm" color="secondary">Small Secondary</Text>
+      <Text size="lg" weight="bold">Sans-serif (default)</Text>
+      <Text size="lg" weight="bold" family="serif">Serif</Text>
+      <Text size="lg" weight="bold" family="mono">Monospace</Text>
+      <Text size="md" color="secondary">Medium Secondary</Text>
       <Text size="xs" color="disabled">Extra Small Disabled</Text>
       <Text truncate style={{ maxWidth: 200 }}>This is a very long text that will be truncated with an ellipsis</Text>
     </div>

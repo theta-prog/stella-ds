@@ -303,6 +303,7 @@ export interface HeadingTranslations {
   story_allLevels: string;
   story_sizes: string;
   story_withCustomWeight: string;
+  story_fontFamilies: string;
   label_heading: string;
   label_size: string;
   label_h1: string;
@@ -319,6 +320,7 @@ export interface TextTranslations {
   story_sizes: string;
   story_colors: string;
   story_truncated: string;
+  story_fontFamilies: string;
   label_default: string;
   label_size: string;
   label_sample: string;
@@ -730,6 +732,7 @@ const en: Translations = {
     story_allLevels: 'All Levels',
     story_sizes: 'Sizes',
     story_withCustomWeight: 'With Custom Weight',
+    story_fontFamilies: 'Font Families',
     label_heading: 'Heading',
     label_size: 'Size:',
     label_h1: 'Heading Level 1',
@@ -747,6 +750,7 @@ const en: Translations = {
     story_sizes: 'Sizes',
     story_colors: 'Colors',
     story_truncated: 'Truncated',
+    story_fontFamilies: 'Font Families',
     label_default: 'This is a text component.',
     label_size: 'Text size:',
     label_sample:
@@ -1134,6 +1138,7 @@ const ja: Translations = {
     story_allLevels: '全レベル',
     story_sizes: 'サイズ一覧',
     story_withCustomWeight: 'カスタムウェイト',
+    story_fontFamilies: 'フォントファミリー',
     label_heading: '見出し',
     label_size: 'サイズ:',
     label_h1: '見出しレベル 1',
@@ -1151,6 +1156,7 @@ const ja: Translations = {
     story_sizes: 'サイズ一覧',
     story_colors: 'カラー',
     story_truncated: 'トランケーション',
+    story_fontFamilies: 'フォントファミリー',
     label_default: 'テキストコンポーネントです。',
     label_size: 'テキストサイズ:',
     label_sample:

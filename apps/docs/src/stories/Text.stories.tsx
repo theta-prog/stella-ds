@@ -18,6 +18,11 @@ const meta = {
       options: ['normal', 'medium', 'semibold', 'bold'],
       table: { defaultValue: { summary: 'normal' } },
     },
+    family: {
+      control: 'select',
+      options: ['sans', 'serif', 'serif-print', 'display', 'statement', 'mono'],
+      table: { defaultValue: { summary: 'sans' } },
+    },
     color: {
       control: 'select',
       options: ['primary', 'secondary', 'disabled'],
@@ -91,6 +96,21 @@ export const Truncated: Story = {
         <Text truncate>
           {tr.text.label_truncated}
         </Text>
+      </div>
+    );
+  },
+};
+
+export const FontFamilies: Story = {
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--stella-spacing-3)' }}>
+        {(['sans', 'serif', 'serif-print', 'display', 'statement', 'mono'] as const).map((family) => (
+          <Text key={family} size="lg" family={family}>
+            {tr.text.label_sample} — {family}
+          </Text>
+        ))}
       </div>
     );
   },

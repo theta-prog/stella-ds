@@ -71,10 +71,12 @@ export { Background } from './components/Background';
 export type { BackgroundProps, BackgroundVariant, BackgroundColorScheme, BackgroundTheme, BackgroundTokenColor } from './components/Background';
 
 export { Text } from './components/Text';
-export type { TextProps, TextSize, TextWeight, TextColor, TextAlign, TextAs } from './components/Text';
+export type { TextProps, TextSize, TextWeight, TextColor, TextAlign, TextAs, TextFamily } from './components/Text';
 
 export { Heading } from './components/Heading';
-export type { HeadingProps, HeadingLevel, HeadingSize, HeadingWeight, HeadingAlign } from './components/Heading';
+export type { HeadingProps, HeadingLevel, HeadingSize, HeadingWeight, HeadingAlign, HeadingFamily, HeadingColor } from './components/Heading';
+
+export type { ColorToken } from './color';
 
 export { Stack } from './components/Stack';
 export type { StackProps } from './components/Stack';

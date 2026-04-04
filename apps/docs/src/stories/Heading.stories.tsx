@@ -28,6 +28,11 @@ const meta = {
       options: ['left', 'center', 'right'],
       table: { defaultValue: { summary: 'left' } },
     },
+    family: {
+      control: 'select',
+      options: ['sans', 'serif', 'serif-print', 'display', 'statement', 'mono'],
+      table: { defaultValue: { summary: 'serif' } },
+    },
   },
 } satisfies Meta<typeof Heading>;
 
@@ -83,4 +88,19 @@ export const WithCustomWeight: Story = {
     return <Heading {...args}>{tr.heading.label_heading}</Heading>;
   },
   args: { level: 2, weight: 'bold' },
+};
+
+export const FontFamilies: Story = {
+  render: () => {
+    const tr = useT();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--stella-spacing-4)' }}>
+        {(['serif', 'sans', 'serif-print', 'display', 'statement', 'mono'] as const).map((family) => (
+          <Heading key={family} level={2} size="xl" family={family}>
+            {tr.heading.label_heading} — {family}
+          </Heading>
+        ))}
+      </div>
+    );
+  },
 };

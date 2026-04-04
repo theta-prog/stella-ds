@@ -9,15 +9,20 @@ import {
   Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
   Checkbox,
   Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription,
+  Footer, FooterContent, FooterDivider, FooterBottom,
+  Header, HeaderBrand, HeaderNav, HeaderActions,
   Heading,
   Input,
+  PageGrid,
   RadioGroup, RadioItem,
+  Section,
   Separator,
   Skeleton,
   Stack,
   Switch,
   Tabs, TabsList, TabsTrigger, TabsContent,
   Text,
+  Toast, ToastTitle, ToastDescription, ToastClose, ToastProvider, ToastViewport,
   Tooltip, TooltipProvider, TooltipTrigger, TooltipContent,
   Select, SelectTrigger, SelectContent, SelectItem,
   Background,
@@ -113,6 +118,26 @@ const previews: Record<string, () => React.ReactNode> = {
       <Checkbox label="Disabled option" disabled />
     </div>
   ),
+  footer: () => (
+    <Footer style={{ width: '100%' }}>
+      <FooterContent>
+        <div>
+          <Text weight="semibold" size="sm">Product</Text>
+          <Text size="xs" color="secondary">Features</Text>
+          <Text size="xs" color="secondary">Pricing</Text>
+        </div>
+        <div>
+          <Text weight="semibold" size="sm">Company</Text>
+          <Text size="xs" color="secondary">About</Text>
+          <Text size="xs" color="secondary">Blog</Text>
+        </div>
+      </FooterContent>
+      <FooterDivider />
+      <FooterBottom>
+        <Text size="xs" color="secondary">&copy; 2026 Stella DS</Text>
+      </FooterBottom>
+    </Footer>
+  ),
   dialog: () => (
     <Dialog>
       <DialogTrigger asChild><Button>Open Dialog</Button></DialogTrigger>
@@ -127,6 +152,21 @@ const previews: Record<string, () => React.ReactNode> = {
         </DialogFooter>
       </DialogContent>
     </Dialog>
+  ),
+  header: () => (
+    <Header style={{ width: '100%', position: 'relative' }}>
+      <HeaderBrand>
+        <Text weight="bold" size="md">Stella</Text>
+      </HeaderBrand>
+      <HeaderNav>
+        <Text size="sm" color="secondary">Docs</Text>
+        <Text size="sm" color="secondary">Components</Text>
+        <Text size="sm" color="secondary">Blog</Text>
+      </HeaderNav>
+      <HeaderActions>
+        <Button size="sm" variant="outline">Sign in</Button>
+      </HeaderActions>
+    </Header>
   ),
   heading: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -144,6 +184,18 @@ const previews: Record<string, () => React.ReactNode> = {
       <Input placeholder="Email address" error="Email is required" value="" onChange={() => {}} />
     </div>
   ),
+  'page-grid': () => (
+    <div style={{ width: '100%' }}>
+      <PageGrid layout="sidebar-left" gap="4" style={{ minHeight: 100 }}>
+        <div style={{ background: 'var(--stella-color-void-muted)', borderRadius: '0.375rem', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text size="xs" color="secondary">Sidebar</Text>
+        </div>
+        <div style={{ background: 'var(--stella-color-void-muted)', borderRadius: '0.375rem', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text size="xs" color="secondary">Main Content</Text>
+        </div>
+      </PageGrid>
+    </div>
+  ),
   radio: () => (
     <RadioGroup defaultValue="b">
       <RadioItem value="a" label="Option A" />
@@ -151,6 +203,15 @@ const previews: Record<string, () => React.ReactNode> = {
       <RadioItem value="c" label="Option C" />
       <RadioItem value="d" label="Disabled" disabled />
     </RadioGroup>
+  ),
+  section: () => (
+    <div style={{ width: '100%' }}>
+      <Section size="md" padding="sm" style={{ background: 'var(--stella-color-void-muted)', borderRadius: '0.375rem' }}>
+        <Text size="sm" color="secondary" style={{ textAlign: 'center' }}>
+          Centered section with max-width &amp; padding
+        </Text>
+      </Section>
+    </div>
   ),
   separator: () => (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -217,6 +278,33 @@ const previews: Record<string, () => React.ReactNode> = {
       <Text size="xs" color="disabled">Extra Small Disabled</Text>
       <Text truncate style={{ maxWidth: 200 }}>This is a very long text that will be truncated with an ellipsis</Text>
     </div>
+  ),
+  toast: () => (
+    <ToastProvider swipeDirection="right">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
+        <Toast variant="info" open>
+          <ToastTitle>Info</ToastTitle>
+          <ToastDescription>This is an informational toast.</ToastDescription>
+          <ToastClose />
+        </Toast>
+        <Toast variant="success" open>
+          <ToastTitle>Success</ToastTitle>
+          <ToastDescription>Your changes have been saved.</ToastDescription>
+          <ToastClose />
+        </Toast>
+        <Toast variant="warning" open>
+          <ToastTitle>Warning</ToastTitle>
+          <ToastDescription>Please review before continuing.</ToastDescription>
+          <ToastClose />
+        </Toast>
+        <Toast variant="error" open>
+          <ToastTitle>Error</ToastTitle>
+          <ToastDescription>Something went wrong.</ToastDescription>
+          <ToastClose />
+        </Toast>
+      </div>
+      <ToastViewport />
+    </ToastProvider>
   ),
   tooltip: () => (
     <TooltipProvider>

@@ -19,12 +19,15 @@ export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export type TextColor = 'primary' | 'secondary' | 'disabled';
 export type TextAlign = 'left' | 'center' | 'right';
 export type TextAs = 'p' | 'span' | 'div' | 'label';
+export type TextFamily = 'sans' | 'serif' | 'serif-print' | 'display' | 'statement' | 'mono';
 
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   /** Font size preset */
   size?: TextSize;
   /** Font weight */
   weight?: TextWeight;
+  /** Font family */
+  family?: TextFamily;
   /** Text color mapped to starlight tokens */
   color?: TextColor;
   /** Text alignment */
@@ -49,6 +52,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
     {
       size = 'md',
       weight = 'normal',
+      family = 'sans',
       color = 'primary',
       align = 'left',
       as: Tag = 'p',
@@ -66,6 +70,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       styles.base,
       styles[`size-${size}`],
       styles[`weight-${weight}`],
+      styles[`family-${family}`],
       styles[`color-${color}`],
       styles[`align-${align}`],
       truncate ? styles.truncate : '',

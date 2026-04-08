@@ -13,7 +13,7 @@ This document defines the design philosophy, visual language, and decision-makin
 Stella's visual language draws from observational astronomy — not sci-fi, not fantasy, but the quiet precision of stargazing.
 
 - **Light sources are meaningful.** Elements that glow (focus rings, active states) represent energy and interaction. Surfaces at rest are dark and still.
-- **Depth comes from luminosity, not blur.** Brighter surfaces are closer to the viewer. Darker surfaces recede. Glass-morphism and `backdrop-filter` are reserved for navigation chrome only.
+- **Depth comes from luminosity, not blur.** Brighter surfaces are closer to the viewer. Darker surfaces recede. Glass-morphism and `backdrop-filter` should be used sparingly and structurally — primarily in navigation chrome and transient overlay surfaces such as dialogs and modals, not as a general decorative effect.
 - **The void is not empty.** Dark backgrounds (`void-base`, `void-surface`, `void-overlay`) form a deliberate hierarchy — each level serves a structural purpose.
 
 ### Five Pillars
@@ -122,7 +122,7 @@ Stella uses a constrained type scale. Display text and body text receive differe
 
 ### Spacing Scale
 
-Stella uses a `4px` base unit. The spacing scale is intentionally non-linear to create visual rhythm:
+Stella uses a `4px` base unit. The spacing scale is intentionally non-linear to create visual rhythm. Below is a common subset — the full token scale includes additional values (e.g., `spacing-5`, `spacing-10`, `spacing-20`, `spacing-24`, `spacing-32`).
 
 ```
 0    →  0        (collapse)
@@ -188,7 +188,8 @@ Shadows in Stella represent physical elevation — higher elements cast larger s
 
 Glow shadows (`glow-cosmos`, `glow-nebula`, `glow-aurora`) are **not decorative**. They represent interaction energy:
 
-- `glow-cosmos` → Focus rings, active interactive elements
+- `focus-ring` → Dedicated focus treatment for keyboard and accessibility states
+- `glow-cosmos` → Active interactive elements and hero emphasis
 - `glow-cosmos-hover` → Hover state on primary elements (use sparingly)
 - `glow-nebula` / `glow-aurora` → Reserved for specific branded moments
 
@@ -237,12 +238,12 @@ These are enforced at the code level, not optional guidelines:
 | Invalid state | `aria-invalid` on inputs/checkboxes in error state. |
 | Loading state | `aria-busy` on loading containers, `aria-hidden` on spinner SVGs. |
 | Icon accessibility | All SVG icons get `aria-hidden="true"`. |
-| Color contrast | Text on `void-base`: minimum 4.5:1 (AA). `starlight-primary` on `void-base` = 13.8:1 ✓ |
+| Color contrast | Text on `void-base`: minimum 4.5:1 (AA). `starlight-primary` on `void-base` exceeds AA contrast requirements. |
 | Motion safety | All animations respect `prefers-reduced-motion: reduce`. |
 
 ### Focus Ring Design
 
-The focus ring uses `glow-cosmos` shadow — a visible, branded indicator that doesn't rely on `outline` alone:
+The focus ring uses the dedicated `focus-ring` shadow token — a visible, branded indicator that doesn't rely on `outline` alone:
 
 ```css
 box-shadow: var(--stella-shadow-focus-ring);  /* 0 0 0 2px cosmos at 50% opacity */
@@ -365,7 +366,7 @@ Display text scales down on smaller viewports to prevent overflow:
 
 ### API Design (Inspired by Radix)
 
-1. **`asChild` composition.** All components support rendering as any element via `@radix-ui/react-slot`. This is Stella's primary composition mechanism.
+1. **`asChild` composition.** Components that support polymorphic composition expose `asChild` via `@radix-ui/react-slot` where applicable. This is Stella's primary composition mechanism for those components.
 2. **Variant + size pattern.** Components expose `variant` and `size` props. CSS Modules classes follow `styles[`variant-${variant}`]` and `styles[`size-${size}`]` conventions.
 3. **Sensible defaults.** Every prop has a default that produces a usable component with zero configuration.
 4. **Forward refs.** All components use `React.forwardRef` for DOM access.
@@ -386,7 +387,7 @@ Display text scales down on smaller viewports to prevent overflow:
 Before shipping a component, verify:
 
 - [ ] Uses `--stella-*` tokens — no hardcoded colors, sizes, or shadows
-- [ ] Supports `asChild` via Radix Slot
+- [ ] Supports `asChild` via Radix Slot where applicable
 - [ ] Uses `React.forwardRef`
 - [ ] Has `:focus-visible` styling with `focus-ring` token
 - [ ] All six interactive states defined (rest, hover, focus, active, disabled, loading)
@@ -409,10 +410,10 @@ Patterns that make Stella look generic or AI-generated. Reject these in code rev
 | Don't | Do Instead |
 |---|---|
 | Glow shadows on non-interactive elements | Glow = interaction energy only |
-| `backdrop-filter: blur()` on content cards | Solid `void-surface` backgrounds. Blur is for nav chrome only. |
-| Gradient mesh / floating orbs in backgrounds | Solid backgrounds or minimal 2-color gradient with fixed angle |
+| `backdrop-filter: blur()` on content cards | Solid `void-surface` backgrounds. Blur is for nav chrome and transient overlays only. |
+| Gradient mesh / floating orbs as default page or content backgrounds | Prefer solid backgrounds or a minimal 2-color gradient with fixed angle. Reserve Stella `Background` `gradient` treatments for hero/marketing surfaces only. |
 | `translateY(-2px)` + shadow increase on hover | Border-color change or subtle `background-color` shift |
-| Radial gradient "nebula" effects behind content | Remove, or constrain to hero sections with clear purpose |
+| Radial gradient "nebula" effects behind standard content areas | Remove, or constrain to hero/marketing sections with clear purpose. Stella `Background` `galaxy` is an exception for those decorative surfaces, not for everyday content containers. |
 | Glowing `text-shadow` on headings | Remove entirely — this is the strongest AI-generated signal |
 
 ### Structural

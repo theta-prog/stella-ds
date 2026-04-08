@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Hero Section",
+    "slug": "hero-section",
+    "description": "Full-width hero with badge, headline, description, and CTA buttons",
+    "components": ["Section", "Badge", "Heading", "Text", "Button", "Stack"],
+    "example": "<Section size=\"lg\" padding=\"lg\">\n  <Stack gap=\"6\" align=\"center\">\n    <Badge color=\"primary\" variant=\"subtle\">Design System</Badge>\n    <Heading level={1} size=\"3xl\" align=\"center\">\n      Your Product Name\n    </Heading>\n    <Text size=\"lg\" color=\"secondary\" align=\"center\">\n      A short tagline describing what your product does.\n    </Text>\n    <Stack direction=\"horizontal\" gap=\"3\">\n      <Button variant=\"solid\" size=\"lg\" asChild>\n        <a href=\"/get-started\">Get Started</a>\n      </Button>\n      <Button variant=\"outline\" size=\"lg\" asChild>\n        <a href=\"/docs\">Documentation</a>\n      </Button>\n    </Stack>\n  </Stack>\n</Section>",
+    "guidelines": [
+      "Use one solid Button for the primary CTA and outline for secondary",
+      "Use Badge above the headline for context labels like version or category",
+      "Use Button with asChild to render anchor links while keeping button styles",
+      "Keep headline text short — use Text color=\"secondary\" for longer descriptions"
+    ]
+  },
+  {
+    "name": "Feature Grid",
+    "slug": "feature-grid",
+    "description": "Grid of Cards with titles and descriptions for showcasing features",
+    "components": ["Section", "Heading", "Text", "Card", "CardContent"],
+    "example": "<Section size=\"lg\" padding=\"lg\">\n  <Heading level={2} size=\"xl\" align=\"center\" style={{ marginBottom: '0.5rem' }}>\n    Features\n  </Heading>\n  <Text color=\"secondary\" align=\"center\" style={{ marginBottom: '2rem' }}>\n    Everything you need to build great products.\n  </Text>\n  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>\n    <Card>\n      <CardContent>\n        <Text weight=\"bold\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n          Feature One\n        </Text>\n        <Text size=\"sm\" color=\"secondary\">\n          Description of the first feature.\n        </Text>\n      </CardContent>\n    </Card>\n    <Card>\n      <CardContent>\n        <Text weight=\"bold\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n          Feature Two\n        </Text>\n        <Text size=\"sm\" color=\"secondary\">\n          Description of the second feature.\n        </Text>\n      </CardContent>\n    </Card>\n    <Card>\n      <CardContent>\n        <Text weight=\"bold\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n          Feature Three\n        </Text>\n        <Text size=\"sm\" color=\"secondary\">\n          Description of the third feature.\n        </Text>\n      </CardContent>\n    </Card>\n  </div>\n</Section>",
+    "guidelines": [
+      "Use auto-fit grid with minmax for responsive layouts without media queries",
+      "Use Card hoverable prop when cards link to detail pages",
+      "Keep card content concise — bold title with secondary-color description",
+      "Use Badge inside CardContent for category pills or status indicators"
+    ]
+  },
+  {
+    "name": "Dashboard Layout",
+    "slug": "dashboard-layout",
+    "description": "App shell with Header, sidebar navigation via PageGrid, and main content area",
+    "components": ["Header", "HeaderBrand", "HeaderNav", "HeaderActions", "PageGrid", "Stack", "Card", "CardContent", "Heading", "Text", "Button"],
+    "example": "<div>\n  <Header sticky>\n    <HeaderBrand>App Name</HeaderBrand>\n    <HeaderNav>\n      <a href=\"/dashboard\">Dashboard</a>\n      <a href=\"/settings\">Settings</a>\n    </HeaderNav>\n    <HeaderActions>\n      <Button variant=\"ghost\" size=\"sm\">Log out</Button>\n    </HeaderActions>\n  </Header>\n\n  <PageGrid layout=\"sidebar-left\" gap=\"8\">\n    {/* Sidebar */}\n    <Stack direction=\"vertical\" gap=\"2\">\n      <Text weight=\"bold\" size=\"sm\" as=\"span\">Navigation</Text>\n      <Button variant=\"ghost\" size=\"sm\">Dashboard</Button>\n      <Button variant=\"ghost\" size=\"sm\">Components</Button>\n      <Button variant=\"ghost\" size=\"sm\">Settings</Button>\n    </Stack>\n\n    {/* Main content */}\n    <Stack direction=\"vertical\" gap=\"6\">\n      <Heading level={1} size=\"xl\">Dashboard</Heading>\n      <Stack direction=\"horizontal\" gap=\"4\" wrap>\n        <Card>\n          <CardContent>\n            <Text size=\"sm\" color=\"secondary\">Total Users</Text>\n            <Heading level={3} size=\"2xl\">1,234</Heading>\n          </CardContent>\n        </Card>\n        <Card>\n          <CardContent>\n            <Text size=\"sm\" color=\"secondary\">Revenue</Text>\n            <Heading level={3} size=\"2xl\">$12.4k</Heading>\n          </CardContent>\n        </Card>\n      </Stack>\n    </Stack>\n  </PageGrid>\n</div>",
+    "guidelines": [
+      "Use Header with sticky for persistent top navigation",
+      "Use PageGrid layout=\"sidebar-left\" for sidebar + main content structure",
+      "Use Stack for vertical sidebar navigation items and horizontal stat card rows",
+      "Metric cards use Card with CardContent — small secondary label above large heading"
+    ]
+  },
+  {
+    "name": "Form Section",
+    "slug": "form-section",
+    "description": "Form with labeled inputs, select, checkbox, and submit button with validation",
+    "components": ["Section", "Stack", "Heading", "Text", "Input", "Select", "SelectTrigger", "SelectContent", "SelectItem", "Checkbox", "Button", "Alert", "AlertTitle", "AlertDescription"],
+    "example": "<Section size=\"sm\" padding=\"md\">\n  <Heading level={2} size=\"lg\" style={{ marginBottom: '0.5rem' }}>\n    Create Account\n  </Heading>\n  <Text color=\"secondary\" style={{ marginBottom: '1.5rem' }}>\n    Fill in your details to get started.\n  </Text>\n\n  <Alert variant=\"error\" style={{ marginBottom: '1.5rem' }}>\n    <AlertTitle>Validation Error</AlertTitle>\n    <AlertDescription>Please correct the highlighted fields.</AlertDescription>\n  </Alert>\n\n  <Stack gap=\"4\">\n    <div>\n      <Text as=\"label\" size=\"sm\" weight=\"medium\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n        Email\n      </Text>\n      <Input placeholder=\"you@example.com\" error=\"Email is required\" />\n    </div>\n    <div>\n      <Text as=\"label\" size=\"sm\" weight=\"medium\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n        Role\n      </Text>\n      <Select>\n        <SelectTrigger placeholder=\"Select a role\" />\n        <SelectContent>\n          <SelectItem value=\"admin\">Admin</SelectItem>\n          <SelectItem value=\"editor\">Editor</SelectItem>\n          <SelectItem value=\"viewer\">Viewer</SelectItem>\n        </SelectContent>\n      </Select>\n    </div>\n    <Checkbox label=\"I agree to the terms of service\" />\n    <Button variant=\"solid\" size=\"md\">Create Account</Button>\n  </Stack>\n</Section>",
+    "guidelines": [
+      "Use Text as=\"label\" with size=\"sm\" and weight=\"medium\" for field labels",
+      "Use Input error prop with a string to show inline validation messages",
+      "Use Stack gap=\"4\" to space form fields evenly",
+      "Place Alert variant=\"error\" above the form to show summary validation errors",
+      "Always pair Checkbox with a descriptive label prop"
+    ]
+  },
+  {
+    "name": "Dialog with Form",
+    "slug": "dialog-with-form",
+    "description": "Modal dialog containing form fields with cancel and submit actions in the footer",
+    "components": ["Dialog", "DialogTrigger", "DialogContent", "DialogHeader", "DialogFooter", "DialogTitle", "DialogDescription", "DialogClose", "Button", "Input", "Stack", "Text"],
+    "example": "<Dialog>\n  <DialogTrigger asChild>\n    <Button variant=\"solid\">Edit Profile</Button>\n  </DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Edit Profile</DialogTitle>\n      <DialogDescription>\n        Update your display name and email address.\n      </DialogDescription>\n    </DialogHeader>\n\n    <Stack gap=\"4\" style={{ padding: '1rem 0' }}>\n      <div>\n        <Text as=\"label\" size=\"sm\" weight=\"medium\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n          Display Name\n        </Text>\n        <Input placeholder=\"Jane Doe\" />\n      </div>\n      <div>\n        <Text as=\"label\" size=\"sm\" weight=\"medium\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n          Email\n        </Text>\n        <Input placeholder=\"jane@example.com\" />\n      </div>\n    </Stack>\n\n    <DialogFooter>\n      <DialogClose asChild>\n        <Button variant=\"ghost\" size=\"sm\">Cancel</Button>\n      </DialogClose>\n      <Button variant=\"solid\" size=\"sm\">Save Changes</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>",
+    "guidelines": [
+      "Always include DialogHeader with DialogTitle for accessibility",
+      "Use DialogDescription to explain the purpose of the dialog",
+      "Use DialogClose asChild on the cancel button to auto-close the dialog",
+      "Keep the submit button as a regular Button (not DialogClose) to allow validation before closing",
+      "Use Stack gap=\"4\" for form field spacing inside the dialog body"
+    ]
+  },
+  {
+    "name": "Content Page",
+    "slug": "content-page",
+    "description": "Documentation-style page with breadcrumb navigation, heading, body text, and related links",
+    "components": ["Breadcrumb", "BreadcrumbList", "BreadcrumbItem", "BreadcrumbLink", "BreadcrumbSeparator", "Badge", "Heading", "Text", "Separator", "Card", "CardContent", "Button"],
+    "example": "<div style={{ maxWidth: '900px', margin: '0 auto', padding: '3rem 2rem' }}>\n  <Breadcrumb style={{ marginBottom: '1.5rem' }}>\n    <BreadcrumbList>\n      <BreadcrumbItem>\n        <BreadcrumbLink href=\"/docs\">Docs</BreadcrumbLink>\n      </BreadcrumbItem>\n      <BreadcrumbSeparator />\n      <BreadcrumbItem>\n        <BreadcrumbLink href=\"/docs/guides\">Guides</BreadcrumbLink>\n      </BreadcrumbItem>\n      <BreadcrumbSeparator />\n      <BreadcrumbItem>\n        <BreadcrumbLink isCurrentPage>Getting Started</BreadcrumbLink>\n      </BreadcrumbItem>\n    </BreadcrumbList>\n  </Breadcrumb>\n\n  <Badge color=\"primary\" variant=\"subtle\" style={{ marginBottom: '0.75rem' }}>\n    Guide\n  </Badge>\n  <Heading level={1} size=\"3xl\" style={{ marginBottom: '0.75rem' }}>\n    Getting Started\n  </Heading>\n  <Text color=\"secondary\" size=\"lg\" style={{ marginBottom: '2rem' }}>\n    Learn how to set up and start using the design system.\n  </Text>\n\n  <Separator style={{ marginBottom: '2rem' }} />\n\n  <Text as=\"p\" style={{ lineHeight: 1.7, marginBottom: '1.5rem' }}>\n    Body content goes here. Use Text components for paragraphs.\n  </Text>\n\n  <Heading level={2} size=\"lg\" style={{ marginBottom: '0.75rem' }}>Next Steps</Heading>\n  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>\n    <Card hoverable>\n      <CardContent>\n        <Text weight=\"bold\" style={{ marginBottom: '0.375rem', display: 'block' }}>Components</Text>\n        <Text size=\"sm\" color=\"secondary\">Browse all available components</Text>\n      </CardContent>\n    </Card>\n    <Card hoverable>\n      <CardContent>\n        <Text weight=\"bold\" style={{ marginBottom: '0.375rem', display: 'block' }}>Tokens</Text>\n        <Text size=\"sm\" color=\"secondary\">Explore the design token system</Text>\n      </CardContent>\n    </Card>\n  </div>\n\n  <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid var(--stella-color-void-muted)', display: 'flex', justifyContent: 'space-between' }}>\n    <Button variant=\"ghost\" asChild>\n      <a href=\"/docs/intro\">← Introduction</a>\n    </Button>\n    <Button variant=\"ghost\" asChild>\n      <a href=\"/docs/components\">Components →</a>\n    </Button>\n  </div>\n</div>",
+    "guidelines": [
+      "Use Breadcrumb at the top for hierarchical navigation context",
+      "Mark the last breadcrumb item with isCurrentPage to render as non-interactive text",
+      "Use Badge above the heading for page category or document type",
+      "Use Separator to visually divide the header from body content",
+      "Use Button variant=\"ghost\" with asChild for prev/next page navigation links"
+    ]
+  },
+  {
+    "name": "Settings Page",
+    "slug": "settings-page",
+    "description": "Tabbed settings page with form sections inside each panel",
+    "components": ["Section", "Heading", "Text", "Tabs", "TabsList", "TabsTrigger", "TabsContent", "Stack", "Input", "Switch", "Select", "SelectTrigger", "SelectContent", "SelectItem", "Button", "Separator"],
+    "example": "<Section size=\"md\" padding=\"md\">\n  <Heading level={1} size=\"xl\" style={{ marginBottom: '0.5rem' }}>\n    Settings\n  </Heading>\n  <Text color=\"secondary\" style={{ marginBottom: '1.5rem' }}>\n    Manage your account preferences.\n  </Text>\n\n  <Tabs defaultValue=\"profile\" variant=\"line\">\n    <TabsList>\n      <TabsTrigger value=\"profile\">Profile</TabsTrigger>\n      <TabsTrigger value=\"notifications\">Notifications</TabsTrigger>\n      <TabsTrigger value=\"appearance\">Appearance</TabsTrigger>\n    </TabsList>\n\n    <TabsContent value=\"profile\">\n      <Stack gap=\"4\" style={{ paddingTop: '1.5rem' }}>\n        <div>\n          <Text as=\"label\" size=\"sm\" weight=\"medium\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n            Display Name\n          </Text>\n          <Input placeholder=\"Your name\" />\n        </div>\n        <div>\n          <Text as=\"label\" size=\"sm\" weight=\"medium\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n            Email\n          </Text>\n          <Input placeholder=\"you@example.com\" />\n        </div>\n        <Separator />\n        <Button variant=\"solid\" size=\"md\">Save Profile</Button>\n      </Stack>\n    </TabsContent>\n\n    <TabsContent value=\"notifications\">\n      <Stack gap=\"4\" style={{ paddingTop: '1.5rem' }}>\n        <Switch label=\"Email notifications\" defaultChecked />\n        <Switch label=\"Push notifications\" />\n        <Switch label=\"Marketing emails\" />\n        <Separator />\n        <Button variant=\"solid\" size=\"md\">Save Preferences</Button>\n      </Stack>\n    </TabsContent>\n\n    <TabsContent value=\"appearance\">\n      <Stack gap=\"4\" style={{ paddingTop: '1.5rem' }}>\n        <div>\n          <Text as=\"label\" size=\"sm\" weight=\"medium\" style={{ marginBottom: '0.375rem', display: 'block' }}>\n            Theme\n          </Text>\n          <Select>\n            <SelectTrigger placeholder=\"Choose theme\" />\n            <SelectContent>\n              <SelectItem value=\"dark\">Dark</SelectItem>\n              <SelectItem value=\"light\">Light</SelectItem>\n              <SelectItem value=\"system\">System</SelectItem>\n            </SelectContent>\n          </Select>\n        </div>\n        <Separator />\n        <Button variant=\"solid\" size=\"md\">Save Appearance</Button>\n      </Stack>\n    </TabsContent>\n  </Tabs>\n</Section>",
+    "guidelines": [
+      "Use Tabs variant=\"line\" for settings pages — solid variant is better for content switching",
+      "Each TabsContent panel should be self-contained with its own save button",
+      "Use Separator before the save button to visually separate actions from fields",
+      "Use Switch for boolean preferences and Select for enumerated choices",
+      "Stack gap=\"4\" provides consistent spacing between form fields in each panel"
+    ]
+  }
+]

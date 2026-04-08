@@ -42,15 +42,24 @@ The best design systems have a deliberate visual quirk no algorithm would produc
 
 Each palette has a celestial name and a functional purpose. **Never choose a color by aesthetics alone — choose it by role.**
 
-| Palette | Hue | Role | When to Use |
-|---|---|---|---|
-| **Cosmos** | Indigo | Primary / Interactive | Buttons, links, focus rings, active states, primary CTAs |
-| **Nebula** | Purple | Accent / Decorative | Secondary emphasis, tags, badges that need visual distinction from cosmos |
-| **Aurora** | Cyan | Accent / Informational | Info states, highlights, secondary interactive elements |
-| **Nova** | Emerald | Success / Positive | Success feedback, confirmations, positive badges, valid states |
-| **Solar** | Amber | Warmth / Attention | Warnings, attention-drawing elements, warm accents to break cool monotony |
-| **Void** | Dark neutrals | Backgrounds / Structure | Page backgrounds, card surfaces, overlays — hierarchy through luminosity |
-| **Starlight** | Light neutrals | Text / Foreground | Body text, headings, disabled text, borders |
+| Palette | Hue | Key Hex (500) | Role | When to Use |
+|---|---|---|---|---|
+| **Cosmos** | Indigo | `#5b5bf0` | Primary / Interactive | Buttons, links, focus rings, active states, primary CTAs |
+| **Nebula** | Purple | `#a855f7` | Accent / Decorative | Secondary emphasis, tags, badges that need visual distinction from cosmos |
+| **Aurora** | Cyan | `#06b6d4` | Accent / Informational | Info states, highlights, secondary interactive elements |
+| **Nova** | Emerald | `#10b981` | Success / Positive | Success feedback, confirmations, positive badges, valid states |
+| **Solar** | Amber | `#f59b07` | Warmth / Attention | Warnings, attention-drawing elements, warm accents to break cool monotony |
+| **Void** | Dark neutrals | `#0a0c14` (base) | Backgrounds / Structure | Page backgrounds, card surfaces, overlays — hierarchy through luminosity |
+| **Starlight** | Light neutrals | `#f0f0f5` (primary) | Text / Foreground | Body text, headings, disabled text, borders |
+
+**Semantic state colors** (derived from the palettes above):
+
+| Token | Hex | Source Palette |
+|---|---|---|
+| `error-500` | `#ef4444` | Red (standalone) |
+| `error-300` | `#fca5a5` | Red (standalone) |
+| `warning-500` | `#f59e0b` | Solar |
+| `warning-300` | `#fcd34d` | Solar |
 
 ### Color Usage Rules
 
@@ -208,7 +217,7 @@ Glow shadows (`glow-cosmos`, `glow-nebula`, `glow-aurora`) are **not decorative*
 
 ### Motion Principles
 
-1. **Every animation answers "why does this move?"** Valid reasons: feedback, continuity, hierarchy, delight (in that priority order).
+1. **Every animation answers "why does this move?"** Valid reasons: feedback, continuity, hierarchy, delight (in that priority order). (Ref: Apple HIG — purposeful motion)
 2. **Never use `transition: all`.** List specific properties explicitly: `transition: background-color 200ms ease-out, border-color 200ms ease-out`.
 3. **Never animate layout properties** (`width`, `height`, `top`, `left`) — use `transform` and `opacity` only.
 4. **Respect `prefers-reduced-motion`.** Disable non-essential animations. Keep opacity transitions at ≤100ms as a fallback.
@@ -243,7 +252,116 @@ Never use `outline: none` without providing a visible replacement.
 
 ---
 
-## 9. Component Design Principles
+## 9. Iconography
+
+### Style Guidelines
+
+Stella does not ship a proprietary icon set. Use any icon library that meets these rules:
+
+| Rule | Rationale |
+|---|---|
+| Stroke-based, 1.5–2px stroke | Matches Stella's light, precise aesthetic — avoid filled/heavy icons |
+| 24×24px default, 16×16px compact | Aligns with `spacing-6` and `spacing-4` grid units |
+| `currentColor` for fill/stroke | Icons inherit text color and respond to themes automatically |
+| `aria-hidden="true"` on all decorative icons | Screen readers skip visual chrome; pair with `aria-label` only on actionable icon-only buttons |
+
+### Sizing Scale
+
+| Context | Size | Token |
+|---|---|---|
+| Inline with body text | 16px | `spacing-4` |
+| Buttons and form controls | 20px | `spacing-5` |
+| Standalone / navigation | 24px | `spacing-6` |
+| Hero / feature callouts | 32px | `spacing-8` |
+
+### Recommended Libraries
+
+- [Lucide](https://lucide.dev/) — Consistent stroke width, tree-shakeable, MIT license
+- [Phosphor](https://phosphoricons.com/) — Six weights (thin to fill), flexible
+
+---
+
+## 10. Interactive States
+
+Every interactive component must define all six states. This ensures a designed, predictable feel across the system.
+
+### State Definitions
+
+| State | Visual Treatment | Token / Approach |
+|---|---|---|
+| **Rest** | Default appearance. No glow, base elevation. | `void-surface` bg, `starlight-primary` text |
+| **Hover** | Subtle background shift. No elevation change. | `void-muted` bg or `color-mix()` lighten 8% |
+| **Focus** | Branded focus ring via `glow-cosmos`. | `--stella-shadow-focus-ring` |
+| **Active / Pressed** | Slightly darker than hover to confirm input. | `color-mix()` darken 4% from hover, scale(0.98) optional |
+| **Disabled** | Reduced opacity, no pointer events. | `opacity: 0.4`, `cursor: not-allowed`, `aria-disabled` |
+| **Loading** | Spinner replaces content or overlays. | `aria-busy="true"`, spinner with `aria-hidden="true"` |
+
+### State Layering Rules
+
+- **Hover + Focus** can co-exist: show both the background shift and the focus ring.
+- **Disabled overrides everything**: no hover, no focus ring, no active state.
+- **Loading implies disabled**: prevent interaction but do not dim — the user expects the action to complete.
+
+### Transition Mapping
+
+| State Change | Property | Duration | Easing |
+|---|---|---|---|
+| Rest → Hover | `background-color`, `border-color` | `fast` (100ms) | ease-out |
+| Rest → Focus | `box-shadow` | `fast` (100ms) | ease-out |
+| Hover → Active | `background-color`, `transform` | immediate | — |
+| Any → Disabled | `opacity` | `base` (200ms) | ease-out |
+| Any → Loading | `opacity` (content fade) | `base` (200ms) | ease-out |
+
+---
+
+## 11. Responsive Behavior
+
+### Breakpoints
+
+Stella uses a mobile-first approach. These breakpoints define layout shifts, not component style changes:
+
+| Token | Width | Target |
+|---|---|---|
+| `sm` | 640px | Large phones (landscape) |
+| `md` | 768px | Tablets |
+| `lg` | 1024px | Small desktops, tablets (landscape) |
+| `xl` | 1280px | Standard desktops |
+| `2xl` | 1536px | Wide screens |
+
+### Touch Target Rules (Apple HIG / WCAG 2.5.8)
+
+| Rule | Value | Rationale |
+|---|---|---|
+| Minimum tap target size | 44×44px | Apple HIG guideline; WCAG AAA recommends 44px |
+| Minimum spacing between targets | 8px (`spacing-2`) | Prevents accidental taps on adjacent elements |
+| Inline links in body text | No minimum | Text flow overrides tap targets; underline provides affordance |
+
+### Responsive Patterns
+
+**Do:**
+- Stack horizontal layouts vertically below `md` (768px)
+- Increase touch targets on mobile — use `size="lg"` for primary actions below `md`
+- Use full-width buttons on mobile when they are the single primary action
+- Collapse navigation into a hamburger/drawer below `lg` (1024px)
+
+**Don't:**
+- Hide content behind "show more" on desktop — use responsive layout instead
+- Change the number of component variants between breakpoints (a `solid` button stays `solid`)
+- Use hover-only interactions as the sole affordance — always provide a tap/click alternative
+
+### Typography Scaling
+
+Display text scales down on smaller viewports to prevent overflow:
+
+| Context | Desktop (`≥lg`) | Mobile (`<md`) |
+|---|---|---|
+| Hero / Display | `5xl` (3rem) | `3xl` (1.875rem) |
+| Section headings | `3xl` (1.875rem) | `2xl` (1.5rem) |
+| Body | `base` (1rem) | `base` (1rem) — no change |
+
+---
+
+## 12. Component Design Principles
 
 ### API Design (Inspired by Radix)
 
@@ -271,7 +389,9 @@ Before shipping a component, verify:
 - [ ] Supports `asChild` via Radix Slot
 - [ ] Uses `React.forwardRef`
 - [ ] Has `:focus-visible` styling with `focus-ring` token
+- [ ] All six interactive states defined (rest, hover, focus, active, disabled, loading)
 - [ ] Respects `prefers-reduced-motion`
+- [ ] Touch targets ≥ 44×44px on interactive elements
 - [ ] Works in both light and dark contexts (if applicable)
 - [ ] Concentric radii with parent containers
 - [ ] Storybook story with all variants documented
@@ -280,7 +400,7 @@ Before shipping a component, verify:
 
 ---
 
-## 10. Anti-Patterns
+## 13. Anti-Patterns
 
 Patterns that make Stella look generic or AI-generated. Reject these in code review.
 
@@ -307,25 +427,98 @@ Patterns that make Stella look generic or AI-generated. Reject these in code rev
 
 ---
 
-## 11. Decision Records
+## 14. Decision Records
 
 When a significant design decision is made, record it here with context.
 
 | Date | Decision | Rationale |
 |---|---|---|
-| — | Celestial naming for color palettes | Creates a distinct brand vocabulary. Maps to functional roles: cosmos=primary, void=background, starlight=text. |
-| — | `asChild` over component-as-prop | Aligns with Radix ecosystem. Simpler API surface than render props or component injection. |
-| — | CSS Modules over CSS-in-JS | Zero runtime cost, natural scoping, works with SSR. Trades dynamic styling for performance. |
-| — | Dark-first design | Stella's celestial metaphor works best against dark surfaces. Light themes are secondary adaptations. |
-| — | Glow reserved for interaction | Prevents the "AI-generated" look. Glow has semantic meaning (energy/interaction), not decorative. |
-| — | `prefers-reduced-motion` as requirement | Accessibility is non-negotiable. All motion is optional for users who prefer reduced motion. |
+| 2026-03-15 | Celestial naming for color palettes | Creates a distinct brand vocabulary. Maps to functional roles: cosmos=primary, void=background, starlight=text. |
+| 2026-03-15 | `asChild` over component-as-prop | Aligns with Radix ecosystem. Simpler API surface than render props or component injection. |
+| 2026-03-15 | CSS Modules over CSS-in-JS | Zero runtime cost, natural scoping, works with SSR. Trades dynamic styling for performance. |
+| 2026-03-21 | Dark-first design | Stella's celestial metaphor works best against dark surfaces. Light themes are secondary adaptations. Adopted during the "deep space aesthetic overhaul." |
+| 2026-03-21 | Glow reserved for interaction | Prevents the "AI-generated" look. Glow has semantic meaning (energy/interaction), not decorative. Codified during the design refinement pass. |
+| 2026-03-21 | `prefers-reduced-motion` as requirement | Accessibility is non-negotiable. All motion is optional for users who prefer reduced motion. |
+| 2026-04-04 | `family` prop on Text/Heading | Allows font-family selection via prop instead of custom CSS. Keeps typography control within the component API. |
+
+---
+
+## 15. Agent Prompt Guide
+
+This section helps AI agents (Claude, Gemini, Copilot, etc.) generate UI that is consistent with Stella's design language.
+
+### Quick Reference — Color Tokens
+
+Use these CSS variable names directly. Never hardcode hex values in component styles.
+
+```
+/* Primary / Interactive */
+--stella-color-cosmos-500    /* #5b5bf0  — buttons, links, focus rings */
+--stella-color-cosmos-600    /* #4845e2  — hover state for primary */
+--stella-color-cosmos-400    /* #7c7ef7  — lighter accent, tags */
+
+/* Accent */
+--stella-color-nebula-500    /* #a855f7  — secondary accent, badges */
+--stella-color-aurora-500    /* #06b6d4  — info states, highlights */
+--stella-color-solar-500     /* #f59b07  — warnings, warm accents */
+
+/* Feedback */
+--stella-color-nova-500      /* #10b981  — success */
+--stella-color-error-500     /* #ef4444  — error */
+--stella-color-warning-500   /* #f59e0b  — warning */
+
+/* Backgrounds (darkest → lightest) */
+--stella-color-void-base     /* #0a0c14  — page background */
+--stella-color-void-surface  /* #12151e  — cards, containers */
+--stella-color-void-overlay  /* #1a1e2a  — dropdowns, dialogs */
+--stella-color-void-muted    /* #262c3a  — hover bg, stripes */
+
+/* Text */
+--stella-color-starlight-primary    /* #f0f0f5  — body text, headings */
+--stella-color-starlight-secondary  /* #8888a0  — captions, muted text */
+--stella-color-starlight-disabled   /* #4a4a5a  — disabled text */
+--stella-color-starlight-inverse    /* #ffffff  — text on colored bg */
+```
+
+### Prompt Rules for Agents
+
+When generating Stella-compatible UI, follow these constraints:
+
+1. **Always use `--stella-*` CSS variables** — never hardcode colors, spacing, or shadows.
+2. **One `solid` button per visual group** — use `outline` or `ghost` for secondary actions.
+3. **No glow on non-interactive elements** — `glow-cosmos` is for focus rings and active states only.
+4. **Use `void-surface` for card backgrounds** — not `void-base` (that's the page) or `void-overlay` (that's for floating layers).
+5. **Left-align text by default** — center-align only for hero headlines and short labels.
+6. **Interactive elements need all six states** — rest, hover, focus, active, disabled, loading.
+7. **Touch targets ≥ 44px** — on buttons, links, and form controls.
+8. **Never combine cosmos + nebula + aurora** in a single component — it looks AI-generated.
+9. **Use `transition: <specific-property>` only** — never `transition: all`.
+10. **Use `:focus-visible`** — never `:focus` — for keyboard focus styles.
+
+### Example: Generating a Card Component
+
+```
+Background:  var(--stella-color-void-surface)
+Border:      1px solid var(--stella-color-void-muted)
+Radius:      var(--stella-border-radius-lg)        /* 8px */
+Padding:     var(--stella-spacing-6)               /* 24px */
+Shadow:      var(--stella-shadow-base)
+Text:        var(--stella-color-starlight-primary)
+Subtitle:    var(--stella-color-starlight-secondary)
+
+Button inside the card:
+  Variant:   solid (if primary CTA) or outline (if secondary)
+  Radius:    var(--stella-border-radius-md)        /* 6px — concentric with card */
+```
 
 ---
 
 ## References
 
-- [IBM Carbon Design System](https://carbondesignsystem.com/) — Token architecture & layered documentation
+- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) — Concentricity, motion purpose, optical alignment, touch targets
 - [Radix UI](https://www.radix-ui.com/) — Accessibility-first component API design
+- [IBM Carbon Design System](https://carbondesignsystem.com/) — Token architecture & layered documentation
 - [Shopify Polaris](https://polaris.shopify.com/) — Do/Don't patterns & component usage guidelines
-- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) — Concentricity, motion purpose, optical alignment
 - [GitHub Primer](https://primer.style/) — Functional color naming & multi-theme support
+- [Google Material Design 3](https://m3.material.io/) — State layers, elevation model, responsive guidelines
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/) — Accessibility requirements (2.5.8 Target Size)

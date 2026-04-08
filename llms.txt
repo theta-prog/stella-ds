@@ -1,644 +1,131 @@
 # Stella UI
 
-Stella UI (`@stella-ds/react` v0.2.0) is a React component library with a celestial design system. It ships alongside `@stella-ds/theme` for design tokens delivered as CSS custom properties (`--stella-*`).
+> A dark-first React design system with celestial design language. Two packages: `@stella-ds/react` v0.3.0 (components) and `@stella-ds/theme` v0.3.0 (CSS custom properties). Built on Radix UI primitives with full accessibility support. MIT license.
 
 ## Installation
 
 ```bash
+pnpm add @stella-ds/react @stella-ds/theme
+# or
 npm install @stella-ds/react @stella-ds/theme
 ```
 
-## Setup
+Import the theme CSS in your app entry point:
 
 ```tsx
-// In your app entry point — inject CSS variables
-import '@stella-ds/theme/css';
+import '@stella-ds/theme/css';   // injects --stella-* CSS custom properties into :root
+import '@stella-ds/react/css';   // component styles
 ```
 
-Or call `injectCSSVars()` at runtime:
+Or inject at runtime:
 
-```ts
+```tsx
 import { injectCSSVars } from '@stella-ds/theme';
 injectCSSVars();
 ```
 
----
+Requires React ^18.0.0 or ^19.0.0.
 
 ## Components
 
-### Alert
-
-Inline feedback banner.
-
-```tsx
-import { Alert, AlertTitle, AlertDescription } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Visual style |
-| onClose | `() => void` | — | Shows close button when provided |
-
-```tsx
-<Alert variant="success" onClose={() => {}}>
-  <AlertTitle>Saved</AlertTitle>
-  <AlertDescription>Your changes have been saved.</AlertDescription>
-</Alert>
-```
-
----
-
-### Avatar
-
-Round image with fallback initials.
-
-```tsx
-import { Avatar } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| alt | `string` | required | Accessible label |
-| src | `string` | — | Image URL |
-| size | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Avatar size |
-| fallback | `string` | — | Initials shown when no image |
-
-```tsx
-<Avatar alt="Jane Doe" fallback="JD" size="md" />
-```
-
----
-
-### Background
-
-Animated visual background.
-
-```tsx
-import { Background } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | `'stars' \| 'galaxy' \| 'milkyway' \| 'gradient' \| 'solid'` | `'stars'` | Background style |
-| color | `'cosmos' \| 'nebula' \| 'aurora' \| 'mixed'` | `'cosmos'` | Color scheme |
-| theme | `'dark' \| 'light'` | `'dark'` | Light or dark mode |
-| twinkle | `boolean` | `true` | Enable star twinkle animation |
-| ribbons | `number` | — | Number of ribbon elements |
-| tokenColor | `string` | — | Override CSS token color |
-| showGradient | `boolean` | — | Overlay gradient |
-
-```tsx
-<Background variant="stars" color="cosmos" theme="dark" twinkle />
-```
-
----
-
-### Badge
-
-Inline label chip.
-
-```tsx
-import { Badge } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | `'solid' \| 'outline' \| 'subtle'` | `'solid'` | Visual style |
-| color | `'default' \| 'primary' \| 'success' \| 'warning' \| 'error'` | `'default'` | Semantic color |
-| size | `'sm' \| 'md'` | `'md'` | Badge size |
-
-```tsx
-<Badge variant="subtle" color="success" size="sm">New</Badge>
-```
-
----
-
-### Breadcrumb
-
-Navigation trail. Compound component.
-
-```tsx
-import {
-  Breadcrumb, BreadcrumbList, BreadcrumbItem,
-  BreadcrumbLink, BreadcrumbSeparator
-} from '@stella-ds/react';
-```
-
-| Prop (BreadcrumbLink) | Type | Default | Description |
-|-----------------------|------|---------|-------------|
-| asChild | `boolean` | `false` | Render as child element |
-| isCurrentPage | `boolean` | `false` | Marks the current page |
-
-```tsx
-<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem><BreadcrumbLink isCurrentPage>Page</BreadcrumbLink></BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>
-```
-
----
-
-### Button
-
-Interactive button with variants and loading state.
-
-```tsx
-import { Button } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | `'solid' \| 'outline' \| 'ghost' \| 'glow'` | `'solid'` | Visual style |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
-| loading | `boolean` | `false` | Shows spinner, disables interaction |
-| asChild | `boolean` | `false` | Render as child element (Radix Slot) |
-
-```tsx
-<Button variant="solid" size="md" loading={false}>Click me</Button>
-```
-
----
-
-### Card
-
-Content container. Compound component.
-
-```tsx
-import {
-  Card, CardHeader, CardTitle, CardDescription,
-  CardContent, CardFooter
-} from '@stella-ds/react';
-```
-
-| Prop (Card) | Type | Default | Description |
-|-------------|------|---------|-------------|
-| hoverable | `boolean` | `false` | Adds hover lift effect |
-
-```tsx
-<Card hoverable>
-  <CardHeader>
-    <CardTitle>Title</CardTitle>
-    <CardDescription>Description</CardDescription>
-  </CardHeader>
-  <CardContent>Content here</CardContent>
-  <CardFooter>Footer</CardFooter>
-</Card>
-```
-
----
-
-### Checkbox
-
-Radix-based checkbox with label support.
-
-```tsx
-import { Checkbox } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Checkbox size |
-| label | `ReactNode` | — | Accessible label |
-| error | `boolean` | `false` | Error state styling |
-
-```tsx
-<Checkbox size="md" label="Accept terms" />
-```
-
----
-
-### Dialog
-
-Modal overlay. Compound component.
-
-```tsx
-import {
-  Dialog, DialogTrigger, DialogContent, DialogHeader,
-  DialogFooter, DialogTitle, DialogDescription,
-  DialogClose, DialogOverlay
-} from '@stella-ds/react';
-```
-
-| Prop (DialogContent) | Type | Default | Description |
-|----------------------|------|---------|-------------|
-| showClose | `boolean` | `true` | Show the close (×) button |
-
-```tsx
-<Dialog>
-  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Title</DialogTitle>
-      <DialogDescription>Description</DialogDescription>
-    </DialogHeader>
-    <DialogFooter><DialogClose asChild><Button>Close</Button></DialogClose></DialogFooter>
-  </DialogContent>
-</Dialog>
-```
-
----
-
-### Footer
-
-Site footer. Compound component.
-
-```tsx
-import { Footer, FooterContent, FooterDivider, FooterBottom } from '@stella-ds/react';
-```
-
-```tsx
-<Footer>
-  <FooterContent>Links and info</FooterContent>
-  <FooterDivider />
-  <FooterBottom>© 2025 Stella UI</FooterBottom>
-</Footer>
-```
-
----
-
-### Header
-
-Site header. Compound component.
-
-```tsx
-import { Header, HeaderBrand, HeaderNav, HeaderActions } from '@stella-ds/react';
-```
-
-| Prop (Header) | Type | Default | Description |
-|---------------|------|---------|-------------|
-| sticky | `boolean` | `false` | Sticky positioning |
-| blur | `boolean` | `false` | Backdrop blur |
-| mobileNav | `ReactNode` | — | Mobile navigation slot |
-
-```tsx
-<Header sticky blur>
-  <HeaderBrand>Stella UI</HeaderBrand>
-  <HeaderNav>{/* nav links */}</HeaderNav>
-  <HeaderActions>{/* buttons */}</HeaderActions>
-</Header>
-```
-
----
-
-### Heading
-
-Semantic heading element.
-
-```tsx
-import { Heading } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| level | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `2` | HTML heading level |
-| size | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl'` | `'md'` | Visual size |
-| weight | `'normal' \| 'medium' \| 'semibold' \| 'bold'` | `'bold'` | Font weight |
-| align | `'left' \| 'center' \| 'right'` | `'left'` | Text alignment |
-| asChild | `boolean` | `false` | Render as child element |
-
-```tsx
-<Heading level={1} size="3xl" weight="bold">Hello World</Heading>
-```
-
----
-
-### Input
-
-Text input field.
-
-```tsx
-import { Input } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
-| error | `boolean \| string` | `false` | Error state; string shows message |
-
-```tsx
-<Input size="md" placeholder="Enter text" error="Required field" />
-```
-
----
-
-### PageGrid
-
-CSS grid layout container.
-
-```tsx
-import { PageGrid } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| layout | `'single' \| 'sidebar-left' \| 'sidebar-right' \| 'three-col'` | `'single'` | Grid layout |
-| gap | `'4' \| '6' \| '8' \| '12'` | `'6'` | Grid gap |
-| fullBleed | `boolean` | `false` | Remove side padding |
-
-```tsx
-<PageGrid layout="sidebar-left" gap="8">
-  <aside>Sidebar</aside>
-  <main>Content</main>
-</PageGrid>
-```
-
----
-
-### Radio
-
-Radio button group. Compound component.
-
-```tsx
-import { RadioGroup, RadioItem } from '@stella-ds/react';
-```
-
-| Prop (RadioGroup) | Type | Default | Description |
-|-------------------|------|---------|-------------|
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Radio size |
-| error | `boolean` | `false` | Error state |
-| orientation | `'horizontal' \| 'vertical'` | `'vertical'` | Layout direction |
-
-| Prop (RadioItem) | Type | Default | Description |
-|------------------|------|---------|-------------|
-| value | `string` | required | Radio value |
-| label | `ReactNode` | — | Accessible label |
-
-```tsx
-<RadioGroup orientation="vertical">
-  <RadioItem value="a" label="Option A" />
-  <RadioItem value="b" label="Option B" />
-</RadioGroup>
-```
-
----
-
-### Section
-
-Semantic `<section>` wrapper.
-
-```tsx
-import { Section } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| size | `'sm' \| 'md' \| 'lg' \| 'full'` | `'md'` | Max-width constraint |
-| padding | `'sm' \| 'md' \| 'lg' \| 'none'` | `'md'` | Vertical padding |
-| asChild | `boolean` | `false` | Render as child element |
-
-```tsx
-<Section size="lg" padding="lg">Page section content</Section>
-```
-
----
-
-### Select
-
-Dropdown select. Compound component.
-
-```tsx
-import {
-  Select, SelectTrigger, SelectContent, SelectItem,
-  SelectGroup, SelectLabel, SelectSeparator
-} from '@stella-ds/react';
-```
-
-| Prop (SelectTrigger) | Type | Default | Description |
-|----------------------|------|---------|-------------|
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Trigger size |
-| error | `boolean \| string` | `false` | Error state |
-| placeholder | `string` | — | Placeholder text |
-
-```tsx
-<Select>
-  <SelectTrigger placeholder="Choose..." />
-  <SelectContent>
-    <SelectItem value="a">Option A</SelectItem>
-    <SelectItem value="b">Option B</SelectItem>
-  </SelectContent>
-</Select>
-```
-
----
-
-### Separator
-
-Visual divider line.
-
-```tsx
-import { Separator } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | Divider direction |
-| decorative | `boolean` | `true` | Hides from assistive tech when true |
-
-```tsx
-<Separator orientation="horizontal" />
-```
-
----
-
-### Skeleton
-
-Loading placeholder.
-
-```tsx
-import { Skeleton } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| variant | `'text' \| 'circular' \| 'rectangular'` | `'text'` | Shape of placeholder |
-| width | `string \| number` | — | Width override |
-| height | `string \| number` | — | Height override |
-| lines | `number` | — | Number of text lines |
-| animate | `boolean` | `true` | Pulse animation |
-
-```tsx
-<Skeleton variant="text" lines={3} />
-```
-
----
-
-### Stack
-
-Flexbox layout utility.
-
-```tsx
-import { Stack } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| direction | `'vertical' \| 'horizontal'` | `'vertical'` | Flex direction |
-| gap | `'1' \| '2' \| '3' \| '4' \| '6' \| '8' \| '12' \| '16'` | `'4'` | Gap between children |
-| align | `'start' \| 'center' \| 'end' \| 'stretch'` | `'stretch'` | Align items |
-| justify | `'start' \| 'center' \| 'end' \| 'between' \| 'around'` | `'start'` | Justify content |
-| wrap | `boolean` | `false` | Allow wrapping |
-| asChild | `boolean` | `false` | Render as child element |
-
-```tsx
-<Stack direction="horizontal" gap="4" align="center">
-  <Button>A</Button>
-  <Button>B</Button>
-</Stack>
-```
-
----
-
-### Switch
-
-Toggle switch.
-
-```tsx
-import { Switch } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | Switch size |
-| label | `ReactNode` | — | Accessible label |
-| error | `boolean` | `false` | Error state |
-
-```tsx
-<Switch size="md" label="Enable notifications" />
-```
-
----
-
-### Tabs
-
-Tab navigation. Compound component.
-
-```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stella-ds/react';
-```
-
-| Prop (Tabs) | Type | Default | Description |
-|-------------|------|---------|-------------|
-| variant | `'line' \| 'solid'` | `'line'` | Tab style |
-
-```tsx
-<Tabs variant="line" defaultValue="a">
-  <TabsList>
-    <TabsTrigger value="a">Tab A</TabsTrigger>
-    <TabsTrigger value="b">Tab B</TabsTrigger>
-  </TabsList>
-  <TabsContent value="a">Content A</TabsContent>
-  <TabsContent value="b">Content B</TabsContent>
-</Tabs>
-```
-
----
-
-### Text
-
-Body text element.
-
-```tsx
-import { Text } from '@stella-ds/react';
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| size | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` | Font size |
-| weight | `'normal' \| 'medium' \| 'semibold' \| 'bold'` | `'normal'` | Font weight |
-| color | `'primary' \| 'secondary' \| 'disabled'` | `'primary'` | Text color token |
-| align | `'left' \| 'center' \| 'right'` | `'left'` | Text alignment |
-| as | `'p' \| 'span' \| 'div' \| 'label'` | `'p'` | Rendered element |
-| asChild | `boolean` | `false` | Render as child element |
-| truncate | `boolean` | `false` | Single-line ellipsis truncation |
-
-```tsx
-<Text size="sm" color="secondary" truncate>Short description</Text>
-```
-
----
-
-### Toast
-
-Notification toasts. Compound component.
-
-```tsx
-import {
-  ToastProvider, ToastViewport, Toast,
-  ToastTitle, ToastDescription, ToastClose, ToastAction
-} from '@stella-ds/react';
-```
-
-| Prop (Toast) | Type | Default | Description |
-|--------------|------|---------|-------------|
-| variant | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Semantic color |
-
-| Prop (ToastClose) | Type | Default | Description |
-|-------------------|------|---------|-------------|
-| label | `string` | — | Accessible close label |
-
-```tsx
-<ToastProvider>
-  <Toast variant="success">
-    <ToastTitle>Done!</ToastTitle>
-    <ToastDescription>Action completed.</ToastDescription>
-    <ToastClose label="Dismiss" />
-  </Toast>
-  <ToastViewport />
-</ToastProvider>
-```
-
----
-
-### Tooltip
-
-Contextual tooltip. Compound component.
-
-```tsx
-import {
-  TooltipProvider, Tooltip, TooltipTrigger, TooltipContent
-} from '@stella-ds/react';
-```
-
-| Prop (TooltipContent) | Type | Default | Description |
-|-----------------------|------|---------|-------------|
-| side | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` | Preferred placement |
-| sideOffset | `number` | — | Distance from trigger |
-
-```tsx
-<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger asChild><Button>Hover me</Button></TooltipTrigger>
-    <TooltipContent side="top" sideOffset={4}>Tooltip text</TooltipContent>
-  </Tooltip>
-</TooltipProvider>
-```
-
----
-
-## Design Tokens (quick reference)
-
-All tokens are CSS custom properties prefixed with `--stella-`.
-
-| Category | Example variable |
-|----------|-----------------|
-| Color — cosmos (indigo/primary) | `--stella-color-cosmos-500` |
-| Color — nebula (purple/accent) | `--stella-color-nebula-500` |
-| Color — aurora (cyan/accent) | `--stella-color-aurora-500` |
-| Color — nova (emerald/success) | `--stella-color-nova-500` |
-| Color — void (backgrounds) | `--stella-color-void-base` |
-| Color — starlight (text) | `--stella-color-starlight-primary` |
-| Typography | `--stella-font-size-md` |
-| Spacing | `--stella-spacing-4` |
-| Border radius | `--stella-border-radius-md` |
-| Shadow | `--stella-shadow-md` |
-| Transition | `--stella-transition-default` |
-
-Usage in CSS Modules:
-
-```css
-color: var(--stella-color-cosmos-500);
-background: var(--stella-color-void-base);
-```
+### Typography
+- **Heading** — Semantic h1-h6 with size, weight, alignment, and font family control
+- **Text** — Polymorphic body text primitive (renders as p, span, div, or label)
+
+### Inputs
+- **Button** — Variants: solid, outline, ghost, glow. Sizes: sm, md, lg. Supports loading state and asChild.
+- **Input** — Single-line text input with size and error state (boolean or string message)
+- **Checkbox** — Accessible checkbox with optional label, built on Radix UI
+- **Radio** (RadioGroup, RadioItem) — Radio button group with orientation control
+- **Select** (Select, SelectTrigger, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator) — Dropdown select
+- **Switch** — Toggle switch with label support
+
+### Display
+- **Avatar** — Round image with initials fallback. Sizes: xs, sm, md, lg, xl.
+- **Badge** — Inline label for status/counts. Variants: solid, outline, subtle. Colors: default, primary, success, warning, error.
+
+### Feedback
+- **Alert** (Alert, AlertTitle, AlertDescription) — Inline feedback banner. Variants: info, success, warning, error.
+- **Skeleton** — Loading placeholder with pulse animation. Variants: text, circular, rectangular.
+- **Toast** (ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription, ToastClose, ToastAction) — Ephemeral notification
+
+### Layout
+- **Card** (Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter) — Content container with optional hover lift
+- **Stack** — Flexbox layout primitive for vertical/horizontal lists with gap tokens
+- **Separator** — Visual divider (horizontal or vertical)
+- **Section** — Semantic section wrapper with max-width and padding presets
+- **PageGrid** — CSS grid layout with sidebar support
+- **Background** — Animated visual backgrounds: starfield, galaxy, milky way, gradient, solid
+- **Header** (Header, HeaderBrand, HeaderNav, HeaderActions) — Site header with sticky/blur/mobile nav
+- **Footer** (Footer, FooterContent, FooterDivider, FooterBottom) — Site footer
+
+### Navigation
+- **Breadcrumb** (Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator) — Breadcrumb navigation
+- **Tabs** (Tabs, TabsList, TabsTrigger, TabsContent) — Tabbed content panels. Variants: line, solid.
+
+### Overlay
+- **Dialog** (Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose) — Modal dialog
+- **Tooltip** (TooltipProvider, Tooltip, TooltipTrigger, TooltipContent) — Hover tooltip
+
+## Design Tokens
+
+All CSS custom properties use the `--stella-` prefix.
+
+### Colors
+
+| Palette | Role | Key Token | Hex |
+|---|---|---|---|
+| cosmos | Primary / Interactive | `--stella-color-cosmos-500` | #5b5bf0 |
+| nebula | Accent / Decorative | `--stella-color-nebula-500` | #a855f7 |
+| aurora | Accent / Informational | `--stella-color-aurora-500` | #06b6d4 |
+| nova | Success / Positive | `--stella-color-nova-500` | #10b981 |
+| solar | Warmth / Attention | `--stella-color-solar-500` | #f59b07 |
+| void | Backgrounds | `--stella-color-void-base` | #0a0c14 |
+| starlight | Text / Foreground | `--stella-color-starlight-primary` | #f0f0f5 |
+| error | Error states | `--stella-color-error-500` | #ef4444 |
+| warning | Warning states | `--stella-color-warning-500` | #f59e0b |
+
+### Void Surface Hierarchy (darkest to lightest)
+- `--stella-color-void-base` (#0a0c14) — Page background
+- `--stella-color-void-surface` (#12151e) — Card backgrounds, containers
+- `--stella-color-void-overlay` (#1a1e2a) — Dropdowns, dialogs, popovers
+- `--stella-color-void-muted` (#262c3a) — Hover backgrounds, table stripes
+
+### Other Token Categories
+- **Spacing:** `--stella-spacing-{0,1,2,3,4,6,8,12,16}` (4px base unit, e.g. spacing-4 = 1rem/16px)
+- **Border Radius:** `--stella-border-radius-{none,sm,base,md,lg,xl,2xl,full}`
+- **Shadow:** `--stella-shadow-{sm,base,md,lg}`, `--stella-shadow-focus-ring`, `--stella-shadow-glow-cosmos`
+- **Typography:** `--stella-font-family-{sans,serif,display,statement,mono}`, `--stella-font-size-{xs,sm,base,lg,xl,2xl,3xl,4xl,5xl}`
+- **Transition:** `--stella-transition-{fast,base,slow}` (100ms, 200ms, 350ms)
+
+## Usage Rules
+
+**Do:**
+- Always use `--stella-*` CSS variables -- never hardcode colors, spacing, or shadows
+- Use `cosmos` for all primary interactive elements (buttons, links, focus rings)
+- Use `void-surface` for card backgrounds, `void-base` for page background, `void-overlay` for floating layers
+- Left-align text by default; center only for hero headlines and short labels
+- Use `:focus-visible` (never `:focus`) for keyboard focus styles
+- List specific CSS properties in transitions: `transition: background-color 200ms ease-out`
+- Ensure touch targets are at least 44x44px
+- Define all six interactive states: rest, hover, focus, active, disabled, loading
+
+**Don't:**
+- Combine cosmos + nebula + aurora in a single component (the "AI color triangle" looks generated)
+- Add glow shadows on non-interactive elements (glow = interaction energy only)
+- Use `backdrop-filter: blur()` on content cards (reserved for navigation chrome only)
+- Use `transition: all` -- always list specific properties
+- Add glowing `text-shadow` on headings (strongest AI-generated signal)
+- Use more than one `solid` button per visual group (use `outline` or `ghost` for secondary actions)
+- Use `border-radius: full` on cards (reserved for avatars and pills only)
+- Apply `translateY(-2px)` + shadow increase on hover (use border-color or background-color shift instead)
+- Use gradient mesh or floating orbs in backgrounds
+
+## Composition
+
+All components support `asChild` via `@radix-ui/react-slot` for polymorphic rendering. Components use `React.forwardRef` for DOM access. Variants and sizes follow: `variant="solid"`, `size="md"`.
+
+## Links
+
+- npm: [@stella-ds/react](https://www.npmjs.com/package/@stella-ds/react), [@stella-ds/theme](https://www.npmjs.com/package/@stella-ds/theme)
+- Storybook: Available for live component examples (run `pnpm storybook` locally)

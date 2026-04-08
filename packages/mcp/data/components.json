@@ -9,7 +9,11 @@
       {"name": "variant", "type": "'info' | 'success' | 'warning' | 'error'", "default": "'info'", "description": "Visual style and semantic meaning"},
       {"name": "onClose", "type": "() => void", "default": "undefined", "description": "Renders a close button when provided"}
     ],
-    "example": "<Alert variant=\"success\" onClose={() => {}}>\n  <AlertTitle>Success</AlertTitle>\n  <AlertDescription>Your changes have been saved.</AlertDescription>\n</Alert>"
+    "example": "<Alert variant=\"success\" onClose={() => {}}>\n  <AlertTitle>Success</AlertTitle>\n  <AlertDescription>Your changes have been saved.</AlertDescription>\n</Alert>",
+    "guidelines": [
+      "Use the correct variant to match the message type: `success` (nova), `error` (error), `warning` (solar), `info` (aurora).",
+      "Don't use Alert for transient messages — use Toast instead."
+    ]
   },
   {
     "name": "Avatar",
@@ -23,7 +27,10 @@
       {"name": "size", "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'", "default": "'md'", "description": "Avatar diameter"},
       {"name": "fallback", "type": "ReactNode", "default": "first char of alt", "description": "Custom fallback content"}
     ],
-    "example": "<Avatar src=\"/photo.jpg\" alt=\"Jane Doe\" size=\"lg\" />"
+    "example": "<Avatar src=\"/photo.jpg\" alt=\"Jane Doe\" size=\"lg\" />",
+    "guidelines": [
+      "Always provide a meaningful `alt` prop — it drives the initials fallback and accessibility."
+    ]
   },
   {
     "name": "Background",
@@ -40,7 +47,11 @@
       {"name": "tokenColor", "type": "string", "default": "undefined", "description": "Design-token color override (e.g. 'cosmos-500')"},
       {"name": "showGradient", "type": "boolean", "default": "true", "description": "Show blob overlay on gradient variant"}
     ],
-    "example": "<Background variant=\"galaxy\" color=\"cosmos\" theme=\"dark\">\n  <p>Content over galaxy background</p>\n</Background>"
+    "example": "<Background variant=\"galaxy\" color=\"cosmos\" theme=\"dark\">\n  <p>Content over galaxy background</p>\n</Background>",
+    "guidelines": [
+      "Use for hero sections or full-page backgrounds only — not for card or component backgrounds.",
+      "Respect `prefers-reduced-motion` — disable `twinkle` if the user prefers reduced motion."
+    ]
   },
   {
     "name": "Badge",
@@ -53,7 +64,11 @@
       {"name": "color", "type": "'default' | 'primary' | 'success' | 'warning' | 'error'", "default": "'default'", "description": "Color semantic"},
       {"name": "size", "type": "'sm' | 'md'", "default": "'md'", "description": "Size preset"}
     ],
-    "example": "<Badge variant=\"subtle\" color=\"success\">Published</Badge>"
+    "example": "<Badge variant=\"subtle\" color=\"success\">Published</Badge>",
+    "guidelines": [
+      "Don't combine cosmos + nebula + aurora colors in the same component — it looks AI-generated.",
+      "Use for status, counts, or categories. Not for decorative purposes."
+    ]
   },
   {
     "name": "Breadcrumb",
@@ -65,7 +80,11 @@
       {"name": "asChild", "type": "boolean", "default": "false", "description": "BreadcrumbLink: render as child element"},
       {"name": "isCurrentPage", "type": "boolean", "default": "false", "description": "BreadcrumbLink: marks current page, renders as span with aria-current"}
     ],
-    "example": "<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem><BreadcrumbLink href=\"/\">Home</BreadcrumbLink></BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem><BreadcrumbLink isCurrentPage>Docs</BreadcrumbLink></BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>"
+    "example": "<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem><BreadcrumbLink href=\"/\">Home</BreadcrumbLink></BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem><BreadcrumbLink isCurrentPage>Docs</BreadcrumbLink></BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>",
+    "guidelines": [
+      "Mark the last item with `isCurrentPage` to set `aria-current=\"page\"` for screen readers.",
+      "Supports `asChild` on BreadcrumbLink for custom element rendering (e.g., Next.js Link)."
+    ]
   },
   {
     "name": "Button",
@@ -79,7 +98,13 @@
       {"name": "loading", "type": "boolean", "default": "false", "description": "Shows spinner and disables interaction"},
       {"name": "asChild", "type": "boolean", "default": "false", "description": "Render child as root (Radix Slot pattern)"}
     ],
-    "example": "<Button variant=\"solid\" size=\"md\">Click me</Button>\n<Button variant=\"outline\" loading>Saving...</Button>"
+    "example": "<Button variant=\"solid\" size=\"md\">Click me</Button>\n<Button variant=\"outline\" loading>Saving...</Button>",
+    "guidelines": [
+      "Use at most one `solid` button per visual group (card, dialog, section). Use `outline` or `ghost` for secondary actions.",
+      "Reserve `glow` variant for hero CTAs only — overuse makes UI look AI-generated.",
+      "Touch targets must be >= 44x44px. Use `size=\"lg\"` for primary mobile actions.",
+      "Supports `asChild` for custom element rendering (e.g., wrapping an anchor tag)."
+    ]
   },
   {
     "name": "Card",
@@ -90,7 +115,12 @@
     "props": [
       {"name": "hoverable", "type": "boolean", "default": "false", "description": "Adds hover lift (shadow + translateY)"}
     ],
-    "example": "<Card hoverable>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n    <CardDescription>Description</CardDescription>\n  </CardHeader>\n  <CardContent>Content here</CardContent>\n  <CardFooter><Button>Action</Button></CardFooter>\n</Card>"
+    "example": "<Card hoverable>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n    <CardDescription>Description</CardDescription>\n  </CardHeader>\n  <CardContent>Content here</CardContent>\n  <CardFooter><Button>Action</Button></CardFooter>\n</Card>",
+    "guidelines": [
+      "Use `void-surface` for card backgrounds — not `void-base` (page) or `void-overlay` (floating layers).",
+      "Card internal spacing should be smaller than the gap between cards.",
+      "Avoid accent color bars + matching glow on every card — reserve accent treatments for one card per group."
+    ]
   },
   {
     "name": "Checkbox",
@@ -103,7 +133,11 @@
       {"name": "label", "type": "ReactNode", "default": "undefined", "description": "Label rendered beside the checkbox"},
       {"name": "error", "type": "boolean", "default": "false", "description": "Error state styling"}
     ],
-    "example": "<Checkbox label=\"Accept terms\" defaultChecked />\n<Checkbox label=\"Required field\" error />"
+    "example": "<Checkbox label=\"Accept terms\" defaultChecked />\n<Checkbox label=\"Required field\" error />",
+    "guidelines": [
+      "Always associate error messages with `aria-describedby` using `React.useId()`.",
+      "Use `aria-invalid` when in error state."
+    ]
   },
   {
     "name": "Dialog",
@@ -112,9 +146,13 @@
     "category": "overlay",
     "imports": ["Dialog", "DialogTrigger", "DialogContent", "DialogHeader", "DialogFooter", "DialogTitle", "DialogDescription", "DialogClose"],
     "props": [
-      {"name": "showClose", "type": "boolean", "default": "true", "description": "DialogContent: show default × close button"}
+      {"name": "showClose", "type": "boolean", "default": "true", "description": "DialogContent: show default x close button"}
     ],
-    "example": "<Dialog>\n  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Are you sure?</DialogTitle>\n      <DialogDescription>This action cannot be undone.</DialogDescription>\n    </DialogHeader>\n    <DialogFooter><Button>Confirm</Button></DialogFooter>\n  </DialogContent>\n</Dialog>"
+    "example": "<Dialog>\n  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Are you sure?</DialogTitle>\n      <DialogDescription>This action cannot be undone.</DialogDescription>\n    </DialogHeader>\n    <DialogFooter><Button>Confirm</Button></DialogFooter>\n  </DialogContent>\n</Dialog>",
+    "guidelines": [
+      "Use `void-overlay` for dialog panel backgrounds (elevated surface).",
+      "Include at most one `solid` action button. Secondary actions should use `outline` or `ghost`."
+    ]
   },
   {
     "name": "Footer",
@@ -123,7 +161,8 @@
     "category": "layout",
     "imports": ["Footer", "FooterContent", "FooterDivider", "FooterBottom"],
     "props": [],
-    "example": "<Footer>\n  <FooterContent>Links and content</FooterContent>\n  <FooterDivider />\n  <FooterBottom>© 2024 Stella UI</FooterBottom>\n</Footer>"
+    "example": "<Footer>\n  <FooterContent>Links and content</FooterContent>\n  <FooterDivider />\n  <FooterBottom>© 2024 Stella UI</FooterBottom>\n</Footer>",
+    "guidelines": []
   },
   {
     "name": "Header",
@@ -136,7 +175,11 @@
       {"name": "blur", "type": "boolean", "default": "true", "description": "Backdrop blur when sticky"},
       {"name": "mobileNav", "type": "ReactNode", "default": "undefined", "description": "Mobile hamburger menu content"}
     ],
-    "example": "<Header sticky>\n  <HeaderBrand>Stella UI</HeaderBrand>\n  <HeaderNav>\n    <a href=\"/\">Home</a>\n    <a href=\"/docs\">Docs</a>\n  </HeaderNav>\n  <HeaderActions><Button size=\"sm\">Get Started</Button></HeaderActions>\n</Header>"
+    "example": "<Header sticky>\n  <HeaderBrand>Stella UI</HeaderBrand>\n  <HeaderNav>\n    <a href=\"/\">Home</a>\n    <a href=\"/docs\">Docs</a>\n  </HeaderNav>\n  <HeaderActions><Button size=\"sm\">Get Started</Button></HeaderActions>\n</Header>",
+    "guidelines": [
+      "`backdrop-filter: blur()` is allowed on Header (navigation chrome) but nowhere else.",
+      "Collapse navigation into a hamburger/drawer below `lg` (1024px) using the `mobileNav` prop."
+    ]
   },
   {
     "name": "Heading",
@@ -151,7 +194,12 @@
       {"name": "align", "type": "'left' | 'center' | 'right'", "default": "'left'", "description": "Text alignment"},
       {"name": "asChild", "type": "boolean", "default": "false", "description": "Radix Slot pattern"}
     ],
-    "example": "<Heading level={1} size=\"3xl\">Page Title</Heading>\n<Heading level={2} align=\"center\" weight=\"semibold\">Section</Heading>"
+    "example": "<Heading level={1} size=\"3xl\">Page Title</Heading>\n<Heading level={2} align=\"center\" weight=\"semibold\">Section</Heading>",
+    "guidelines": [
+      "Left-align text by default. Center-align only for hero headlines and short labels.",
+      "Use `display` or `statement` font families for emphasis only — never for navigation, form labels, or body text.",
+      "Supports `asChild` for custom element rendering."
+    ]
   },
   {
     "name": "Input",
@@ -163,7 +211,11 @@
       {"name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'", "description": "Size preset"},
       {"name": "error", "type": "boolean | string", "default": "false", "description": "Error state; pass string to show message below input"}
     ],
-    "example": "<Input placeholder=\"Enter email\" />\n<Input error=\"Email is required\" value=\"\" />"
+    "example": "<Input placeholder=\"Enter email\" />\n<Input error=\"Email is required\" value=\"\" />",
+    "guidelines": [
+      "Always associate error messages with `aria-describedby` using `React.useId()`.",
+      "Use `aria-invalid` when in error state."
+    ]
   },
   {
     "name": "PageGrid",
@@ -176,7 +228,8 @@
       {"name": "gap", "type": "'4' | '6' | '8' | '12'", "default": "'8'", "description": "Column gap"},
       {"name": "fullBleed", "type": "boolean", "default": "false", "description": "Full-width or max-width contained"}
     ],
-    "example": "<PageGrid layout=\"sidebar-left\" gap=\"8\">\n  <aside>Sidebar</aside>\n  <main>Content</main>\n</PageGrid>"
+    "example": "<PageGrid layout=\"sidebar-left\" gap=\"8\">\n  <aside>Sidebar</aside>\n  <main>Content</main>\n</PageGrid>",
+    "guidelines": []
   },
   {
     "name": "Radio",
@@ -191,7 +244,11 @@
       {"name": "value", "type": "string", "default": "—", "description": "RadioItem: required value"},
       {"name": "label", "type": "ReactNode", "default": "undefined", "description": "RadioItem: optional label"}
     ],
-    "example": "<RadioGroup defaultValue=\"b\">\n  <RadioItem value=\"a\" label=\"Option A\" />\n  <RadioItem value=\"b\" label=\"Option B\" />\n</RadioGroup>"
+    "example": "<RadioGroup defaultValue=\"b\">\n  <RadioItem value=\"a\" label=\"Option A\" />\n  <RadioItem value=\"b\" label=\"Option B\" />\n</RadioGroup>",
+    "guidelines": [
+      "Always associate error messages with `aria-describedby` using `React.useId()`.",
+      "Use `aria-invalid` when in error state."
+    ]
   },
   {
     "name": "Section",
@@ -204,7 +261,10 @@
       {"name": "padding", "type": "'sm' | 'md' | 'lg' | 'none'", "default": "'md'", "description": "Vertical padding"},
       {"name": "asChild", "type": "boolean", "default": "false", "description": "Radix Slot pattern"}
     ],
-    "example": "<Section size=\"lg\" padding=\"lg\">\n  <Heading level={2}>Features</Heading>\n  <Text>Explore what Stella UI offers.</Text>\n</Section>"
+    "example": "<Section size=\"lg\" padding=\"lg\">\n  <Heading level={2}>Features</Heading>\n  <Text>Explore what Stella UI offers.</Text>\n</Section>",
+    "guidelines": [
+      "Supports `asChild` for custom element rendering."
+    ]
   },
   {
     "name": "Select",
@@ -217,7 +277,11 @@
       {"name": "error", "type": "boolean | string", "default": "false", "description": "SelectTrigger: error state or message"},
       {"name": "placeholder", "type": "string", "default": "undefined", "description": "SelectTrigger: placeholder text"}
     ],
-    "example": "<Select>\n  <SelectTrigger placeholder=\"Pick a fruit\" />\n  <SelectContent>\n    <SelectItem value=\"apple\">Apple</SelectItem>\n    <SelectItem value=\"banana\">Banana</SelectItem>\n  </SelectContent>\n</Select>"
+    "example": "<Select>\n  <SelectTrigger placeholder=\"Pick a fruit\" />\n  <SelectContent>\n    <SelectItem value=\"apple\">Apple</SelectItem>\n    <SelectItem value=\"banana\">Banana</SelectItem>\n  </SelectContent>\n</Select>",
+    "guidelines": [
+      "Always associate error messages with `aria-describedby` using `React.useId()`.",
+      "Use `aria-invalid` when in error state."
+    ]
   },
   {
     "name": "Separator",
@@ -229,7 +293,10 @@
       {"name": "orientation", "type": "'horizontal' | 'vertical'", "default": "'horizontal'", "description": "Divider direction"},
       {"name": "decorative", "type": "boolean", "default": "true", "description": "Hides from screen readers when true"}
     ],
-    "example": "<Separator />\n<Separator orientation=\"vertical\" />"
+    "example": "<Separator />\n<Separator orientation=\"vertical\" />",
+    "guidelines": [
+      "Set `decorative={false}` when the separator conveys meaningful content boundaries for screen readers."
+    ]
   },
   {
     "name": "Skeleton",
@@ -244,7 +311,11 @@
       {"name": "lines", "type": "number", "default": "1", "description": "Number of text lines (text variant only)"},
       {"name": "animate", "type": "boolean", "default": "true", "description": "Pulse animation"}
     ],
-    "example": "<Skeleton variant=\"text\" lines={3} />\n<Skeleton variant=\"circular\" width={40} height={40} />"
+    "example": "<Skeleton variant=\"text\" lines={3} />\n<Skeleton variant=\"circular\" width={40} height={40} />",
+    "guidelines": [
+      "Match the skeleton shape to the component it replaces — don't use generic rectangles for everything.",
+      "Use `circular` for avatars, `text` for paragraphs, and `rectangular` for images or cards."
+    ]
   },
   {
     "name": "Stack",
@@ -260,7 +331,11 @@
       {"name": "wrap", "type": "boolean", "default": "false", "description": "Wrap flex items"},
       {"name": "asChild", "type": "boolean", "default": "false", "description": "Radix Slot pattern"}
     ],
-    "example": "<Stack direction=\"horizontal\" gap=\"4\" align=\"center\">\n  <Avatar alt=\"U\" />\n  <Text>Username</Text>\n</Stack>"
+    "example": "<Stack direction=\"horizontal\" gap=\"4\" align=\"center\">\n  <Avatar alt=\"U\" />\n  <Text>Username</Text>\n</Stack>",
+    "guidelines": [
+      "Component-internal spacing < component-external spacing.",
+      "Supports `asChild` for custom element rendering."
+    ]
   },
   {
     "name": "Switch",
@@ -273,7 +348,11 @@
       {"name": "label", "type": "ReactNode", "default": "undefined", "description": "Label beside the switch"},
       {"name": "error", "type": "boolean", "default": "false", "description": "Error state"}
     ],
-    "example": "<Switch label=\"Enable notifications\" defaultChecked />"
+    "example": "<Switch label=\"Enable notifications\" defaultChecked />",
+    "guidelines": [
+      "Always associate error messages with `aria-describedby` using `React.useId()`.",
+      "Use `aria-invalid` when in error state."
+    ]
   },
   {
     "name": "Tabs",
@@ -284,7 +363,10 @@
     "props": [
       {"name": "variant", "type": "'line' | 'solid'", "default": "'line'", "description": "Visual style — underline or pill/box"}
     ],
-    "example": "<Tabs defaultValue=\"tab1\" variant=\"line\">\n  <TabsList>\n    <TabsTrigger value=\"tab1\">Overview</TabsTrigger>\n    <TabsTrigger value=\"tab2\">Settings</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"tab1\">Overview content</TabsContent>\n  <TabsContent value=\"tab2\">Settings content</TabsContent>\n</Tabs>"
+    "example": "<Tabs defaultValue=\"tab1\" variant=\"line\">\n  <TabsList>\n    <TabsTrigger value=\"tab1\">Overview</TabsTrigger>\n    <TabsTrigger value=\"tab2\">Settings</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"tab1\">Overview content</TabsContent>\n  <TabsContent value=\"tab2\">Settings content</TabsContent>\n</Tabs>",
+    "guidelines": [
+      "Use `line` variant for content-level tabs and `solid` variant for navigation-level tabs."
+    ]
   },
   {
     "name": "Text",
@@ -301,7 +383,12 @@
       {"name": "asChild", "type": "boolean", "default": "false", "description": "Radix Slot pattern"},
       {"name": "truncate", "type": "boolean", "default": "false", "description": "Ellipsis overflow"}
     ],
-    "example": "<Text size=\"lg\" weight=\"medium\">Body copy</Text>\n<Text as=\"span\" color=\"secondary\" size=\"sm\">Caption</Text>"
+    "example": "<Text size=\"lg\" weight=\"medium\">Body copy</Text>\n<Text as=\"span\" color=\"secondary\" size=\"sm\">Caption</Text>",
+    "guidelines": [
+      "Left-align text by default. Center-align only for hero headlines and short labels.",
+      "Use `display` or `statement` font families for emphasis only — never for navigation, form labels, or body text.",
+      "Supports `asChild` for custom element rendering."
+    ]
   },
   {
     "name": "Toast",
@@ -313,7 +400,11 @@
       {"name": "variant", "type": "'info' | 'success' | 'warning' | 'error'", "default": "'info'", "description": "Visual style and semantic meaning"},
       {"name": "label", "type": "string", "default": "'Close notification'", "description": "ToastClose: aria-label for close button"}
     ],
-    "example": "// Wrap app once:\n<ToastProvider><ToastViewport /></ToastProvider>\n\n// Then render:\n<Toast open={open} onOpenChange={setOpen} variant=\"success\">\n  <ToastTitle>Saved!</ToastTitle>\n  <ToastDescription>Your file has been saved.</ToastDescription>\n  <ToastClose />\n</Toast>"
+    "example": "// Wrap app once:\n<ToastProvider><ToastViewport /></ToastProvider>\n\n// Then render:\n<Toast open={open} onOpenChange={setOpen} variant=\"success\">\n  <ToastTitle>Saved!</ToastTitle>\n  <ToastDescription>Your file has been saved.</ToastDescription>\n  <ToastClose />\n</Toast>",
+    "guidelines": [
+      "Use appropriate `variant` to match the message type: `success` (nova), `error` (error), `warning` (solar), `info` (aurora).",
+      "Don't use Toast for persistent or critical messages — use Alert instead."
+    ]
   },
   {
     "name": "Tooltip",
@@ -325,6 +416,10 @@
       {"name": "side", "type": "'top' | 'right' | 'bottom' | 'left'", "default": "'top'", "description": "TooltipContent: preferred side"},
       {"name": "sideOffset", "type": "number", "default": "6", "description": "TooltipContent: distance from trigger"}
     ],
-    "example": "<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger asChild><Button>Hover me</Button></TooltipTrigger>\n    <TooltipContent side=\"top\">Helpful hint</TooltipContent>\n  </Tooltip>\n</TooltipProvider>"
+    "example": "<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger asChild><Button>Hover me</Button></TooltipTrigger>\n    <TooltipContent side=\"top\">Helpful hint</TooltipContent>\n  </Tooltip>\n</TooltipProvider>",
+    "guidelines": [
+      "Use for supplementary info only — never for essential content that the user must read.",
+      "Always wrap with `TooltipProvider` at the app root level."
+    ]
   }
 ]

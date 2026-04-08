@@ -130,8 +130,8 @@ const previews: Record<string, () => React.ReactNode> = {
   ),
   heading: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-      <Heading level={2} size="2xl">Serif (default)</Heading>
-      <Heading level={2} size="2xl" family="sans">Sans-serif</Heading>
+      <Heading level={2} size="2xl">Sans (default)</Heading>
+      <Heading level={2} size="2xl" family="serif">Serif</Heading>
       <Heading level={2} size="2xl" family="display">Display</Heading>
       <Heading level={2} size="2xl" family="mono">Monospace</Heading>
     </div>

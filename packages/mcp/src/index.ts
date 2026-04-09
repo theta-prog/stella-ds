@@ -51,7 +51,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     },
     {
       name: 'search',
-      description: 'Search Stella UI components by keyword across names, descriptions, categories, and prop names',
+      description: 'Search Stella UI components by keyword across names, descriptions, categories, prop names, and usage guidelines',
       inputSchema: {
         type: 'object' as const,
         properties: {

@@ -1,14 +1,37 @@
 {
   "name": "@stella-ds/mcp",
   "version": "0.1.0",
-  "description": "Stella UI MCP server for AI tools",
-  "private": true,
+  "description": "MCP server for Stella UI — gives AI agents access to components, tokens, guidelines, and page patterns",
   "type": "module",
   "main": "./dist/index.js",
+  "bin": {
+    "stella-ui-mcp": "./dist/index.js",
+    "mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "data"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "stella-ui",
+    "design-system",
+    "ai-tools"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theta-prog/stella-ds.git",
+    "directory": "packages/mcp"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0"

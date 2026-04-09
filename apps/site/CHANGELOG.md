@@ -1,5 +1,12 @@
 # @stella-ds/site
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [5259272]
+  - @stella-ds/react@0.3.1
+
 ## 0.1.1
 
 ### Patch Changes

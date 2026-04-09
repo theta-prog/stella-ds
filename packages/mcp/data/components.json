@@ -146,7 +146,7 @@
     "category": "overlay",
     "imports": ["Dialog", "DialogTrigger", "DialogContent", "DialogHeader", "DialogFooter", "DialogTitle", "DialogDescription", "DialogClose"],
     "props": [
-      {"name": "showClose", "type": "boolean", "default": "true", "description": "DialogContent: show default x close button"}
+      {"name": "showClose", "type": "boolean", "default": "true", "description": "DialogContent: show default close (\u00d7) button"}
     ],
     "example": "<Dialog>\n  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Are you sure?</DialogTitle>\n      <DialogDescription>This action cannot be undone.</DialogDescription>\n    </DialogHeader>\n    <DialogFooter><Button>Confirm</Button></DialogFooter>\n  </DialogContent>\n</Dialog>",
     "guidelines": [

@@ -263,7 +263,7 @@ Every interactive component must define all six states:
 |---|---|---|
 | **Rest** | Default appearance, no glow, base elevation | `void-surface` bg, `starlight-primary` text |
 | **Hover** | Subtle background shift, no elevation change | `void-muted` bg or `color-mix()` lighten 8% |
-| **Focus** | Branded focus ring via glow-cosmos | `--stella-shadow-focus-ring` |
+| **Focus** | Branded focus ring via glow-cosmos | `--stella-shadow-glow-cosmos` |
 | **Active / Pressed** | Slightly darker than hover | `color-mix()` darken 4%, optional `scale(0.98)` |
 | **Disabled** | Reduced opacity, no pointer events | `opacity: 0.4`, `cursor: not-allowed`, `aria-disabled` |
 | **Loading** | Spinner replaces or overlays content | `aria-busy="true"`, spinner with `aria-hidden="true"` |
@@ -282,7 +282,7 @@ These are enforced at the code level, not optional:
 
 | Rule | Implementation |
 |---|---|
-| Focus visibility | Always `:focus-visible`, never `:focus`. Use `focus-ring` shadow token. |
+| Focus visibility | Always `:focus-visible`, never `:focus`. Use cosmos-tinted `box-shadow` via `color-mix()`. |
 | Error association | `aria-describedby` links inputs to error messages. Use `React.useId()`. |
 | Invalid state | `aria-invalid` on inputs/checkboxes in error state |
 | Loading state | `aria-busy` on loading containers, `aria-hidden` on spinner SVGs |
@@ -293,7 +293,7 @@ These are enforced at the code level, not optional:
 ### Focus Ring Design
 
 ```css
-box-shadow: var(--stella-shadow-focus-ring);  /* 0 0 0 2px cosmos at 50% opacity */
+box-shadow: 0 0 0 3px color-mix(in srgb, var(--stella-color-cosmos-500) 20%, transparent);
 ```
 
 Never use `outline: none` without providing a visible replacement.
@@ -462,7 +462,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 ```
 Background:  var(--stella-color-void-surface)
 Border:      1px solid var(--stella-color-void-muted)
-Radius:      var(--stella-border-radius-lg)     /* 8px */
+Radius:      var(--stella-borderRadius-lg)      /* 8px */
 Padding:     var(--stella-spacing-6)            /* 24px */
 Shadow:      var(--stella-shadow-base)
 ```
@@ -939,7 +939,7 @@ When generating Stella-compatible UI, follow these constraints:
 ```
 Background:  var(--stella-color-void-surface)
 Border:      1px solid var(--stella-color-void-muted)
-Radius:      var(--stella-border-radius-lg)        /* 8px */
+Radius:      var(--stella-borderRadius-lg)        /* 8px */
 Padding:     var(--stella-spacing-6)               /* 24px */
 Shadow:      var(--stella-shadow-base)
 Text:        var(--stella-color-starlight-primary)
@@ -947,7 +947,7 @@ Subtitle:    var(--stella-color-starlight-secondary)
 
 Button inside the card:
   Variant:   solid (if primary CTA) or outline (if secondary)
-  Radius:    var(--stella-border-radius-md)        /* 6px -- concentric with card */
+  Radius:    var(--stella-borderRadius-md)        /* 6px -- concentric with card */
 ```
 
 ---

@@ -93,9 +93,9 @@ All CSS custom properties use the `--stella-` prefix.
 
 ### Other Token Categories
 - **Spacing:** `--stella-spacing-{0,1,2,3,4,6,8,12,16}` (4px base unit, e.g. spacing-4 = 1rem/16px)
-- **Border Radius:** `--stella-border-radius-{none,sm,base,md,lg,xl,2xl,full}`
-- **Shadow:** `--stella-shadow-{sm,base,md,lg}`, `--stella-shadow-focus-ring`, `--stella-shadow-glow-cosmos`
-- **Typography:** `--stella-font-family-{sans,serif,display,statement,mono}`, `--stella-font-size-{xs,sm,base,lg,xl,2xl,3xl,4xl,5xl}`
+- **Border Radius:** `--stella-borderRadius-{none,sm,base,md,lg,xl,2xl,full}`
+- **Shadow:** `--stella-shadow-{sm,base,md,lg}`, `--stella-shadow-glow-cosmos`
+- **Typography:** `--stella-typography-fontFamily-{sans,serif,display,statement,mono}`, `--stella-typography-fontSize-{xs,sm,base,lg,xl,2xl,3xl,4xl,5xl}`
 - **Transition:** `--stella-transition-{fast,base,slow}` (100ms, 200ms, 350ms)
 
 ## Usage Rules
@@ -113,7 +113,7 @@ All CSS custom properties use the `--stella-` prefix.
 **Don't:**
 - Combine cosmos + nebula + aurora in a single component (the "AI color triangle" looks generated)
 - Add glow shadows on non-interactive elements (glow = interaction energy only)
-- Use `backdrop-filter: blur()` on content cards (reserved for navigation chrome only)
+- Use `backdrop-filter: blur()` on content cards (reserved for navigation chrome and transient overlays only)
 - Use `transition: all` -- always list specific properties
 - Add glowing `text-shadow` on headings (strongest AI-generated signal)
 - Use more than one `solid` button per visual group (use `outline` or `ghost` for secondary actions)
@@ -123,7 +123,7 @@ All CSS custom properties use the `--stella-` prefix.
 
 ## Composition
 
-All components support `asChild` via `@radix-ui/react-slot` for polymorphic rendering. Components use `React.forwardRef` for DOM access. Variants and sizes follow: `variant="solid"`, `size="md"`.
+Components that support polymorphic composition expose `asChild` via `@radix-ui/react-slot` where applicable. Components use `React.forwardRef` for DOM access. Variants and sizes follow: `variant="solid"`, `size="md"`.
 
 ## Links
 

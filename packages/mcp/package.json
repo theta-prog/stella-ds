@@ -5,12 +5,16 @@
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
-    "stella-ui-mcp": "./dist/index.js"
+    "stella-ui-mcp": "./dist/index.js",
+    "mcp": "./dist/index.js"
   },
   "files": [
     "dist",
     "data"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

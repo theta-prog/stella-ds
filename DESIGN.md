@@ -13,7 +13,7 @@ This document defines the design philosophy, visual language, and decision-makin
 Stella's visual language draws from observational astronomy — not sci-fi, not fantasy, but the quiet precision of stargazing.
 
 - **Light sources are meaningful.** Elements that glow (focus rings, active states) represent energy and interaction. Surfaces at rest are dark and still.
-- **Depth comes from luminosity, not blur.** Brighter surfaces are closer to the viewer. Darker surfaces recede. Glass-morphism and `backdrop-filter` should be used sparingly and structurally — primarily in navigation chrome and transient overlay surfaces such as dialogs and modals, not as a general decorative effect.
+- **Depth comes from luminosity, not blur.** Brighter surfaces are closer to the viewer. Darker surfaces recede. Glass-morphism and `backdrop-filter` should be used sparingly and structurally — primarily in navigation chrome and transient overlay surfaces such as dialogs and modals, not as a general decorative effect. Never use blur on content cards or standard containers.
 - **The void is not empty.** Dark backgrounds (`void-base`, `void-surface`, `void-overlay`) form a deliberate hierarchy — each level serves a structural purpose.
 
 ### Five Pillars
@@ -122,7 +122,7 @@ Stella uses a constrained type scale. Display text and body text receive differe
 
 ### Spacing Scale
 
-Stella uses a `4px` base unit. The spacing scale is intentionally non-linear to create visual rhythm. Below is a common subset — the full token scale includes additional values (e.g., `spacing-5`, `spacing-10`, `spacing-20`, `spacing-24`, `spacing-32`).
+Stella uses a `4px` base unit. The spacing scale is intentionally non-linear to create visual rhythm. Below is a common subset — see the full token file for additional values (e.g., `spacing-5`, `spacing-10`, `spacing-20`, `spacing-24`, `spacing-32`).
 
 ```
 0    →  0        (collapse)
@@ -135,6 +135,8 @@ Stella uses a `4px` base unit. The spacing scale is intentionally non-linear to 
 12   →  3rem     (48px)   — Large: page section gaps
 16+  →  4rem+    (64px+)  — Hero: page-level vertical rhythm
 ```
+
+> **Note:** This is a common subset, not the full scale. Consult `packages/theme/src/tokens.json` for the complete list.
 
 ### Spacing Rules
 
@@ -183,12 +185,12 @@ Shadows in Stella represent physical elevation — higher elements cast larger s
 | `base` | Default cards, raised surfaces |
 | `md` | Dropdowns, popovers, floating elements |
 | `lg` | Dialogs, toasts, modals — highest content layer |
+| `focus-ring` | Dedicated focus treatment for keyboard and accessibility states |
 
 ### Glow Shadows
 
 Glow shadows (`glow-cosmos`, `glow-nebula`, `glow-aurora`) are **not decorative**. They represent interaction energy:
 
-- `focus-ring` → Dedicated focus treatment for keyboard and accessibility states
 - `glow-cosmos` → Active interactive elements and hero emphasis
 - `glow-cosmos-hover` → Hover state on primary elements (use sparingly)
 - `glow-nebula` / `glow-aurora` → Reserved for specific branded moments
@@ -233,20 +235,20 @@ These are enforced at the code level, not optional guidelines:
 
 | Rule | Implementation |
 |---|---|
-| Focus visibility | Always `:focus-visible`, never `:focus`. Use `focus-ring` shadow token. |
+| Focus visibility | Always `:focus-visible`, never `:focus`. Use cosmos-tinted `box-shadow` via `color-mix()`. |
 | Error association | `aria-describedby` links inputs to error messages. Use `React.useId()`. |
 | Invalid state | `aria-invalid` on inputs/checkboxes in error state. |
 | Loading state | `aria-busy` on loading containers, `aria-hidden` on spinner SVGs. |
 | Icon accessibility | All SVG icons get `aria-hidden="true"`. |
-| Color contrast | Text on `void-base`: minimum 4.5:1 (AA). `starlight-primary` on `void-base` exceeds AA contrast requirements. |
+| Color contrast | Text on `void-base`: minimum 4.5:1 (AA). `starlight-primary` on `void-base` well exceeds AA requirements. |
 | Motion safety | All animations respect `prefers-reduced-motion: reduce`. |
 
 ### Focus Ring Design
 
-The focus ring uses the dedicated `focus-ring` shadow token — a visible, branded indicator that doesn't rely on `outline` alone:
+The focus ring uses a visible, branded indicator that doesn't rely on `outline` alone — a `cosmos`-tinted ring via `color-mix()`:
 
 ```css
-box-shadow: var(--stella-shadow-focus-ring);  /* 0 0 0 2px cosmos at 50% opacity */
+box-shadow: 0 0 0 3px color-mix(in srgb, var(--stella-color-cosmos-500) 20%, transparent);
 ```
 
 Never use `outline: none` without providing a visible replacement.
@@ -292,7 +294,7 @@ Every interactive component must define all six states. This ensures a designed,
 |---|---|---|
 | **Rest** | Default appearance. No glow, base elevation. | `void-surface` bg, `starlight-primary` text |
 | **Hover** | Subtle background shift. No elevation change. | `void-muted` bg or `color-mix()` lighten 8% |
-| **Focus** | Branded focus ring via `glow-cosmos`. | `--stella-shadow-focus-ring` |
+| **Focus** | Branded focus ring — cosmos-tinted `box-shadow`. | `color-mix()` with `cosmos-500` |
 | **Active / Pressed** | Slightly darker than hover to confirm input. | `color-mix()` darken 4% from hover, scale(0.98) optional |
 | **Disabled** | Reduced opacity, no pointer events. | `opacity: 0.4`, `cursor: not-allowed`, `aria-disabled` |
 | **Loading** | Spinner replaces content or overlays. | `aria-busy="true"`, spinner with `aria-hidden="true"` |
@@ -387,7 +389,7 @@ Display text scales down on smaller viewports to prevent overflow:
 Before shipping a component, verify:
 
 - [ ] Uses `--stella-*` tokens — no hardcoded colors, sizes, or shadows
-- [ ] Supports `asChild` via Radix Slot where applicable
+- [ ] Supports `asChild` via Radix Slot where applicable (not required for all components, e.g. `Input`)
 - [ ] Uses `React.forwardRef`
 - [ ] Has `:focus-visible` styling with `focus-ring` token
 - [ ] All six interactive states defined (rest, hover, focus, active, disabled, loading)
@@ -410,7 +412,7 @@ Patterns that make Stella look generic or AI-generated. Reject these in code rev
 | Don't | Do Instead |
 |---|---|
 | Glow shadows on non-interactive elements | Glow = interaction energy only |
-| `backdrop-filter: blur()` on content cards | Solid `void-surface` backgrounds. Blur is for nav chrome and transient overlays only. |
+| `backdrop-filter: blur()` on content cards | Solid `void-surface` backgrounds. Blur is for nav chrome and transient overlays (e.g., Header, Dialog) only. |
 | Gradient mesh / floating orbs as default page or content backgrounds | Prefer solid backgrounds or a minimal 2-color gradient with fixed angle. Reserve Stella `Background` `gradient` treatments for hero/marketing surfaces only. |
 | `translateY(-2px)` + shadow increase on hover | Border-color change or subtle `background-color` shift |
 | Radial gradient "nebula" effects behind standard content areas | Remove, or constrain to hero/marketing sections with clear purpose. Stella `Background` `galaxy` is an exception for those decorative surfaces, not for everyday content containers. |
@@ -501,7 +503,7 @@ When generating Stella-compatible UI, follow these constraints:
 ```
 Background:  var(--stella-color-void-surface)
 Border:      1px solid var(--stella-color-void-muted)
-Radius:      var(--stella-border-radius-lg)        /* 8px */
+Radius:      var(--stella-borderRadius-lg)         /* 8px */
 Padding:     var(--stella-spacing-6)               /* 24px */
 Shadow:      var(--stella-shadow-base)
 Text:        var(--stella-color-starlight-primary)
@@ -509,7 +511,7 @@ Subtitle:    var(--stella-color-starlight-secondary)
 
 Button inside the card:
   Variant:   solid (if primary CTA) or outline (if secondary)
-  Radius:    var(--stella-border-radius-md)        /* 6px — concentric with card */
+  Radius:    var(--stella-borderRadius-md)         /* 6px — concentric with card */
 ```
 
 ---

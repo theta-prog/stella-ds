@@ -183,6 +183,9 @@ importers:
         specifier: workspace:*
         version: link:../theme
     devDependencies:
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.15
       '@types/react':
         specifier: ^19.2.14
         version: 19.2.14

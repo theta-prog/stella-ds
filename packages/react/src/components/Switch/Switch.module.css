@@ -86,7 +86,7 @@
   display: block;
   border-radius: 9999px;
   background-color: #ffffff;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+  box-shadow: var(--stella-shadow-sm, 0 1px 3px rgb(0 0 0 / 0.3));
   transition:
     transform  var(--stella-transition-fast, 150ms ease),
     box-shadow var(--stella-transition-fast, 150ms ease);

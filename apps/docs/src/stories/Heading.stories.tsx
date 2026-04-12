@@ -31,7 +31,7 @@ const meta = {
     family: {
       control: 'select',
       options: ['sans', 'serif', 'serif-print', 'display', 'statement', 'mono'],
-      table: { defaultValue: { summary: 'serif' } },
+      table: { defaultValue: { summary: 'sans' } },
     },
   },
 } satisfies Meta<typeof Heading>;

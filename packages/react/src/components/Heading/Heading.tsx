@@ -65,7 +65,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
       level = 2,
       size,
       weight = 'bold',
-      family = 'serif',
+      family = 'sans',
       color = 'primary',
       align = 'left',
       asChild = false,

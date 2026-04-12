@@ -55,6 +55,15 @@ export function search(query: string): SearchResult[] {
       relevance += matchingProps.length;
     }
 
+    const matchingGuidelines = (component.guidelines ?? []).some(
+      (g: string) => g.toLowerCase().includes(term)
+    );
+
+    if (matchingGuidelines) {
+      matchedFields.push('guidelines');
+      relevance += 1;
+    }
+
     if (relevance > 0) {
       results.push({
         name: component.name,

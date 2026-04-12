@@ -18,6 +18,7 @@ interface ComponentData extends ComponentSummary {
     description: string;
   }>;
   example: string;
+  guidelines: string[];
 }
 
 function loadComponents(): ComponentData[] {

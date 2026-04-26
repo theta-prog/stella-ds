@@ -214,7 +214,7 @@ export const Solid: Story = {
 export const SolidPalette: Story = {
   render: () => {
     return (
-      <div style={{ width: '880px', background: '#000', padding: '2px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+      <div style={{ width: '880px', background: 'var(--stella-color-void-base)', padding: '2px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
         {COLOR_FAMILIES.map((family) => (
           <div key={family} style={{ display: 'grid', gridTemplateColumns: `repeat(${COLOR_SCALES.length}, 1fr)`, gap: '2px' }}>
             {COLOR_SCALES.map((scale) => {
@@ -280,7 +280,7 @@ export const AllVariants: Story = {
           width: '800px',
           height: '500px',
           gap: '2px',
-          background: '#000',
+          background: 'var(--stella-color-void-base)',
         }}
       >
         {(

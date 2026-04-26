@@ -1,5 +1,13 @@
 # @stella-ds/react
 
+## 0.3.2
+
+### Patch Changes
+
+- 2b176c5: Fix Storybook infinite loading caused by addon-docs/addon-a11y variable name collision; update void color token fallbacks across Toast, Tooltip, Dialog, and Select components; fix Google Fonts render-blocking load; align pnpm engine constraint with packageManager field
+- Updated dependencies [2b176c5]
+  - @stella-ds/theme@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes

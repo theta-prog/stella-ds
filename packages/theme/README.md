@@ -22,6 +22,15 @@ import '@stella-ds/theme/css'
 
 Injects all `--stella-*` CSS custom properties into `:root`.
 
+The compiled CSS also includes official scoped themes:
+
+```tsx
+<div data-theme="dark">...</div>
+<div data-theme="light">...</div>
+```
+
+`light` overrides the surface, text, accent, and shadow tokens; `dark` matches the default root token set.
+
 ### JavaScript / TypeScript
 
 ```ts

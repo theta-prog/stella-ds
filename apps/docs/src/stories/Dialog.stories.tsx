@@ -38,9 +38,11 @@ export const Basic: Story = {
         </DialogTrigger>
         <DialogContent>
           <DialogTitle>{tr.dialog.title_basic}</DialogTitle>
-          <p style={{ margin: '1rem 0 0', fontSize: '0.875rem', color: 'var(--stella-color-text-secondary)' }}>
+          <DialogDescription
+            style={{ margin: '1rem 0 0', fontSize: '0.875rem', color: 'var(--stella-color-text-secondary)' }}
+          >
             {tr.dialog.desc_basic}
-          </p>
+          </DialogDescription>
         </DialogContent>
       </Dialog>
     );

@@ -20,6 +20,33 @@ Import the design tokens CSS in your app entry point:
 import '@stella-ds/theme/css'
 ```
 
+The compiled theme CSS includes official `light` and `dark` scopes:
+
+```tsx
+<section data-theme="light">
+  <Card>
+    <Text color="secondary">Scoped light theme</Text>
+  </Card>
+</section>
+```
+
+For scoped theming with portal-based components such as `Dialog`, use `ThemeProvider`:
+
+```tsx
+import { ThemeProvider, Dialog, DialogTrigger, DialogContent, Button } from '@stella-ds/react'
+
+<ThemeProvider theme="light">
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button variant="outline">Open</Button>
+    </DialogTrigger>
+    <DialogContent>
+      Dialog content keeps the same theme scope.
+    </DialogContent>
+  </Dialog>
+</ThemeProvider>
+```
+
 ## Usage
 
 ```tsx

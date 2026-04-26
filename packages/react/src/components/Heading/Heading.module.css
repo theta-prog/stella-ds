@@ -11,6 +11,11 @@
   text-wrap: balance;
 }
 
+/* --- Japanese letter-spacing --- */
+.base:lang(ja) {
+  letter-spacing: 0.1em;
+}
+
 /* --- Font families --- */
 .family-sans {
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);

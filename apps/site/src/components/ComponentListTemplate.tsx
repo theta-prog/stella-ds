@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Badge, Card, CardContent, Heading, Text } from '@stella-ds/react'
 import { components } from '@/data/components'
 import { componentDescriptionsJa } from '@/data/components-ja'
@@ -97,7 +98,7 @@ export function ComponentListTemplate({ locale }: Props) {
               {catComponents.map((comp) => {
                 const description = isJa ? (componentDescriptionsJa[comp.slug] ?? comp.description) : comp.description
                 return (
-                  <a
+                  <Link
                     key={comp.slug}
                     href={`${base}/components/${comp.slug}`}
                     style={{ display: 'block', textDecoration: 'none' }}
@@ -125,7 +126,7 @@ export function ComponentListTemplate({ locale }: Props) {
                         </div>
                       </CardContent>
                     </Card>
-                  </a>
+                  </Link>
                 )
               })}
             </div>

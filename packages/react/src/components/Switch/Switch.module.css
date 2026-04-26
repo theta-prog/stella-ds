@@ -85,7 +85,7 @@
 .thumb {
   display: block;
   border-radius: 9999px;
-  background-color: #ffffff;
+  background-color: var(--stella-color-starlight-inverse, #ffffff);
   box-shadow: var(--stella-shadow-sm, 0 1px 3px rgb(0 0 0 / 0.3));
   transition:
     transform  var(--stella-transition-fast, 150ms ease),

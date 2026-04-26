@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Badge, Button, Card, CardContent, Heading, Text } from '@stella-ds/react'
 
 type FeatureColor = 'cosmos' | 'nebula' | 'aurora' | 'nova'
@@ -122,10 +123,10 @@ export function HomeTemplate({ locale }: Props) {
         </Text>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Button variant="solid" size="lg" asChild>
-            <a href={`${base}/getting-started`}>{c.cta1}</a>
+            <Link href={`${base}/getting-started`}>{c.cta1}</Link>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <a href={`${base}/components`}>{c.cta2}</a>
+            <Link href={`${base}/components`}>{c.cta2}</Link>
           </Button>
         </div>
       </section>

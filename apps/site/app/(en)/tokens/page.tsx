@@ -1,0 +1,287 @@
+import type { Metadata } from 'next'
+import { tokens } from '@stella-ds/theme'
+export const metadata: Metadata = { title: 'Design Tokens' }
+
+type TypographyTokenGroups = {
+  fontFamily: Record<string, string>
+  fontSize: Record<string, string>
+  fontWeight: Record<string, string>
+}
+
+const typographySource = tokens.typography as TypographyTokenGroups
+
+const colorFamilies = [
+  { name: 'cosmos', label: 'Cosmos', description: 'Primary / Interactive — Indigo' },
+  { name: 'nebula', label: 'Nebula', description: 'Accent — Purple' },
+  { name: 'aurora', label: 'Aurora', description: 'Accent — Cyan' },
+  { name: 'nova', label: 'Nova', description: 'Success / Positive — Emerald' },
+]
+
+const scales = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+
+const voidKeys = [
+  { key: 'base', label: 'base', description: 'Darkest background' },
+  { key: 'surface', label: 'surface', description: 'Card / panel surface' },
+  { key: 'overlay', label: 'overlay', description: 'Elevated overlays' },
+  { key: 'muted', label: 'muted', description: 'Subtle / muted background' },
+]
+
+const starlightKeys = [
+  { key: 'primary', label: 'primary', description: 'Primary text' },
+  { key: 'secondary', label: 'secondary', description: 'Secondary / muted text' },
+  { key: 'disabled', label: 'disabled', description: 'Disabled state text' },
+]
+
+const spacingTokens = [
+  { key: '1', value: '4px' }, { key: '2', value: '8px' }, { key: '3', value: '12px' },
+  { key: '4', value: '16px' }, { key: '6', value: '24px' }, { key: '8', value: '32px' },
+  { key: '12', value: '48px' }, { key: '16', value: '64px' }, { key: '20', value: '80px' },
+  { key: '24', value: '96px' },
+]
+
+const typographyTokens = [
+  { name: 'fontFamily-sans', value: typographySource.fontFamily.sans },
+  { name: 'fontFamily-display', value: typographySource.fontFamily.display },
+  { name: 'fontFamily-mono', value: typographySource.fontFamily.mono },
+  { name: 'fontSize-xs', value: `${typographySource.fontSize.xs} / 12px` },
+  { name: 'fontSize-sm', value: `${typographySource.fontSize.sm} / 14px` },
+  { name: 'fontSize-base', value: `${typographySource.fontSize.base} / 16px` },
+  { name: 'fontSize-lg', value: `${typographySource.fontSize.lg} / 18px` },
+  { name: 'fontSize-xl', value: `${typographySource.fontSize.xl} / 20px` },
+  { name: 'fontSize-2xl', value: `${typographySource.fontSize['2xl']} / 24px` },
+  { name: 'fontSize-3xl', value: `${typographySource.fontSize['3xl']} / 30px` },
+  { name: 'fontSize-4xl', value: `${typographySource.fontSize['4xl']} / 36px` },
+  { name: 'fontSize-5xl', value: `${typographySource.fontSize['5xl']} / 48px` },
+  { name: 'fontWeight-light', value: typographySource.fontWeight.light },
+  { name: 'fontWeight-regular', value: typographySource.fontWeight.regular },
+  { name: 'fontWeight-medium', value: typographySource.fontWeight.medium },
+  { name: 'fontWeight-semibold', value: typographySource.fontWeight.semibold },
+  { name: 'fontWeight-bold', value: typographySource.fontWeight.bold },
+]
+
+const sectionHeading: React.CSSProperties = {
+  fontSize: '1.5rem',
+  fontWeight: 700,
+  marginBottom: '0.75rem',
+  color: 'var(--stella-color-starlight-primary)',
+  paddingBottom: '0.5rem',
+  borderBottom: '1px solid var(--stella-color-void-muted)',
+}
+
+const mono: React.CSSProperties = {
+  fontFamily: 'ui-monospace, SFMono-Regular, monospace',
+  fontSize: '0.75rem',
+}
+
+const codeBlock: React.CSSProperties = {
+  background: 'var(--stella-color-void-surface)',
+  border: '1px solid var(--stella-color-void-muted)',
+  padding: '1.25rem',
+  borderRadius: '0.5rem',
+  overflow: 'auto',
+  fontSize: '0.875rem',
+  lineHeight: 1.7,
+  margin: 0,
+}
+
+const inlineCode: React.CSSProperties = {
+  ...mono,
+  background: 'var(--stella-color-void-overlay)',
+  padding: '0.1rem 0.4rem',
+  borderRadius: '0.25rem',
+  color: 'var(--stella-color-aurora-300)',
+}
+
+export default function TokensPage() {
+  return (
+    <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '4rem 2rem' }}>
+      {/* Page header */}
+      <div style={{ marginBottom: '3.5rem' }}>
+        <div style={{ color: 'var(--stella-color-cosmos-400)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>Docs</div>
+        <h1 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '1rem', background: 'linear-gradient(135deg, var(--stella-color-cosmos-400), var(--stella-color-nebula-400))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          Design Tokens
+        </h1>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '1.05rem', lineHeight: 1.6 }}>
+          All design tokens use the <code style={inlineCode}>--stella-*</code> CSS custom property prefix.
+          The source of truth is <code style={inlineCode}>packages/theme/src/tokens.json</code>.
+        </p>
+      </div>
+
+      {/* Usage */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={sectionHeading}>How to Use Tokens</h2>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>After importing the theme CSS, reference tokens in any stylesheet:</p>
+        <pre style={codeBlock}>
+          <code style={{ ...mono, color: 'var(--stella-color-starlight-primary)', fontSize: '0.875rem' }}>{`.my-button {
+  background: var(--stella-color-cosmos-500);
+  color: var(--stella-color-starlight-primary);
+  border-radius: var(--stella-borderRadius-md);
+  padding: var(--stella-spacing-3) var(--stella-spacing-6);
+  font-size: var(--stella-typography-fontSize-sm);
+  transition: background var(--stella-transition-fast);
+}`}</code>
+        </pre>
+      </section>
+
+      {/* Color palettes */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={sectionHeading}>Color Palettes</h2>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '2rem', fontSize: '0.9rem' }}>
+          Named after celestial bodies. Each palette has 11 stops (50–950) following a perceptual lightness scale.
+        </p>
+
+        {colorFamilies.map((family) => (
+          <div key={family.name} style={{ marginBottom: '2rem' }}>
+            <div style={{ marginBottom: '0.75rem' }}>
+              <span style={{ fontWeight: 700, color: 'var(--stella-color-starlight-primary)', marginRight: '0.5rem' }}>{family.label}</span>
+              <span style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.85rem' }}>{family.description}</span>
+            </div>
+            <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+              {scales.map((scale) => (
+                <div key={scale} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+                  <div
+                    style={{ width: '56px', height: '48px', borderRadius: '0.375rem', background: `var(--stella-color-${family.name}-${scale})`, border: '1px solid var(--stella-color-void-muted)' }}
+                    title={`--stella-color-${family.name}-${scale}`}
+                  />
+                  <span style={{ ...mono, fontSize: '0.65rem', color: 'var(--stella-color-starlight-secondary)' }}>{scale}</span>
+                </div>
+              ))}
+            </div>
+            <p style={{ ...mono, color: 'var(--stella-color-starlight-secondary)', fontSize: '0.75rem', marginTop: '0.5rem' }}>
+              {'--stella-color-' + family.name + '-[50–950]'}
+            </p>
+          </div>
+        ))}
+      </section>
+
+      {/* Void (backgrounds) */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={sectionHeading}>Void — Backgrounds</h2>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>Semantic background tokens for layered dark surfaces.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.75rem' }}>
+          {voidKeys.map((item) => (
+            <div key={item.key} style={{ borderRadius: '0.5rem', overflow: 'hidden', border: '1px solid var(--stella-color-void-muted)' }}>
+              <div
+                style={{ height: '60px', background: `var(--stella-color-void-${item.key})`, borderBottom: '1px solid var(--stella-color-void-muted)' }}
+                title={`--stella-color-void-${item.key}`}
+              />
+              <div style={{ padding: '0.625rem 0.75rem', background: 'var(--stella-color-void-surface)' }}>
+                <div style={{ ...mono, color: 'var(--stella-color-cosmos-400)', fontSize: '0.75rem' }}>{item.label}</div>
+                <div style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.description}</div>
+                <div style={{ ...mono, color: 'var(--stella-color-starlight-disabled)', fontSize: '0.65rem', marginTop: '0.25rem' }}>
+                  {'--stella-color-void-' + item.key}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Starlight (text) */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={sectionHeading}>Starlight — Text</h2>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>Semantic text color tokens for accessible type hierarchy.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.75rem' }}>
+          {starlightKeys.map((item) => (
+            <div key={item.key} style={{ background: 'var(--stella-color-void-surface)', borderRadius: '0.5rem', border: '1px solid var(--stella-color-void-muted)', padding: '1rem' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 700, color: `var(--stella-color-starlight-${item.key})`, marginBottom: '0.5rem' }}>
+                Aa
+              </div>
+              <div style={{ ...mono, color: 'var(--stella-color-cosmos-400)', fontSize: '0.75rem' }}>{item.label}</div>
+              <div style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.description}</div>
+              <div style={{ ...mono, color: 'var(--stella-color-starlight-disabled)', fontSize: '0.65rem', marginTop: '0.375rem' }}>
+                {'--stella-color-starlight-' + item.key}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Typography */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={sectionHeading}>Typography</h2>
+        <div style={{ overflowX: 'auto', borderRadius: '0.5rem', border: '1px solid var(--stella-color-void-muted)' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
+            <thead>
+              <tr style={{ background: 'var(--stella-color-void-base)' }}>
+                {['Token', 'Value'].map((h) => (
+                  <th key={h} style={{ textAlign: 'left', padding: '0.75rem 1rem', color: 'var(--stella-color-starlight-secondary)', fontWeight: 600, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid var(--stella-color-void-muted)' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {typographyTokens.map((t, i) => (
+                <tr key={t.name} style={{ borderBottom: i < typographyTokens.length - 1 ? '1px solid var(--stella-color-void-muted)' : 'none' }}>
+                  <td style={{ padding: '0.625rem 1rem', ...mono, color: 'var(--stella-color-cosmos-400)', fontSize: '0.8rem' }}>
+                    {'--stella-typography-' + t.name}
+                  </td>
+                  <td style={{ padding: '0.625rem 1rem', color: 'var(--stella-color-starlight-secondary)', fontSize: '0.875rem' }}>{t.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Spacing */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={sectionHeading}>Spacing</h2>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>
+          4px base grid. Reference as <code style={inlineCode}>{'--stella-spacing-{key}'}</code>.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+          {spacingTokens.map((t) => (
+            <div key={t.key} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span style={{ ...mono, color: 'var(--stella-color-starlight-secondary)', fontSize: '0.8rem', minWidth: '180px' }}>
+                {'--stella-spacing-' + t.key}
+              </span>
+              <span style={{ ...mono, color: 'var(--stella-color-starlight-secondary)', fontSize: '0.8rem', minWidth: '48px' }}>{t.value}</span>
+              <div
+                style={{ height: '8px', background: 'var(--stella-color-cosmos-500)', borderRadius: '2px', width: `var(--stella-spacing-${t.key}, ${t.value})` }}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Border radius */}
+      <section style={{ marginBottom: '3rem' }}>
+        <h2 style={sectionHeading}>Border Radius</h2>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>
+          Reference as <code style={inlineCode}>{'--stella-borderRadius-{key}'}</code>.
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+          {[
+            { key: 'sm', size: 48 },
+            { key: 'md', size: 56 },
+            { key: 'lg', size: 64 },
+            { key: 'xl', size: 72 },
+            { key: 'full', size: 64 },
+          ].map((r) => (
+            <div key={r.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+              <div
+                style={{ width: r.size, height: r.size, background: 'color-mix(in srgb, var(--stella-color-cosmos-500) 20%, transparent)', border: '1px solid color-mix(in srgb, var(--stella-color-cosmos-500) 40%, transparent)', borderRadius: `var(--stella-borderRadius-${r.key})` }}
+              />
+              <span style={{ ...mono, fontSize: '0.7rem', color: 'var(--stella-color-starlight-secondary)' }}>{r.key}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Full reference */}
+      <section>
+        <h2 style={sectionHeading}>Full Token Reference</h2>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1rem', fontSize: '0.9rem' }}>
+          The complete token set is defined in the package source. Use the exported utilities for programmatic access:
+        </p>
+        <pre style={codeBlock}>
+          <code style={{ ...mono, color: 'var(--stella-color-starlight-primary)', fontSize: '0.875rem' }}>{`import { tokens, cssVariables, generateCSSVarsString } from '@stella-ds/theme'
+
+// tokens — nested object: tokens.color.cosmos[500]
+// cssVariables — flat map: { '--stella-color-cosmos-500': '#4f46e5', ... }
+// generateCSSVarsString() — returns a :root { ... } CSS string`}</code>
+        </pre>
+      </section>
+    </div>
+  )
+}

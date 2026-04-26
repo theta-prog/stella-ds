@@ -6,6 +6,8 @@
  * Uses CSS Modules with Stella design tokens.
  */
 
+'use client';
+
 import * as React from 'react';
 import styles from './Avatar.module.css';
 
@@ -75,7 +77,13 @@ export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
       .join(' ');
 
     return (
-      <span ref={ref} role="img" aria-label={alt} className={cls} {...props}>
+      <span
+        ref={ref}
+        role={showImage ? undefined : 'img'}
+        aria-label={showImage ? undefined : alt}
+        className={cls}
+        {...props}
+      >
         {showImage ? (
           <img
             src={src}

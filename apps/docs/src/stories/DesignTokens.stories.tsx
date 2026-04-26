@@ -121,7 +121,7 @@ export const Typography: Story = {
         {[
           {
             variable: '--stella-typography-fontFamily-sans',
-            label: 'Montserrat, Zen Kaku Gothic New, system-ui, sans-serif',
+            label: 'Inter, Zen Kaku Gothic New, system-ui, sans-serif',
             sample: 'Stella UI — ステラ',
             note: null,
           },
@@ -139,7 +139,7 @@ export const Typography: Story = {
           },
           {
             variable: '--stella-typography-fontFamily-display',
-            label: 'Nexa Rust Script B Shadow 2, cursive',
+            label: 'Plus Jakarta Sans, Zen Kaku Gothic New, system-ui, sans-serif',
             sample: 'Stella UI — ステラ',
             note: null,
           },
@@ -180,11 +180,61 @@ export const Typography: Story = {
           ['2xl', '1.5rem',   '24px'],
           ['3xl', '1.875rem', '30px'],
           ['4xl', '2.25rem',  '36px'],
+          ['5xl', '3rem',     '48px'],
         ].map(([name, rem, px]) => (
           <div key={name} style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', padding: '0.5rem 0', borderBottom: '1px solid var(--stella-color-void-muted)' }}>
             <span style={{ fontSize: `var(--stella-typography-fontSize-${name})`, color: 'var(--stella-color-starlight-primary)', lineHeight: 1.2 }}>Aa</span>
             <code style={{ fontSize: '0.75rem', color: 'var(--stella-color-cosmos-400)', minWidth: 280 }}>{`--stella-typography-fontSize-${name}`}</code>
             <span style={{ fontSize: '0.75rem', color: 'var(--stella-color-starlight-secondary)' }}>{rem} / {px}</span>
+          </div>
+        ))}
+      </Section>
+
+      <Section title="Font Weights">
+        {[
+          ['light',    '300'],
+          ['regular',  '400'],
+          ['medium',   '500'],
+          ['semibold', '600'],
+          ['bold',     '700'],
+        ].map(([name, value]) => (
+          <div key={name} style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', padding: '0.5rem 0', borderBottom: '1px solid var(--stella-color-void-muted)' }}>
+            <span style={{ fontWeight: `var(--stella-typography-fontWeight-${name})` as React.CSSProperties['fontWeight'], fontSize: '1.25rem', color: 'var(--stella-color-starlight-primary)', minWidth: 120 }}>Stella UI</span>
+            <code style={{ fontSize: '0.75rem', color: 'var(--stella-color-cosmos-400)', minWidth: 280 }}>{`--stella-typography-fontWeight-${name}`}</code>
+            <span style={{ fontSize: '0.75rem', color: 'var(--stella-color-starlight-secondary)' }}>{value}</span>
+          </div>
+        ))}
+      </Section>
+
+      <Section title="Line Heights">
+        {[
+          ['tight',   '1.25'],
+          ['normal',  '1.5'],
+          ['relaxed', '1.75'],
+          ['display', '1.1'],
+        ].map(([name, value]) => (
+          <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '0.5rem 0', borderBottom: '1px solid var(--stella-color-void-muted)' }}>
+            <div style={{ lineHeight: `var(--stella-typography-lineHeight-${name})`, fontSize: '0.875rem', color: 'var(--stella-color-starlight-primary)', width: 120, flexShrink: 0 }}>
+              The quick brown fox<br />jumps over the lazy dog
+            </div>
+            <code style={{ fontSize: '0.75rem', color: 'var(--stella-color-cosmos-400)', minWidth: 280 }}>{`--stella-typography-lineHeight-${name}`}</code>
+            <span style={{ fontSize: '0.75rem', color: 'var(--stella-color-starlight-secondary)' }}>{value}</span>
+          </div>
+        ))}
+      </Section>
+
+      <Section title="Letter Spacing">
+        {[
+          ['tighter', '-0.03em'],
+          ['tight',   '-0.015em'],
+          ['normal',  '0'],
+          ['wide',    '0.025em'],
+          ['wider',   '0.05em'],
+        ].map(([name, value]) => (
+          <div key={name} style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', padding: '0.5rem 0', borderBottom: '1px solid var(--stella-color-void-muted)' }}>
+            <span style={{ letterSpacing: `var(--stella-typography-letterSpacing-${name})`, fontSize: '1rem', color: 'var(--stella-color-starlight-primary)', minWidth: 120 }}>Stella UI</span>
+            <code style={{ fontSize: '0.75rem', color: 'var(--stella-color-cosmos-400)', minWidth: 280 }}>{`--stella-typography-letterSpacing-${name}`}</code>
+            <span style={{ fontSize: '0.75rem', color: 'var(--stella-color-starlight-secondary)' }}>{value}</span>
           </div>
         ))}
       </Section>

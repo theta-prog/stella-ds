@@ -269,7 +269,6 @@ export interface BackgroundTranslations {
   story_starfield: string;
   story_galaxy: string;
   story_milkyway: string;
-  story_gradient: string;
   story_solid: string;
   story_particles: string;
 }
@@ -690,11 +689,10 @@ const en: Translations = {
 
   background: {
     componentDescription:
-      'Decorative full-bleed background layer. Supports starfield, gradient, and particle variants.',
+      'Decorative full-bleed background layer. Supports starfield, galaxy, milkyway, and solid variants.',
     story_starfield: 'Starfield',
     story_galaxy: 'Galaxy',
     story_milkyway: 'Milky Way',
-    story_gradient: 'Gradient',
     story_solid: 'Solid',
     story_particles: 'Particles',
   },
@@ -1096,11 +1094,10 @@ const ja: Translations = {
 
   background: {
     componentDescription:
-      '装飾用の全幅背景レイヤー。スターフィールド・グラデーション・パーティクルのバリアントに対応します。',
+      '装飾用の全幅背景レイヤー。スターフィールド・ギャラクシー・天の川・ソリッドのバリアントに対応します。',
     story_starfield: 'スターフィールド',
     story_galaxy: 'ギャラクシー',
     story_milkyway: '天の川',
-    story_gradient: 'グラデーション',
     story_solid: 'ソリッド',
     story_particles: 'パーティクル',
   },

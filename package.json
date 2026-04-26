@@ -9,8 +9,8 @@
     "storybook": "pnpm --filter @stella-ds/docs storybook",
     "build-storybook": "pnpm --filter @stella-ds/docs build-storybook",
     "typecheck": "pnpm -r typecheck",
-    "lint": "npx eslint packages/react/src apps/docs/src",
-    "lint:fix": "npx eslint packages/react/src apps/docs/src --fix",
+    "lint": "npx eslint packages/react/src apps/docs/src apps/site/src apps/site/app",
+    "lint:fix": "npx eslint packages/react/src apps/docs/src apps/site/src apps/site/app --fix",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish"

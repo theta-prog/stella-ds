@@ -43,7 +43,7 @@
 .root[data-state='indeterminate'] {
   background-color: var(--stella-color-cosmos-600, #4845e2);
   border-color: var(--stella-color-cosmos-600, #4845e2);
-  color: #ffffff;
+  color: var(--stella-color-starlight-inverse, #ffffff);
 }
 
 .root[data-state='checked']:hover:not([disabled]),
@@ -81,7 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: var(--stella-color-starlight-inverse, #ffffff);
 }
 
 /* --- Label --- */

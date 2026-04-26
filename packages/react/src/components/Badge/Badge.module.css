@@ -44,42 +44,42 @@
 /* primary = cosmos */
 .variant-solid.color-primary {
   background-color: var(--stella-color-cosmos-600, #4845e2);
-  color: var(--stella-color-starlight-primary, #f0f0f5);
+  color: var(--stella-color-starlight-inverse, #ffffff);
   border-color: transparent;
 }
 
 /* success = nova */
 .variant-solid.color-success {
   background-color: var(--stella-color-nova-600, #059669);
-  color: #ffffff;
+  color: var(--stella-color-starlight-inverse, #ffffff);
   border-color: transparent;
 }
 
 /* warning */
 .variant-solid.color-warning {
   background-color: var(--stella-color-warning-600, #d97706);
-  color: #ffffff;
+  color: var(--stella-color-starlight-inverse, #ffffff);
   border-color: transparent;
 }
 
 /* error */
 .variant-solid.color-error {
   background-color: var(--stella-color-error-600, #dc2626);
-  color: #ffffff;
+  color: var(--stella-color-starlight-inverse, #ffffff);
   border-color: transparent;
 }
 
 /* nebula */
 .variant-solid.color-nebula {
   background-color: var(--stella-color-nebula-600, #7c3aed);
-  color: #ffffff;
+  color: var(--stella-color-starlight-inverse, #ffffff);
   border-color: transparent;
 }
 
 /* aurora */
 .variant-solid.color-aurora {
   background-color: var(--stella-color-aurora-600, #0891b2);
-  color: #ffffff;
+  color: var(--stella-color-starlight-inverse, #ffffff);
   border-color: transparent;
 }
 

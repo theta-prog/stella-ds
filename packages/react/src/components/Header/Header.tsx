@@ -5,6 +5,8 @@
  * Compound component pattern: Header, HeaderBrand, HeaderNav, HeaderActions.
  */
 
+'use client';
+
 import * as React from 'react';
 import styles from './Header.module.css';
 
@@ -25,17 +27,24 @@ export type HeaderBrandProps = React.HTMLAttributes<HTMLDivElement>;
 export type HeaderNavProps = React.HTMLAttributes<HTMLElement>;
 export type HeaderActionsProps = React.HTMLAttributes<HTMLDivElement>;
 
-// ----------------------------------------------------------------
-// Internal context for mobile panel
-// ----------------------------------------------------------------
+function findHeaderNavChildren(node: React.ReactNode): React.ReactNode | null {
+  for (const child of React.Children.toArray(node)) {
+    if (!React.isValidElement<{ children?: React.ReactNode }>(child)) {
+      continue;
+    }
 
-interface HeaderContextValue {
-  mobileOpen: boolean;
-  navChildren: React.ReactNode;
-  setNavChildren: (children: React.ReactNode) => void;
+    if (child.type === HeaderNav) {
+      return child.props.children ?? null;
+    }
+
+    const nestedMatch = findHeaderNavChildren(child.props.children);
+    if (nestedMatch != null) {
+      return nestedMatch;
+    }
+  }
+
+  return null;
 }
-
-const HeaderContext = React.createContext<HeaderContextValue | null>(null);
 
 // ----------------------------------------------------------------
 // Header (Root)
@@ -47,7 +56,8 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
     ref,
   ) => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [navChildren, setNavChildren] = React.useState<React.ReactNode>(null);
+
+    const navChildren = React.useMemo(() => findHeaderNavChildren(children), [children]);
 
     const cls = [
       styles.header,
@@ -61,34 +71,32 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
     const mobilePanelContent = mobileNav ?? navChildren;
 
     return (
-      <HeaderContext.Provider value={{ mobileOpen, navChildren, setNavChildren }}>
-        <header
-          ref={ref}
-          className={cls}
-          data-mobile-open={mobileOpen ? 'true' : undefined}
-          {...props}
-        >
-          <div className={styles.headerBar}>
-            {children}
-            {mobilePanelContent != null && (
-              <button
-                type="button"
-                className={styles.hamburger}
-                aria-label="Toggle navigation"
-                aria-expanded={mobileOpen}
-                onClick={() => setMobileOpen((prev) => !prev)}
-              >
-                <span className={styles.hamburgerLine} />
-                <span className={styles.hamburgerLine} />
-                <span className={styles.hamburgerLine} />
-              </button>
-            )}
-          </div>
-          {mobilePanelContent != null && mobileOpen && (
-            <div className={styles.mobilePanel}>{mobilePanelContent}</div>
+      <header
+        ref={ref}
+        className={cls}
+        data-mobile-open={mobileOpen ? 'true' : undefined}
+        {...props}
+      >
+        <div className={styles.headerBar}>
+          {children}
+          {mobilePanelContent != null && (
+            <button
+              type="button"
+              className={styles.hamburger}
+              aria-label="Toggle navigation"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((prev) => !prev)}
+            >
+              <span className={styles.hamburgerLine} />
+              <span className={styles.hamburgerLine} />
+              <span className={styles.hamburgerLine} />
+            </button>
           )}
-        </header>
-      </HeaderContext.Provider>
+        </div>
+        {mobilePanelContent != null && mobileOpen && (
+          <div className={styles.mobilePanel}>{mobilePanelContent}</div>
+        )}
+      </header>
     );
   },
 );
@@ -118,25 +126,15 @@ HeaderBrand.displayName = 'HeaderBrand';
 // ----------------------------------------------------------------
 
 export const HeaderNav = React.forwardRef<HTMLElement, HeaderNavProps>(
-  ({ className, children, ...props }, ref) => {
-    const ctx = React.useContext(HeaderContext);
-
-    React.useEffect(() => {
-      if (ctx) {
-        ctx.setNavChildren(children);
-      }
-    });
-
-    return (
-      <nav
-        ref={ref}
-        className={[styles.nav, className ?? ''].filter(Boolean).join(' ')}
-        {...props}
-      >
-        {children}
-      </nav>
-    );
-  },
+  ({ className, children, ...props }, ref) => (
+    <nav
+      ref={ref}
+      className={[styles.nav, className ?? ''].filter(Boolean).join(' ')}
+      {...props}
+    >
+      {children}
+    </nav>
+  ),
 );
 
 HeaderNav.displayName = 'HeaderNav';

@@ -1,7 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import type { ThemeName } from '@stella-ds/theme';
+
+type ThemeName = 'dark' | 'light';
 
 interface ThemeContextValue {
   theme: ThemeName;

@@ -1,14 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
 import { Button } from '@stella-ds/react'
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  locale: 'en' | 'ja'
+}
+
+export function ThemeToggle({ locale }: ThemeToggleProps) {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [mounted, setMounted] = useState(false)
-  const pathname = usePathname()
-  const isJa = pathname.startsWith('/ja')
+  const isJa = locale === 'ja'
 
   useEffect(() => {
     const saved = localStorage.getItem('stella-theme')

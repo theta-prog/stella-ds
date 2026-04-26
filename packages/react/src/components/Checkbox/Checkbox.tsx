@@ -5,6 +5,8 @@
  * Uses CSS Modules with Stella design tokens.
  */
 
+'use client';
+
 import * as React from 'react';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import styles from './Checkbox.module.css';

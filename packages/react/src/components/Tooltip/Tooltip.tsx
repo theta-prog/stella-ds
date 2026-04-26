@@ -6,6 +6,8 @@
  * directly; TooltipContent adds the dark bubble with animations.
  */
 
+'use client';
+
 import * as React from 'react';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import styles from './Tooltip.module.css';

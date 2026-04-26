@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
   images: { unoptimized: true },
+  experimental: {
+    devtoolSegmentExplorer: false,
+  },
   transpilePackages: ['@stella-ds/react'],
   webpack(config) {
     config.resolve.alias['@stella-ds/react'] = path.resolve(

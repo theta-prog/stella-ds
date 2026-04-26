@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Badge, Card, CardContent, Heading, Text } from '@stella-ds/react'
 
 const content = {
@@ -333,10 +334,10 @@ export default function App({ Component, pageProps }: AppProps) {
           {c.nextSteps.links.map((link) => (
             <Card key={link.href} hoverable>
               <CardContent>
-                <a href={link.href} style={{ textDecoration: 'none', display: 'block' }}>
+                <Link href={link.href} style={{ textDecoration: 'none', display: 'block' }}>
                   <Text weight="bold" color="primary" style={{ marginBottom: '0.375rem', display: 'block' }}>{link.title}</Text>
                   <Text size="sm" color="secondary">{link.desc}</Text>
-                </a>
+                </Link>
               </CardContent>
             </Card>
           ))}

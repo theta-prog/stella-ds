@@ -14,6 +14,8 @@
  *   </Select>
  */
 
+'use client';
+
 import * as React from 'react';
 import * as RadixSelect from '@radix-ui/react-select';
 import styles from './Select.module.css';

@@ -5,6 +5,8 @@
  * Uses CSS Modules with Stella design tokens.
  */
 
+'use client';
+
 import * as React from 'react';
 import * as RadixSwitch from '@radix-ui/react-switch';
 import styles from './Switch.module.css';

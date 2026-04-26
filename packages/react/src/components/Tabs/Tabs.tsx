@@ -5,6 +5,8 @@
  * Supports 'line' (underline) and 'solid' (pill/box) variants via context.
  */
 
+'use client';
+
 import * as React from 'react';
 import * as RadixTabs from '@radix-ui/react-tabs';
 import styles from './Tabs.module.css';

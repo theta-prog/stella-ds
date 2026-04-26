@@ -1,7 +1,25 @@
+/// <reference types="node" />
+
 import { defineConfig } from 'tsup';
 import { readFileSync, writeFileSync, readdirSync, rmSync, existsSync } from 'fs';
 import { join, basename } from 'path';
 import { createHash } from 'crypto';
+
+function findSourceFiles(dir: string): string[] {
+  const files: string[] = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...findSourceFiles(fullPath));
+    } else if (
+      (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx')) &&
+      !entry.name.endsWith('.d.ts')
+    ) {
+      files.push(fullPath);
+    }
+  }
+  return files.sort();
+}
 
 function findCssModuleFiles(dir: string): string[] {
   const files: string[] = [];
@@ -10,6 +28,19 @@ function findCssModuleFiles(dir: string): string[] {
     if (entry.isDirectory()) {
       files.push(...findCssModuleFiles(fullPath));
     } else if (entry.name.endsWith('.module.css')) {
+      files.push(fullPath);
+    }
+  }
+  return files.sort();
+}
+
+function findBuiltJsFiles(dir: string): string[] {
+  const files: string[] = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...findBuiltJsFiles(fullPath));
+    } else if (entry.name.endsWith('.js')) {
       files.push(fullPath);
     }
   }
@@ -56,15 +87,16 @@ function processCssModule(
 }
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: findSourceFiles('src'),
   format: ['esm'],
   dts: true,
   sourcemap: true,
   clean: true,
+  bundle: false,
   external: ['react', 'react-dom'],
   async onSuccess() {
     const cssFiles = findCssModuleFiles('src');
-    let js = readFileSync('dist/index.js', 'utf-8');
+    const jsFiles = findBuiltJsFiles('dist');
     const cssParts: string[] = [];
     let patched = 0;
 
@@ -73,28 +105,23 @@ export default defineConfig({
       const css = readFileSync(cssFile, 'utf-8');
       const { scopedCss, mapping } = processCssModule(componentName, css);
 
-      // Patch the JS bundle: replace empty CSS module object with scoped mapping
-      const varName = `${componentName}_default`;
-      const placeholder = `var ${varName} = {}`;
-      const replacement = `var ${varName} = ${JSON.stringify(mapping)}`;
-      if (js.includes(placeholder)) {
-        js = js.replace(placeholder, replacement);
-        patched++;
+      for (const jsFile of jsFiles) {
+        const cssImport = `import styles from "./${componentName}.module.css";`;
+        const replacement = `const styles = ${JSON.stringify(mapping)};`;
+        const js = readFileSync(jsFile, 'utf-8');
+        if (js.includes(cssImport)) {
+          writeFileSync(jsFile, js.replace(cssImport, replacement));
+          patched++;
+        }
       }
 
       cssParts.push(scopedCss);
     }
 
-    writeFileSync('dist/index.js', js);
     writeFileSync('dist/index.css', cssParts.join('\n'));
     // Remove stale CSS source map (generated from unscoped CSS)
     if (existsSync('dist/index.css.map')) rmSync('dist/index.css.map');
 
     console.log(`✓ Scoped and patched ${patched} CSS modules`);
-  },
-  esbuildOptions(options) {
-    options.banner = {
-      js: '"use client";',
-    };
   },
 });

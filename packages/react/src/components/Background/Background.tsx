@@ -8,6 +8,8 @@
  *   solid    — plain color from the celestial palette
  */
 
+'use client';
+
 import * as React from 'react';
 import styles from './Background.module.css';
 

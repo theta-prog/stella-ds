@@ -120,7 +120,6 @@ export default function JaTokensPage() {
         <p style={prose}>アクセシブルなタイプ階層のための意味的なテキストカラートークン。</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '0.75rem' }}>
           {(['primary', 'secondary', 'disabled'] as const).map((key) => {
-            const value = (colorTokens.starlight as ColorScale)?.[key]
             return (
               <div key={key} style={{ background: 'var(--stella-color-void-surface)', borderRadius: '0.5rem', border: '1px solid var(--stella-color-void-muted)', padding: '1rem' }}>
                 <p style={{ fontSize: '1.25rem', fontWeight: 700, color: `var(--stella-color-starlight-${key})`, marginBottom: '0.5rem' }}>Aa</p>

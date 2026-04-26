@@ -6,6 +6,8 @@
  * and an optional default close button.
  */
 
+'use client';
+
 import * as React from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import styles from './Dialog.module.css';

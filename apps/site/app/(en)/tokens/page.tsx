@@ -1,5 +1,14 @@
 import type { Metadata } from 'next'
+import { tokens } from '@stella-ds/theme'
 export const metadata: Metadata = { title: 'Design Tokens' }
+
+type TypographyTokenGroups = {
+  fontFamily: Record<string, string>
+  fontSize: Record<string, string>
+  fontWeight: Record<string, string>
+}
+
+const typographySource = tokens.typography as TypographyTokenGroups
 
 const colorFamilies = [
   { name: 'cosmos', label: 'Cosmos', description: 'Primary / Interactive — Indigo' },
@@ -31,19 +40,23 @@ const spacingTokens = [
 ]
 
 const typographyTokens = [
-  { name: 'fontFamily-sans', value: 'Inter, system-ui, sans-serif' },
-  { name: 'fontFamily-mono', value: 'JetBrains Mono, monospace' },
-  { name: 'fontSize-xs', value: '0.75rem / 12px' },
-  { name: 'fontSize-sm', value: '0.875rem / 14px' },
-  { name: 'fontSize-md', value: '1rem / 16px' },
-  { name: 'fontSize-lg', value: '1.125rem / 18px' },
-  { name: 'fontSize-xl', value: '1.25rem / 20px' },
-  { name: 'fontSize-2xl', value: '1.5rem / 24px' },
-  { name: 'fontSize-3xl', value: '1.875rem / 30px' },
-  { name: 'fontWeight-normal', value: '400' },
-  { name: 'fontWeight-medium', value: '500' },
-  { name: 'fontWeight-semibold', value: '600' },
-  { name: 'fontWeight-bold', value: '700' },
+  { name: 'fontFamily-sans', value: typographySource.fontFamily.sans },
+  { name: 'fontFamily-display', value: typographySource.fontFamily.display },
+  { name: 'fontFamily-mono', value: typographySource.fontFamily.mono },
+  { name: 'fontSize-xs', value: `${typographySource.fontSize.xs} / 12px` },
+  { name: 'fontSize-sm', value: `${typographySource.fontSize.sm} / 14px` },
+  { name: 'fontSize-base', value: `${typographySource.fontSize.base} / 16px` },
+  { name: 'fontSize-lg', value: `${typographySource.fontSize.lg} / 18px` },
+  { name: 'fontSize-xl', value: `${typographySource.fontSize.xl} / 20px` },
+  { name: 'fontSize-2xl', value: `${typographySource.fontSize['2xl']} / 24px` },
+  { name: 'fontSize-3xl', value: `${typographySource.fontSize['3xl']} / 30px` },
+  { name: 'fontSize-4xl', value: `${typographySource.fontSize['4xl']} / 36px` },
+  { name: 'fontSize-5xl', value: `${typographySource.fontSize['5xl']} / 48px` },
+  { name: 'fontWeight-light', value: typographySource.fontWeight.light },
+  { name: 'fontWeight-regular', value: typographySource.fontWeight.regular },
+  { name: 'fontWeight-medium', value: typographySource.fontWeight.medium },
+  { name: 'fontWeight-semibold', value: typographySource.fontWeight.semibold },
+  { name: 'fontWeight-bold', value: typographySource.fontWeight.bold },
 ]
 
 const sectionHeading: React.CSSProperties = {

@@ -10,6 +10,8 @@
  *   2. Render <Toast open={open} onOpenChange={setOpen}> wherever needed
  */
 
+'use client';
+
 import * as React from 'react';
 import * as RadixToast from '@radix-ui/react-toast';
 import styles from './Toast.module.css';

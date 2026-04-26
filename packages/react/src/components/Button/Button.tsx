@@ -45,12 +45,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       disabled,
       className,
+      onClick,
+      tabIndex,
       children,
       ...props
     },
     ref,
   ) => {
     const Comp = asChild ? Slot : 'button';
+    const isDisabled = disabled || loading;
 
     const cls = [
       styles.button,
@@ -66,8 +69,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         className={cls}
-        disabled={disabled || loading}
+        disabled={asChild ? undefined : isDisabled}
         aria-busy={loading || undefined}
+        aria-disabled={asChild && isDisabled ? true : undefined}
+        tabIndex={asChild && isDisabled ? -1 : tabIndex}
+        onClick={onClick}
         {...props}
       >
         {asChild ? children : (

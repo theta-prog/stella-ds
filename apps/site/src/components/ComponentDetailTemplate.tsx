@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Badge, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, Button, Heading, Text } from '@stella-ds/react'
 import type { ComponentDoc } from '@/data/components'
 import { componentDescriptionsJa } from '@/data/components-ja'
@@ -37,7 +38,9 @@ export function ComponentDetailTemplate({ comp, prevComp, nextComp, locale }: Pr
       <Breadcrumb style={{ marginBottom: '1.5rem' }}>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href={labels.listHref}>{labels.listLabel}</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+              <Link href={labels.listHref}>{labels.listLabel}</Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -129,21 +132,21 @@ export function ComponentDetailTemplate({ comp, prevComp, nextComp, locale }: Pr
         <div>
           {prevComp && (
             <Button variant="ghost" asChild>
-              <a href={`${base}/components/${prevComp.slug}`} style={{ textDecoration: 'none' }}>
+              <Link href={`${base}/components/${prevComp.slug}`} style={{ textDecoration: 'none' }}>
                 ← {prevComp.name}
-              </a>
+              </Link>
             </Button>
           )}
         </div>
         <Button variant="ghost" asChild>
-          <a href={labels.listHref} style={{ textDecoration: 'none' }}>{labels.allListLabel}</a>
+          <Link href={labels.listHref} style={{ textDecoration: 'none' }}>{labels.allListLabel}</Link>
         </Button>
         <div>
           {nextComp && (
             <Button variant="ghost" asChild>
-              <a href={`${base}/components/${nextComp.slug}`} style={{ textDecoration: 'none' }}>
+              <Link href={`${base}/components/${nextComp.slug}`} style={{ textDecoration: 'none' }}>
                 {nextComp.name} →
-              </a>
+              </Link>
             </Button>
           )}
         </div>

@@ -1,5 +1,13 @@
 # @stella-ds/theme
 
+## 0.4.0
+
+### Minor Changes
+
+- Refresh the light-theme and typography tokens.
+
+  - update the theme font tokens used for sans and display typography defaults
+
 ## 0.3.2
 
 ### Patch Changes

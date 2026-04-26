@@ -72,7 +72,6 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps
             ref={setPortalContainer}
             data-theme={theme}
             data-stella-theme-portal=""
-            aria-hidden="true"
             style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}
           />
         </div>

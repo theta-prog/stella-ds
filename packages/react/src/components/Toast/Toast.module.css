@@ -26,7 +26,7 @@
   gap: var(--stella-spacing-3, 0.75rem);
   padding: var(--stella-spacing-4, 1rem);
   border-radius: var(--stella-borderRadius-lg, 0.75rem);
-  background-color: var(--stella-color-void-overlay, #252b36);
+  background-color: var(--stella-color-void-overlay, #1e2026);
   border: 1px solid var(--stella-color-void-muted, #2b2e35);
   border-left-width: 3px;
   box-shadow: var(--stella-shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.4));

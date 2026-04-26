@@ -54,7 +54,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--stella-color-void-overlay, #252b36);
+  background-color: var(--stella-color-void-overlay, #1e2026);
   border: 1px solid var(--stella-color-void-muted, #2b2e35);
   border-radius: var(--stella-borderRadius-xl, 1rem);
   box-shadow: var(--stella-shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.4));

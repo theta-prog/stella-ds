@@ -135,7 +135,7 @@
    ---------------------------------------------------------------- */
 
 .content {
-  background-color: var(--stella-color-void-overlay, #252b36);
+  background-color: var(--stella-color-void-overlay, #1e2026);
   border: 1px solid var(--stella-color-void-muted, #2b2e35);
   border-radius: var(--stella-borderRadius-md, 0.375rem);
   box-shadow: var(--stella-shadow-md, 0 4px 24px rgba(0, 0, 0, 0.4));

@@ -212,7 +212,7 @@ export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
     const { style: styleProp, ...restProps } = props;
 
     return (
-      <div ref={ref} className={rootCls} data-theme={theme} style={{ ...variantStyle, ...styleProp }} {...restProps}>
+      <div ref={ref} className={rootCls} {...restProps} data-theme={theme} style={{ ...variantStyle, ...styleProp }}>
 
         {/* Stars — dark theme only */}
         {needsStars && (

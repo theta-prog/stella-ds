@@ -23,14 +23,14 @@ const badge: React.CSSProperties = { display: 'inline-block', background: 'color
 const mono: React.CSSProperties = { fontFamily: 'ui-monospace, SFMono-Regular, monospace' }
 
 const codeBlock: React.CSSProperties = {
-  background: '#0d1117',
-  border: '1px solid #1e293b',
+  background: 'var(--stella-color-void-surface)',
+  border: '1px solid var(--stella-color-void-muted)',
   padding: '1.25rem',
   borderRadius: '0.5rem',
   overflow: 'auto',
   fontSize: '0.875rem',
   lineHeight: 1.8,
-  color: '#f1f5f9',
+  color: 'var(--stella-color-starlight-primary)',
   ...mono,
 }
 
@@ -82,7 +82,7 @@ export default function JaTokensPage() {
                   const value = scale?.[stop]
                   if (!value) return null
                   return (
-                    <div key={stop} title={`--stella-color-${key}-${stop}: ${value}`} style={{ flex: '1', minWidth: '40px', height: '48px', background: value, borderRadius: '4px' }} />
+                    <div key={stop} title={`--stella-color-${key}-${stop}: ${value}`} style={{ flex: '1', minWidth: '40px', height: '48px', background: `var(--stella-color-${key}-${stop})`, borderRadius: '4px' }} />
                   )
                 })}
               </div>

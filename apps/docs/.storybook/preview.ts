@@ -9,11 +9,7 @@ const BG: Record<'dark' | 'light', string> = {
   light: '#ffffff',
 };
 
-const withDataTheme: Decorator = (Story, context) => {
-  const theme = (context.globals['theme'] ?? 'dark') as 'dark' | 'light';
-  const locale = (context.globals['locale'] ?? 'en') as string;
-  const lang = locale === 'ja' ? 'ja' : 'en';
-
+function ThemeApplicator({ Story, theme, lang }: { Story: React.ComponentType; theme: 'dark' | 'light'; lang: string }) {
   React.useEffect(() => {
     document.body.setAttribute('data-theme', theme);
     document.body.style.backgroundColor = BG[theme];
@@ -22,8 +18,14 @@ const withDataTheme: Decorator = (Story, context) => {
       document.body.style.backgroundColor = '';
     };
   }, [theme]);
-
   return React.createElement('div', { 'data-theme': theme, lang }, React.createElement(Story));
+}
+
+const withDataTheme: Decorator = (Story, context) => {
+  const theme = (context.globals['theme'] ?? 'dark') as 'dark' | 'light';
+  const locale = (context.globals['locale'] ?? 'en') as string;
+  const lang = locale === 'ja' ? 'ja' : 'en';
+  return React.createElement(ThemeApplicator, { Story, theme, lang });
 };
 
 const preview: Preview = {

@@ -61,8 +61,8 @@ const mono: React.CSSProperties = {
 }
 
 const codeBlock: React.CSSProperties = {
-  background: '#0d1117',
-  border: '1px solid #1e293b',
+  background: 'var(--stella-color-void-surface)',
+  border: '1px solid var(--stella-color-void-muted)',
   padding: '1.25rem',
   borderRadius: '0.5rem',
   overflow: 'auto',
@@ -99,7 +99,7 @@ export default function TokensPage() {
         <h2 style={sectionHeading}>How to Use Tokens</h2>
         <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>After importing the theme CSS, reference tokens in any stylesheet:</p>
         <pre style={codeBlock}>
-          <code style={{ ...mono, color: '#f1f5f9', fontSize: '0.875rem' }}>{`.my-button {
+          <code style={{ ...mono, color: 'var(--stella-color-starlight-primary)', fontSize: '0.875rem' }}>{`.my-button {
   background: var(--stella-color-cosmos-500);
   color: var(--stella-color-starlight-primary);
   border-radius: var(--stella-borderRadius-md);
@@ -262,7 +262,7 @@ export default function TokensPage() {
           The complete token set is defined in the package source. Use the exported utilities for programmatic access:
         </p>
         <pre style={codeBlock}>
-          <code style={{ ...mono, color: '#f1f5f9', fontSize: '0.875rem' }}>{`import { tokens, cssVariables, generateCSSVarsString } from '@stella-ds/theme'
+          <code style={{ ...mono, color: 'var(--stella-color-starlight-primary)', fontSize: '0.875rem' }}>{`import { tokens, cssVariables, generateCSSVarsString } from '@stella-ds/theme'
 
 // tokens — nested object: tokens.color.cosmos[500]
 // cssVariables — flat map: { '--stella-color-cosmos-500': '#4f46e5', ... }

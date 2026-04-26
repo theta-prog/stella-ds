@@ -12,7 +12,7 @@
 }
 
 /* --- Japanese letter-spacing --- */
-:lang(ja) .base {
+.base:lang(ja) {
   letter-spacing: 0.1em;
 }
 

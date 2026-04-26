@@ -7,7 +7,7 @@
 }
 
 :root {
-  --stella-typography-fontFamily-sans: var(--font-inter), system-ui, sans-serif;
+  --stella-typography-fontFamily-sans: var(--font-inter), 'Zen Kaku Gothic New', system-ui, sans-serif;
   --stella-typography-fontFamily-display: var(--font-plus-jakarta-sans), 'Zen Kaku Gothic New', system-ui, sans-serif;
 }
 
@@ -26,10 +26,7 @@ body {
   }
 }
 
-:lang(ja) h1,
-:lang(ja) h2,
-:lang(ja) h3,
-:lang(ja) h4 {
+:is(h1, h2, h3, h4):lang(ja) {
   letter-spacing: 0.1em;
 }
 

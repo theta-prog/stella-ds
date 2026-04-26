@@ -30,3 +30,4 @@ pnpm-debug.log*
 # Local Claude / MCP settings
 .claude/settings.local.json
 .mcp.json
+.playwright-mcp

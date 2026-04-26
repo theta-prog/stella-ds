@@ -26,8 +26,8 @@
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   font-weight: var(--stella-typography-fontWeight-regular, 400);
   color: var(--stella-color-starlight-primary, #f0f0f5);
-  background-color: var(--stella-color-void-surface, #12151e);
-  border: 1.5px solid var(--stella-color-void-muted, #262c3a);
+  background-color: var(--stella-color-void-surface, #15161b);
+  border: 1.5px solid var(--stella-color-void-muted, #2b2e35);
   border-radius: var(--stella-borderRadius-md, 0.375rem);
   cursor: pointer;
   transition:
@@ -136,7 +136,7 @@
 
 .content {
   background-color: var(--stella-color-void-overlay, #252b36);
-  border: 1px solid var(--stella-color-void-muted, #262c3a);
+  border: 1px solid var(--stella-color-void-muted, #2b2e35);
   border-radius: var(--stella-borderRadius-md, 0.375rem);
   box-shadow: var(--stella-shadow-md, 0 4px 24px rgba(0, 0, 0, 0.4));
   overflow: hidden;
@@ -223,6 +223,6 @@
 
 .separator {
   height: 1px;
-  background-color: var(--stella-color-void-muted, #262c3a);
+  background-color: var(--stella-color-void-muted, #2b2e35);
   margin: var(--stella-spacing-1, 0.25rem) 0;
 }

@@ -55,7 +55,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--stella-color-void-overlay, #252b36);
-  border: 1px solid var(--stella-color-void-muted, #262c3a);
+  border: 1px solid var(--stella-color-void-muted, #2b2e35);
   border-radius: var(--stella-borderRadius-xl, 1rem);
   box-shadow: var(--stella-shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.4));
   width: 90vw;
@@ -107,7 +107,7 @@
 
 .close:hover {
   color: var(--stella-color-starlight-primary, #f0f0f5);
-  background-color: var(--stella-color-void-muted, #262c3a);
+  background-color: var(--stella-color-void-muted, #2b2e35);
 }
 
 .close:focus-visible {

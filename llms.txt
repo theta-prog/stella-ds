@@ -80,16 +80,16 @@ All CSS custom properties use the `--stella-` prefix.
 | aurora | Accent / Informational | `--stella-color-aurora-500` | #06b6d4 |
 | nova | Success / Positive | `--stella-color-nova-500` | #10b981 |
 | solar | Warmth / Attention | `--stella-color-solar-500` | #f59b07 |
-| void | Backgrounds | `--stella-color-void-base` | #0a0c14 |
+| void | Backgrounds | `--stella-color-void-base` | #0a0b0e |
 | starlight | Text / Foreground | `--stella-color-starlight-primary` | #f0f0f5 |
 | error | Error states | `--stella-color-error-500` | #ef4444 |
 | warning | Warning states | `--stella-color-warning-500` | #f59e0b |
 
 ### Void Surface Hierarchy (darkest to lightest)
-- `--stella-color-void-base` (#0a0c14) — Page background
-- `--stella-color-void-surface` (#12151e) — Card backgrounds, containers
-- `--stella-color-void-overlay` (#1a1e2a) — Dropdowns, dialogs, popovers
-- `--stella-color-void-muted` (#262c3a) — Hover backgrounds, table stripes
+- `--stella-color-void-base` (#0a0b0e) — Page background
+- `--stella-color-void-surface` (#15161b) — Card backgrounds, containers
+- `--stella-color-void-overlay` (#1e2026) — Dropdowns, dialogs, popovers
+- `--stella-color-void-muted` (#2b2e35) — Hover backgrounds, table stripes
 
 ### Other Token Categories
 - **Spacing:** `--stella-spacing-{0,1,2,3,4,6,8,12,16}` (4px base unit, e.g. spacing-4 = 1rem/16px)

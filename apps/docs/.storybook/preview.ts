@@ -35,7 +35,6 @@ const preview: Preview = {
       values: [
         { name: 'dark',    value: '#0d0d0f' },
         { name: 'surface', value: '#16161a' },
-        { name: 'light',   value: '#f8f8ff' },
       ],
     },
     layout: 'centered',

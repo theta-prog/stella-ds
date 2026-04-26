@@ -248,7 +248,7 @@ export function GettingStartedTemplate({ locale }: Props) {
         <Text size="xs" color="disabled" style={{ textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: '0.5rem' }}>
           {c.docsLabel}
         </Text>
-        <Heading level={1} size="3xl" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg, var(--stella-color-starlight-primary), var(--stella-color-starlight-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <Heading level={1} size="3xl" color="cosmos-400" style={{ marginBottom: '1rem' }}>
           {c.title}
         </Heading>
         <Text color="secondary" style={{ fontSize: '1.1rem' }}>{c.lead}</Text>

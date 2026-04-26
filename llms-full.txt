@@ -69,7 +69,7 @@ Stella's visual language draws from observational astronomy -- not sci-fi, not f
 | **aurora** | Cyan | #06b6d4 | Accent / Informational | Info states, highlights, secondary interactive elements |
 | **nova** | Emerald | #10b981 | Success / Positive | Success feedback, confirmations, positive badges, valid states |
 | **solar** | Amber | #f59b07 | Warmth / Attention | Warnings, attention-drawing elements, warm accents |
-| **void** | Dark neutrals | #0a0c14 (base) | Backgrounds / Structure | Page backgrounds, card surfaces, overlays |
+| **void** | Dark neutrals | #0a0b0e (base) | Backgrounds / Structure | Page backgrounds, card surfaces, overlays |
 | **starlight** | Light neutrals | #f0f0f5 (primary) | Text / Foreground | Body text, headings, disabled text, borders |
 
 ### Semantic State Colors
@@ -100,10 +100,10 @@ Stella's visual language draws from observational astronomy -- not sci-fi, not f
 --stella-color-warning-500   /* #f59e0b  -- warning */
 
 /* Backgrounds (darkest to lightest) */
---stella-color-void-base     /* #0a0c14  -- page background */
---stella-color-void-surface  /* #12151e  -- cards, containers */
---stella-color-void-overlay  /* #1a1e2a  -- dropdowns, dialogs */
---stella-color-void-muted    /* #262c3a  -- hover bg, stripes */
+--stella-color-void-base     /* #0a0b0e  -- page background */
+--stella-color-void-surface  /* #15161b  -- cards, containers */
+--stella-color-void-overlay  /* #1e2026  -- dropdowns, dialogs */
+--stella-color-void-muted    /* #2b2e35  -- hover bg, stripes */
 
 /* Text */
 --stella-color-starlight-primary    /* #f0f0f5  -- body text, headings */

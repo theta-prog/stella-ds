@@ -1,5 +1,20 @@
 # @stella-ds/react
 
+## 0.4.0
+
+### Minor Changes
+
+- Refresh the linked React and theme packages for the light-theme and typography update.
+
+  - update the theme font tokens used for sans and display typography defaults
+  - improve component runtime behavior for disabled asChild buttons and client-side header navigation
+  - align the React package exports and build output for smoother ESM consumption
+
+### Patch Changes
+
+- Updated dependencies
+  - @stella-ds/theme@0.4.0
+
 ## 0.3.2
 
 ### Patch Changes

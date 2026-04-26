@@ -8,7 +8,7 @@
 
 body {
   font-family: var(--stella-typography-fontFamily-sans, system-ui, sans-serif);
-  background-color: var(--stella-color-void-base, #0a0c14);
+  background-color: var(--stella-color-void-base, #0a0b0e);
   color: var(--stella-color-starlight-primary, #f0f0f5);
   color-scheme: dark;
   line-height: 1.6;

@@ -5,7 +5,7 @@
 /* --- Root footer --- */
 .footer {
   background-color: var(--stella-color-void-base, #0f1117);
-  border-top: 1px solid var(--stella-color-void-muted, #262c3a);
+  border-top: 1px solid var(--stella-color-void-muted, #2b2e35);
   padding: var(--stella-spacing-12, 3rem) var(--stella-spacing-6, 1.5rem);
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
   box-sizing: border-box;
@@ -22,7 +22,7 @@
 /* --- Divider (hr) --- */
 .divider {
   border: none;
-  border-top: 1px solid var(--stella-color-void-muted, #262c3a);
+  border-top: 1px solid var(--stella-color-void-muted, #2b2e35);
   margin: var(--stella-spacing-8, 2rem) 0;
 }
 

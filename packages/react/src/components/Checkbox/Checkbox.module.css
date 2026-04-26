@@ -14,9 +14,9 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 1.5px solid var(--stella-color-void-muted, #262c3a);
+  border: 1.5px solid var(--stella-color-void-muted, #2b2e35);
   border-radius: var(--stella-borderRadius-sm, 0.125rem);
-  background-color: var(--stella-color-void-surface, #12151e);
+  background-color: var(--stella-color-void-surface, #15161b);
   color: var(--stella-color-starlight-primary, #f0f0f5);
   cursor: pointer;
   transition:

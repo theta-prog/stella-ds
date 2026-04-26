@@ -14,7 +14,7 @@
   align-items: center;
   flex-shrink: 0;
   border-radius: 9999px;
-  background-color: var(--stella-color-void-muted, #262c3a);
+  background-color: var(--stella-color-void-muted, #2b2e35);
   border: 1px solid transparent;
   cursor: pointer;
   padding: 0;

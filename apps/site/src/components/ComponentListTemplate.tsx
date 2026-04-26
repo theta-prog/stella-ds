@@ -68,7 +68,7 @@ export function ComponentListTemplate({ locale }: Props) {
         <Text size="xs" color="disabled" as="div" style={{ textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>
           {labels.docsLabel}
         </Text>
-        <Heading level={1} size="3xl" weight="bold" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg, var(--stella-color-starlight-primary), var(--stella-color-starlight-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <Heading level={1} size="3xl" weight="bold" color="cosmos-400" style={{ marginBottom: '1rem' }}>
           {labels.title}
         </Heading>
         <Text color="disabled" style={{ fontSize: '1.05rem', lineHeight: 1.6 }}>

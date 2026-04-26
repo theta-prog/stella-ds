@@ -36,7 +36,7 @@
 
 /* default / neutral */
 .variant-solid.color-default {
-  background-color: var(--stella-color-void-muted, #262c3a);
+  background-color: var(--stella-color-void-muted, #2b2e35);
   color: var(--stella-color-starlight-secondary, #8888a0);
   border-color: transparent;
 }
@@ -144,7 +144,7 @@
 .variant-outline.color-default {
   background-color: transparent;
   color: var(--stella-color-starlight-secondary, #8888a0);
-  border-color: var(--stella-color-void-muted, #262c3a);
+  border-color: var(--stella-color-void-muted, #2b2e35);
 }
 
 /* primary = cosmos */

@@ -118,7 +118,7 @@
 }
 
 .variant-ghost:active:not(:disabled):not([aria-disabled='true']) {
-  background-color: var(--stella-color-void-muted, #262c3a);
+  background-color: var(--stella-color-void-muted, #2b2e35);
   color: var(--stella-color-starlight-primary, #f0f0f5);
 }
 

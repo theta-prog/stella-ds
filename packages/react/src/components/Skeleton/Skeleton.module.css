@@ -18,7 +18,7 @@
 /* --- Base --- */
 .base {
   display: block;
-  background-color: var(--stella-color-void-muted, #262c3a);
+  background-color: var(--stella-color-void-muted, #2b2e35);
 }
 
 /* --- Animation --- */

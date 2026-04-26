@@ -49,7 +49,7 @@ Each palette has a celestial name and a functional purpose. **Never choose a col
 | **Aurora** | Cyan | `#06b6d4` | Accent / Informational | Info states, highlights, secondary interactive elements |
 | **Nova** | Emerald | `#10b981` | Success / Positive | Success feedback, confirmations, positive badges, valid states |
 | **Solar** | Amber | `#f59b07` | Warmth / Attention | Warnings, attention-drawing elements, warm accents to break cool monotony |
-| **Void** | Dark neutrals | `#0a0c14` (base) | Backgrounds / Structure | Page backgrounds, card surfaces, overlays — hierarchy through luminosity |
+| **Void** | Dark neutrals | `#0a0b0e` (base) | Backgrounds / Structure | Page backgrounds, card surfaces, overlays — hierarchy through luminosity |
 | **Starlight** | Light neutrals | `#f0f0f5` (primary) | Text / Foreground | Body text, headings, disabled text, borders |
 
 **Semantic state colors** (derived from the palettes above):
@@ -79,10 +79,10 @@ Each palette has a celestial name and a functional purpose. **Never choose a col
 ### Void Surface Hierarchy
 
 ```
-void-base     (#0a0c14)  — Page background. The deepest layer.
-void-surface  (#12151e)  — Card backgrounds, primary containers.
-void-overlay  (#1a1e2a)  — Elevated surfaces: dropdowns, dialogs, popovers.
-void-muted    (#262c3a)  — Subtle backgrounds: hover states, table stripes, disabled areas.
+void-base     (#0a0b0e)  — Page background. The deepest layer.
+void-surface  (#15161b)  — Card backgrounds, primary containers.
+void-overlay  (#1e2026)  — Elevated surfaces: dropdowns, dialogs, popovers.
+void-muted    (#2b2e35)  — Subtle backgrounds: hover states, table stripes, disabled areas.
 ```
 
 Each level is intentionally distinct. Never use the same void shade for two different structural purposes.
@@ -471,10 +471,10 @@ Use these CSS variable names directly. Never hardcode hex values in component st
 --stella-color-warning-500   /* #f59e0b  — warning */
 
 /* Backgrounds (darkest → lightest) */
---stella-color-void-base     /* #0a0c14  — page background */
---stella-color-void-surface  /* #12151e  — cards, containers */
---stella-color-void-overlay  /* #1a1e2a  — dropdowns, dialogs */
---stella-color-void-muted    /* #262c3a  — hover bg, stripes */
+--stella-color-void-base     /* #0a0b0e  — page background */
+--stella-color-void-surface  /* #15161b  — cards, containers */
+--stella-color-void-overlay  /* #1e2026  — dropdowns, dialogs */
+--stella-color-void-muted    /* #2b2e35  — hover bg, stripes */
 
 /* Text */
 --stella-color-starlight-primary    /* #f0f0f5  — body text, headings */

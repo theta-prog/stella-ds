@@ -5,7 +5,6 @@
  *   stars    — animated starfield
  *   galaxy   — stars + nebula glow blobs
  *   milkyway — glowing neon wave ribbon (SVG)
- *   gradient — vivid mesh gradient (overlapping radial blobs)
  *   solid    — plain color from the celestial palette
  */
 
@@ -16,7 +15,7 @@ import styles from './Background.module.css';
 // Types
 // ----------------------------------------------------------------
 
-export type BackgroundVariant = 'stars' | 'galaxy' | 'milkyway' | 'gradient' | 'solid';
+export type BackgroundVariant = 'stars' | 'galaxy' | 'milkyway' | 'solid';
 export type BackgroundColorScheme = 'cosmos' | 'nebula' | 'aurora' | 'mixed';
 export type BackgroundTheme = 'dark' | 'light';
 
@@ -41,16 +40,10 @@ export interface BackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Number of ribbons for the milkyway variant (default: 5) */
   ribbons?: number;
   /**
-   * Specific design-token color for the solid/gradient base (e.g. 'cosmos-500').
-   * When set on `solid`, overrides the theme+color lookup.
-   * When set on `gradient`, applies as the base background behind the blobs.
+   * Specific design-token color for the solid variant (e.g. 'cosmos-500').
+   * When set, overrides the theme+color lookup.
    */
   tokenColor?: BackgroundTokenColor;
-  /**
-   * Show gradient blob overlay on the `gradient` variant (default: true).
-   * Set to false to get a plain tokenColor fill with no blobs.
-   */
-  showGradient?: boolean;
 }
 
 interface StarData {
@@ -81,60 +74,6 @@ const SOLID_COLORS: Record<BackgroundTheme, Record<BackgroundColorScheme, string
   },
 };
 
-// ----------------------------------------------------------------
-// Mesh gradient blobs (gradient variant)
-// ----------------------------------------------------------------
-
-interface BlobConfig { x: string; y: string; size: string; color: string; }
-
-const MESH_BLOBS: Record<BackgroundTheme, Record<BackgroundColorScheme, BlobConfig[]>> = {
-  dark: {
-    cosmos: [
-      { x: '5%',  y: '70%', size: '85%', color: 'rgba(79,70,229,0.70)' },
-      { x: '70%', y: '5%',  size: '70%', color: 'rgba(67,56,202,0.55)' },
-      { x: '50%', y: '50%', size: '60%', color: 'rgba(99,102,241,0.40)' },
-    ],
-    nebula: [
-      { x: '10%', y: '65%', size: '80%', color: 'rgba(147,51,234,0.65)' },
-      { x: '75%', y: '10%', size: '70%', color: 'rgba(168,85,247,0.55)' },
-      { x: '40%', y: '80%', size: '55%', color: 'rgba(126,34,206,0.45)' },
-    ],
-    aurora: [
-      { x: '5%',  y: '60%', size: '75%', color: 'rgba(8,145,178,0.65)' },
-      { x: '70%', y: '5%',  size: '65%', color: 'rgba(6,182,212,0.55)' },
-      { x: '45%', y: '75%', size: '50%', color: 'rgba(14,116,144,0.45)' },
-    ],
-    mixed: [
-      { x: '5%',  y: '70%', size: '80%', color: 'rgba(79,70,229,0.65)' },
-      { x: '75%', y: '5%',  size: '70%', color: 'rgba(147,51,234,0.60)' },
-      { x: '50%', y: '90%', size: '55%', color: 'rgba(6,182,212,0.50)' },
-      { x: '85%', y: '60%', size: '45%', color: 'rgba(168,85,247,0.40)' },
-    ],
-  },
-  light: {
-    cosmos: [
-      { x: '5%',  y: '65%', size: '80%', color: 'rgba(96,165,250,0.70)' },
-      { x: '70%', y: '5%',  size: '70%', color: 'rgba(99,102,241,0.60)' },
-      { x: '40%', y: '80%', size: '55%', color: 'rgba(129,140,248,0.50)' },
-    ],
-    nebula: [
-      { x: '10%', y: '60%', size: '80%', color: 'rgba(192,132,252,0.70)' },
-      { x: '72%', y: '8%',  size: '70%', color: 'rgba(236,72,153,0.55)' },
-      { x: '45%', y: '80%', size: '55%', color: 'rgba(168,85,247,0.50)' },
-    ],
-    aurora: [
-      { x: '5%',  y: '65%', size: '75%', color: 'rgba(34,211,238,0.65)' },
-      { x: '70%', y: '8%',  size: '65%', color: 'rgba(56,189,248,0.60)' },
-      { x: '45%', y: '80%', size: '55%', color: 'rgba(6,182,212,0.50)' },
-    ],
-    mixed: [
-      { x: '5%',  y: '55%', size: '75%', color: 'rgba(96,165,250,0.72)' },
-      { x: '70%', y: '5%',  size: '70%', color: 'rgba(236,72,153,0.65)' },
-      { x: '50%', y: '75%', size: '60%', color: 'rgba(168,85,247,0.60)' },
-      { x: '15%', y: '80%', size: '50%', color: 'rgba(34,211,238,0.55)' },
-    ],
-  },
-};
 
 // ----------------------------------------------------------------
 // Galaxy glow blobs
@@ -233,7 +172,6 @@ export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
       twinkle = true,
       ribbons = 5,
       tokenColor,
-      showGradient = true,
       className,
       children,
       ...props
@@ -270,12 +208,11 @@ export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
     const mwRibbons  = React.useMemo(() => generateMWRibbons(Math.max(1, ribbons)), [ribbons]);
     const waveColors = WAVE_COLORS[color];
     const glowColors = GALAXY_GLOW_COLORS[color];
-    const meshBlobs  = MESH_BLOBS[theme][color];
 
     const { style: styleProp, ...restProps } = props;
 
     return (
-      <div ref={ref} className={rootCls} style={{ ...variantStyle, ...styleProp }} {...restProps}>
+      <div ref={ref} className={rootCls} data-theme={theme} style={{ ...variantStyle, ...styleProp }} {...restProps}>
 
         {/* Stars — dark theme only */}
         {needsStars && (
@@ -371,23 +308,6 @@ export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
               ))}
             </g>
           </svg>
-        )}
-
-        {/* Gradient — vivid mesh (overlapping radial blobs) */}
-        {variant === 'gradient' && showGradient && (
-          <div className={styles.blobs} aria-hidden="true">
-            {meshBlobs.map((blob, i) => (
-              <div
-                key={i}
-                className={styles['mesh-blob']}
-                style={{
-                  left: blob.x, top: blob.y,
-                  width: blob.size, height: blob.size,
-                  background: `radial-gradient(circle, ${blob.color} 0%, transparent 70%)`,
-                }}
-              />
-            ))}
-          </div>
         )}
 
         <div className={styles.content}>{children}</div>

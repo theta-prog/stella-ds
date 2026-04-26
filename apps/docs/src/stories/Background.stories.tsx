@@ -29,7 +29,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['stars', 'galaxy', 'milkyway', 'gradient', 'solid'],
+      options: ['stars', 'galaxy', 'milkyway', 'solid'],
       table: { defaultValue: { summary: 'stars' } },
     },
     color: {
@@ -55,12 +55,7 @@ const meta = {
       control: 'select',
       options: [undefined, ...ALL_TOKEN_COLORS],
       table: { defaultValue: { summary: 'undefined' } },
-      description: 'Specific design-token color for solid/gradient base (overrides color+theme)',
-    },
-    showGradient: {
-      control: 'boolean',
-      table: { defaultValue: { summary: 'true' } },
-      description: 'Show gradient blob overlay (gradient variant only)',
+      description: 'Specific design-token color for the solid variant (overrides color+theme)',
     },
     className: { control: false },
   },
@@ -70,7 +65,6 @@ const meta = {
     theme: 'dark',
     twinkle: true,
     ribbons: 5,
-    showGradient: true,
   },
 } satisfies Meta<typeof Background>;
 
@@ -191,55 +185,6 @@ export const MilkyWay: Story = {
   },
 };
 
-export const Gradient: Story = {
-  render: (args) => {
-    const tr = useT();
-    return (
-      <div style={containerStyle}>
-        <Background {...args} style={{ width: '100%', height: '100%' }}>
-          <Label dark={args.theme === 'dark'}>{tr.background.story_gradient}</Label>
-        </Background>
-      </div>
-    );
-  },
-  args: {
-    variant: 'gradient',
-    color: 'mixed',
-    theme: 'dark',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Vivid overlapping radial blobs forming a rich mesh gradient — no stars.',
-      },
-    },
-  },
-};
-
-export const GradientLight: Story = {
-  render: (args) => {
-    const tr = useT();
-    return (
-      <div style={containerStyle}>
-        <Background {...args} style={{ width: '100%', height: '100%' }}>
-          <Label dark={false}>{tr.background.story_gradient}</Label>
-        </Background>
-      </div>
-    );
-  },
-  args: {
-    variant: 'gradient',
-    color: 'cosmos',
-    theme: 'light',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Light-theme gradient mesh with pastel indigo blobs.',
-      },
-    },
-  },
-};
 
 export const Solid: Story = {
   render: (args) => {
@@ -323,32 +268,6 @@ export const SolidPalette: Story = {
   },
 };
 
-export const GradientWithToken: Story = {
-  render: (args) => {
-    return (
-      <div style={containerStyle}>
-        <Background {...args} style={{ width: '100%', height: '100%' }}>
-          <Label dark={!args.tokenColor || Number(args.tokenColor.split('-')[1]) >= 400}>
-            gradient · {args.tokenColor ?? 'default'} · overlay {args.showGradient ? 'on' : 'off'}
-          </Label>
-        </Background>
-      </div>
-    );
-  },
-  args: {
-    variant: 'gradient',
-    tokenColor: 'nebula-900',
-    showGradient: true,
-    color: 'nebula',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Gradient variant with a specific token color as the base. Toggle showGradient to remove the blob overlay.',
-      },
-    },
-  },
-};
 
 export const AllVariants: Story = {
   render: () => {
@@ -356,9 +275,9 @@ export const AllVariants: Story = {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
+          gridTemplateColumns: '1fr 1fr',
           gridTemplateRows: '1fr 1fr',
-          width: '900px',
+          width: '800px',
           height: '500px',
           gap: '2px',
           background: '#000',
@@ -369,8 +288,6 @@ export const AllVariants: Story = {
             { variant: 'stars',    color: 'mixed',  label: 'stars',    theme: 'dark'  },
             { variant: 'galaxy',   color: 'nebula', label: 'galaxy',   theme: 'dark'  },
             { variant: 'milkyway', color: 'aurora', label: 'milkyway', theme: 'dark'  },
-            { variant: 'gradient', color: 'mixed',  label: 'gradient (dark)', theme: 'dark'  },
-            { variant: 'gradient', color: 'nebula', label: 'gradient (light)', theme: 'light' },
             { variant: 'solid',    color: 'cosmos', label: 'solid',    theme: 'dark'  },
           ] as const
         ).map(({ variant, color, label, theme }, i) => (
@@ -388,7 +305,7 @@ export const AllVariants: Story = {
                 justifyContent: 'center',
                 width: '100%',
                 height: '100%',
-                color: theme === 'dark' ? '#f0f0f5' : '#1e1b4b',
+                color: 'var(--stella-color-starlight-primary)',
                 fontFamily: 'sans-serif',
                 fontSize: '0.8rem',
                 fontWeight: 600,
@@ -407,7 +324,7 @@ export const AllVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All five variants displayed in a 3×2 grid for comparison.',
+        story: 'All four variants displayed in a 2×2 grid for comparison.',
       },
     },
   },

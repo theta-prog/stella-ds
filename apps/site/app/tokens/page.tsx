@@ -50,9 +50,9 @@ const sectionHeading: React.CSSProperties = {
   fontSize: '1.5rem',
   fontWeight: 700,
   marginBottom: '0.75rem',
-  color: '#f1f5f9',
+  color: 'var(--stella-color-starlight-primary)',
   paddingBottom: '0.5rem',
-  borderBottom: '1px solid #1e293b',
+  borderBottom: '1px solid var(--stella-color-void-muted)',
 }
 
 const mono: React.CSSProperties = {
@@ -60,26 +60,45 @@ const mono: React.CSSProperties = {
   fontSize: '0.75rem',
 }
 
+const codeBlock: React.CSSProperties = {
+  background: '#0d1117',
+  border: '1px solid #1e293b',
+  padding: '1.25rem',
+  borderRadius: '0.5rem',
+  overflow: 'auto',
+  fontSize: '0.875rem',
+  lineHeight: 1.7,
+  margin: 0,
+}
+
+const inlineCode: React.CSSProperties = {
+  ...mono,
+  background: 'var(--stella-color-void-overlay)',
+  padding: '0.1rem 0.4rem',
+  borderRadius: '0.25rem',
+  color: 'var(--stella-color-aurora-300)',
+}
+
 export default function TokensPage() {
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '4rem 2rem' }}>
       {/* Page header */}
       <div style={{ marginBottom: '3.5rem' }}>
-        <div style={{ color: '#818cf8', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>Docs</div>
-        <h1 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '1rem', background: 'linear-gradient(135deg, #f1f5f9, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <div style={{ color: 'var(--stella-color-cosmos-400)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>Docs</div>
+        <h1 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '1rem', background: 'linear-gradient(135deg, var(--stella-color-cosmos-400), var(--stella-color-nebula-400))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           Design Tokens
         </h1>
-        <p style={{ color: '#64748b', fontSize: '1.05rem', lineHeight: 1.6 }}>
-          All design tokens use the <code style={{ ...mono, background: '#1e293b', padding: '0.1rem 0.4rem', borderRadius: '0.25rem', color: '#7dd3fc' }}>--stella-*</code> CSS custom property prefix.
-          The source of truth is <code style={{ ...mono, background: '#1e293b', padding: '0.1rem 0.4rem', borderRadius: '0.25rem', color: '#7dd3fc' }}>packages/theme/src/tokens.json</code>.
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '1.05rem', lineHeight: 1.6 }}>
+          All design tokens use the <code style={inlineCode}>--stella-*</code> CSS custom property prefix.
+          The source of truth is <code style={inlineCode}>packages/theme/src/tokens.json</code>.
         </p>
       </div>
 
       {/* Usage */}
       <section style={{ marginBottom: '3rem' }}>
         <h2 style={sectionHeading}>How to Use Tokens</h2>
-        <p style={{ color: '#94a3b8', marginBottom: '1rem', fontSize: '0.95rem' }}>After importing the theme CSS, reference tokens in any stylesheet:</p>
-        <pre style={{ background: '#0d1117', border: '1px solid #1e293b', padding: '1.25rem', borderRadius: '0.5rem', overflow: 'auto', fontSize: '0.875rem', lineHeight: 1.7, margin: 0 }}>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>After importing the theme CSS, reference tokens in any stylesheet:</p>
+        <pre style={codeBlock}>
           <code style={{ ...mono, color: '#f1f5f9', fontSize: '0.875rem' }}>{`.my-button {
   background: var(--stella-color-cosmos-500);
   color: var(--stella-color-starlight-primary);
@@ -94,28 +113,28 @@ export default function TokensPage() {
       {/* Color palettes */}
       <section style={{ marginBottom: '3rem' }}>
         <h2 style={sectionHeading}>Color Palettes</h2>
-        <p style={{ color: '#64748b', marginBottom: '2rem', fontSize: '0.9rem' }}>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '2rem', fontSize: '0.9rem' }}>
           Named after celestial bodies. Each palette has 11 stops (50–950) following a perceptual lightness scale.
         </p>
 
         {colorFamilies.map((family) => (
           <div key={family.name} style={{ marginBottom: '2rem' }}>
             <div style={{ marginBottom: '0.75rem' }}>
-              <span style={{ fontWeight: 700, color: '#f1f5f9', marginRight: '0.5rem' }}>{family.label}</span>
-              <span style={{ color: '#475569', fontSize: '0.85rem' }}>{family.description}</span>
+              <span style={{ fontWeight: 700, color: 'var(--stella-color-starlight-primary)', marginRight: '0.5rem' }}>{family.label}</span>
+              <span style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.85rem' }}>{family.description}</span>
             </div>
             <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
               {scales.map((scale) => (
                 <div key={scale} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                   <div
-                    style={{ width: '56px', height: '48px', borderRadius: '0.375rem', background: `var(--stella-color-${family.name}-${scale})`, border: '1px solid rgba(255,255,255,0.08)' }}
+                    style={{ width: '56px', height: '48px', borderRadius: '0.375rem', background: `var(--stella-color-${family.name}-${scale})`, border: '1px solid var(--stella-color-void-muted)' }}
                     title={`--stella-color-${family.name}-${scale}`}
                   />
-                  <span style={{ ...mono, fontSize: '0.65rem', color: '#475569' }}>{scale}</span>
+                  <span style={{ ...mono, fontSize: '0.65rem', color: 'var(--stella-color-starlight-secondary)' }}>{scale}</span>
                 </div>
               ))}
             </div>
-            <p style={{ ...mono, color: '#475569', fontSize: '0.75rem', marginTop: '0.5rem' }}>
+            <p style={{ ...mono, color: 'var(--stella-color-starlight-secondary)', fontSize: '0.75rem', marginTop: '0.5rem' }}>
               {'--stella-color-' + family.name + '-[50–950]'}
             </p>
           </div>
@@ -125,18 +144,18 @@ export default function TokensPage() {
       {/* Void (backgrounds) */}
       <section style={{ marginBottom: '3rem' }}>
         <h2 style={sectionHeading}>Void — Backgrounds</h2>
-        <p style={{ color: '#64748b', marginBottom: '1.25rem', fontSize: '0.9rem' }}>Semantic background tokens for layered dark surfaces.</p>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>Semantic background tokens for layered dark surfaces.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.75rem' }}>
           {voidKeys.map((item) => (
-            <div key={item.key} style={{ borderRadius: '0.5rem', overflow: 'hidden', border: '1px solid #1e293b' }}>
+            <div key={item.key} style={{ borderRadius: '0.5rem', overflow: 'hidden', border: '1px solid var(--stella-color-void-muted)' }}>
               <div
-                style={{ height: '60px', background: `var(--stella-color-void-${item.key})`, borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+                style={{ height: '60px', background: `var(--stella-color-void-${item.key})`, borderBottom: '1px solid var(--stella-color-void-muted)' }}
                 title={`--stella-color-void-${item.key}`}
               />
-              <div style={{ padding: '0.625rem 0.75rem' }}>
-                <div style={{ ...mono, color: '#a5b4fc', fontSize: '0.75rem' }}>{item.label}</div>
-                <div style={{ color: '#475569', fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.description}</div>
-                <div style={{ ...mono, color: '#334155', fontSize: '0.65rem', marginTop: '0.25rem' }}>
+              <div style={{ padding: '0.625rem 0.75rem', background: 'var(--stella-color-void-surface)' }}>
+                <div style={{ ...mono, color: 'var(--stella-color-cosmos-400)', fontSize: '0.75rem' }}>{item.label}</div>
+                <div style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.description}</div>
+                <div style={{ ...mono, color: 'var(--stella-color-starlight-disabled)', fontSize: '0.65rem', marginTop: '0.25rem' }}>
                   {'--stella-color-void-' + item.key}
                 </div>
               </div>
@@ -148,16 +167,16 @@ export default function TokensPage() {
       {/* Starlight (text) */}
       <section style={{ marginBottom: '3rem' }}>
         <h2 style={sectionHeading}>Starlight — Text</h2>
-        <p style={{ color: '#64748b', marginBottom: '1.25rem', fontSize: '0.9rem' }}>Semantic text color tokens for accessible type hierarchy.</p>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>Semantic text color tokens for accessible type hierarchy.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.75rem' }}>
           {starlightKeys.map((item) => (
-            <div key={item.key} style={{ background: '#111827', borderRadius: '0.5rem', border: '1px solid #1e293b', padding: '1rem' }}>
+            <div key={item.key} style={{ background: 'var(--stella-color-void-surface)', borderRadius: '0.5rem', border: '1px solid var(--stella-color-void-muted)', padding: '1rem' }}>
               <div style={{ fontSize: '1.25rem', fontWeight: 700, color: `var(--stella-color-starlight-${item.key})`, marginBottom: '0.5rem' }}>
                 Aa
               </div>
-              <div style={{ ...mono, color: '#a5b4fc', fontSize: '0.75rem' }}>{item.label}</div>
-              <div style={{ color: '#475569', fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.description}</div>
-              <div style={{ ...mono, color: '#334155', fontSize: '0.65rem', marginTop: '0.375rem' }}>
+              <div style={{ ...mono, color: 'var(--stella-color-cosmos-400)', fontSize: '0.75rem' }}>{item.label}</div>
+              <div style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.description}</div>
+              <div style={{ ...mono, color: 'var(--stella-color-starlight-disabled)', fontSize: '0.65rem', marginTop: '0.375rem' }}>
                 {'--stella-color-starlight-' + item.key}
               </div>
             </div>
@@ -168,22 +187,22 @@ export default function TokensPage() {
       {/* Typography */}
       <section style={{ marginBottom: '3rem' }}>
         <h2 style={sectionHeading}>Typography</h2>
-        <div style={{ overflowX: 'auto', borderRadius: '0.5rem', border: '1px solid #1e293b' }}>
+        <div style={{ overflowX: 'auto', borderRadius: '0.5rem', border: '1px solid var(--stella-color-void-muted)' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
             <thead>
-              <tr style={{ background: '#0d1117' }}>
+              <tr style={{ background: 'var(--stella-color-void-base)' }}>
                 {['Token', 'Value'].map((h) => (
-                  <th key={h} style={{ textAlign: 'left', padding: '0.75rem 1rem', color: '#64748b', fontWeight: 600, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid #1e293b' }}>{h}</th>
+                  <th key={h} style={{ textAlign: 'left', padding: '0.75rem 1rem', color: 'var(--stella-color-starlight-secondary)', fontWeight: 600, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid var(--stella-color-void-muted)' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {typographyTokens.map((t, i) => (
-                <tr key={t.name} style={{ borderBottom: i < typographyTokens.length - 1 ? '1px solid #1e293b' : 'none' }}>
-                  <td style={{ padding: '0.625rem 1rem', ...mono, color: '#a5b4fc', fontSize: '0.8rem' }}>
+                <tr key={t.name} style={{ borderBottom: i < typographyTokens.length - 1 ? '1px solid var(--stella-color-void-muted)' : 'none' }}>
+                  <td style={{ padding: '0.625rem 1rem', ...mono, color: 'var(--stella-color-cosmos-400)', fontSize: '0.8rem' }}>
                     {'--stella-typography-' + t.name}
                   </td>
-                  <td style={{ padding: '0.625rem 1rem', color: '#94a3b8', fontSize: '0.875rem' }}>{t.value}</td>
+                  <td style={{ padding: '0.625rem 1rem', color: 'var(--stella-color-starlight-secondary)', fontSize: '0.875rem' }}>{t.value}</td>
                 </tr>
               ))}
             </tbody>
@@ -194,18 +213,18 @@ export default function TokensPage() {
       {/* Spacing */}
       <section style={{ marginBottom: '3rem' }}>
         <h2 style={sectionHeading}>Spacing</h2>
-        <p style={{ color: '#64748b', marginBottom: '1.25rem', fontSize: '0.9rem' }}>
-          4px base grid. Reference as <code style={{ ...mono, background: '#1e293b', padding: '0.1rem 0.4rem', borderRadius: '0.25rem', color: '#7dd3fc' }}>{'--stella-spacing-{key}'}</code>.
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>
+          4px base grid. Reference as <code style={inlineCode}>{'--stella-spacing-{key}'}</code>.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
           {spacingTokens.map((t) => (
             <div key={t.key} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span style={{ ...mono, color: '#64748b', fontSize: '0.8rem', minWidth: '180px' }}>
+              <span style={{ ...mono, color: 'var(--stella-color-starlight-secondary)', fontSize: '0.8rem', minWidth: '180px' }}>
                 {'--stella-spacing-' + t.key}
               </span>
-              <span style={{ ...mono, color: '#94a3b8', fontSize: '0.8rem', minWidth: '48px' }}>{t.value}</span>
+              <span style={{ ...mono, color: 'var(--stella-color-starlight-secondary)', fontSize: '0.8rem', minWidth: '48px' }}>{t.value}</span>
               <div
-                style={{ height: '8px', background: 'var(--stella-color-cosmos-500, #4f46e5)', borderRadius: '2px', width: `var(--stella-spacing-${t.key}, ${t.value})` }}
+                style={{ height: '8px', background: 'var(--stella-color-cosmos-500)', borderRadius: '2px', width: `var(--stella-spacing-${t.key}, ${t.value})` }}
               />
             </div>
           ))}
@@ -215,8 +234,8 @@ export default function TokensPage() {
       {/* Border radius */}
       <section style={{ marginBottom: '3rem' }}>
         <h2 style={sectionHeading}>Border Radius</h2>
-        <p style={{ color: '#64748b', marginBottom: '1.25rem', fontSize: '0.9rem' }}>
-          Reference as <code style={{ ...mono, background: '#1e293b', padding: '0.1rem 0.4rem', borderRadius: '0.25rem', color: '#7dd3fc' }}>{'--stella-borderRadius-{key}'}</code>.
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>
+          Reference as <code style={inlineCode}>{'--stella-borderRadius-{key}'}</code>.
         </p>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
           {[
@@ -228,9 +247,9 @@ export default function TokensPage() {
           ].map((r) => (
             <div key={r.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
               <div
-                style={{ width: r.size, height: r.size, background: 'rgba(79, 70, 229, 0.2)', border: '1px solid rgba(79, 70, 229, 0.4)', borderRadius: `var(--stella-borderRadius-${r.key})` }}
+                style={{ width: r.size, height: r.size, background: 'color-mix(in srgb, var(--stella-color-cosmos-500) 20%, transparent)', border: '1px solid color-mix(in srgb, var(--stella-color-cosmos-500) 40%, transparent)', borderRadius: `var(--stella-borderRadius-${r.key})` }}
               />
-              <span style={{ ...mono, fontSize: '0.7rem', color: '#475569' }}>{r.key}</span>
+              <span style={{ ...mono, fontSize: '0.7rem', color: 'var(--stella-color-starlight-secondary)' }}>{r.key}</span>
             </div>
           ))}
         </div>
@@ -239,10 +258,10 @@ export default function TokensPage() {
       {/* Full reference */}
       <section>
         <h2 style={sectionHeading}>Full Token Reference</h2>
-        <p style={{ color: '#64748b', marginBottom: '1rem', fontSize: '0.9rem' }}>
+        <p style={{ color: 'var(--stella-color-starlight-secondary)', marginBottom: '1rem', fontSize: '0.9rem' }}>
           The complete token set is defined in the package source. Use the exported utilities for programmatic access:
         </p>
-        <pre style={{ background: '#0d1117', border: '1px solid #1e293b', padding: '1.25rem', borderRadius: '0.5rem', overflow: 'auto', fontSize: '0.875rem', lineHeight: 1.7, margin: 0 }}>
+        <pre style={codeBlock}>
           <code style={{ ...mono, color: '#f1f5f9', fontSize: '0.875rem' }}>{`import { tokens, cssVariables, generateCSSVarsString } from '@stella-ds/theme'
 
 // tokens — nested object: tokens.color.cosmos[500]

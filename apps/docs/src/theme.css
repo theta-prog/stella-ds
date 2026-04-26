@@ -12,3 +12,66 @@ body {
   color: var(--stella-color-starlight-primary, #f0f0f5);
   font-family: var(--stella-typography-fontFamily-sans, sans-serif);
 }
+
+/* ----------------------------------------------------------------
+   Light theme overrides
+   Applied via data-theme="light" on body (set by Storybook decorator)
+   ---------------------------------------------------------------- */
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Void (background surfaces) */
+  --stella-color-void-base: #ffffff;
+  --stella-color-void-surface: #f8f9fb;
+  --stella-color-void-overlay: #f0f1f5;
+  --stella-color-void-muted: #dfe1e8;
+
+  /* Starlight (text) */
+  --stella-color-starlight-primary: #111827;
+  --stella-color-starlight-secondary: #4b5563;
+  --stella-color-starlight-disabled: #9ca3af;
+  --stella-color-starlight-inverse: #ffffff;
+
+  /* Cosmos (primary / interactive) — deeper for light bg contrast */
+  --stella-color-cosmos-50: #f0f0ff;
+  --stella-color-cosmos-100: #e0e1ff;
+  --stella-color-cosmos-200: #c5c6fe;
+  --stella-color-cosmos-300: #5b5bf0;
+  --stella-color-cosmos-400: #4845e2;
+  --stella-color-cosmos-500: #4845e2;
+  --stella-color-cosmos-600: #3c37c4;
+  --stella-color-cosmos-700: #312d8f;
+  --stella-color-cosmos-800: #2a277a;
+  --stella-color-cosmos-900: #1e1b5a;
+
+  /* Nebula (accent purple) */
+  --stella-color-nebula-300: #a78bfa;
+  --stella-color-nebula-400: #8b5cf6;
+  --stella-color-nebula-500: #7c3aed;
+
+  /* Aurora (accent cyan) */
+  --stella-color-aurora-300: #06b6d4;
+  --stella-color-aurora-400: #0891b2;
+  --stella-color-aurora-500: #0e7490;
+
+  /* Nova (success green) */
+  --stella-color-nova-300: #10b981;
+  --stella-color-nova-400: #059669;
+  --stella-color-nova-500: #047857;
+
+  /* Warning */
+  --stella-color-warning-300: #d97706;
+  --stella-color-warning-500: #b45309;
+
+  /* Error */
+  --stella-color-error-300: #dc2626;
+  --stella-color-error-500: #b91c1c;
+
+  /* Shadows — softer for light backgrounds */
+  --stella-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --stella-shadow-base: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --stella-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --stella-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --stella-shadow-glow-cosmos: 0 0 8px 1px rgb(67 56 202 / 0.15), 0 0 20px 2px rgb(67 56 202 / 0.06);
+  --stella-shadow-focus-ring: 0 0 0 2px rgb(67 56 202 / 0.4);
+}

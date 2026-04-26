@@ -17,17 +17,30 @@ const palettes = [
 
 const stops = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950']
 
-const prose: React.CSSProperties = { color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: '0.75rem' }
-const sectionHeading: React.CSSProperties = { fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem', color: '#f1f5f9', paddingBottom: '0.5rem', borderBottom: '1px solid #1e293b' }
-const badge: React.CSSProperties = { display: 'inline-block', background: 'rgba(79, 70, 229, 0.15)', border: '1px solid rgba(79, 70, 229, 0.3)', color: '#818cf8', borderRadius: '0.25rem', padding: '0.1rem 0.5rem', fontSize: '0.75rem', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }
+const prose: React.CSSProperties = { color: 'var(--stella-color-starlight-secondary)', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: '0.75rem' }
+const sectionHeading: React.CSSProperties = { fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--stella-color-starlight-primary)', paddingBottom: '0.5rem', borderBottom: '1px solid var(--stella-color-void-muted)' }
+const badge: React.CSSProperties = { display: 'inline-block', background: 'color-mix(in srgb, var(--stella-color-cosmos-500) 15%, transparent)', border: '1px solid color-mix(in srgb, var(--stella-color-cosmos-500) 30%, transparent)', color: 'var(--stella-color-cosmos-400)', borderRadius: '0.25rem', padding: '0.1rem 0.5rem', fontSize: '0.75rem', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }
+const mono: React.CSSProperties = { fontFamily: 'ui-monospace, SFMono-Regular, monospace' }
+
+const codeBlock: React.CSSProperties = {
+  background: '#0d1117',
+  border: '1px solid #1e293b',
+  padding: '1.25rem',
+  borderRadius: '0.5rem',
+  overflow: 'auto',
+  fontSize: '0.875rem',
+  lineHeight: 1.8,
+  color: '#f1f5f9',
+  ...mono,
+}
 
 export default function JaTokensPage() {
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '4rem 2rem' }}>
       {/* Header */}
       <div style={{ marginBottom: '3rem' }}>
-        <div style={{ color: '#818cf8', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>ドキュメント</div>
-        <h1 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '1rem', background: 'linear-gradient(135deg, #f1f5f9, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <div style={{ color: 'var(--stella-color-cosmos-400)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>ドキュメント</div>
+        <h1 style={{ fontSize: '2.75rem', fontWeight: 800, marginBottom: '1rem', background: 'linear-gradient(135deg, var(--stella-color-cosmos-400), var(--stella-color-nebula-400))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           デザイントークン
         </h1>
         <p style={{ ...prose, marginBottom: 0 }}>
@@ -39,7 +52,7 @@ export default function JaTokensPage() {
       <section style={{ marginBottom: '3rem' }}>
         <h2 style={sectionHeading}>トークンの使いかた</h2>
         <p style={prose}>テーマ CSS をインポートした後、任意のスタイルシートでトークンを参照できます:</p>
-        <pre style={{ background: '#0d1117', border: '1px solid #1e293b', padding: '1.25rem', borderRadius: '0.5rem', overflow: 'auto', fontSize: '0.875rem', lineHeight: 1.8, color: '#f1f5f9', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>
+        <pre style={codeBlock}>
           <code>{`.my-button {
   background: var(--stella-color-cosmos-500);
   color: var(--stella-color-starlight-primary);
@@ -61,8 +74,8 @@ export default function JaTokensPage() {
           return (
             <div key={key} style={{ marginBottom: '2rem' }}>
               <div style={{ marginBottom: '0.75rem' }}>
-                <h3 style={{ fontWeight: 700, color: '#f1f5f9', fontSize: '1.1rem', marginBottom: '0.2rem' }}>{label}</h3>
-                <p style={{ color: '#64748b', fontSize: '0.8rem' }}>{role}</p>
+                <h3 style={{ fontWeight: 700, color: 'var(--stella-color-starlight-primary)', fontSize: '1.1rem', marginBottom: '0.2rem' }}>{label}</h3>
+                <p style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.8rem' }}>{role}</p>
               </div>
               <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
                 {stops.map((stop) => {
@@ -73,7 +86,7 @@ export default function JaTokensPage() {
                   )
                 })}
               </div>
-              <p style={{ color: '#475569', fontSize: '0.75rem', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>
+              <p style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.75rem', ...mono }}>
                 --stella-color-{key}-[50–950]
               </p>
             </div>
@@ -89,11 +102,11 @@ export default function JaTokensPage() {
           {(['base', 'surface', 'overlay', 'muted'] as const).map((key) => {
             const value = (colorTokens.void as ColorScale)?.[key]
             return (
-              <div key={key} style={{ background: '#111827', borderRadius: '0.5rem', border: '1px solid #1e293b', overflow: 'hidden' }}>
+              <div key={key} style={{ background: 'var(--stella-color-void-surface)', borderRadius: '0.5rem', border: '1px solid var(--stella-color-void-muted)', overflow: 'hidden' }}>
                 <div style={{ height: '56px', background: value }} />
                 <div style={{ padding: '0.75rem' }}>
-                  <p style={{ color: '#94a3b8', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.25rem' }}>{key}</p>
-                  <p style={{ color: '#475569', fontSize: '0.7rem', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>--stella-color-void-{key}</p>
+                  <p style={{ color: 'var(--stella-color-cosmos-400)', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.25rem', ...mono }}>{key}</p>
+                  <p style={{ color: 'var(--stella-color-starlight-disabled)', fontSize: '0.7rem', ...mono }}>--stella-color-void-{key}</p>
                 </div>
               </div>
             )
@@ -109,10 +122,10 @@ export default function JaTokensPage() {
           {(['primary', 'secondary', 'disabled'] as const).map((key) => {
             const value = (colorTokens.starlight as ColorScale)?.[key]
             return (
-              <div key={key} style={{ background: '#111827', borderRadius: '0.5rem', border: '1px solid #1e293b', padding: '1rem' }}>
-                <p style={{ fontSize: '1.25rem', fontWeight: 700, color: value, marginBottom: '0.5rem' }}>Aa</p>
-                <p style={{ color: '#94a3b8', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.25rem' }}>{key}</p>
-                <p style={{ color: '#475569', fontSize: '0.7rem', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>--stella-color-starlight-{key}</p>
+              <div key={key} style={{ background: 'var(--stella-color-void-surface)', borderRadius: '0.5rem', border: '1px solid var(--stella-color-void-muted)', padding: '1rem' }}>
+                <p style={{ fontSize: '1.25rem', fontWeight: 700, color: `var(--stella-color-starlight-${key})`, marginBottom: '0.5rem' }}>Aa</p>
+                <p style={{ color: 'var(--stella-color-cosmos-400)', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.25rem', ...mono }}>{key}</p>
+                <p style={{ color: 'var(--stella-color-starlight-disabled)', fontSize: '0.7rem', ...mono }}>--stella-color-starlight-{key}</p>
               </div>
             )
           })}
@@ -130,10 +143,10 @@ export default function JaTokensPage() {
             { label: 'シャドウ', prefix: '--stella-shadow-*', desc: 'sm / md / lg / xl / glow' },
             { label: 'トランジション', prefix: '--stella-transition-*', desc: 'fast / base / slow' },
           ].map((item) => (
-            <div key={item.label} style={{ background: '#111827', borderRadius: '0.5rem', border: '1px solid #1e293b', padding: '1.25rem' }}>
-              <h3 style={{ fontWeight: 700, color: '#f1f5f9', fontSize: '0.95rem', marginBottom: '0.375rem' }}>{item.label}</h3>
-              <p style={{ color: '#818cf8', fontSize: '0.7rem', fontFamily: 'ui-monospace, SFMono-Regular, monospace', marginBottom: '0.5rem' }}>{item.prefix}</p>
-              <p style={{ color: '#64748b', fontSize: '0.8rem', lineHeight: 1.5 }}>{item.desc}</p>
+            <div key={item.label} style={{ background: 'var(--stella-color-void-surface)', borderRadius: '0.5rem', border: '1px solid var(--stella-color-void-muted)', padding: '1.25rem' }}>
+              <h3 style={{ fontWeight: 700, color: 'var(--stella-color-starlight-primary)', fontSize: '0.95rem', marginBottom: '0.375rem' }}>{item.label}</h3>
+              <p style={{ color: 'var(--stella-color-cosmos-400)', fontSize: '0.7rem', ...mono, marginBottom: '0.5rem' }}>{item.prefix}</p>
+              <p style={{ color: 'var(--stella-color-starlight-secondary)', fontSize: '0.8rem', lineHeight: 1.5 }}>{item.desc}</p>
             </div>
           ))}
         </div>

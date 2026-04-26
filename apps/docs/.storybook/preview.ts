@@ -9,15 +9,49 @@ const BG: Record<'dark' | 'light', string> = {
   light: '#ffffff',
 };
 
-function ThemeApplicator({ Story, theme, lang }: { Story: React.ComponentType; theme: 'dark' | 'light'; lang: string }) {
+function ThemeApplicator({
+  Story,
+  theme,
+  lang,
+}: {
+  Story: React.ComponentType;
+  theme: 'dark' | 'light';
+  lang: string;
+}) {
   React.useEffect(() => {
+    const previousBodyTheme = document.body.getAttribute('data-theme');
+    const previousBodyLang = document.body.getAttribute('lang');
+    const previousHtmlLang = document.documentElement.getAttribute('lang');
+    const previousBackgroundColor = document.body.style.backgroundColor;
+
     document.body.setAttribute('data-theme', theme);
+    document.body.setAttribute('lang', lang);
     document.body.style.backgroundColor = BG[theme];
+    document.documentElement.setAttribute('lang', lang);
+
     return () => {
-      document.body.removeAttribute('data-theme');
-      document.body.style.backgroundColor = '';
+      if (previousBodyTheme == null) {
+        document.body.removeAttribute('data-theme');
+      } else {
+        document.body.setAttribute('data-theme', previousBodyTheme);
+      }
+
+      if (previousBodyLang == null) {
+        document.body.removeAttribute('lang');
+      } else {
+        document.body.setAttribute('lang', previousBodyLang);
+      }
+
+      if (previousHtmlLang == null) {
+        document.documentElement.removeAttribute('lang');
+      } else {
+        document.documentElement.setAttribute('lang', previousHtmlLang);
+      }
+
+      document.body.style.backgroundColor = previousBackgroundColor;
     };
-  }, [theme]);
+  }, [lang, theme]);
+
   return React.createElement('div', { 'data-theme': theme, lang }, React.createElement(Story));
 }
 

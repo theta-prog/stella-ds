@@ -27,6 +27,25 @@ export type HeaderBrandProps = React.HTMLAttributes<HTMLDivElement>;
 export type HeaderNavProps = React.HTMLAttributes<HTMLElement>;
 export type HeaderActionsProps = React.HTMLAttributes<HTMLDivElement>;
 
+function findHeaderNavChildren(node: React.ReactNode): React.ReactNode | null {
+  for (const child of React.Children.toArray(node)) {
+    if (!React.isValidElement<{ children?: React.ReactNode }>(child)) {
+      continue;
+    }
+
+    if (child.type === HeaderNav) {
+      return child.props.children ?? null;
+    }
+
+    const nestedMatch = findHeaderNavChildren(child.props.children);
+    if (nestedMatch != null) {
+      return nestedMatch;
+    }
+  }
+
+  return null;
+}
+
 // ----------------------------------------------------------------
 // Header (Root)
 // ----------------------------------------------------------------
@@ -38,14 +57,7 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
   ) => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const navChildren = React.useMemo(() => {
-      const navChild = React.Children.toArray(children).find(
-        (child): child is React.ReactElement<HeaderNavProps> =>
-          React.isValidElement(child) && child.type === HeaderNav,
-      );
-
-      return navChild?.props.children ?? null;
-    }, [children]);
+    const navChildren = React.useMemo(() => findHeaderNavChildren(children), [children]);
 
     const cls = [
       styles.header,

@@ -93,6 +93,9 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   bundle: false,
+  banner: {
+    js: '"use client";',
+  },
   external: ['react', 'react-dom'],
   async onSuccess() {
     const cssFiles = findCssModuleFiles('src');

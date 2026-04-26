@@ -54,6 +54,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : 'button';
     const isDisabled = disabled || loading;
+    const handleClick: React.MouseEventHandler<HTMLElement> | undefined = isDisabled
+      ? (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      : onClick;
 
     const cls = [
       styles.button,
@@ -73,7 +79,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         aria-busy={loading || undefined}
         aria-disabled={asChild && isDisabled ? true : undefined}
         tabIndex={asChild && isDisabled ? -1 : tabIndex}
-        onClick={onClick}
+        onClick={handleClick}
         {...props}
       >
         {asChild ? children : (

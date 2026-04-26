@@ -4,11 +4,9 @@
 
 ### Minor Changes
 
-- Refresh the linked React and theme packages for the light-theme and typography update.
+- Refresh the light-theme and typography tokens.
 
   - update the theme font tokens used for sans and display typography defaults
-  - improve component runtime behavior for disabled asChild buttons and client-side header navigation
-  - align the React package exports and build output for smoother ESM consumption
 
 ## 0.3.2
 

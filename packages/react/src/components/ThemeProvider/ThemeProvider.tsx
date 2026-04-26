@@ -19,6 +19,8 @@ export interface ThemeProviderProps extends React.HTMLAttributes<HTMLDivElement>
   defaultTheme?: ThemeName;
   /** Called whenever the current theme changes. */
   onThemeChange?: (theme: ThemeName) => void;
+  'data-theme'?: string;
+  'data-stella-theme'?: string;
 }
 
 export const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps>(
@@ -30,6 +32,8 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps
       className,
       style,
       children,
+      'data-theme': _ignoredDataTheme,
+      'data-stella-theme': _ignoredDataStellaTheme,
       ...props
     },
     ref,
@@ -57,14 +61,20 @@ export const ThemeProvider = React.forwardRef<HTMLDivElement, ThemeProviderProps
       <ThemeContext.Provider value={contextValue}>
         <div
           ref={ref}
+          {...props}
           data-theme={theme}
           data-stella-theme=""
           className={className}
           style={{ ...style, colorScheme: theme }}
-          {...props}
         >
           {children}
-          <div ref={setPortalContainer} data-theme={theme} data-stella-theme-portal="" />
+          <div
+            ref={setPortalContainer}
+            data-theme={theme}
+            data-stella-theme-portal=""
+            aria-hidden="true"
+            style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}
+          />
         </div>
       </ThemeContext.Provider>
     );

@@ -70,6 +70,9 @@ export type { AvatarProps, AvatarSize } from './components/Avatar';
 export { Background } from './components/Background';
 export type { BackgroundProps, BackgroundVariant, BackgroundColorScheme, BackgroundTheme, BackgroundTokenColor } from './components/Background';
 
+export { ThemeProvider, useTheme } from './components/ThemeProvider';
+export type { ThemeProviderProps } from './components/ThemeProvider';
+
 export { Text } from './components/Text';
 export type { TextProps, TextSize, TextWeight, TextColor, TextAlign, TextAs, TextFamily } from './components/Text';
 

@@ -10,6 +10,7 @@
 
 import * as React from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
+import { useOptionalTheme } from '../ThemeProvider';
 import styles from './Dialog.module.css';
 
 // ----------------------------------------------------------------
@@ -46,13 +47,18 @@ export type DialogFooterProps = React.HTMLAttributes<HTMLDivElement>;
 export const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof RadixDialog.Overlay>,
   DialogOverlayProps
->(({ className, ...props }, ref) => (
-  <RadixDialog.Overlay
-    ref={ref}
-    className={[styles.overlay, className ?? ''].filter(Boolean).join(' ')}
-    {...props}
-  />
-));
+>(({ className, ...props }, ref) => {
+  const themeContext = useOptionalTheme();
+
+  return (
+    <RadixDialog.Overlay
+      ref={ref}
+      data-theme={themeContext?.theme}
+      className={[styles.overlay, className ?? ''].filter(Boolean).join(' ')}
+      {...props}
+    />
+  );
+});
 
 DialogOverlay.displayName = 'DialogOverlay';
 
@@ -63,23 +69,28 @@ DialogOverlay.displayName = 'DialogOverlay';
 export const DialogContent = React.forwardRef<
   React.ElementRef<typeof RadixDialog.Content>,
   DialogContentProps
->(({ showClose = true, className, children, ...props }, ref) => (
-  <RadixDialog.Portal>
-    <DialogOverlay />
-    <RadixDialog.Content
-      ref={ref}
-      className={[styles.content, className ?? ''].filter(Boolean).join(' ')}
-      {...props}
-    >
-      {children}
-      {showClose && (
-        <DialogClose className={styles.closeButton} aria-label="Close dialog">
-          <CloseIcon />
-        </DialogClose>
-      )}
-    </RadixDialog.Content>
-  </RadixDialog.Portal>
-));
+>(({ showClose = true, className, children, ...props }, ref) => {
+  const themeContext = useOptionalTheme();
+
+  return (
+    <RadixDialog.Portal container={themeContext?.portalContainer ?? undefined}>
+      <DialogOverlay />
+      <RadixDialog.Content
+        ref={ref}
+        data-theme={themeContext?.theme}
+        className={[styles.content, className ?? ''].filter(Boolean).join(' ')}
+        {...props}
+      >
+        {children}
+        {showClose && (
+          <DialogClose className={styles.closeButton} aria-label="Close dialog">
+            <CloseIcon />
+          </DialogClose>
+        )}
+      </RadixDialog.Content>
+    </RadixDialog.Portal>
+  );
+});
 
 DialogContent.displayName = 'DialogContent';
 

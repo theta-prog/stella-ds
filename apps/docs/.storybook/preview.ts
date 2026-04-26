@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Preview, Decorator } from '@storybook/react';
+import { ThemeProvider } from '@stella-ds/react';
 import { LOCALES, DEFAULT_LOCALE } from '../src/i18n';
 // Inject Stella design tokens as CSS custom properties
 import '../src/theme.css';
@@ -52,7 +53,11 @@ function ThemeApplicator({
     };
   }, [lang, theme]);
 
-  return React.createElement('div', { 'data-theme': theme, lang }, React.createElement(Story));
+  return React.createElement(
+    ThemeProvider,
+    { theme, lang, style: { display: 'block' } },
+    React.createElement(Story),
+  );
 }
 
 const withDataTheme: Decorator = (Story, context) => {

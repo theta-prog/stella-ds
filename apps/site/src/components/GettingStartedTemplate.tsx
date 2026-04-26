@@ -30,6 +30,9 @@ const content = {
       optionB: { label: 'Option B — JavaScript injection', desc: 'For dynamic injection (useful in JS-only environments or when bundler CSS imports are not available):' },
       optionC: { label: 'Option C — Raw token object', desc: 'Access the full token map for programmatic use:' },
       injectCode: `import { injectCSSVars } from '@stella-ds/theme'\n\n// Call once before first render\ninjectCSSVars()`,
+      scopeLabel: 'Scoped theming',
+      scopeDesc: 'The compiled theme CSS now includes official light and dark scopes. You can theme any subtree with data-theme, or use ThemeProvider when portal-based components like Dialog should stay in the same theme context:',
+      scopeCode: `import '@stella-ds/theme/css'\nimport { ThemeProvider, Dialog, DialogContent, DialogTrigger, Card, Heading, Text, Button } from '@stella-ds/react'\n\nexport function SettingsPanel() {\n  return (\n    <ThemeProvider theme="light">\n      <Card>\n        <Heading level={2}>Light scoped content</Heading>\n        <Text color="secondary">Card, text, heading, and dialog all share this theme scope.</Text>\n        <Dialog>\n          <DialogTrigger asChild>\n            <Button variant="outline">Open dialog</Button>\n          </DialogTrigger>\n          <DialogContent>\n            <Heading level={3} size="lg">Scoped dialog</Heading>\n            <Text color="secondary">This dialog keeps the same token context as the surrounding card.</Text>\n          </DialogContent>\n        </Dialog>\n      </Card>\n    </ThemeProvider>\n  )\n}`,
     },
     basicUsage: {
       heading: 'Basic Usage',
@@ -132,6 +135,9 @@ export default function Page() {
       optionB: { label: '方法 B — JavaScript での注入', desc: '動的な注入が必要な場合（JS のみ環境や CSS インポートが使えない場合）:' },
       optionC: { label: '方法 C — トークンオブジェクトを直接使う', desc: 'プログラム的な利用のためにトークンマップにアクセスできます:' },
       injectCode: `import { injectCSSVars } from '@stella-ds/theme'\n\n// 最初のレンダー前に一度呼ぶ\ninjectCSSVars()`,
+      scopeLabel: 'スコープ付きテーマ',
+      scopeDesc: 'ビルド済みテーマ CSS には light / dark の公式スコープが含まれています。任意のサブツリーに data-theme を付けるか、Dialog のような portal ベースのコンポーネントまで同じ文脈に揃えたい場合は ThemeProvider を使えます:',
+      scopeCode: `import '@stella-ds/theme/css'\nimport { ThemeProvider, Dialog, DialogContent, DialogTrigger, Card, Heading, Text, Button } from '@stella-ds/react'\n\nexport function SettingsPanel() {\n  return (\n    <ThemeProvider theme="light">\n      <Card>\n        <Heading level={2}>ライトテーマのスコープ</Heading>\n        <Text color="secondary">Card、Text、Heading、Dialog が同じテーマ文脈を共有します。</Text>\n        <Dialog>\n          <DialogTrigger asChild>\n            <Button variant="outline">ダイアログを開く</Button>\n          </DialogTrigger>\n          <DialogContent>\n            <Heading level={3} size="lg">スコープされたダイアログ</Heading>\n            <Text color="secondary">周囲の Card と同じトークン文脈のまま表示されます。</Text>\n          </DialogContent>\n        </Dialog>\n      </Card>\n    </ThemeProvider>\n  )\n}`,
     },
     basicUsage: {
       heading: '基本的な使いかた',
@@ -291,6 +297,10 @@ export function GettingStartedTemplate({ locale }: Props) {
         <Heading level={3} size="sm" weight="semibold" style={h3Style}>{c.themeSetup.optionC.label}</Heading>
         <Text color="secondary" style={{ marginBottom: '0.5rem', display: 'block' }}>{c.themeSetup.optionC.desc}</Text>
         <pre style={codeBlockStyle}><code>{`import { cssVariables, tokens } from '@stella-ds/theme'\n\n// cssVariables: Record<string, string>  — { '--stella-color-cosmos-500': '#5b5bf0', ... }\n// tokens: nested object matching the tokens.json structure`}</code></pre>
+
+        <Heading level={3} size="sm" weight="semibold" style={h3Style}>{c.themeSetup.scopeLabel}</Heading>
+        <Text color="secondary" style={{ marginBottom: '0.5rem', display: 'block' }}>{c.themeSetup.scopeDesc}</Text>
+        <pre style={codeBlockStyle}><code>{c.themeSetup.scopeCode}</code></pre>
       </section>
 
       {/* Basic usage */}

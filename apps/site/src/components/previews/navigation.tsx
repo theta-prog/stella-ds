@@ -72,17 +72,9 @@ export function CarouselPreview() {
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={slide.title}>
-              <Card
-                style={{
-                  minHeight: '11.5rem',
-                  background:
-                    index === 0
-                      ? 'linear-gradient(135deg, color-mix(in srgb, var(--stella-color-cosmos-500) 18%, var(--stella-color-void-surface)) 0%, var(--stella-color-void-surface) 76%)'
-                      : 'linear-gradient(135deg, color-mix(in srgb, var(--stella-color-aurora-500) 14%, var(--stella-color-void-surface)) 0%, var(--stella-color-void-surface) 78%)',
-                }}
-              >
+              <Card style={{ minHeight: '11.5rem' }}>
                 <CardContent style={{ display: 'grid', gap: '0.75rem', padding: '1.5rem' }}>
-                  <Badge variant="subtle" color={index === 0 ? 'primary' : 'success'}>
+                  <Badge variant="subtle" color="primary">
                     0{index + 1}
                   </Badge>
                   <Text as="div" weight="semibold" size="lg">

@@ -102,7 +102,7 @@ export default function Page() {
     nextSteps: {
       heading: 'Next Steps',
       links: [
-        { href: '/components', title: 'Browse Components →', desc: 'Explore all 25 components with props and examples' },
+        { href: '/components', title: 'Browse Components →', desc: 'Explore all 26 components with props and examples' },
         { href: '/tokens', title: 'Design Tokens →', desc: 'Discover the celestial color palette and token system' },
       ],
     },
@@ -205,7 +205,7 @@ export default function Page() {
     nextSteps: {
       heading: '次のステップ',
       links: [
-        { href: '/ja/components', title: 'コンポーネント一覧 →', desc: '25 種類のコンポーネントの props と使用例を確認する' },
+        { href: '/ja/components', title: 'コンポーネント一覧 →', desc: '26 種類のコンポーネントの props と使用例を確認する' },
         { href: '/ja/tokens', title: 'デザイントークン →', desc: '天体カラーパレットとトークンシステムを見る' },
       ],
     },

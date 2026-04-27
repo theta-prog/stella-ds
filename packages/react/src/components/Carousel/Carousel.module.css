@@ -1,0 +1,107 @@
+/* ----------------------------------------------------------------
+   Carousel.module.css – Stella UI
+   ---------------------------------------------------------------- */
+
+.carousel {
+  --carousel-gap: var(--stella-spacing-4, 1rem);
+  --carousel-edge-padding: calc(var(--carousel-gap) / 2);
+  display: grid;
+  gap: var(--stella-spacing-4, 1rem);
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  isolation: isolate;
+}
+
+.carousel:focus-visible {
+  outline: 2px solid var(--stella-color-cosmos-400, #818cf8);
+  outline-offset: 4px;
+  border-radius: var(--stella-borderRadius-lg, 0.75rem);
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+.viewport-horizontal {
+  touch-action: pan-y pinch-zoom;
+  padding-inline: calc(var(--carousel-edge-padding) + 2px);
+  margin-inline: calc((var(--carousel-edge-padding) + 2px) * -1);
+}
+
+.content {
+  display: flex;
+}
+
+.content-horizontal {
+  margin-inline: calc(var(--carousel-gap) / -2);
+}
+
+.item {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.item-horizontal {
+  flex: 0 0 100%;
+  padding-inline: var(--carousel-edge-padding);
+}
+
+.control {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--stella-color-void-muted, #2b2e35);
+  border-radius: 999px;
+  background: var(--stella-color-void-surface, #15161b);
+  color: var(--stella-color-starlight-primary, #f0f0f5);
+  box-shadow: var(--stella-shadow-sm, 0 1px 3px rgb(0 0 0 / 0.3));
+  cursor: pointer;
+  transition:
+    background-color var(--stella-transition-fast, 150ms ease),
+    border-color var(--stella-transition-fast, 150ms ease),
+    color var(--stella-transition-fast, 150ms ease),
+    box-shadow var(--stella-transition-fast, 150ms ease),
+    opacity var(--stella-transition-fast, 150ms ease);
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.control:hover:not(:disabled) {
+  border-color: var(--stella-color-cosmos-500, #5b5bf0);
+  background: color-mix(in srgb, var(--stella-color-cosmos-500, #5b5bf0) 10%, var(--stella-color-void-surface, #15161b));
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--stella-color-cosmos-400, #818cf8);
+  outline-offset: 2px;
+}
+
+.control:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control {
+    transition: none;
+  }
+}

@@ -237,6 +237,33 @@ export interface TabsTranslations {
   content_settings: string;
 }
 
+export interface CarouselTranslations {
+  componentDescription: string;
+  story_default: string;
+  story_loop: string;
+  story_images: string;
+  story_cardsPerView: string;
+  story_withApi: string;
+  story_insideAlways: string;
+  story_insideHover: string;
+  story_outside: string;
+  label_carousel: string;
+  label_gallery: string;
+  label_previous: string;
+  label_next: string;
+  label_status: string;
+  label_cards_per_view: string;
+  label_slide_1: string;
+  label_slide_2: string;
+  label_slide_3: string;
+  label_slide_4: string;
+  desc_slide_1: string;
+  desc_slide_2: string;
+  desc_slide_3: string;
+  desc_slide_4: string;
+  desc_cards_per_view: string;
+}
+
 export interface HeaderTranslations {
   componentDescription: string;
   story_default: string;
@@ -378,6 +405,7 @@ export interface Translations {
   dialog: DialogTranslations;
   tooltip: TooltipTranslations;
   tabs: TabsTranslations;
+  carousel: CarouselTranslations;
   header: HeaderTranslations;
   footer: FooterTranslations;
   breadcrumb: BreadcrumbTranslations;
@@ -655,6 +683,39 @@ const en: Translations = {
       'Analytics panel — charts and metrics showing usage trends.',
     content_settings:
       'Settings panel — configure preferences and manage your account.',
+  },
+
+  carousel: {
+    componentDescription:
+      'Embla-powered carousel with accessible slide announcements, keyboard support, and compound subcomponents for track, slides, and controls.',
+    story_default: 'Default',
+    story_loop: 'Loop',
+    story_images: 'Images',
+    story_cardsPerView: 'Cards / Viewport Count',
+    story_withApi: 'With API',
+    story_insideAlways: 'Inside / Always Visible',
+    story_insideHover: 'Inside / Hover Reveal',
+    story_outside: 'Outside / Card Height',
+    label_carousel: 'Featured highlights',
+    label_gallery: 'Feature gallery',
+    label_previous: 'Previous slide',
+    label_next: 'Next slide',
+    label_status: 'Active slide',
+    label_cards_per_view: 'Cards per view',
+    label_slide_1: 'Launch faster',
+    label_slide_2: 'Theme any surface',
+    label_slide_3: 'Compose dense layouts',
+    label_slide_4: 'Ship with feedback',
+    desc_slide_1:
+      'Start with accessible building blocks instead of rebuilding buttons, forms, and overlays from scratch.',
+    desc_slide_2:
+      'Use Stella tokens to move between base, surface, and accent treatments without breaking visual rhythm.',
+    desc_slide_3:
+      'Mix primitives like Card, Heading, Text, and Stack to build marketing panels or product highlights.',
+    desc_slide_4:
+      'Document interaction states in Storybook, then reuse the same components in your app and docs site.',
+    desc_cards_per_view:
+      'Change the width of each CarouselItem to decide how many cards appear in one viewport. That concern belongs to the slide layout, not the root Carousel API.',
   },
 
   header: {
@@ -1060,6 +1121,39 @@ const ja: Translations = {
       'アナリティクスパネル — 利用傾向を示すチャートと指標です。',
     content_settings:
       '設定パネル — 各種設定やアカウント管理を行えます。',
+  },
+
+  carousel: {
+    componentDescription:
+      'Embla ベースのカルーセル。スライド読み上げ、キーボード操作、トラック・スライド・コントロールの複合 API を備えています。',
+    story_default: 'デフォルト',
+    story_loop: 'ループ',
+    story_images: '画像',
+    story_cardsPerView: 'カード / 表示枚数',
+    story_withApi: 'API 連携',
+    story_insideAlways: '内側 / 常時表示',
+    story_insideHover: '内側 / ホバーで表示',
+    story_outside: '外側 / カード高に配置',
+    label_carousel: '注目ハイライト',
+    label_gallery: '画像ギャラリー',
+    label_previous: '前のスライド',
+    label_next: '次のスライド',
+    label_status: '現在のスライド',
+    label_cards_per_view: '1画面のカード枚数',
+    label_slide_1: '立ち上がりを速く',
+    label_slide_2: 'どの面にもテーマを',
+    label_slide_3: '密度の高いレイアウトを構成',
+    label_slide_4: 'フィードバック込みで出荷',
+    desc_slide_1:
+      'ボタンやフォーム、オーバーレイを毎回作り直さず、アクセシブルな土台から始められます。',
+    desc_slide_2:
+      'Stella のトークンで、ベース・サーフェス・アクセントの切り替えをリズムを崩さずに扱えます。',
+    desc_slide_3:
+      'Card、Heading、Text などのプリミティブを組み合わせて、紹介セクションや製品ハイライトを構築できます。',
+    desc_slide_4:
+      'Storybook で状態遷移を確認し、そのままアプリやドキュメントサイトで再利用できます。',
+    desc_cards_per_view:
+      '1画面に何枚出すかは Carousel 自体の size prop ではなく、各 CarouselItem の幅で決めるほうが自然です。',
   },
 
   header: {

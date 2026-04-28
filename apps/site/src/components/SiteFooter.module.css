@@ -1,0 +1,21 @@
+.footer {
+  margin-top: var(--stella-spacing-16);
+}
+
+.sectionLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--stella-spacing-3);
+}
+
+.brandName {
+  margin-bottom: var(--stella-spacing-2);
+}
+
+.navLink {
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--stella-color-starlight-secondary);
+}

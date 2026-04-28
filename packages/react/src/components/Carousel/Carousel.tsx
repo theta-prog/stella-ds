@@ -373,13 +373,16 @@ CarouselItem.displayName = 'CarouselItem';
 export const CarouselContent = React.forwardRef<HTMLDivElement, CarouselContentProps>(
   ({ className, children, ...props }, ref) => {
     const { viewportRef, setSlideCount } = useCarouselContext();
-    const itemCount = countCarouselItems(children);
+    const itemCount = React.useMemo(() => countCarouselItems(children), [children]);
 
     React.useEffect(() => {
       setSlideCount(itemCount);
     }, [itemCount, setSlideCount]);
 
-    const mappedChildren = mapCarouselItems(children, itemCount, { current: 0 });
+    const mappedChildren = React.useMemo(
+      () => mapCarouselItems(children, itemCount, { current: 0 }),
+      [children, itemCount],
+    );
 
     const cls = [
       styles.content,

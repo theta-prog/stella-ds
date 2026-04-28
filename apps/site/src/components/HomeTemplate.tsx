@@ -24,7 +24,7 @@ const content: Record<'en' | 'ja', LocaleContent> = {
   en: {
     badge: 'Design System',
     tagline1: 'Scalable design system for web.',
-    tagline2: '25 accessible components. Celestial design tokens. Zero config.',
+    tagline2: '26 accessible components. Celestial design tokens. Zero config.',
     cta1: 'Get Started →',
     cta2: 'Browse Components',
     installLabel: 'INSTALL',
@@ -45,7 +45,7 @@ export default function App() {
 }`,
     },
     features: [
-      { color: 'cosmos', title: '25 Components', desc: 'Buttons, forms, overlays, layout primitives, and more' },
+      { color: 'cosmos', title: '26 Components', desc: 'Buttons, forms, overlays, layout primitives, and more' },
       { color: 'nebula', title: 'Accessible', desc: 'Built on Radix UI primitives with ARIA support throughout' },
       { color: 'aurora', title: 'Design Tokens', desc: 'Celestial color palette with CSS custom properties' },
       { color: 'nova', title: 'AI-Ready', desc: 'llms.txt and MCP server for seamless AI integration' },
@@ -54,7 +54,7 @@ export default function App() {
   ja: {
     badge: 'Design System',
     tagline1: 'ウェブ向けのスケーラブルなデザインシステム。',
-    tagline2: '25 のアクセシブルなコンポーネント。天体をベースにしたデザイントークン。',
+    tagline2: '26 のアクセシブルなコンポーネント。天体をベースにしたデザイントークン。',
     cta1: 'はじめる →',
     cta2: 'コンポーネント一覧',
     installLabel: 'インストール',
@@ -77,7 +77,7 @@ export default function App() {
 }`,
     },
     features: [
-      { color: 'cosmos', title: '25 コンポーネント', desc: 'ボタン、フォーム、オーバーレイ、レイアウトなど豊富なコンポーネント' },
+      { color: 'cosmos', title: '26 コンポーネント', desc: 'ボタン、フォーム、オーバーレイ、レイアウトなど豊富なコンポーネント' },
       { color: 'nebula', title: 'アクセシブル', desc: 'Radix UI プリミティブ上に構築、全体に ARIA 対応' },
       { color: 'aurora', title: 'デザイントークン', desc: '天体をテーマにしたカラーパレットと CSS カスタムプロパティ' },
       { color: 'nova', title: 'AI 対応', desc: 'llms.txt と MCP サーバーでシームレスな AI 統合' },

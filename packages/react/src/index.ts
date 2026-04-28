@@ -93,3 +93,14 @@ export type { SkeletonProps, SkeletonVariant } from './components/Skeleton';
 
 export { Separator } from './components/Separator';
 export type { SeparatorProps, SeparatorOrientation } from './components/Separator';
+
+export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from './components/Carousel';
+export type {
+  CarouselApi,
+  CarouselProps,
+  CarouselContentProps,
+  CarouselItemProps,
+  CarouselPreviousProps,
+  CarouselNextProps,
+  CarouselSlideAlign,
+} from './components/Carousel';

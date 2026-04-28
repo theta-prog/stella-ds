@@ -1,13 +1,6 @@
 import Link from 'next/link'
-import { Footer, FooterBottom, FooterContent, FooterDivider, Text } from '@stella-ds/react'
-
-const linkStyle: React.CSSProperties = {
-  color: 'var(--stella-color-starlight-disabled)',
-  fontSize: '0.875rem',
-  textDecoration: 'none',
-  display: 'block',
-  marginBottom: '0.375rem',
-}
+import { Footer, FooterBottom, FooterContent, FooterDivider, Stack, Text } from '@stella-ds/react'
+import styles from './SiteFooter.module.css'
 
 interface SiteFooterProps {
   locale: 'en' | 'ja'
@@ -18,11 +11,11 @@ export function SiteFooter({ locale }: SiteFooterProps) {
   const base = isJa ? '/ja' : ''
 
   return (
-    <Footer style={{ marginTop: '4rem' }}>
+    <Footer className={styles.footer}>
       <FooterContent>
         {/* Brand */}
         <div>
-          <Text weight="bold" as="div" style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>
+          <Text weight="bold" as="div" size="md" className={styles.brandName}>
             Stella UI
           </Text>
           <Text size="sm" color="secondary">
@@ -32,24 +25,42 @@ export function SiteFooter({ locale }: SiteFooterProps) {
 
         {/* Docs links */}
         <div>
-          <Text as="div" size="xs" color="secondary" weight="semibold" style={{ marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{isJa ? 'ドキュメント' : 'Docs'}</Text>
-          <Link href={`${base}/getting-started`} style={linkStyle}>{isJa ? 'はじめかた' : 'Getting Started'}</Link>
-          <Link href={`${base}/components`} style={linkStyle}>{isJa ? 'コンポーネント' : 'Components'}</Link>
-          <Link href={`${base}/tokens`} style={linkStyle}>{isJa ? 'トークン' : 'Tokens'}</Link>
+          <Text as="div" size="xs" color="secondary" weight="semibold" className={styles.sectionLabel}>
+            {isJa ? 'ドキュメント' : 'Docs'}
+          </Text>
+          <Stack gap="1">
+            <Text asChild size="sm" color="disabled" className={styles.navLink}>
+              <Link href={`${base}/getting-started`}>{isJa ? 'はじめかた' : 'Getting Started'}</Link>
+            </Text>
+            <Text asChild size="sm" color="disabled" className={styles.navLink}>
+              <Link href={`${base}/components`}>{isJa ? 'コンポーネント' : 'Components'}</Link>
+            </Text>
+            <Text asChild size="sm" color="disabled" className={styles.navLink}>
+              <Link href={`${base}/tokens`}>{isJa ? 'トークン' : 'Tokens'}</Link>
+            </Text>
+          </Stack>
         </div>
 
         {/* External links */}
         <div>
-          <Text as="div" size="xs" color="secondary" weight="semibold" style={{ marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{isJa ? 'リンク' : 'Links'}</Text>
-          <a href="https://github.com/theta-prog/stella-ds" target="_blank" rel="noopener noreferrer" style={linkStyle}>GitHub↗</a>
-          <a href="https://www.npmjs.com/package/@stella-ds/react" target="_blank" rel="noopener noreferrer" style={linkStyle}>npm↗</a>
+          <Text as="div" size="xs" color="secondary" weight="semibold" className={styles.sectionLabel}>
+            {isJa ? 'リンク' : 'Links'}
+          </Text>
+          <Stack gap="1">
+            <Text asChild size="sm" color="disabled" className={styles.navLink}>
+              <a href="https://github.com/theta-prog/stella-ds" target="_blank" rel="noopener noreferrer">GitHub↗</a>
+            </Text>
+            <Text asChild size="sm" color="disabled" className={styles.navLink}>
+              <a href="https://www.npmjs.com/package/@stella-ds/react" target="_blank" rel="noopener noreferrer">npm↗</a>
+            </Text>
+          </Stack>
         </div>
       </FooterContent>
 
       <FooterDivider />
 
       <FooterBottom>
-        <Text size="sm" color="disabled">© 2025 Stella UI. Built with the Stella Design System.</Text>
+        <Text size="sm" color="disabled">© 2026 Stella UI. Built with the Stella Design System.</Text>
         <Text size="sm" color="disabled">MIT License</Text>
       </FooterBottom>
     </Footer>

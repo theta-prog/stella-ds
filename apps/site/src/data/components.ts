@@ -139,6 +139,28 @@ export const components: ComponentDoc[] = [
 </Card>` }],
   },
   {
+    slug: 'carousel',
+    name: 'Carousel',
+    description: 'Embla-powered content carousel with accessible slide announcements, keyboard support, and compound controls.',
+    category: 'navigation',
+    imports: ['Carousel', 'CarouselContent', 'CarouselItem', 'CarouselPrevious', 'CarouselNext'],
+    props: [
+      { name: 'loop', type: 'boolean', default: 'false', description: 'Wrap from the last slide back to the first' },
+      { name: 'slideAlign', type: "'smart' | 'start' | 'center' | 'end'", default: "'center'", description: 'Embla snap alignment' },
+      { name: 'setApi', type: '(api: CarouselApi) => void', default: 'undefined', description: 'Expose the underlying Embla API for advanced control' },
+    ],
+    examples: [{ title: 'Basic', code: `<Carousel aria-label="Featured projects" slideAlign="center">
+  <CarouselContent>
+    <CarouselItem>Project one</CarouselItem>
+    <CarouselItem>Project two</CarouselItem>
+  </CarouselContent>
+  <div style={{ display: 'flex', gap: '0.75rem' }}>
+    <CarouselPrevious />
+    <CarouselNext />
+  </div>
+</Carousel>` }],
+  },
+  {
     slug: 'checkbox',
     name: 'Checkbox',
     description: 'Accessible checkbox built on Radix UI with optional label and error state.',

@@ -9,6 +9,7 @@ const previewComponents: Record<string, ComponentType> = {
   breadcrumb: dynamic(() => import('./navigation').then((mod) => mod.BreadcrumbPreview)),
   button: dynamic(() => import('./display').then((mod) => mod.ButtonPreview)),
   card: dynamic(() => import('./display').then((mod) => mod.CardPreview)),
+  carousel: dynamic(() => import('./navigation').then((mod) => mod.CarouselPreview)),
   checkbox: dynamic(() => import('./forms').then((mod) => mod.CheckboxPreview)),
   dialog: dynamic(() => import('./overlay').then((mod) => mod.DialogPreview)),
   heading: dynamic(() => import('./typography').then((mod) => mod.HeadingPreview)),

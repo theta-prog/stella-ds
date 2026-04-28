@@ -1,6 +1,6 @@
 {
   "name": "@stella-ds/docs",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "description": "Stella UI Storybook documentation",
   "scripts": {

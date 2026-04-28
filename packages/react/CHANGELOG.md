@@ -1,5 +1,11 @@
 # @stella-ds/react
 
+## 0.5.0
+
+### Minor Changes
+
+- db9bfdd: Add `Carousel` component powered by Embla Carousel. Supports looping and prev/next navigation. Fully accessible with ARIA live regions and keyboard support.
+
 ## 0.4.0
 
 ### Minor Changes

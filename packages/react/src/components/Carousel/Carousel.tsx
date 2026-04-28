@@ -78,6 +78,47 @@ function isCarouselItemElement(
   return React.isValidElement(child) && child.type === CarouselItem;
 }
 
+type WithChildren = { children?: React.ReactNode };
+
+function hasChildren(props: unknown): props is WithChildren {
+  return typeof props === 'object' && props !== null && 'children' in props;
+}
+
+function countCarouselItems(children: React.ReactNode): number {
+  return React.Children.toArray(children).reduce<number>((count, child) => {
+    if (isCarouselItemElement(child)) return count + 1;
+    if (React.isValidElement(child) && hasChildren(child.props)) {
+      return count + countCarouselItems(child.props.children);
+    }
+    return count;
+  }, 0);
+}
+
+function mapCarouselItems(
+  children: React.ReactNode,
+  itemCount: number,
+  indexRef: { current: number },
+): React.ReactNode {
+  return React.Children.map(children, (child) => {
+    if (isCarouselItemElement(child)) {
+      const cloned = React.cloneElement(child, {
+        slideIndex: indexRef.current,
+        slideCount: itemCount,
+      });
+      indexRef.current += 1;
+      return cloned;
+    }
+    if (React.isValidElement(child) && hasChildren(child.props)) {
+      return React.cloneElement(
+        child as React.ReactElement<WithChildren>,
+        undefined,
+        mapCarouselItems(child.props.children, itemCount, indexRef),
+      );
+    }
+    return child;
+  });
+}
+
 type CarouselArrowDirection = 'left' | 'right';
 
 interface CarouselArrowIconProps extends React.SVGProps<SVGSVGElement> {
@@ -332,27 +373,13 @@ CarouselItem.displayName = 'CarouselItem';
 export const CarouselContent = React.forwardRef<HTMLDivElement, CarouselContentProps>(
   ({ className, children, ...props }, ref) => {
     const { viewportRef, setSlideCount } = useCarouselContext();
-    const childArray = React.Children.toArray(children);
-    const itemCount = childArray.filter(isCarouselItemElement).length;
+    const itemCount = countCarouselItems(children);
 
     React.useEffect(() => {
       setSlideCount(itemCount);
     }, [itemCount, setSlideCount]);
 
-    let itemIndex = 0;
-    const mappedChildren = childArray.map((child) => {
-      if (!isCarouselItemElement(child)) {
-        return child;
-      }
-
-      const cloned = React.cloneElement(child, {
-        slideIndex: itemIndex,
-        slideCount: itemCount,
-      });
-
-      itemIndex += 1;
-      return cloned;
-    });
+    const mappedChildren = mapCarouselItems(children, itemCount, { current: 0 });
 
     const cls = [
       styles.content,

@@ -75,13 +75,15 @@ background: linear-gradient(135deg, #818cf8, #67e8f9);
 ## Stella DS Compliance Rules
 
 ### Token Usage
-Always use `--stella-*` CSS variables. Never hardcode hex, rgb, or hsl values.
+Always use `--stella-*` CSS variables. Never hardcode standalone hex, rgb, or hsl values.
+Hex fallback values inside `var(--token, #fallback)` are allowed for non-themed contexts (e.g. SVG fills, inline snapshots).
 
 ```css
 /* CORRECT */
 color: var(--stella-color-starlight-primary);
 background: var(--stella-color-void-surface);
 border-color: var(--stella-color-void-muted);
+fill: var(--stella-color-void-muted, #2a2b33); /* fallback inside var() is OK */
 
 /* NEVER */
 color: #f0f0f5;
@@ -151,11 +153,13 @@ transition: all 200ms ease;
 ```
 
 ### Stories i18n
-All user-visible text in Storybook stories must come from `useT()`:
+Any text **rendered by the story UI** (component previews, labels, button text) must come from `useT()`.
+This does not apply to Storybook docs metadata, explanatory prose, or code snippet examples.
 ```tsx
 const tr = useT();
-<Heading>{tr.component.someKey}</Heading>  // correct
-<Heading>Hardcoded English</Heading>        // never
+<Heading>{tr.component.someKey}</Heading>  // correct — rendered UI text
+<Heading>Hardcoded English</Heading>        // never — rendered UI text
+// docs descriptions, argTypes labels, and example snippets are exempt
 ```
 
 ---

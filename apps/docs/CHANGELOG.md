@@ -1,5 +1,12 @@
 # @stella-ds/docs
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies [db9bfdd]
+  - @stella-ds/react@0.5.0
+
 ## 0.0.6
 
 ### Patch Changes

@@ -49,7 +49,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
       <FooterDivider />
 
       <FooterBottom>
-        <Text size="sm" color="disabled">© 2025 Stella UI. Built with the Stella Design System.</Text>
+        <Text size="sm" color="disabled">© 2026 Stella UI. Built with the Stella Design System.</Text>
         <Text size="sm" color="disabled">MIT License</Text>
       </FooterBottom>
     </Footer>

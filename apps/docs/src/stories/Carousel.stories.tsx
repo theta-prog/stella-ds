@@ -545,12 +545,16 @@ export const Default: Story = {
       name: translations.en.carousel.label_next,
     });
 
-    await expect(previousButton).toBeDisabled();
-    await expect(nextButton).toBeEnabled();
+    // Wait for Embla to initialize — canScrollNext starts false until the
+    // first useEffect fires and Embla computes scroll-snap positions.
+    await waitFor(() => {
+      expect(previousButton).toBeDisabled();
+      expect(nextButton).toBeEnabled();
+    }, { timeout: 3000 });
 
     await userEvent.click(nextButton);
 
-    await waitFor(() => expect(previousButton).toBeEnabled(), { timeout: 1000 });
+    await waitFor(() => expect(previousButton).toBeEnabled(), { timeout: 3000 });
   },
   parameters: {
     docs: {

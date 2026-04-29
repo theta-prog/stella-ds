@@ -11,6 +11,7 @@ import {
   CardContent,
   Carousel,
   CarouselContent,
+  CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
@@ -110,9 +111,7 @@ export function CarouselPreview() {
           </CarouselContent>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
             <CarouselPrevious />
-            <Text size="sm" color="secondary" style={{ margin: 0, textAlign: 'center' }}>
-              Two-up cards stay clean at both edges.
-            </Text>
+            <CarouselDots aria-label="Slide indicators" />
             <CarouselNext />
           </div>
         </Carousel>

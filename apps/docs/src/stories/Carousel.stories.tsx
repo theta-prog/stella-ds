@@ -8,6 +8,7 @@ import {
   CardContent,
   Carousel,
   CarouselContent,
+  CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
@@ -20,10 +21,11 @@ import { useT, translations } from '../i18n';
 
 type CarouselShowcaseProps = Pick<
   CarouselProps,
-  'loop' | 'slideAlign' | 'slidesPerView'
+  'loop' | 'slideAlign' | 'slidesPerView' | 'autoplay' | 'autoplayInterval'
 > & {
   withApi?: boolean;
   controls?: CarouselControlPlacement;
+  withDots?: boolean;
 };
 
 type CarouselControlPlacement = 'below' | 'inside-always' | 'inside-hover' | 'outside';
@@ -235,6 +237,9 @@ function CarouselShowcase({
   slidesPerView = 1,
   withApi = false,
   controls = 'below',
+  withDots = false,
+  autoplay = false,
+  autoplayInterval = 3000,
 }: CarouselShowcaseProps) {
   const tr = useT();
   const slides = getShowcaseSlides(tr);
@@ -339,6 +344,8 @@ function CarouselShowcase({
           slideAlign={slideAlign}
           slidesPerView={slidesPerView}
           setApi={setApi}
+          autoplay={autoplay}
+          autoplayInterval={autoplayInterval}
           aria-label={tr.carousel.label_carousel}
         >
           <CarouselContent>
@@ -369,6 +376,9 @@ function CarouselShowcase({
             ))}
           </CarouselContent>
           {renderControls()}
+          {withDots ? (
+            <CarouselDots aria-label={tr.carousel.label_dots} />
+          ) : null}
         </Carousel>
       </div>
 
@@ -775,6 +785,18 @@ const meta = {
       options: ['smart', 'start', 'center', 'end'],
       table: { defaultValue: { summary: 'center' } },
     },
+    autoplay: {
+      control: 'boolean',
+      table: { defaultValue: { summary: 'false' } },
+    },
+    autoplayInterval: {
+      control: { type: 'number', min: 500, step: 500 },
+      table: { defaultValue: { summary: '3000' } },
+    },
+    pauseOnHover: {
+      control: 'boolean',
+      table: { defaultValue: { summary: 'true' } },
+    },
     setApi: { table: { disable: true } },
     children: { table: { disable: true } },
   },
@@ -1044,6 +1066,47 @@ export const OutsideControls: Story = {
           'Controls sit just outside the card height so the slide content stays clean while navigation remains visually prominent.',
       },
     },
+  },
+};
+
+export const WithDots: Story = {
+  name: translations.en.carousel.story_withDots,
+  args: {
+    loop: true,
+    slideAlign: 'center',
+    slidesPerView: 1,
+  },
+  render: (args) => <CarouselShowcase {...args} withDots />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Add `<CarouselDots>` inside the carousel to render a row of pill-shaped dot indicators. The active dot expands to a pill. Clicking a dot scrolls directly to that snap position.',
+      },
+    },
+  },
+};
+
+export const Autoplay: Story = {
+  name: translations.en.carousel.story_autoplay,
+  args: {
+    loop: true,
+    slideAlign: 'center',
+    slidesPerView: 1,
+    autoplay: true,
+    autoplayInterval: 3000,
+  },
+  render: (args) => <CarouselShowcase {...args} withDots />,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Set `autoplay` to automatically advance slides. `autoplayInterval` (ms) controls the speed. Autoplay pauses on hover/focus and is disabled entirely when `prefers-reduced-motion: reduce` is active.',
+      },
+    },
+  },
+  argTypes: {
+    autoplay: { table: { disable: true }, control: false },
   },
 };
 

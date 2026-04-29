@@ -24,6 +24,12 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   slidesPerView?: number;
   /** Exposes the underlying Embla API for advanced control */
   setApi?: (api: CarouselApi) => void;
+  /** Automatically advance slides on an interval */
+  autoplay?: boolean;
+  /** Milliseconds between auto-advances (default: 3000) */
+  autoplayInterval?: number;
+  /** Pause autoplay when the pointer enters or focus moves inside the carousel (default: true) */
+  pauseOnHover?: boolean;
 }
 
 export type CarouselContentProps = React.HTMLAttributes<HTMLDivElement>;
@@ -41,6 +47,11 @@ export interface CarouselItemProps extends React.HTMLAttributes<HTMLDivElement> 
 export type CarouselPreviousProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 export type CarouselNextProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
+export interface CarouselDotsProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Accessible label for the dot-indicator group */
+  'aria-label'?: string;
+}
+
 // ----------------------------------------------------------------
 // Context
 // ----------------------------------------------------------------
@@ -51,6 +62,7 @@ type CarouselContextValue = {
   canScrollPrev: boolean;
   canScrollNext: boolean;
   selectedIndex: number;
+  snapCount: number;
   slideCount: number;
   setSlideCount: React.Dispatch<React.SetStateAction<number>>;
   scrollPrev: () => void;
@@ -191,7 +203,14 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       slideAlign = 'center',
       slidesPerView = 1,
       setApi,
+      autoplay = false,
+      autoplayInterval = 3000,
+      pauseOnHover = true,
       onKeyDownCapture,
+      onMouseEnter,
+      onMouseLeave,
+      onFocusCapture,
+      onBlurCapture,
       role,
       style,
       tabIndex,
@@ -202,6 +221,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     ref,
   ) => {
     const [slideCount, setSlideCount] = React.useState(0);
+    const [isPaused, setIsPaused] = React.useState(false);
     const normalizedSlidesPerView = normalizeSlidesPerView(slidesPerView);
     const emblaAlign = React.useMemo<EmblaSlideAlign | CarouselAlignResolver>(() => {
       if (slideAlign !== 'smart') {
@@ -234,6 +254,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [snapCount, setSnapCount] = React.useState(0);
     const carouselStyle = React.useMemo<CarouselCSSProperties>(() => {
       const nextStyle: CarouselCSSProperties = { ...style };
       nextStyle['--carousel-slides-per-view'] = `${normalizedSlidesPerView}`;
@@ -248,6 +269,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       setCanScrollPrev(api.canScrollPrev());
       setCanScrollNext(api.canScrollNext());
       setSelectedIndex(api.selectedScrollSnap());
+      setSnapCount(api.scrollSnapList().length);
     }, [api]);
 
     React.useEffect(() => {
@@ -278,6 +300,31 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       };
     }, [api, setApi, syncSelectionState]);
 
+    React.useEffect(() => {
+      if (!autoplay || !api) {
+        return;
+      }
+
+      if (
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        return;
+      }
+
+      if (isPaused) {
+        return;
+      }
+
+      const id = setInterval(() => {
+        if (loop || api.canScrollNext()) {
+          api.scrollNext();
+        }
+      }, autoplayInterval);
+
+      return () => clearInterval(id);
+    }, [autoplay, api, loop, autoplayInterval, isPaused]);
+
     const handleKeyDownCapture = (event: React.KeyboardEvent<HTMLDivElement>) => {
       onKeyDownCapture?.(event);
 
@@ -299,6 +346,42 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       }
     };
 
+    const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+      onMouseEnter?.(event);
+      if (pauseOnHover) {
+        setIsPaused(true);
+      }
+    };
+
+    const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+      onMouseLeave?.(event);
+      if (pauseOnHover) {
+        setIsPaused(false);
+      }
+    };
+
+    const handleFocusCapture = (event: React.FocusEvent<HTMLDivElement>) => {
+      onFocusCapture?.(event);
+      if (pauseOnHover) {
+        setIsPaused(true);
+      }
+    };
+
+    const handleBlurCapture = (event: React.FocusEvent<HTMLDivElement>) => {
+      onBlurCapture?.(event);
+      if (!pauseOnHover) {
+        return;
+      }
+
+      const nextFocused = event.relatedTarget;
+
+      if (nextFocused instanceof Node && event.currentTarget.contains(nextFocused)) {
+        return;
+      }
+
+      setIsPaused(false);
+    };
+
     const contextValue = React.useMemo(
       () => ({
         viewportRef,
@@ -306,6 +389,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         canScrollPrev,
         canScrollNext,
         selectedIndex,
+        snapCount,
         slideCount,
         setSlideCount,
         scrollPrev: () => api?.scrollPrev(),
@@ -318,6 +402,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         canScrollPrev,
         canScrollNext,
         selectedIndex,
+        snapCount,
         slideCount,
       ],
     );
@@ -344,6 +429,10 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
           aria-label={ariaLabel ?? 'Carousel'}
           aria-roledescription={ariaRoleDescription ?? 'carousel'}
           onKeyDownCapture={handleKeyDownCapture}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onFocusCapture={handleFocusCapture}
+          onBlurCapture={handleBlurCapture}
         >
           {announcedCount > 0 ? (
             <span className={styles.srOnly} aria-live="polite" aria-atomic="true">
@@ -537,3 +626,47 @@ export const CarouselNext = React.forwardRef<HTMLButtonElement, CarouselNextProp
 );
 
 CarouselNext.displayName = 'CarouselNext';
+
+// ----------------------------------------------------------------
+// CarouselDots
+// ----------------------------------------------------------------
+
+export const CarouselDots = React.forwardRef<HTMLDivElement, CarouselDotsProps>(
+  ({ className, 'aria-label': ariaLabel, ...props }, ref) => {
+    const { selectedIndex, snapCount, scrollTo } = useCarouselContext();
+
+    if (snapCount === 0) {
+      return null;
+    }
+
+    const cls = [styles.dots, className ?? ''].filter(Boolean).join(' ');
+
+    return (
+      <div
+        ref={ref}
+        className={cls}
+        role="group"
+        aria-label={ariaLabel ?? 'Slide indicators'}
+        {...props}
+      >
+        {Array.from({ length: snapCount }, (_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Go to slide ${i + 1}`}
+            aria-current={i === selectedIndex ? 'true' : undefined}
+            className={[
+              styles.dot,
+              i === selectedIndex ? styles['dot-active'] : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            onClick={() => scrollTo(i)}
+          />
+        ))}
+      </div>
+    );
+  },
+);
+
+CarouselDots.displayName = 'CarouselDots';

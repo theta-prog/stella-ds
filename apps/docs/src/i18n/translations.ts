@@ -248,7 +248,10 @@ export interface CarouselTranslations {
   story_insideAlways: string;
   story_insideHover: string;
   story_outside: string;
+  story_withDots: string;
+  story_autoplay: string;
   label_carousel: string;
+  label_dots: string;
   label_gallery: string;
   label_previous: string;
   label_next: string;
@@ -698,7 +701,10 @@ const en: Translations = {
     story_insideAlways: 'Inside / Always Visible',
     story_insideHover: 'Inside / Hover Reveal',
     story_outside: 'Outside / Card Height',
+    story_withDots: 'With Dot Indicators',
+    story_autoplay: 'Autoplay',
     label_carousel: 'Featured highlights',
+    label_dots: 'Slide indicators',
     label_gallery: 'Feature gallery',
     label_previous: 'Previous slide',
     label_next: 'Next slide',
@@ -1137,7 +1143,10 @@ const ja: Translations = {
     story_insideAlways: '内側 / 常時表示',
     story_insideHover: '内側 / ホバーで表示',
     story_outside: '外側 / カード高に配置',
+    story_withDots: 'ドットインジケーター付き',
+    story_autoplay: '自動再生',
     label_carousel: '注目ハイライト',
+    label_dots: 'スライドインジケーター',
     label_gallery: '画像ギャラリー',
     label_previous: '前のスライド',
     label_next: '次のスライド',

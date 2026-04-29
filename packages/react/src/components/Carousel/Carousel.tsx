@@ -253,8 +253,17 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         return false;
       }
 
+      // trimSnaps causes ScrollContain.measureBounded() to force-clamp the
+      // last snap to scrollBounds.max (e.g. -gap px), creating a phantom
+      // scroll range even when all slides fit. Disable containScroll for
+      // smart-align when slideCount fits within the visible window so Embla
+      // never sees a non-zero scroll range to navigate.
+      if (slideAlign === 'smart' && slideCount > 0 && slideCount <= normalizedSlidesPerView) {
+        return false;
+      }
+
       return 'trimSnaps';
-    }, [slideAlign]);
+    }, [slideAlign, slideCount, normalizedSlidesPerView]);
     const emblaOptions = React.useMemo(
       () => ({
         axis: 'x' as const,

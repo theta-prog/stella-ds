@@ -440,12 +440,18 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       setIsPaused(false);
     };
 
+    // Embla's canScrollNext/Prev compares indices, not positions. When
+    // containScroll:false collapses scrollSnaps to [0,0] the indices are still
+    // [0,1], so canScrollNext stays true until the user clicks once. Gate both
+    // flags at the DS level so navigation buttons reflect reality.
+    const slidesExceedView = slideCount === 0 || slideCount > normalizedSlidesPerView;
+
     const contextValue = React.useMemo(
       () => ({
         viewportRef,
         api,
-        canScrollPrev,
-        canScrollNext,
+        canScrollPrev: slidesExceedView && canScrollPrev,
+        canScrollNext: slidesExceedView && canScrollNext,
         selectedIndex,
         snapCount,
         slideCount,
@@ -457,6 +463,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       [
         viewportRef,
         api,
+        slidesExceedView,
         canScrollPrev,
         canScrollNext,
         selectedIndex,

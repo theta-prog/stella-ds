@@ -1,5 +1,12 @@
 # @stella-ds/theme
 
+## 0.6.0
+
+### Minor Changes
+
+- Release the official light theme token scope alongside the existing dark defaults.
+- Generate scoped `[data-theme="dark"]` and `[data-theme="light"]` CSS variable blocks so ThemeProvider and Background can switch semantic tokens correctly.
+
 ## 0.4.0
 
 ### Minor Changes

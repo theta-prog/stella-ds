@@ -20,6 +20,8 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   loop?: boolean;
   /** Embla snap alignment. */
   slideAlign?: CarouselSlideAlign;
+  /** How many slides should fit inside one viewport. Accepts fractional values for peeking layouts. */
+  slidesPerView?: number;
   /** Exposes the underlying Embla API for advanced control */
   setApi?: (api: CarouselApi) => void;
 }
@@ -125,6 +127,10 @@ interface CarouselArrowIconProps extends React.SVGProps<SVGSVGElement> {
   direction: CarouselArrowDirection;
 }
 
+type CarouselCSSProperties = React.CSSProperties & {
+  '--carousel-slides-per-view'?: string;
+};
+
 const arrowRotations: Record<CarouselArrowDirection, number> = {
   left: 90,
   right: -90,
@@ -142,6 +148,14 @@ function createSmartSlideAlign(slideCount: number): CarouselAlignResolver {
 
     return (viewSize - snapSize) / 2;
   };
+}
+
+function normalizeSlidesPerView(slidesPerView: number | undefined): number {
+  if (typeof slidesPerView !== 'number' || !Number.isFinite(slidesPerView) || slidesPerView <= 0) {
+    return 1;
+  }
+
+  return slidesPerView;
 }
 
 function CarouselArrowIcon({ direction, ...props }: CarouselArrowIconProps) {
@@ -175,9 +189,11 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       children,
       loop = false,
       slideAlign = 'center',
+      slidesPerView = 1,
       setApi,
       onKeyDownCapture,
       role,
+      style,
       tabIndex,
       ['aria-label']: ariaLabel,
       ['aria-roledescription']: ariaRoleDescription,
@@ -186,6 +202,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     ref,
   ) => {
     const [slideCount, setSlideCount] = React.useState(0);
+    const normalizedSlidesPerView = normalizeSlidesPerView(slidesPerView);
     const emblaAlign = React.useMemo<EmblaSlideAlign | CarouselAlignResolver>(() => {
       if (slideAlign !== 'smart') {
         return slideAlign;
@@ -217,6 +234,11 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const carouselStyle = React.useMemo<CarouselCSSProperties>(() => {
+      const nextStyle: CarouselCSSProperties = { ...style };
+      nextStyle['--carousel-slides-per-view'] = `${normalizedSlidesPerView}`;
+      return nextStyle;
+    }, [normalizedSlidesPerView, style]);
 
     const syncSelectionState = React.useCallback(() => {
       if (!api) {
@@ -227,6 +249,15 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       setCanScrollNext(api.canScrollNext());
       setSelectedIndex(api.selectedScrollSnap());
     }, [api]);
+
+    React.useEffect(() => {
+      if (!api) {
+        return;
+      }
+
+      api.reInit();
+      syncSelectionState();
+    }, [api, normalizedSlidesPerView, syncSelectionState]);
 
     React.useEffect(() => {
       if (!api) {
@@ -305,6 +336,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         <div
           ref={ref}
           className={cls}
+          style={carouselStyle}
           data-orientation="horizontal"
           {...props}
           role={role ?? 'region'}

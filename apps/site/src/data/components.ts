@@ -147,9 +147,10 @@ export const components: ComponentDoc[] = [
     props: [
       { name: 'loop', type: 'boolean', default: 'false', description: 'Wrap from the last slide back to the first' },
       { name: 'slideAlign', type: "'smart' | 'start' | 'center' | 'end'", default: "'center'", description: 'Embla snap alignment' },
+      { name: 'slidesPerView', type: 'number', default: '1', description: 'How many slides should fit in one viewport. Fractional values create peeking layouts.' },
       { name: 'setApi', type: '(api: CarouselApi) => void', default: 'undefined', description: 'Expose the underlying Embla API for advanced control' },
     ],
-    examples: [{ title: 'Basic', code: `<Carousel aria-label="Featured projects" slideAlign="center">
+    examples: [{ title: 'Basic', code: `<Carousel aria-label="Featured projects" slideAlign="smart" slidesPerView={1.2}>
   <CarouselContent>
     <CarouselItem>Project one</CarouselItem>
     <CarouselItem>Project two</CarouselItem>

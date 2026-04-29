@@ -242,6 +242,7 @@ export interface CarouselTranslations {
   story_default: string;
   story_loop: string;
   story_images: string;
+  story_imagesInside: string;
   story_cardsPerView: string;
   story_withApi: string;
   story_insideAlways: string;
@@ -691,6 +692,7 @@ const en: Translations = {
     story_default: 'Default',
     story_loop: 'Loop',
     story_images: 'Images',
+    story_imagesInside: 'Images / Inside Controls',
     story_cardsPerView: 'Cards / Viewport Count',
     story_withApi: 'With API',
     story_insideAlways: 'Inside / Always Visible',
@@ -715,7 +717,7 @@ const en: Translations = {
     desc_slide_4:
       'Document interaction states in Storybook, then reuse the same components in your app and docs site.',
     desc_cards_per_view:
-      'Change the width of each CarouselItem to decide how many cards appear in one viewport. That concern belongs to the slide layout, not the root Carousel API.',
+      'Use `slidesPerView` for the common case where each slide shares the same width. If you need asymmetrical or mixed layouts, you can still override CarouselItem widths directly.',
   },
 
   header: {
@@ -1129,6 +1131,7 @@ const ja: Translations = {
     story_default: 'デフォルト',
     story_loop: 'ループ',
     story_images: '画像',
+    story_imagesInside: '画像 / 内側コントロール',
     story_cardsPerView: 'カード / 表示枚数',
     story_withApi: 'API 連携',
     story_insideAlways: '内側 / 常時表示',
@@ -1153,7 +1156,7 @@ const ja: Translations = {
     desc_slide_4:
       'Storybook で状態遷移を確認し、そのままアプリやドキュメントサイトで再利用できます。',
     desc_cards_per_view:
-      '1画面に何枚出すかは Carousel 自体の size prop ではなく、各 CarouselItem の幅で決めるほうが自然です。',
+      '同じ幅のスライドを並べるなら `slidesPerView` が手軽です。変則的な幅や混在レイアウトが必要なときだけ CarouselItem ごとに幅を上書きできます。',
   },
 
   header: {

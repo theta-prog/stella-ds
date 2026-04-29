@@ -1,5 +1,23 @@
 # @stella-ds/react
 
+## 0.6.0
+
+### Minor Changes
+
+- Add the `slidesPerView` Carousel prop for uniform multi-slide layouts, including fractional peek layouts.
+- Expand Carousel docs and stories with inside image controls and public API examples.
+
+### Patch Changes
+
+- Updated dependencies
+  - @stella-ds/theme@0.6.0
+
+## 0.5.0
+
+### Minor Changes
+
+- db9bfdd: Add `Carousel` component powered by Embla Carousel. Supports looping and prev/next navigation. Fully accessible with ARIA live regions and keyboard support.
+
 ## 0.4.0
 
 ### Minor Changes

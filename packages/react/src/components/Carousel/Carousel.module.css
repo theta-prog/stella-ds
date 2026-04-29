@@ -5,6 +5,7 @@
 .carousel {
   --carousel-gap: var(--stella-spacing-4, 1rem);
   --carousel-edge-padding: calc(var(--carousel-gap) / 2);
+  --carousel-slides-per-view: 1;
   display: grid;
   gap: var(--stella-spacing-4, 1rem);
   position: relative;
@@ -43,7 +44,7 @@
 }
 
 .item-horizontal {
-  flex: 0 0 100%;
+  flex: 0 0 calc(100% / var(--carousel-slides-per-view, 1));
   padding-inline: var(--carousel-edge-padding);
 }
 

@@ -108,36 +108,44 @@ function getShowcaseSlides(tr: ReturnType<typeof useT>) {
   ];
 }
 
-function createGalleryPlaceholderDataUri(index: number) {
-  const palettes = [
-    ['#0d1117', '#1e2a3e'],
-    ['#0d1117', '#1a2d2a'],
-    ['#0f1019', '#1c2640'],
-    ['#111318', '#182030'],
-  ] as const;
-  const [from, to] = palettes[index % palettes.length];
-
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
-      <defs>
-        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="${from}" />
-          <stop offset="100%" stop-color="${to}" />
-        </linearGradient>
-      </defs>
-      <rect width="1600" height="900" fill="url(#bg)" />
-      <line x1="0" y1="300" x2="1600" y2="300" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-      <line x1="0" y1="600" x2="1600" y2="600" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-      <line x1="533" y1="0" x2="533" y2="900" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-      <line x1="1066" y1="0" x2="1066" y2="900" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-      <circle cx="230" cy="220" r="2" fill="white" fill-opacity="0.4" />
-      <circle cx="320" cy="180" r="1.5" fill="white" fill-opacity="0.3" />
-      <circle cx="420" cy="260" r="2" fill="white" fill-opacity="0.35" />
-      <circle cx="1010" cy="130" r="2" fill="white" fill-opacity="0.3" />
-      <circle cx="1290" cy="120" r="1.5" fill="white" fill-opacity="0.35" />
-      <circle cx="1380" cy="260" r="2" fill="white" fill-opacity="0.3" />
+function GalleryPlaceholder() {
+  return (
+    <svg
+      viewBox="0 0 1600 900"
+      aria-hidden="true"
+      focusable="false"
+      style={{
+        display: 'block',
+        width: '100%',
+        height: 'auto',
+        aspectRatio: '16 / 9',
+      }}
+    >
+      <rect width="1600" height="900" fill="var(--stella-color-void-base, #0d1117)" />
+      <rect
+        x="96"
+        y="96"
+        width="1408"
+        height="708"
+        rx="32"
+        fill="var(--stella-color-void-surface, #15161b)"
+        stroke="var(--stella-color-void-muted, #2b2e35)"
+        strokeWidth="2"
+      />
+      <line x1="96" y1="332" x2="1504" y2="332" stroke="var(--stella-color-starlight-primary, #f0f0f5)" strokeOpacity="0.08" />
+      <line x1="96" y1="568" x2="1504" y2="568" stroke="var(--stella-color-starlight-primary, #f0f0f5)" strokeOpacity="0.08" />
+      <line x1="565" y1="96" x2="565" y2="804" stroke="var(--stella-color-starlight-primary, #f0f0f5)" strokeOpacity="0.08" />
+      <line x1="1035" y1="96" x2="1035" y2="804" stroke="var(--stella-color-starlight-primary, #f0f0f5)" strokeOpacity="0.08" />
+      <rect x="144" y="144" width="248" height="18" rx="9" fill="var(--stella-color-cosmos-400, #818cf8)" fillOpacity="0.72" />
+      <rect x="144" y="192" width="924" height="14" rx="7" fill="var(--stella-color-starlight-secondary, #8888a0)" fillOpacity="0.32" />
+      <rect x="144" y="232" width="712" height="14" rx="7" fill="var(--stella-color-starlight-secondary, #8888a0)" fillOpacity="0.2" />
+      <rect x="144" y="396" width="376" height="124" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
+      <rect x="612" y="396" width="376" height="124" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
+      <rect x="1080" y="396" width="376" height="124" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
+      <rect x="144" y="620" width="610" height="136" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
+      <rect x="790" y="620" width="666" height="136" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
     </svg>
-  `)}`;
+  );
 }
 
 function useCarouselStatus(api: CarouselApi | undefined, totalSlides: number) {
@@ -479,20 +487,7 @@ function ImageCarouselShowcase({
                       boxShadow: 'var(--stella-shadow-md)',
                     }}
                   >
-                    <img
-                      src={createGalleryPlaceholderDataUri(index)}
-                      alt={slide.title}
-                      width={1600}
-                      height={900}
-                      loading="lazy"
-                      style={{
-                        display: 'block',
-                        width: '100%',
-                        height: 'auto',
-                        aspectRatio: '16 / 9',
-                        objectFit: 'cover',
-                      }}
-                    />
+                    <GalleryPlaceholder />
                     <div
                       style={{
                         position: 'absolute',

@@ -131,9 +131,10 @@
     "props": [
       {"name": "loop", "type": "boolean", "default": "false", "description": "Wrap from the last slide back to the first"},
       {"name": "slideAlign", "type": "'smart' | 'start' | 'center' | 'end'", "default": "'center'", "description": "Embla snap alignment"},
+      {"name": "slidesPerView", "type": "number", "default": "1", "description": "How many slides should fit in one viewport. Fractional values create peeking layouts."},
       {"name": "setApi", "type": "(api: CarouselApi) => void", "default": "undefined", "description": "Expose the underlying Embla API for advanced control"}
     ],
-    "example": "<Carousel aria-label=\"Featured projects\" slideAlign=\"center\">\n  <CarouselContent>\n    <CarouselItem>Project one</CarouselItem>\n    <CarouselItem>Project two</CarouselItem>\n  </CarouselContent>\n  <div style={{ display: 'flex', gap: '0.75rem' }}>\n    <CarouselPrevious />\n    <CarouselNext />\n  </div>\n</Carousel>",
+    "example": "<Carousel aria-label=\"Featured projects\" slideAlign=\"smart\" slidesPerView={1.2}>\n  <CarouselContent>\n    <CarouselItem>Project one</CarouselItem>\n    <CarouselItem>Project two</CarouselItem>\n  </CarouselContent>\n  <div style={{ display: 'flex', gap: '0.75rem' }}>\n    <CarouselPrevious />\n    <CarouselNext />\n  </div>\n</Carousel>",
     "guidelines": [
       "Give the root Carousel an `aria-label` that names the content set for screen readers.",
       "Pair swipe or drag gestures with visible previous / next controls so mouse and keyboard users get the same navigation path.",

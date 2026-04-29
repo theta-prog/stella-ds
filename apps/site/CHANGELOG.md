@@ -1,5 +1,12 @@
 # @stella-ds/site
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [eeb2630]
+  - @stella-ds/react@0.7.0
+
 ## 0.1.6
 
 ### Patch Changes

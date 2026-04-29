@@ -94,7 +94,7 @@ export type { SkeletonProps, SkeletonVariant } from './components/Skeleton';
 export { Separator } from './components/Separator';
 export type { SeparatorProps, SeparatorOrientation } from './components/Separator';
 
-export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from './components/Carousel';
+export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots } from './components/Carousel';
 export type {
   CarouselApi,
   CarouselProps,
@@ -102,5 +102,6 @@ export type {
   CarouselItemProps,
   CarouselPreviousProps,
   CarouselNextProps,
+  CarouselDotsProps,
   CarouselSlideAlign,
 } from './components/Carousel';

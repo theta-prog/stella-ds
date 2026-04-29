@@ -102,8 +102,62 @@
   border: 0;
 }
 
+/* ----------------------------------------------------------------
+   Dot indicators
+   ---------------------------------------------------------------- */
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+}
+
+.dot {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: var(--stella-color-starlight-disabled, #4a4a5f);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    width var(--stella-transition-fast, 150ms ease),
+    background-color var(--stella-transition-fast, 150ms ease),
+    opacity var(--stella-transition-fast, 150ms ease);
+}
+
+.dot:hover {
+  background: var(--stella-color-starlight-secondary, #8888a0);
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--stella-color-cosmos-400, #818cf8);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+.dot-active {
+  width: 1.25rem;
+  background: var(--stella-color-cosmos-500, #5b5bf0);
+}
+
+.dot-active:hover {
+  background: var(--stella-color-cosmos-400, #818cf8);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .control {
+    transition: none;
+  }
+
+  .dot {
     transition: none;
   }
 }

@@ -150,6 +150,12 @@ const arrowRotations: Record<CarouselArrowDirection, number> = {
 
 function createSmartSlideAlign(slideCount: number): CarouselAlignResolver {
   return (viewSize, snapSize, index) => {
+    // All slides fit in the viewport — collapse to a single snap point so
+    // Embla never reports canScrollNext=true when nothing is hidden.
+    if (snapSize * slideCount <= viewSize) {
+      return 0;
+    }
+
     if (index === 0) {
       return 0;
     }

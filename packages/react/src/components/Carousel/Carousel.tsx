@@ -253,8 +253,17 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         return false;
       }
 
+      // trimSnaps causes ScrollContain.measureBounded() to force-clamp the
+      // last snap to scrollBounds.max (e.g. -gap px), creating a phantom
+      // scroll range even when all slides fit. Disable containScroll for
+      // smart-align when slideCount fits within the visible window so Embla
+      // never sees a non-zero scroll range to navigate.
+      if (slideAlign === 'smart' && slideCount > 0 && slideCount <= normalizedSlidesPerView) {
+        return false;
+      }
+
       return 'trimSnaps';
-    }, [slideAlign]);
+    }, [slideAlign, slideCount, normalizedSlidesPerView]);
     const emblaOptions = React.useMemo(
       () => ({
         axis: 'x' as const,
@@ -431,12 +440,18 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       setIsPaused(false);
     };
 
+    // Embla's canScrollNext/Prev compares indices, not positions. When
+    // containScroll:false collapses scrollSnaps to [0,0] the indices are still
+    // [0,1], so canScrollNext stays true until the user clicks once. Gate both
+    // flags at the DS level so navigation buttons reflect reality.
+    const slidesExceedView = slideCount === 0 || slideCount > normalizedSlidesPerView;
+
     const contextValue = React.useMemo(
       () => ({
         viewportRef,
         api,
-        canScrollPrev,
-        canScrollNext,
+        canScrollPrev: slidesExceedView && canScrollPrev,
+        canScrollNext: slidesExceedView && canScrollNext,
         selectedIndex,
         snapCount,
         slideCount,
@@ -448,6 +463,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       [
         viewportRef,
         api,
+        slidesExceedView,
         canScrollPrev,
         canScrollNext,
         selectedIndex,

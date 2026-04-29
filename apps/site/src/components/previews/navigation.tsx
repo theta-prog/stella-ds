@@ -51,7 +51,7 @@ export function TabsPreview() {
 }
 
 export function CarouselPreview() {
-  const slides = [
+  const cardSlides = [
     {
       title: 'Launch faster',
       description: 'Accessible primitives, tokens, and docs that give product surfaces a cohesive starting point.',
@@ -66,41 +66,115 @@ export function CarouselPreview() {
     },
   ]
 
+  const imageSlides = [
+    {
+      title: 'Project Atlas',
+      description: 'A documentation shell with rounded media framing and exact-fit edge alignment.',
+    },
+    {
+      title: 'Project Nova',
+      description: 'A compact gallery card that still keeps the outer border and shadow fully visible.',
+    },
+  ]
+
   return (
-    <div style={{ width: '100%', maxWidth: '32rem', display: 'grid', gap: '0.75rem' }}>
-      <Carousel
-        aria-label="Featured highlights"
-        slideAlign="smart"
-        slidesPerView={1.1}
-        style={{ width: '100%' }}
-      >
-        <CarouselContent>
-          {slides.map((slide, index) => (
-            <CarouselItem key={slide.title}>
-              <Card style={{ minHeight: '11.5rem' }}>
-                <CardContent style={{ display: 'grid', gap: '0.75rem', padding: '1.5rem' }}>
-                  <Badge variant="subtle" color="primary">
-                    0{index + 1}
-                  </Badge>
-                  <Text as="div" weight="semibold" size="lg">
-                    {slide.title}
-                  </Text>
-                  <Text size="sm" color="secondary" style={{ margin: 0, lineHeight: 1.6 }}>
-                    {slide.description}
-                  </Text>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
-          <CarouselPrevious />
-          <Text size="sm" color="secondary" style={{ margin: 0, textAlign: 'center' }}>
-            Drag, swipe, or use the controls.
-          </Text>
-          <CarouselNext />
-        </div>
-      </Carousel>
+    <div style={{ width: '100%', maxWidth: '40rem', display: 'grid', gap: '1.25rem' }}>
+      <div style={{ display: 'grid', gap: '0.75rem' }}>
+        <Text as="div" size="xs" color="secondary" weight="semibold" style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Two-up cards
+        </Text>
+        <Carousel
+          aria-label="Featured highlights"
+          slideAlign="smart"
+          slidesPerView={2}
+          style={{ width: '100%' }}
+        >
+          <CarouselContent>
+            {cardSlides.map((slide, index) => (
+              <CarouselItem key={slide.title}>
+                <Card hoverable style={{ minHeight: '11.5rem', height: '100%' }}>
+                  <CardContent style={{ display: 'grid', gap: '0.75rem', padding: '1.25rem', height: '100%', alignContent: 'start' }}>
+                    <Badge variant="subtle" color="primary">
+                      0{index + 1}
+                    </Badge>
+                    <Text as="div" weight="semibold" size="lg">
+                      {slide.title}
+                    </Text>
+                    <Text size="sm" color="secondary" style={{ margin: 0, lineHeight: 1.6 }}>
+                      {slide.description}
+                    </Text>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+            <CarouselPrevious />
+            <Text size="sm" color="secondary" style={{ margin: 0, textAlign: 'center' }}>
+              Two-up cards stay clean at both edges.
+            </Text>
+            <CarouselNext />
+          </div>
+        </Carousel>
+      </div>
+
+      <div style={{ display: 'grid', gap: '0.75rem' }}>
+        <Text as="div" size="xs" color="secondary" weight="semibold" style={{ margin: 0, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Exact-fit images
+        </Text>
+        <Carousel
+          aria-label="Exact-fit gallery"
+          slideAlign="smart"
+          slidesPerView={2}
+          style={{ width: '100%' }}
+        >
+          <CarouselContent>
+            {imageSlides.map((slide, index) => (
+              <CarouselItem key={slide.title}>
+                <div style={{ display: 'grid', gap: '0.75rem' }}>
+                  <div
+                    style={{
+                      position: 'relative',
+                      aspectRatio: '4 / 3',
+                      overflow: 'hidden',
+                      borderRadius: '1rem',
+                      border: '1px solid color-mix(in srgb, var(--stella-color-starlight-primary) 12%, var(--stella-color-void-muted))',
+                      background: 'var(--stella-color-void-surface)',
+                      boxShadow: 'var(--stella-shadow-md)',
+                    }}
+                  >
+                    <div style={{ position: 'absolute', insetInlineStart: '0.875rem', insetBlockStart: '0.875rem' }}>
+                      <Badge variant="subtle" color="primary">
+                        0{index + 1}
+                      </Badge>
+                    </div>
+                    <div style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center', padding: '1rem' }}>
+                      <Text as="div" weight="semibold" size="md" style={{ margin: 0, textAlign: 'center' }}>
+                        {slide.title}
+                      </Text>
+                    </div>
+                  </div>
+                  <div style={{ display: 'grid', gap: '0.375rem', paddingInline: '0.25rem' }}>
+                    <Text as="div" weight="semibold" size="sm" style={{ margin: 0 }}>
+                      {slide.title}
+                    </Text>
+                    <Text size="xs" color="secondary" style={{ margin: 0, lineHeight: 1.6 }}>
+                      {slide.description}
+                    </Text>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+            <CarouselPrevious />
+            <Text size="sm" color="secondary" style={{ margin: 0, textAlign: 'center' }}>
+              Two slides fit exactly with no edge clipping.
+            </Text>
+            <CarouselNext />
+          </div>
+        </Carousel>
+      </div>
     </div>
   )
 }

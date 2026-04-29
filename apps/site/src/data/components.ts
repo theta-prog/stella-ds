@@ -141,7 +141,7 @@ export const components: ComponentDoc[] = [
   {
     slug: 'carousel',
     name: 'Carousel',
-    description: 'Embla-powered content carousel with accessible slide announcements, keyboard support, and compound controls.',
+    description: 'Embla-powered content carousel with accessible slide announcements, keyboard support, compound controls, and default edge bleed tuned for clean multi-slide layouts.',
     category: 'navigation',
     imports: ['Carousel', 'CarouselContent', 'CarouselItem', 'CarouselPrevious', 'CarouselNext'],
     props: [
@@ -150,10 +150,23 @@ export const components: ComponentDoc[] = [
       { name: 'slidesPerView', type: 'number', default: '1', description: 'How many slides should fit in one viewport. Fractional values create peeking layouts.' },
       { name: 'setApi', type: '(api: CarouselApi) => void', default: 'undefined', description: 'Expose the underlying Embla API for advanced control' },
     ],
-    examples: [{ title: 'Basic', code: `<Carousel aria-label="Featured projects" slideAlign="smart" slidesPerView={1.2}>
+    examples: [{ title: 'Two-up cards', code: `<Carousel aria-label="Featured projects" slideAlign="smart" slidesPerView={2}>
   <CarouselContent>
-    <CarouselItem>Project one</CarouselItem>
-    <CarouselItem>Project two</CarouselItem>
+    <CarouselItem>
+      <article style={{ borderRadius: '1rem', border: '1px solid var(--stella-color-void-muted)', boxShadow: 'var(--stella-shadow-md)', padding: '1.25rem' }}>
+        Project one
+      </article>
+    </CarouselItem>
+    <CarouselItem>
+      <article style={{ borderRadius: '1rem', border: '1px solid var(--stella-color-void-muted)', boxShadow: 'var(--stella-shadow-md)', padding: '1.25rem' }}>
+        Project two
+      </article>
+    </CarouselItem>
+    <CarouselItem>
+      <article style={{ borderRadius: '1rem', border: '1px solid var(--stella-color-void-muted)', boxShadow: 'var(--stella-shadow-md)', padding: '1.25rem' }}>
+        Project three
+      </article>
+    </CarouselItem>
   </CarouselContent>
   <div style={{ display: 'flex', gap: '0.75rem' }}>
     <CarouselPrevious />

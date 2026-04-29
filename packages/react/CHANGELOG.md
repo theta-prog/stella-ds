@@ -1,5 +1,11 @@
 # @stella-ds/react
 
+## 0.7.1
+
+### Patch Changes
+
+- a6564e1: Fix carousel smart-align collapsing to single snap point when all slides fit in viewport, preventing phantom canScrollNext=true state
+
 ## 0.7.0
 
 ### Minor Changes

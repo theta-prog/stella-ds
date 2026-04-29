@@ -1,5 +1,5 @@
 ---
-"stella-ui": minor
+"@stella-ds/react": minor
 ---
 
 Add CarouselDots component and autoplay support

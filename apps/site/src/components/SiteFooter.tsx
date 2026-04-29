@@ -9,6 +9,9 @@ interface SiteFooterProps {
 export function SiteFooter({ locale }: SiteFooterProps) {
   const isJa = locale === 'ja'
   const base = isJa ? '/ja' : ''
+  const startYear = 2026
+  const currentYear = new Date().getFullYear()
+  const copyrightYear = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`
 
   return (
     <Footer className={styles.footer}>
@@ -60,7 +63,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
       <FooterDivider />
 
       <FooterBottom>
-        <Text size="sm" color="disabled">© 2026 Stella UI. Built with the Stella Design System.</Text>
+        <Text size="sm" color="disabled">© {copyrightYear} Stella UI. Built with the Stella Design System.</Text>
         <Text size="sm" color="disabled">MIT License</Text>
       </FooterBottom>
     </Footer>

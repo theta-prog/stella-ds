@@ -68,7 +68,12 @@ export function CarouselPreview() {
 
   return (
     <div style={{ width: '100%', maxWidth: '32rem', display: 'grid', gap: '0.75rem' }}>
-      <Carousel aria-label="Featured highlights" slideAlign="center" style={{ width: '100%' }}>
+      <Carousel
+        aria-label="Featured highlights"
+        slideAlign="smart"
+        slidesPerView={1.1}
+        style={{ width: '100%' }}
+      >
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={slide.title}>

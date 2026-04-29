@@ -20,11 +20,13 @@ import { useT, translations } from '../i18n';
 
 type CarouselShowcaseProps = Pick<
   CarouselProps,
-  'loop' | 'slideAlign'
+  'loop' | 'slideAlign' | 'slidesPerView'
 > & {
   withApi?: boolean;
-  controls?: 'below' | 'inside-always' | 'inside-hover' | 'outside';
+  controls?: CarouselControlPlacement;
 };
+
+type CarouselControlPlacement = 'below' | 'inside-always' | 'inside-hover' | 'outside';
 
 type CardsPerView = 1 | 2 | 3;
 
@@ -63,6 +65,27 @@ const cardsFrameStyle: React.CSSProperties = {
 };
 
 const cardsPerViewOptions: CardsPerView[] = [1, 2, 3];
+const cardsPerViewDocsSource = `<Carousel loop={false} slideAlign="start" slidesPerView={2} aria-label="Featured highlights">
+  <CarouselContent>
+    <CarouselItem>
+      <Card hoverable>
+        <CardContent>Slide one</CardContent>
+      </Card>
+    </CarouselItem>
+    <CarouselItem>
+      <Card hoverable>
+        <CardContent>Slide two</CardContent>
+      </Card>
+    </CarouselItem>
+    <CarouselItem>
+      <Card hoverable>
+        <CardContent>Slide three</CardContent>
+      </Card>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`;
 
 function getShowcaseSlides(tr: ReturnType<typeof useT>) {
   return [
@@ -85,36 +108,44 @@ function getShowcaseSlides(tr: ReturnType<typeof useT>) {
   ];
 }
 
-function createGalleryPlaceholderDataUri(index: number) {
-  const palettes = [
-    ['#0d1117', '#1e2a3e'],
-    ['#0d1117', '#1a2d2a'],
-    ['#0f1019', '#1c2640'],
-    ['#111318', '#182030'],
-  ] as const;
-  const [from, to] = palettes[index % palettes.length];
-
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
-      <defs>
-        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="${from}" />
-          <stop offset="100%" stop-color="${to}" />
-        </linearGradient>
-      </defs>
-      <rect width="1600" height="900" fill="url(#bg)" />
-      <line x1="0" y1="300" x2="1600" y2="300" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-      <line x1="0" y1="600" x2="1600" y2="600" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-      <line x1="533" y1="0" x2="533" y2="900" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-      <line x1="1066" y1="0" x2="1066" y2="900" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-      <circle cx="230" cy="220" r="2" fill="white" fill-opacity="0.4" />
-      <circle cx="320" cy="180" r="1.5" fill="white" fill-opacity="0.3" />
-      <circle cx="420" cy="260" r="2" fill="white" fill-opacity="0.35" />
-      <circle cx="1010" cy="130" r="2" fill="white" fill-opacity="0.3" />
-      <circle cx="1290" cy="120" r="1.5" fill="white" fill-opacity="0.35" />
-      <circle cx="1380" cy="260" r="2" fill="white" fill-opacity="0.3" />
+function GalleryPlaceholder() {
+  return (
+    <svg
+      viewBox="0 0 1600 900"
+      aria-hidden="true"
+      focusable="false"
+      style={{
+        display: 'block',
+        width: '100%',
+        height: 'auto',
+        aspectRatio: '16 / 9',
+      }}
+    >
+      <rect width="1600" height="900" fill="var(--stella-color-void-base, #0d1117)" />
+      <rect
+        x="96"
+        y="96"
+        width="1408"
+        height="708"
+        rx="32"
+        fill="var(--stella-color-void-surface, #15161b)"
+        stroke="var(--stella-color-void-muted, #2b2e35)"
+        strokeWidth="2"
+      />
+      <line x1="96" y1="332" x2="1504" y2="332" stroke="var(--stella-color-starlight-primary, #f0f0f5)" strokeOpacity="0.08" />
+      <line x1="96" y1="568" x2="1504" y2="568" stroke="var(--stella-color-starlight-primary, #f0f0f5)" strokeOpacity="0.08" />
+      <line x1="565" y1="96" x2="565" y2="804" stroke="var(--stella-color-starlight-primary, #f0f0f5)" strokeOpacity="0.08" />
+      <line x1="1035" y1="96" x2="1035" y2="804" stroke="var(--stella-color-starlight-primary, #f0f0f5)" strokeOpacity="0.08" />
+      <rect x="144" y="144" width="248" height="18" rx="9" fill="var(--stella-color-cosmos-400, #818cf8)" fillOpacity="0.72" />
+      <rect x="144" y="192" width="924" height="14" rx="7" fill="var(--stella-color-starlight-secondary, #8888a0)" fillOpacity="0.32" />
+      <rect x="144" y="232" width="712" height="14" rx="7" fill="var(--stella-color-starlight-secondary, #8888a0)" fillOpacity="0.2" />
+      <rect x="144" y="396" width="376" height="124" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
+      <rect x="612" y="396" width="376" height="124" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
+      <rect x="1080" y="396" width="376" height="124" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
+      <rect x="144" y="620" width="610" height="136" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
+      <rect x="790" y="620" width="666" height="136" rx="24" fill="var(--stella-color-void-overlay, #1b1d24)" />
     </svg>
-  `)}`;
+  );
 }
 
 function useCarouselStatus(api: CarouselApi | undefined, totalSlides: number) {
@@ -187,6 +218,7 @@ function CarouselStatusControls({
 function CarouselShowcase({
   loop = false,
   slideAlign = 'center',
+  slidesPerView = 1,
   withApi = false,
   controls = 'below',
 }: CarouselShowcaseProps) {
@@ -197,7 +229,6 @@ function CarouselShowcase({
   const isOverlayControls = controls !== 'below';
   const hoverRevealControls = controls === 'inside-hover';
   const [controlsVisible, setControlsVisible] = React.useState(false);
-  const slideStyle = { flex: `0 0 ${isOverlayControls ? '100%' : '88%'}` };
   const frameStyle = {
     ...horizontalFrameStyle,
     paddingInline: controls === 'outside' ? '2.75rem' : '0.75rem',
@@ -292,12 +323,13 @@ function CarouselShowcase({
         <Carousel
           loop={loop}
           slideAlign={slideAlign}
+          slidesPerView={slidesPerView}
           setApi={setApi}
           aria-label={tr.carousel.label_carousel}
         >
           <CarouselContent>
             {slides.map((slide, index) => (
-              <CarouselItem key={slide.title} style={slideStyle}>
+              <CarouselItem key={slide.title}>
                 <Card style={{ height: '100%', minHeight: '15rem' }}>
                   <CardContent
                     style={{
@@ -335,78 +367,160 @@ function CarouselShowcase({
   );
 }
 
-function ImageCarouselShowcase({ loop = false }: Pick<CarouselProps, 'loop'>) {
+function ImageCarouselShowcase({
+  loop = false,
+  slidesPerView = 1,
+  controls = 'below',
+}: Pick<CarouselProps, 'loop' | 'slidesPerView'> & {
+  controls?: CarouselControlPlacement;
+}) {
   const tr = useT();
   const slides = getShowcaseSlides(tr);
   const [api, setApi] = React.useState<CarouselApi>();
   const status = useCarouselStatus(api, slides.length);
+  const isOverlayControls = controls !== 'below';
+  const hoverRevealControls = controls === 'inside-hover';
+  const [controlsVisible, setControlsVisible] = React.useState(false);
+  const frameStyle = {
+    ...imageFrameStyle,
+    paddingInline: controls === 'outside' ? '2.75rem' : '0.75rem',
+  };
+  const overlayControlsStyle: React.CSSProperties = {
+    position: 'absolute',
+    insetBlockStart: '50%',
+    insetInline: controls === 'outside' ? '-1.375rem' : '1rem',
+    transform: hoverRevealControls && !controlsVisible
+      ? 'translateY(-50%) scale(0.96)'
+      : 'translateY(-50%)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    pointerEvents: 'none',
+    zIndex: 3,
+    opacity: hoverRevealControls && !controlsVisible ? 0 : 1,
+    visibility: hoverRevealControls && !controlsVisible ? 'hidden' : 'visible',
+    transition: hoverRevealControls ? 'opacity 180ms ease, transform 180ms ease' : undefined,
+  };
 
-  return (
-    <div style={imageFrameStyle}>
-      <Carousel
-        loop={loop}
-        slideAlign="center"
-        setApi={setApi}
-        aria-label={tr.carousel.label_gallery}
-      >
-        <CarouselContent>
-          {slides.map((slide, index) => (
-            <CarouselItem key={slide.title} slideLabel={slide.title}>
-              <figure style={{ margin: 0, display: 'grid', gap: '0.875rem' }}>
-                <div
-                  style={{
-                    position: 'relative',
-                    overflow: 'hidden',
-                    borderRadius: '1rem',
-                    border: '1px solid color-mix(in srgb, var(--stella-color-starlight-primary) 12%, var(--stella-color-void-muted))',
-                    background: 'var(--stella-color-void-surface)',
-                    boxShadow: 'var(--stella-shadow-md)',
-                  }}
-                >
-                  <img
-                    src={createGalleryPlaceholderDataUri(index)}
-                    alt={slide.title}
-                    width={1600}
-                    height={900}
-                    loading="lazy"
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      height: 'auto',
-                      aspectRatio: '16 / 9',
-                      objectFit: 'cover',
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      insetInlineStart: '1rem',
-                      insetBlockStart: '1rem',
-                    }}
-                  >
-                    <Badge variant="subtle" color="primary">
-                      0{index + 1}
-                    </Badge>
-                  </div>
-                </div>
-                <div style={{ display: 'grid', gap: '0.5rem', paddingInline: '0.25rem' }}>
-                  <Heading level={3} size="lg" style={{ margin: 0 }}>
-                    {slide.title}
-                  </Heading>
-                  <Text color="secondary" style={{ margin: 0, lineHeight: 1.65 }}>
-                    {slide.description}
-                  </Text>
-                </div>
-              </figure>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
+  React.useEffect(() => {
+    if (!hoverRevealControls) {
+      return;
+    }
+
+    setControlsVisible(false);
+  }, [hoverRevealControls, loop, slidesPerView]);
+
+  const handleShowControls = () => {
+    if (hoverRevealControls) {
+      setControlsVisible(true);
+    }
+  };
+
+  const handleHideControls = (event?: React.FocusEvent<HTMLDivElement>) => {
+    if (!hoverRevealControls) {
+      return;
+    }
+
+    if (event) {
+      const nextFocused = event.relatedTarget;
+
+      if (nextFocused instanceof Node && event.currentTarget.contains(nextFocused)) {
+        return;
+      }
+    }
+
+    setControlsVisible(false);
+  };
+
+  const renderControls = () => {
+    if (controls === 'below') {
+      return (
         <CarouselStatusControls
           previousLabel={tr.carousel.label_previous}
           nextLabel={tr.carousel.label_next}
           status={status}
         />
-      </Carousel>
+      );
+    }
+
+    return (
+      <div style={overlayControlsStyle}>
+        <CarouselPrevious
+          aria-label={tr.carousel.label_previous}
+          style={controls === 'outside' ? controlButtonStyle : insideControlButtonStyle}
+        />
+        <CarouselNext
+          aria-label={tr.carousel.label_next}
+          style={controls === 'outside' ? controlButtonStyle : insideControlButtonStyle}
+        />
+      </div>
+    );
+  };
+
+  return (
+    <div style={frameStyle}>
+      <div
+        style={{ position: 'relative' }}
+        onMouseEnter={handleShowControls}
+        onMouseLeave={() => handleHideControls()}
+        onFocusCapture={handleShowControls}
+        onBlurCapture={handleHideControls}
+      >
+        <Carousel
+          loop={loop}
+          slideAlign="center"
+          slidesPerView={slidesPerView}
+          setApi={setApi}
+          aria-label={tr.carousel.label_gallery}
+        >
+          <CarouselContent>
+            {slides.map((slide, index) => (
+              <CarouselItem key={slide.title} slideLabel={slide.title}>
+                <figure style={{ margin: 0, display: 'grid', gap: '0.875rem' }}>
+                  <div
+                    style={{
+                      position: 'relative',
+                      overflow: 'hidden',
+                      borderRadius: '1rem',
+                      border: '1px solid color-mix(in srgb, var(--stella-color-starlight-primary) 12%, var(--stella-color-void-muted))',
+                      background: 'var(--stella-color-void-surface)',
+                      boxShadow: 'var(--stella-shadow-md)',
+                    }}
+                  >
+                    <GalleryPlaceholder />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        insetInlineStart: '1rem',
+                        insetBlockStart: '1rem',
+                      }}
+                    >
+                      <Badge variant="subtle" color="primary">
+                        0{index + 1}
+                      </Badge>
+                    </div>
+                  </div>
+                  <div style={{ display: 'grid', gap: '0.5rem', paddingInline: '0.25rem' }}>
+                    <Heading level={3} size="lg" style={{ margin: 0 }}>
+                      {slide.title}
+                    </Heading>
+                    <Text color="secondary" style={{ margin: 0, lineHeight: 1.65 }}>
+                      {slide.description}
+                    </Text>
+                  </div>
+                </figure>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {renderControls()}
+        </Carousel>
+      </div>
+
+      {isOverlayControls ? (
+        <Text size="sm" color="secondary" style={{ margin: 0, textAlign: 'center' }}>
+          {status.current} / {status.total}
+        </Text>
+      ) : null}
     </div>
   );
 }
@@ -417,7 +531,6 @@ function CardsPerViewShowcase({ loop = false }: Pick<CarouselProps, 'loop'>) {
   const [cardsPerView, setCardsPerView] = React.useState<CardsPerView>(2);
   const [api, setApi] = React.useState<CarouselApi>();
   const status = useCarouselStatus(api, slides.length);
-  const slideBasis = `${100 / cardsPerView}%`;
 
   React.useEffect(() => {
     api?.scrollTo(0);
@@ -460,16 +573,13 @@ function CardsPerViewShowcase({ loop = false }: Pick<CarouselProps, 'loop'>) {
       <Carousel
         loop={loop}
         slideAlign="start"
+        slidesPerView={cardsPerView}
         setApi={setApi}
         aria-label={tr.carousel.label_carousel}
       >
         <CarouselContent>
           {slides.map((slide, index) => (
-            <CarouselItem
-              key={slide.title}
-              slideLabel={slide.title}
-              style={{ flex: `0 0 ${slideBasis}` }}
-            >
+            <CarouselItem key={slide.title} slideLabel={slide.title}>
               <Card hoverable style={{ height: '100%', minHeight: '14rem' }}>
                 <CardContent
                   style={{
@@ -517,6 +627,10 @@ const meta = {
       control: 'boolean',
       table: { defaultValue: { summary: 'false' } },
     },
+    slidesPerView: {
+      control: { type: 'number', min: 0.5, step: 0.25 },
+      table: { defaultValue: { summary: '1' } },
+    },
     slideAlign: {
       control: 'select',
       options: ['smart', 'start', 'center', 'end'],
@@ -535,6 +649,7 @@ export const Default: Story = {
   args: {
     loop: false,
     slideAlign: 'center',
+    slidesPerView: 1,
   },
   render: (args) => <CarouselShowcase {...args} />,
   play: async ({ canvas, userEvent }) => {
@@ -571,6 +686,7 @@ export const Loop: Story = {
   args: {
     loop: true,
     slideAlign: 'center',
+    slidesPerView: 1,
   },
   render: (args) => <CarouselShowcase {...args} />,
   parameters: {
@@ -587,13 +703,42 @@ export const Images: Story = {
   name: translations.en.carousel.story_images,
   args: {
     loop: false,
+    slidesPerView: 1,
   },
-  render: ({ loop }) => <ImageCarouselShowcase loop={loop} />,
+  render: ({ loop, slidesPerView }) => (
+    <ImageCarouselShowcase loop={loop} slidesPerView={slidesPerView} />
+  ),
   parameters: {
     docs: {
       description: {
         story:
           'An image-first gallery example. The carousel stays generic and the image content lives entirely inside each CarouselItem.',
+      },
+    },
+  },
+  argTypes: {
+    slideAlign: { table: { disable: true }, control: false },
+  },
+};
+
+export const ImagesInside: Story = {
+  name: translations.en.carousel.story_imagesInside,
+  args: {
+    loop: false,
+    slidesPerView: 1.1,
+  },
+  render: ({ loop, slidesPerView }) => (
+    <ImageCarouselShowcase
+      loop={loop}
+      slidesPerView={slidesPerView}
+      controls="inside-always"
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Image slides can also use inside controls. Fractional `slidesPerView` values let the next image peek in without dropping the overlay treatment.',
       },
     },
   },
@@ -612,12 +757,16 @@ export const CardsPerView: Story = {
     docs: {
       description: {
         story:
-          'Change how many cards fit in one viewport by adjusting each CarouselItem flex-basis. This keeps Carousel generic, so a dedicated size prop is unnecessary.',
+          'Use the root `slidesPerView` prop for common multi-card layouts. If you need asymmetrical widths, you can still override each CarouselItem flex-basis directly.',
+      },
+      source: {
+        code: cardsPerViewDocsSource,
       },
     },
   },
   argTypes: {
     slideAlign: { table: { disable: true }, control: false },
+    slidesPerView: { table: { disable: true }, control: false },
   },
 };
 
@@ -626,6 +775,7 @@ export const InsideAlways: Story = {
   args: {
     loop: false,
     slideAlign: 'center',
+    slidesPerView: 1.15,
   },
   render: (args) => <CarouselShowcase {...args} controls="inside-always" />,
   parameters: {
@@ -643,6 +793,7 @@ export const InsideHover: Story = {
   args: {
     loop: false,
     slideAlign: 'center',
+    slidesPerView: 1.15,
   },
   render: (args) => <CarouselShowcase {...args} controls="inside-hover" />,
   parameters: {
@@ -660,6 +811,7 @@ export const OutsideControls: Story = {
   args: {
     loop: false,
     slideAlign: 'center',
+    slidesPerView: 1,
   },
   render: (args) => <CarouselShowcase {...args} controls="outside" />,
   parameters: {
@@ -677,6 +829,7 @@ export const WithApi: Story = {
   args: {
     loop: false,
     slideAlign: 'center',
+    slidesPerView: 1,
   },
   render: (args) => <CarouselShowcase {...args} withApi />,
   parameters: {

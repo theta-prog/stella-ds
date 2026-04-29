@@ -1,5 +1,17 @@
 # @stella-ds/react
 
+## 0.6.0
+
+### Minor Changes
+
+- Add the `slidesPerView` Carousel prop for uniform multi-slide layouts, including fractional peek layouts.
+- Expand Carousel docs and stories with inside image controls and public API examples.
+
+### Patch Changes
+
+- Updated dependencies
+  - @stella-ds/theme@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes

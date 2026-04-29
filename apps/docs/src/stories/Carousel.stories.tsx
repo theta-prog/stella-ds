@@ -21,7 +21,7 @@ import { useT, translations } from '../i18n';
 
 type CarouselShowcaseProps = Pick<
   CarouselProps,
-  'loop' | 'slideAlign' | 'slidesPerView' | 'autoplay' | 'autoplayInterval'
+  'loop' | 'slideAlign' | 'slidesPerView' | 'autoplay' | 'autoplayInterval' | 'pauseOnHover'
 > & {
   withApi?: boolean;
   controls?: CarouselControlPlacement;
@@ -240,6 +240,7 @@ function CarouselShowcase({
   withDots = false,
   autoplay = false,
   autoplayInterval = 3000,
+  pauseOnHover = true,
 }: CarouselShowcaseProps) {
   const tr = useT();
   const slides = getShowcaseSlides(tr);
@@ -346,6 +347,7 @@ function CarouselShowcase({
           setApi={setApi}
           autoplay={autoplay}
           autoplayInterval={autoplayInterval}
+          pauseOnHover={pauseOnHover}
           aria-label={tr.carousel.label_carousel}
         >
           <CarouselContent>

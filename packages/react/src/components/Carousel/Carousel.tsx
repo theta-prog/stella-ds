@@ -170,6 +170,14 @@ function normalizeSlidesPerView(slidesPerView: number | undefined): number {
   return slidesPerView;
 }
 
+function normalizeAutoplayInterval(interval: number | undefined): number {
+  if (typeof interval !== 'number' || !Number.isFinite(interval) || interval < 250) {
+    return 250;
+  }
+
+  return interval;
+}
+
 function CarouselArrowIcon({ direction, ...props }: CarouselArrowIconProps) {
   return (
     <svg
@@ -316,13 +324,48 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         return;
       }
 
-      const id = setInterval(() => {
-        if (loop || api.canScrollNext()) {
-          api.scrollNext();
-        }
-      }, autoplayInterval);
+      const delay = normalizeAutoplayInterval(autoplayInterval);
+      let id: ReturnType<typeof setInterval> | undefined;
 
-      return () => clearInterval(id);
+      const stop = () => {
+        if (id !== undefined) {
+          clearInterval(id);
+          id = undefined;
+        }
+      };
+
+      const start = () => {
+        if (id !== undefined) {
+          return;
+        }
+
+        id = setInterval(() => {
+          if (!loop && !api.canScrollNext()) {
+            stop();
+            return;
+          }
+
+          api.scrollNext();
+        }, delay);
+      };
+
+      const sync = () => {
+        if (loop || api.canScrollNext()) {
+          start();
+        } else {
+          stop();
+        }
+      };
+
+      sync();
+      api.on('select', sync);
+      api.on('reInit', sync);
+
+      return () => {
+        stop();
+        api.off('select', sync);
+        api.off('reInit', sync);
+      };
     }, [autoplay, api, loop, autoplayInterval, isPaused]);
 
     const handleKeyDownCapture = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -645,9 +688,9 @@ export const CarouselDots = React.forwardRef<HTMLDivElement, CarouselDotsProps>(
       <div
         ref={ref}
         className={cls}
+        {...props}
         role="group"
         aria-label={ariaLabel ?? 'Slide indicators'}
-        {...props}
       >
         {Array.from({ length: snapCount }, (_, i) => (
           <button

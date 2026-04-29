@@ -1,5 +1,11 @@
 # @stella-ds/react
 
+## 0.7.2
+
+### Patch Changes
+
+- dee2fd8: Fix carousel smart-align canScrollNext phantom true: disable trimSnaps containScroll and gate canScrollNext/Prev when all slides fit in viewport
+
 ## 0.7.1
 
 ### Patch Changes

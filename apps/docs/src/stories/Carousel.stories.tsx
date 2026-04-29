@@ -188,6 +188,20 @@ function useCarouselStatus(api: CarouselApi | undefined, totalSlides: number) {
   return status;
 }
 
+function findCarouselViewportElement(root: HTMLElement) {
+  const viewport = Array.from(root.querySelectorAll<HTMLElement>('div')).find((element) => {
+    const computedStyle = getComputedStyle(element);
+
+    return computedStyle.overflowX === 'hidden' || computedStyle.overflow === 'hidden';
+  });
+
+  if (!viewport) {
+    throw new Error('Carousel viewport not found.');
+  }
+
+  return viewport;
+}
+
 function CarouselStatusControls({
   previousLabel,
   nextLabel,
@@ -614,6 +628,131 @@ function CardsPerViewShowcase({ loop = false }: Pick<CarouselProps, 'loop'>) {
   );
 }
 
+function CardsEdgeBleedRegressionShowcase() {
+  const tr = useT();
+  const slides = getShowcaseSlides(tr);
+  const [api, setApi] = React.useState<CarouselApi>();
+  const status = useCarouselStatus(api, slides.length);
+
+  return (
+    <div style={cardsFrameStyle}>
+      <Carousel
+        loop={false}
+        slideAlign="smart"
+        slidesPerView={2}
+        setApi={setApi}
+        aria-label={tr.carousel.label_carousel}
+        data-testid="edge-bleed-carousel"
+      >
+        <CarouselContent>
+          {slides.map((slide, index) => (
+            <CarouselItem key={slide.title} slideLabel={slide.title}>
+              <Card
+                hoverable
+                data-testid={`edge-bleed-card-${index}`}
+                style={{ height: '100%', minHeight: '14rem' }}
+              >
+                <CardContent
+                  style={{
+                    padding: '1.25rem',
+                    display: 'grid',
+                    gap: '0.75rem',
+                    height: '100%',
+                    alignContent: 'start',
+                  }}
+                >
+                  <Badge variant="subtle" color="primary">
+                    0{index + 1}
+                  </Badge>
+                  <Heading level={3} size="lg" style={{ margin: 0 }}>
+                    {slide.title}
+                  </Heading>
+                  <Text color="secondary" style={{ margin: 0, lineHeight: 1.65 }}>
+                    {slide.description}
+                  </Text>
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselStatusControls
+          previousLabel={tr.carousel.label_previous}
+          nextLabel={tr.carousel.label_next}
+          status={status}
+        />
+      </Carousel>
+    </div>
+  );
+}
+
+function ImagesExactFitRegressionShowcase() {
+  const tr = useT();
+  const slides = getShowcaseSlides(tr).slice(0, 2);
+  const [api, setApi] = React.useState<CarouselApi>();
+  const status = useCarouselStatus(api, slides.length);
+
+  return (
+    <div style={imageFrameStyle}>
+      <Carousel
+        loop={false}
+        slideAlign="smart"
+        slidesPerView={2}
+        setApi={setApi}
+        aria-label={tr.carousel.label_gallery}
+        data-testid="exact-fit-carousel"
+      >
+        <CarouselContent>
+          {slides.map((slide, index) => (
+            <CarouselItem key={slide.title} slideLabel={slide.title}>
+              <figure
+                data-testid={`exact-fit-figure-${index}`}
+                style={{ margin: 0, display: 'grid', gap: '0.875rem' }}
+              >
+                <div
+                  style={{
+                    position: 'relative',
+                    overflow: 'hidden',
+                    borderRadius: '1rem',
+                    border: '1px solid color-mix(in srgb, var(--stella-color-starlight-primary) 12%, var(--stella-color-void-muted))',
+                    background: 'var(--stella-color-void-surface)',
+                    boxShadow: 'var(--stella-shadow-md)',
+                  }}
+                >
+                  <GalleryPlaceholder />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      insetInlineStart: '1rem',
+                      insetBlockStart: '1rem',
+                    }}
+                  >
+                    <Badge variant="subtle" color="primary">
+                      0{index + 1}
+                    </Badge>
+                  </div>
+                </div>
+                <div style={{ display: 'grid', gap: '0.5rem', paddingInline: '0.25rem' }}>
+                  <Heading level={3} size="lg" style={{ margin: 0 }}>
+                    {slide.title}
+                  </Heading>
+                  <Text color="secondary" style={{ margin: 0, lineHeight: 1.65 }}>
+                    {slide.description}
+                  </Text>
+                </div>
+              </figure>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselStatusControls
+          previousLabel={tr.carousel.label_previous}
+          nextLabel={tr.carousel.label_next}
+          status={status}
+        />
+      </Carousel>
+    </div>
+  );
+}
+
 const meta = {
   title: 'Components/Carousel',
   component: Carousel,
@@ -765,6 +904,90 @@ export const CardsPerView: Story = {
     },
   },
   argTypes: {
+    slideAlign: { table: { disable: true }, control: false },
+    slidesPerView: { table: { disable: true }, control: false },
+  },
+};
+
+export const TwoUpEdgeBleedRegression: Story = {
+  name: 'Two-up edge bleed regression',
+  render: () => <CardsEdgeBleedRegressionShowcase />,
+  play: async ({ canvasElement }) => {
+    const carousel = canvasElement.querySelector('[data-testid="edge-bleed-carousel"]');
+    const firstCard = canvasElement.querySelector('[data-testid="edge-bleed-card-0"]');
+    const secondCard = canvasElement.querySelector('[data-testid="edge-bleed-card-1"]');
+
+    if (!(carousel instanceof HTMLElement) || !(firstCard instanceof HTMLElement) || !(secondCard instanceof HTMLElement)) {
+      throw new Error('Carousel regression elements not found.');
+    }
+
+    const viewport = findCarouselViewportElement(carousel);
+
+    await waitFor(() => {
+      const viewportRect = viewport.getBoundingClientRect();
+      const firstRect = firstCard.getBoundingClientRect();
+      const secondRect = secondCard.getBoundingClientRect();
+
+      expect(firstRect.left - viewportRect.left).toBeGreaterThanOrEqual(4);
+      expect(viewportRect.right - secondRect.right).toBeGreaterThanOrEqual(4);
+    }, { timeout: 3000 });
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Regression coverage for two-up, hoverable card layouts. The default viewport bleed should keep both outer cards fully inside the clipped viewport without consumer CSS overrides.',
+      },
+    },
+  },
+  argTypes: {
+    loop: { table: { disable: true }, control: false },
+    slideAlign: { table: { disable: true }, control: false },
+    slidesPerView: { table: { disable: true }, control: false },
+  },
+};
+
+export const ImagesExactFitRegression: Story = {
+  name: 'Images exact-fit regression',
+  render: () => <ImagesExactFitRegressionShowcase />,
+  play: async ({ canvas, canvasElement }) => {
+    const previousButton = canvas.getByRole('button', {
+      name: translations.en.carousel.label_previous,
+    });
+    const nextButton = canvas.getByRole('button', {
+      name: translations.en.carousel.label_next,
+    });
+    const carousel = canvasElement.querySelector('[data-testid="exact-fit-carousel"]');
+    const firstFigure = canvasElement.querySelector('[data-testid="exact-fit-figure-0"]');
+    const secondFigure = canvasElement.querySelector('[data-testid="exact-fit-figure-1"]');
+
+    if (!(carousel instanceof HTMLElement) || !(firstFigure instanceof HTMLElement) || !(secondFigure instanceof HTMLElement)) {
+      throw new Error('Exact-fit regression elements not found.');
+    }
+
+    const viewport = findCarouselViewportElement(carousel);
+
+    await waitFor(() => {
+      const viewportRect = viewport.getBoundingClientRect();
+      const firstRect = firstFigure.getBoundingClientRect();
+      const secondRect = secondFigure.getBoundingClientRect();
+
+      expect(previousButton).toBeDisabled();
+      expect(nextButton).toBeDisabled();
+      expect(firstRect.left - viewportRect.left).toBeGreaterThanOrEqual(4);
+      expect(viewportRect.right - secondRect.right).toBeGreaterThanOrEqual(4);
+    }, { timeout: 3000 });
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Regression coverage for exact-fit image pairs. When the slide count matches slidesPerView, both images should sit fully inside the viewport and navigation should stay disabled.',
+      },
+    },
+  },
+  argTypes: {
+    loop: { table: { disable: true }, control: false },
     slideAlign: { table: { disable: true }, control: false },
     slidesPerView: { table: { disable: true }, control: false },
   },

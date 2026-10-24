@@ -1,5 +1,11 @@
 # @stella-ds/mcp
 
+## 0.2.1
+
+### Patch Changes
+
+- Update compatible runtime dependencies and the MCP SDK to patched releases. Require a security-patched Node.js runtime for the MCP server. Rebuild the linked React and theme packages with the updated toolchain.
+
 ## 0.2.0
 
 ### Minor Changes

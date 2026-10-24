@@ -1,6 +1,6 @@
 {
   "name": "@stella-ds/mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "MCP server for Stella UI — gives AI agents access to components, tokens, guidelines, and page patterns",
   "type": "module",
   "main": "./dist/index.js",
@@ -34,10 +34,13 @@
     "directory": "packages/mcp"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0"
+    "@modelcontextprotocol/sdk": "^1.32.2"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.9.9",
     "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": "^22.23.4 || ^24.22.1 || ^26.12.1"
   }
 }

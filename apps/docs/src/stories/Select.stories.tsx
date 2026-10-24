@@ -188,8 +188,7 @@ export const WithGroups: Story = {
   },
 };
 
-export const Controlled: Story = {
-  render: () => {
+function ControlledSelectExample() {
     const tr = useT();
     const [value, setValue] = React.useState('');
     return (
@@ -211,7 +210,10 @@ export const Controlled: Story = {
         </p>
       </div>
     );
-  },
+}
+
+export const Controlled: Story = {
+  render: () => <ControlledSelectExample />,
   parameters: {
     docs: {
       description: {

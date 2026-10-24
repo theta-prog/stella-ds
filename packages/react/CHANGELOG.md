@@ -1,5 +1,15 @@
 # @stella-ds/react
 
+## 0.8.1
+
+### Patch Changes
+
+- Emit explicit relative ESM file paths so Node.js can import the package for server rendering.
+
+- Update compatible runtime dependencies and the MCP SDK to patched releases. Require a security-patched Node.js runtime for the MCP server. Rebuild the linked React and theme packages with the updated toolchain.
+- Updated dependencies
+  - @stella-ds/theme@0.8.1
+
 ## 0.8.0
 
 ### Patch Changes

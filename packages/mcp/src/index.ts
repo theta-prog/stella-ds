@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import { readFileSync } from 'node:fs';
+
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -12,8 +14,10 @@ import { getTokens } from './tools/getTokens.js';
 import { search } from './tools/search.js';
 import { listPatterns, getPattern } from './tools/patterns.js';
 
+const { version } = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as { version: string };
+
 const server = new Server(
-  { name: 'stella-ui', version: '0.1.0' },
+  { name: 'stella-ui', version },
   { capabilities: { tools: {} } }
 );
 

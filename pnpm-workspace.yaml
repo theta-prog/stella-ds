@@ -8,3 +8,8 @@ allowBuilds:
 overrides:
   postcss: ^8.5.23
   esbuild: ^0.28.2
+
+# This security release was audited and tested before the maturity window elapsed.
+# Keep the cooldown active for all other versions and packages.
+minimumReleaseAgeExclude:
+  - '@modelcontextprotocol/sdk@1.32.2'

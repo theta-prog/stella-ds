@@ -90,6 +90,9 @@ jobs:
       - name: Build packages
         run: pnpm --filter @stella-ds/theme build && pnpm --filter @stella-ds/react build
 
+      - name: Verify package ESM and server rendering
+        run: pnpm --filter @stella-ds/react test:package
+
       - name: Install Playwright browsers
         run: pnpm --filter @stella-ds/docs exec playwright install --with-deps chromium
 

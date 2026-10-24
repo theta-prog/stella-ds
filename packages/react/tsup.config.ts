@@ -2,7 +2,7 @@
 
 import { defineConfig } from 'tsup';
 import { readFileSync, writeFileSync, readdirSync, rmSync, existsSync } from 'fs';
-import { join, basename } from 'path';
+import { join, basename, dirname } from 'path';
 import { createHash } from 'crypto';
 
 function findSourceFiles(dir: string): string[] {
@@ -124,6 +124,22 @@ export default defineConfig({
     writeFileSync('dist/index.css', cssParts.join('\n'));
     // Remove stale CSS source map (generated from unscoped CSS)
     if (existsSync('dist/index.css.map')) rmSync('dist/index.css.map');
+
+    // Native ESM needs explicit file extensions, including directory indexes.
+    // Preserve separate modules for tree shaking instead of bundling the library.
+    for (const jsFile of jsFiles) {
+      const source = readFileSync(jsFile, 'utf-8');
+      const updated = source.replace(
+        /(\bfrom\s*["']|\bimport\s*["']|\bimport\s*\(\s*["'])(\.\.?\/[^"']+)(["'])/g,
+        (match, prefix: string, specifier: string, quote: string) => {
+          const base = join(dirname(jsFile), specifier);
+          if (existsSync(base + '.js')) return prefix + specifier + '.js' + quote;
+          if (existsSync(join(base, 'index.js'))) return prefix + specifier + '/index.js' + quote;
+          return match;
+        },
+      );
+      if (updated !== source) writeFileSync(jsFile, updated);
+    }
 
     console.log(`✓ Scoped and patched ${patched} CSS modules`);
   },

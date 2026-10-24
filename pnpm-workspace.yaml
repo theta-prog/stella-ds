@@ -3,3 +3,8 @@ packages:
   - 'apps/*'
 allowBuilds:
   esbuild: true
+
+# Security backports for Next.js and build tools; keep their public APIs.
+overrides:
+  postcss: ^8.5.23
+  esbuild: ^0.28.2

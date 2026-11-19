@@ -13,10 +13,18 @@ concurrency:
 jobs:
   lint-typecheck:
     name: Lint & Type Check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
+      - name: Apply Ubuntu security updates
+        timeout-minutes: 10
+        run: |
+          printf 'Acquire::Retries "3";\nUnattended-Upgrade::Automatic-Reboot "false";\n' | sudo tee /etc/apt/apt.conf.d/80-ci-updates
+          sudo apt-get -o APT::Update::Error-Mode=any update
+          sudo env DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends unattended-upgrades
+          sudo unattended-upgrade --verbose
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -41,10 +49,18 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
+      - name: Apply Ubuntu security updates
+        timeout-minutes: 10
+        run: |
+          printf 'Acquire::Retries "3";\nUnattended-Upgrade::Automatic-Reboot "false";\n' | sudo tee /etc/apt/apt.conf.d/80-ci-updates
+          sudo apt-get -o APT::Update::Error-Mode=any update
+          sudo env DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends unattended-upgrades
+          sudo unattended-upgrade --verbose
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -72,6 +88,14 @@ jobs:
     permissions:
       contents: read
     steps:
+      - name: Apply Ubuntu security updates
+        timeout-minutes: 10
+        run: |
+          printf 'Acquire::Retries "3";\nUnattended-Upgrade::Automatic-Reboot "false";\n' | sudo tee /etc/apt/apt.conf.d/80-ci-updates
+          sudo apt-get -o APT::Update::Error-Mode=any update
+          sudo env DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends unattended-upgrades
+          sudo unattended-upgrade --verbose
+
       - name: Checkout
         uses: actions/checkout@v4
 

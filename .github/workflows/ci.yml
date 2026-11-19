@@ -18,7 +18,7 @@ jobs:
       contents: read
     steps:
       - name: Apply Ubuntu security updates
-        timeout-minutes: 10
+        timeout-minutes: 20
         run: |
           printf 'Acquire::Retries "3";\nUnattended-Upgrade::Automatic-Reboot "false";\n' | sudo tee /etc/apt/apt.conf.d/80-ci-updates
           sudo apt-get -o APT::Update::Error-Mode=any update
@@ -54,7 +54,7 @@ jobs:
       contents: read
     steps:
       - name: Apply Ubuntu security updates
-        timeout-minutes: 10
+        timeout-minutes: 20
         run: |
           printf 'Acquire::Retries "3";\nUnattended-Upgrade::Automatic-Reboot "false";\n' | sudo tee /etc/apt/apt.conf.d/80-ci-updates
           sudo apt-get -o APT::Update::Error-Mode=any update
@@ -89,7 +89,7 @@ jobs:
       contents: read
     steps:
       - name: Apply Ubuntu security updates
-        timeout-minutes: 10
+        timeout-minutes: 20
         run: |
           printf 'Acquire::Retries "3";\nUnattended-Upgrade::Automatic-Reboot "false";\n' | sudo tee /etc/apt/apt.conf.d/80-ci-updates
           sudo apt-get -o APT::Update::Error-Mode=any update
